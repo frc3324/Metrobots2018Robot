@@ -21,6 +21,14 @@ public class DriveTank extends Command {
 		double leftY = gamepad.getLeftY(); // Get y value of left joystick
 		double rightX = gamepad.getRightX(); // Get x value of right joystick 
 		
+		if (Math.abs(leftY) < .2) {
+			leftY = Math.pow(leftY, 3);
+		}
+		if (Math.abs(rightX) < .2) {
+			rightX = Math.pow(rightX, 3);
+		}
+		
+		
 		double prevLeftSideSpeed = leftY + rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
 		double prevRightSideSpeed = leftY - rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick
 		
