@@ -79,7 +79,6 @@ public class Constants {
 	 */
 	public static double kDriveHoldAngleP = 0.007;
 	public final static double driveTrainAngleDeadband = 3;
-	public final static double LOWER_DEADBAND = -0.05;
-	public final static double UPPER_DEADBAND = 0.05;
+	public final static double AXIS_DEADBAND = 0.05;
 	
 }

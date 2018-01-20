@@ -21,12 +21,56 @@ public class DriveTank extends Command {
 		double leftY = gamepad.getLeftY(); // Get y value of left joystick
 		double rightX = gamepad.getRightX(); // Get x value of right joystick 
 		
-		double leftSideSpeed = leftY + rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
-		double rightSideSpeed = leftY - rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick
+		double prevLeftSideSpeed = leftY + rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
+		double prevRightSideSpeed = leftY - rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick
 		
-		if (leftSideSpeed > 1.0) {
+		double leftSideSpeed = 0.0;
+		double rightSideSpeed = 0.0;
+		
+		if (Math.abs(leftY) > Constants.AXIS_DEADBAND) {
+			if (prevLeftSideSpeed > 1.0) {
+				leftSideSpeed = 1.0;
+				rightSideSpeed = 1.0/prevLeftSideSpeed * prevRightSideSpeed;
+				
+				if (gamepad.getRightTrigger() > 0.3) {
+					leftSideSpeed = (leftSideSpeed * 0.5);
+					rightSideSpeed = (rightSideSpeed * 0.5);
+				}
+				else {
+					drivetrain.tankDrive(leftSideSpeed, rightSideSpeed);
+				}
+			}
+			else {
+				drivetrain.tankDrive(leftSideSpeed, rightSideSpeed);
+			}
+		}
+		else {
+			drivetrain.tankDrive(0.0, 0.0);
+		}
+		
+		if (Math.abs(rightX) > Constants.AXIS_DEADBAND) {
+			if (prevRightSideSpeed < -1.0) {
+				rightSideSpeed = -1.0;
+				leftSideSpeed = (-1.0/prevRightSideSpeed * prevLeftSideSpeed);
+				
+				if (gamepad.getRightTrigger() > 0.3) {
+					leftSideSpeed = (leftSideSpeed * 0.5);
+					rightSideSpeed = (rightSideSpeed * 0.5);
+				}
+				else {
+					drivetrain.tankDrive(leftSideSpeed, rightSideSpeed);
+				}
+			}
+			else {
+				drivetrain.tankDrive(leftSideSpeed, rightSideSpeed);
+			}
+		}
+		else {
+			drivetrain.tankDrive(0.0, 0.0);		
+		}
+		/*if (leftSideSpeed > 1.0) {
 			leftSideSpeed = (1.0/leftSideSpeed * leftSideSpeed);			//ADEQUATELY IMPRESSIVE, although it equals 1
-			rightSideSpeed = (1.0/rightSideSpeed * leftSideSpeed);		//AS IS THIS
+			rightSideSpeed = (1.0/ * rightSideSpeed);		//AS IS THIS
 			drivetrain.tankDrive(leftSideSpeed, rightSideSpeed); 
 		}
 		else {
@@ -57,13 +101,14 @@ public class DriveTank extends Command {
 		}
 		
 		if (gamepad.getRightTrigger() > 0.3) {
+			
 			leftSideSpeed = (leftSideSpeed * 0.5);
 			rightSideSpeed = (rightSideSpeed * 0.5);
 			drivetrain.tankDrive(leftSideSpeed, rightSideSpeed);
 		}
 		else {
 			drivetrain.tankDrive(leftSideSpeed, rightSideSpeed);
-		}
+		} */
 	}
 	
 	@Override
