@@ -21,11 +21,11 @@ public class DriveTank extends Command {
 		double leftY = gamepad.getLeftY(); // Get y value of left joystick
 		double rightX = gamepad.getRightX(); // Get x value of right joystick 
 		
-		if (Math.abs(leftY) < .2) {
+		if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
 			leftY = Math.pow(leftY, 3);
 		}
 		if (Math.abs(rightX) < .2) {
-			rightX = Math.pow(rightX, 3);
+			rightX = Math.pow(rightX, 3); // repeat for the x-value on the right side 
 		}
 		
 		
