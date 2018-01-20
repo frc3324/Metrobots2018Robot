@@ -238,3 +238,12 @@ public class MetroController {
 		return buttonVal;
 	}
 }
+public boolean getAPressed() {
+	try {
+		boolean APressed = gamepad.getAButtonPressed();
+		return APressed;
+	}
+	catch (Exception e){
+		return false;
+	}
+}
