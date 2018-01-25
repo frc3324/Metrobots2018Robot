@@ -1,20 +1,20 @@
 package org.metrobots.commands.teleop;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 //import org.metrobots.subsystems.*; //name of drivetrain subsystem
 import org.metrobots.util.MetroController;
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.Constants;
+import org.metrobots.Robot;
 
 public class DriveTank extends Command {
 	
-	private MetroController gamepad;
-	private DriveTrain drivetrain; 
-	
-	public DriveTank(MetroController gp, DriveTrain dt) {
-		gamepad = gp;
+	public DriveTank() {
+	requires(Robot.mDriveTrain);	
 	}
 
+	
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
@@ -122,6 +122,7 @@ public class DriveTank extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
+		drivetrain
 	}
 	
 	@Override

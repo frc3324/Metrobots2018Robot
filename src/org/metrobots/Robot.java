@@ -15,6 +15,7 @@ import org.metrobots.commands.auto.modes.GearRightPeg;
 import org.metrobots.commands.auto.modes.GearRightPegEncoders;
 import org.metrobots.commands.auto.modes.ShootFuelRightCrossBaseline;
 import org.metrobots.subsystems.Climber;
+import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.subsystems.OldDriveTrain;
 import org.metrobots.subsystems.GearRod;
 import org.metrobots.subsystems.Scrounger;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
 	
 	public static boolean noVComms = true;
 	
+	public static final DriveTrain mDriveTrain = new DriveTrain();
 	/*
 	 * Declare CANTalon (TalonSRX) objects
 	 */
