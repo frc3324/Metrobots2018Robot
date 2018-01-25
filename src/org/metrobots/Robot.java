@@ -150,11 +150,15 @@ public class Robot extends IterativeRobot {
 		/*
 		 * Initialize subsystems
 		 */
+		
+		/*
 		driveTrain = new OldDriveTrain(flMotor, blMotor, frMotor, brMotor, navx, flEncoder, blEncoder, frEncoder, brEncoder);
 		intake = new Scrounger(intakeMotor);
 		climber = new Climber(climbMotor);
 		shooter = new Shooter(launchMotor, feederMotor, agitatorMotor, shooterEncoder);
 		gearMech = new GearRod(gearPusher);
+		*/
+		
 		
 		
 		try {
@@ -269,13 +273,7 @@ public class Robot extends IterativeRobot {
 	 * Initialize whatever you need to when the robot starts teleop
 	 */
 	public void teleopInit() {
-		driveTrain.setFieldOriented(true);
-		driveTrain.setIsHoldingAngle(false);
-		driveTrain.resetHoldAngle();
-		driveTrain.setBrakeMode(false);
 		Scheduler.getInstance().add(new DriveGroup()); // Add DriveGroup to
-		shooter.setTargetSpeed(0);
-		//Constants.kFlywheelSpeed = SmartDashboard.getNumber("flywheelspeed");
 														// scheduler
 	}
 
@@ -284,34 +282,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run(); // Run Scheduler
-		//System.out.println("flywheelspeed:" + Constants.kFlywheelSpeed);
-		//System.out.println("RPM:" + shooter.getRPM() + " with speed " + Constants.kFlywheelSpeed); // Print shooter RPM
-		//Constants.kFlywheelSpeed = SmartDashboard.getNumber("flywheelspeed");
-		//System.out.println(comms.getStatusMagnitude());
-		//System.out.println(comms.getStatusDirection();)
-		
-		
-//		int commsOutput = comms.getDirection(); //was comms.getDirection()
-//		if (commsOutput == 1) {
-//			System.out.println("Vision Output: Move Right " + comms.getMagnitude());
-//		} else if (commsOutput == 0) {
-//			System.out.println("Vision Output: Don't Move");
-//		} else if (commsOutput == -1) {
-//			System.out.println("Vision Output: Move Left " + comms.getMagnitude());
-//		} else {
-//			System.out.println("No Contours");
-//		}
-		
-		/*
-		//System.out.println("holding angle: " + driveTrain.isHoldingAngle);
-		 */
-		//System.out.println("RPM:" + shooter.getRPM());
-		
-		SmartDashboard.putNumber("RPM", shooter.getRPM());
-		SmartDashboard.putNumber("targetAngle", driveTrain.getTargetAngle());
-		SmartDashboard.putNumber("idk", driveTrain.getAngle());
-		
-		//System.out.println("RPM:" + shooter.getRPM()); // Print shooter RPM
 		 
 	}
 
