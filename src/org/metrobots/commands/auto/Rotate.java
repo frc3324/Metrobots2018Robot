@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Rotate extends Command {
 	
 	
-	private float specifiedAngle;
+	private float specifiedAngle; //angle that robot should go to
 	private double startTime, passedTime;
 	private DriveTrain drivetrain; 
 	
@@ -29,7 +29,7 @@ public class Rotate extends Command {
 	}
 	
 	/**
-	 * Set current angle to zero 
+	 * When the command starts, set current angle to zero 
 	 */
 	@Override
 	protected void initialize() {
@@ -43,6 +43,7 @@ public class Rotate extends Command {
 	protected void execute() {
 		double measuredAngle = navx.pidGet();
 		double angleDifference = specifiedAngle - measuredAngle;
+		
 		
 		if (measuredAngle > specifiedAngle) {
 			/*leftSideSpeed = angleDifference / 180;

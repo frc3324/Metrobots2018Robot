@@ -17,28 +17,26 @@ public class DriveTank extends Command {
 		requires(Robot.mDriveTrain);	
 	}
 
-	
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
 		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
-		double rightX = gamepad.getX(Hand.kRight); // Get x value of right joystick 
+		double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
+		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);
-		/*if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
+		if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
 			leftY = 25 * Math.pow(leftY, 3);
 		}
 		if (Math.abs(rightX) < .2) {
 			rightX = 25 * Math.pow(rightX, 3); // repeat for the x-value on the right side 
 		}
 		
-		*/
-		double leftSideSpeed = leftY + rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
-		double rightSideSpeed = leftY - rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick
-		System.out.println("LEFT: " + leftSideSpeed);
-		System.out.println("RIGHT: " + rightSideSpeed);
+		/*double leftSideSpeed = leftY - rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
+		double rightSideSpeed = leftY + rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick*/
 		//System.out.println("Prevleftspeed: " + prevLeftSideSpeed);
-		if (Math.abs(leftSideSpeed) > 1.0) {
+
+		/*if (Math.abs(leftSideSpeed) > 1.0) {
 			double reciprocal = 1.0 / leftSideSpeed;
 			leftSideSpeed *= reciprocal;
 			rightSideSpeed *= reciprocal;
@@ -46,9 +44,13 @@ public class DriveTank extends Command {
 		if (Math.abs(rightSideSpeed) > 1.0) {
 			double reciprocal = 1.0 / rightSideSpeed;
 			rightSideSpeed *= reciprocal;
-			rightSideSpeed *= reciprocal; 
+			leftSideSpeed *= reciprocal; 
+		}*/
+		if (leftY > 0) {
+			rightX = -rightX;
 		}
-		Robot.mDriveTrain.tankDrive(leftSideSpeed, rightSideSpeed, true);
+		
+		Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
 	}
 	
 	@Override

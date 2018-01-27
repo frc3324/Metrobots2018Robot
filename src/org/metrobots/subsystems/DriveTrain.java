@@ -28,9 +28,10 @@ public class DriveTrain extends	Subsystem {
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
-
-	public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInput) { // Creating left and right speed from WPILib's tankDrive
-		mDrive.tankDrive(leftSpeed, rightSpeed, true);
+	
+	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
+		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
+		//mDrive.tankDrive(leftSpeed, rightSpeed, true);
 	
 	}
 	
