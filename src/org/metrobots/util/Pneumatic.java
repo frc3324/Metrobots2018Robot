@@ -1,9 +1,8 @@
-package src.org.metrobots.util;
+package org.metrobots.util;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
-import src.org.metrobots.IOException;
-import src.org.metrobots.util.MetroController;
+import org.metrobots.util.MetroController;
 
 public class Pneumatic {
 	private MetroController gamepad; // Setup the controller
@@ -25,4 +24,3 @@ public class Pneumatic {
 	}
 
 }
-

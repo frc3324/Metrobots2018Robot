@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
  *
  */
 public class MetroController {
+	
 /*
 	 * Analog Inputs (Axes)
 	 */
@@ -237,13 +238,14 @@ public class MetroController {
 		}
 		return buttonVal;
 	}
-}
-public boolean getAPressed() {
-	try {
-		boolean APressed = gamepad.getAButtonPressed();
-		return APressed;
-	}
-	catch (Exception e){
-		return false;
+
+	public boolean getAPressed() {
+		try {
+			boolean APressed = gamepad.getAButtonPressed();
+			return APressed;
+		}
+		catch (Exception e){
+			return false;
+		}
 	}
 }

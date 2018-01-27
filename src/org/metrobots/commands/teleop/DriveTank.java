@@ -21,65 +21,34 @@ public class DriveTank extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
-		double leftY = gamepad.getY(); // Get y value of left joystick
-		double rightX = gamepad.getX(); // Get x value of right joystick 
-		
-		if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
+		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
+		double rightX = gamepad.getX(Hand.kRight); // Get x value of right joystick 
+		//System.out.println("LeftY: " + leftY);
+		//System.out.println("RightX: " + rightX);
+		/*if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
 			leftY = 25 * Math.pow(leftY, 3);
 		}
 		if (Math.abs(rightX) < .2) {
 			rightX = 25 * Math.pow(rightX, 3); // repeat for the x-value on the right side 
 		}
 		
-		
-		double prevLeftSideSpeed = leftY + rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
-		double prevRightSideSpeed = leftY - rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick
-		
-		double leftSideSpeed = 0.0;
-		double rightSideSpeed = 0.0;
-		
-		if (Math.abs(leftY) > Constants.AXIS_DEADBAND) {
-			if (prevLeftSideSpeed > 1.0) {
-				leftSideSpeed = 1.0;
-				rightSideSpeed = 1.0/prevLeftSideSpeed * prevRightSideSpeed;
-				
-				if (gamepad.getBumper(Hand.kRight)) { // was .3 when trigger
-					leftSideSpeed = (leftSideSpeed * 0.5);
-					rightSideSpeed = (rightSideSpeed * 0.5);
-				}
-				else {
-					Robot.mDriveTrain.tankDrive(leftSideSpeed, rightSideSpeed);
-				}
-			}
-			else {
-				Robot.mDriveTrain.tankDrive(leftSideSpeed, rightSideSpeed);
-			}
+		*/
+		double leftSideSpeed = leftY + rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
+		double rightSideSpeed = leftY - rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick
+		System.out.println("LEFT: " + leftSideSpeed);
+		System.out.println("RIGHT: " + rightSideSpeed);
+		//System.out.println("Prevleftspeed: " + prevLeftSideSpeed);
+		if (Math.abs(leftSideSpeed) > 1.0) {
+			double reciprocal = 1.0 / leftSideSpeed;
+			leftSideSpeed *= reciprocal;
+			rightSideSpeed *= reciprocal;
+		}	
+		if (Math.abs(rightSideSpeed) > 1.0) {
+			double reciprocal = 1.0 / rightSideSpeed;
+			rightSideSpeed *= reciprocal;
+			rightSideSpeed *= reciprocal; 
 		}
-		else {
-			Robot.mDriveTrain.tankDrive(0.0, 0.0);
-		}
-		
-		if (Math.abs(rightX) > Constants.AXIS_DEADBAND) {
-			if (prevRightSideSpeed < -1.0) {
-				rightSideSpeed = -1.0;
-				leftSideSpeed = (-1.0/prevRightSideSpeed * prevLeftSideSpeed);
-				
-				if (gamepad.getBumper(Hand.kRight)) { // was .3 when trigger
-					leftSideSpeed = (leftSideSpeed * 0.5);
-					rightSideSpeed = (rightSideSpeed * 0.5);
-				}
-				else {
-					Robot.mDriveTrain.tankDrive(leftSideSpeed, rightSideSpeed);
-				}
-			}
-			else {
-				Robot.mDriveTrain.tankDrive(leftSideSpeed, rightSideSpeed);
-			}
-		}
-		else {
-			Robot.mDriveTrain.tankDrive(0.0, 0.0);		
-		}
-		
+		Robot.mDriveTrain.tankDrive(leftSideSpeed, rightSideSpeed, true);
 	}
 	
 	@Override

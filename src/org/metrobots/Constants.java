@@ -18,10 +18,10 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 0;
-	public final static int blMotorPort = 1;
-	public final static int frMotorPort = 2;
-	public final static int brMotorPort = 3;
+	public final static int flMotorPort = 6;
+	public final static int blMotorPort = 7;
+	public final static int frMotorPort = 0;
+	public final static int brMotorPort = 1;
 	public final static int intakeMotorPort = 8;//6
 	public final static int climbMotorPort = 7; //5
 	public final static int launchMotorPort = 4;
@@ -55,8 +55,8 @@ public class Constants {
 	/*
 	 * Driver station ports
 	 */
-	public final static int motionGamepadPort = 0;
-	public final static int mechanismGamepadPort = 1;
+	public final static int motionGamepadPort = 0; //Primary driver controller
+	public final static int mechanismGamepadPort = 1; //Secondary driver controller
 
 	/*
 	 * 

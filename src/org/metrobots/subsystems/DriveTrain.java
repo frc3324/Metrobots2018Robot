@@ -1,6 +1,8 @@
 package org.metrobots.subsystems;
 // Import WPI libraries
 
+import org.metrobots.Constants;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX; 
 
@@ -17,17 +19,17 @@ public class DriveTrain extends	Subsystem {
 	
 	//Template for constructor of the SpeedControllerGroup class
 	
-	WPI_TalonSRX flMotor = new WPI_TalonSRX(0); // Instantiate the motors as a new TalonSRX motor controller
-	WPI_TalonSRX blMotor = new WPI_TalonSRX(1); 
+	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
+	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
 	
-	WPI_TalonSRX frMotor = new WPI_TalonSRX(2); //repeat for right motors
-	WPI_TalonSRX brMotor = new WPI_TalonSRX(3);
+	WPI_TalonSRX frMotor = new WPI_TalonSRX(Constants.frMotorPort); //repeat for right motors
+	WPI_TalonSRX brMotor = new WPI_TalonSRX(Constants.brMotorPort);
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
 
-	public void tankDrive(double leftSpeed, double rightSpeed) { // Creating left and right speed from WPILib's tankDrive
+	public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInput) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.tankDrive(leftSpeed, rightSpeed, true);
 	
 	}

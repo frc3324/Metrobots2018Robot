@@ -4,9 +4,6 @@ import org.metrobots.Robot;
 import org.metrobots.commands.teleop.Climb;
 import org.metrobots.commands.teleop.DriveTank;
 import org.metrobots.commands.teleop.GearPlacement;
-import org.metrobots.commands.teleop.IntakeFuel;
-import org.metrobots.commands.teleop.LaunchFuel;
-import org.metrobots.commands.teleop.MecanumDrive;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
