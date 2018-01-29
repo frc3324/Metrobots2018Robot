@@ -51,6 +51,12 @@ public class Constants {
 	public final static int shooterEncoder2 = 11; // Pin 1 on MXP
 	public final static int ultrasonicOut = 8;
 	public final static int ultrasonicIn = 9;
+	
+	public final static int leftEncoderPortA = ?;
+	public final static int leftEncoderPortB = ?;
+	public final static int rightEncoderPortA = ?;
+	public final static int rightEncoderPortB = ?;
+	
 
 	/*
 	 * Driver station ports
@@ -80,5 +86,8 @@ public class Constants {
 	public static double kDriveHoldAngleP = 0.007;
 	public final static double driveTrainAngleDeadband = 3;
 	public final static double AXIS_DEADBAND = 0.05;
+	
+	public final static double CIRCUMFERENCE = 2; //Need to measure
+	public final static double PULSES = 256; 
 	
 }

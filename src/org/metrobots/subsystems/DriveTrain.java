@@ -4,8 +4,9 @@ package org.metrobots.subsystems;
 import org.metrobots.Constants;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX; 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,6 +20,10 @@ public class DriveTrain extends	Subsystem {
 	
 	//Template for constructor of the SpeedControllerGroup class
 	
+	Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEecoderPortB);
+	Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
+	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
+	
 	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
 	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
@@ -28,6 +33,19 @@ public class DriveTrain extends	Subsystem {
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
+	
+	public DriveTrain() {
+		lEncoder.setDistancePerPulse(distancePerPulse);
+		rEncoder.setDistancePerPulse(distancePerPulse);
+	}
+	
+	public double getLeftDistance() {
+		return lEncoder.getDistance();
+	}
+	
+	public double getRightDistance() {
+		return rEncoder.getDistance();
+	}
 	
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
