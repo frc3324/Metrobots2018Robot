@@ -35,7 +35,11 @@ public class DriveForward extends Command{
 		} else {
 			return true;
 		}
-		
-	}
+	@Override
+	protected boolean end() {}
+	
+}
+	@Override
+	protected boolean interrupted() {}
 	
 }
