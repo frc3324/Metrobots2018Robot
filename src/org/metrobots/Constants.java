@@ -1,6 +1,6 @@
-package org.metrobots;
+package src.org.metrobots;
 
-import edu.wpi.first.wpilibj.SPI;
+//import edu.wpi.first.wpilibj.SPI;
 
 /**
  * Class with tons of constants that won't need to change on the fly.<br>
@@ -38,7 +38,7 @@ public class Constants {
 	 * Sensor ports
 	 */
 	public final static int opticalEncoderPort = 0; // Analog
-	public final static SPI.Port navxPort = SPI.Port.kMXP;
+	//public final static SPI.Port navxPort = SPI.Port.kMXP;
 	public final static int flEncoder1 = 4; // Not actually
 	public final static int flEncoder2 = 5; // Not actually
 	public final static int blEncoder1 = 0;
@@ -52,10 +52,10 @@ public class Constants {
 	public final static int ultrasonicOut = 8;
 	public final static int ultrasonicIn = 9;
 	
-	public final static int leftEncoderPortA = ?;
+	/*public final static int leftEncoderPortA = ?;
 	public final static int leftEncoderPortB = ?;
 	public final static int rightEncoderPortA = ?;
-	public final static int rightEncoderPortB = ?;
+	public final static int rightEncoderPortB = ?;*/
 	
 
 	/*
