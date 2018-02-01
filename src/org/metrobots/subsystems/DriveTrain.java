@@ -3,7 +3,9 @@ package org.metrobots.subsystems;
 
 import org.metrobots.Constants;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.SendableBase;
+import edu.wpi.first.wpilibj.Victor;
+import com.ctre.phoenix.motorcontrols.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,12 +24,12 @@ public class DriveTrain extends	Subsystem {
 	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
 	
-	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
-	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
+	WPI_Victor flMotor = new WPI_Victor(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
+	WPI_Victor blMotor = new WPI_Victor(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
 	
-	WPI_TalonSRX frMotor = new WPI_TalonSRX(Constants.frMotorPort); //repeat for right motors
-	WPI_TalonSRX brMotor = new WPI_TalonSRX(Constants.brMotorPort);
+	WPI_Victor frMotor = new WPI_Victor(Constants.frMotorPort); //repeat for right motors
+	WPI_Victor brMotor = new WPI_Victor(Constants.brMotorPort);
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
