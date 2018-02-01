@@ -1,5 +1,6 @@
 package org.metrobots.commands.teleop;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,13 +11,30 @@ import org.metrobots.Constants;
 import org.metrobots.Robot;
 
 public class DriveTank extends Command {
-	
+	 AHRS ahrs; 
+	 PIDController turnController;
+	 double rotateToAngleRate;
 	XboxController gamepad = new XboxController(0);
 	
 	public DriveTank() {
-		requires(Robot.mDriveTrain);	
+		requires(Robot.mDriveTrain);
+		 try {
+			  /* Communicate w/navX-MXP via the MXP SPI Bus.                                     
+	           Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     
+	           See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+			 ahrs = new AHRS(SPI.Port.kMXP); 
+		 }
+		 catch (RuntimeException ex) {
+			 DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
+		 }
+	
+    turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+    turnController.setInputRange(-180.0f,  180.0f);
+    turnController.setOutputRange(-1.0, 1.0);
+    turnController.setAbsoluteTolerance(kToleranceDegrees);
+    turnController.setContinuous(true);
 	}
-
+	
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
@@ -31,7 +49,10 @@ public class DriveTank extends Command {
 		if (Math.abs(rightX) < .2) {
 			rightX = 25 * Math.pow(rightX, 3); // repeat for the x-value on the right side 
 		}
-		
+		 myRobot.setSafetyEnabled(true);
+		 if (gamepad.getBumperPressed(Hand.kRight)) {
+			 
+		 }
 		/*double leftSideSpeed = leftY - rightX; // Add the Y-value of the left joystick with the X-value of the right joystick
 		double rightSideSpeed = leftY + rightX; // Subtract the Y-value of the left joystick with the X-value of the right joystick*/
 		//System.out.println("Prevleftspeed: " + prevLeftSideSpeed);
