@@ -44,12 +44,15 @@ public class DriveTank extends Command {
 		//Add robot sensitivity
 		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
 		double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
+		
+		rightX *= .8;
+		
 		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);
-		if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
+		/*if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
 			leftY = 25 * Math.pow(leftY, 3);
-		}
+		} */
 		if (Math.abs(rightX) < .2) {
 			rightX = 25 * Math.pow(rightX, 3); // repeat for the x-value on the right side 
 		}
@@ -70,7 +73,7 @@ public class DriveTank extends Command {
 			double reciprocal = 1.0 / rightSideSpeed;
 			rightSideSpeed *= reciprocal;
 			leftSideSpeed *= reciprocal; 
-		}*/
+		} */
 		if (leftY > 0) {
 			rightX = -rightX;
 		}

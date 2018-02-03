@@ -34,18 +34,23 @@ public class DriveTrain extends	Subsystem {
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
 	
-	/*public DriveTrain() {
-		lEncoder.setDistancePerPulse(distancePerPulse);
-		rEncoder.setDistancePerPulse(distancePerPulse);
+	public DriveTrain() {
+//		lEncoder.setDistancePerPulse(distancePerPulse);
+//		rEncoder.setDistancePerPulse(distancePerPulse);
+		flMotor.setInverted(false);
+		brMotor.setInverted(true);
+		blMotor.setInverted(true);
+		frMotor.setInverted(true);
+
 	}
 	
-	public static double getLeftDistance() {
-		return lEncoder.getDistance();
-	}
-	
-	public static double getRightDistance() {
-		return rEncoder.getDistance();
-	}*/
+//	public static double getLeftDistance() {
+//		return lEncoder.getDistance();
+//	}
+//	
+//	public static double getRightDistance() {
+//		return rEncoder.getDistance();
+//	}
 	
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
