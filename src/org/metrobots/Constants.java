@@ -1,4 +1,4 @@
-package src.org.metrobots;
+package org.metrobots;
 
 //import edu.wpi.first.wpilibj.SPI;
 

@@ -2,10 +2,14 @@ package org.metrobots.commands.teleop;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 //import org.metrobots.subsystems.*; //name of drivetrain subsystem
 import org.metrobots.util.MetroController;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.Constants;
 import org.metrobots.Robot;
@@ -18,21 +22,21 @@ public class DriveTank extends Command {
 	
 	public DriveTank() {
 		requires(Robot.mDriveTrain);
-		 try {
+		/* try {
 			  /* Communicate w/navX-MXP via the MXP SPI Bus.                                     
 	           Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     
-	           See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+	           See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. 
 			 ahrs = new AHRS(SPI.Port.kMXP); 
 		 }
 		 catch (RuntimeException ex) {
 			 DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
-		 }
+		 } */
 	
-    turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+    /*turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
     turnController.setInputRange(-180.0f,  180.0f);
     turnController.setOutputRange(-1.0, 1.0);
     turnController.setAbsoluteTolerance(kToleranceDegrees);
-    turnController.setContinuous(true);
+    turnController.setContinuous(true);*/
 	}
 	
 	protected void execute() {
@@ -49,7 +53,7 @@ public class DriveTank extends Command {
 		if (Math.abs(rightX) < .2) {
 			rightX = 25 * Math.pow(rightX, 3); // repeat for the x-value on the right side 
 		}
-		 myRobot.setSafetyEnabled(true);
+		// Robot.mDriveTrain.setSafetyEnabled(true);
 		 if (gamepad.getBumperPressed(Hand.kRight)) {
 			 
 		 }
