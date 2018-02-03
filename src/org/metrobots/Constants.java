@@ -1,6 +1,6 @@
 package org.metrobots;
 
-//import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * Class with tons of constants that won't need to change on the fly.<br>

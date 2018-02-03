@@ -14,9 +14,9 @@ public class Gyro extends Subsystem {
 	
 	public Gyro() {
 		try {
-			mAhrs = new AHRS(SPI.Port.kMXP)
+			mAhrs = new AHRS(SPI.Port.kMXP);
 		} catch (RuntimeException ex ) {
-			DriverStation.reportError("Error Connecting:  ", + ex.getMessage(), true);
+			DriverStation.reportError("Error Connecting:  " + ex.getMessage(), true);
 		}
 	}
 

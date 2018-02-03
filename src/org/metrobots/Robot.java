@@ -8,7 +8,6 @@ import org.metrobots.subsystems.Climber;
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.subsystems.GearRod;
 import org.metrobots.subsystems.Scrounger;
-import org.metrobots.subsystems.Shooter;
 import org.metrobots.util.MetroController;
 import org.metrobots.util.OpticalEncoder;
 
@@ -61,7 +60,6 @@ public class Robot extends TimedRobot {
 	 * Declare subsystems for the robot
 	 */
 	public static Scrounger intake;
-	public static Shooter shooter;
 	public static Climber climber;
 	public static GearRod gearMech;
 	
