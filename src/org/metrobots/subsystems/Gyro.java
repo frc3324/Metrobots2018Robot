@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Gyro extends Subsystem {
 	AHRS mAhrs;
-	
+
 	public Gyro() {
 		try {
-			mAhrs = new AHRS(SPI.Port.kMXP)
+			mAhrs = new AHRS(SPI.Port.kMXP);
 		} catch (RuntimeException ex ) {
-			DriverStation.reportError("Error Connecting:  ", + ex.getMessage(), true);
+			DriverStation.reportError("Error Connecting:  " + ex.getMessage(), true);
 		}
 	}
 

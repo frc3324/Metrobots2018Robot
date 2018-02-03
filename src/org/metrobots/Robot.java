@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.DriveGroup;
+import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.Climber;
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.subsystems.GearRod;
+import org.metrobots.subsystems.IntakeArm;
 import org.metrobots.subsystems.Scrounger;
 import org.metrobots.subsystems.Shooter;
 import org.metrobots.util.MetroController;
@@ -21,6 +23,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -42,8 +45,7 @@ public class Robot extends TimedRobot {
 	 * Declare gamepad objects
 	 */
 	
-	public static final DriveTrain mDriveTrain = new DriveTrain();
-	
+	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
 	/*
 	 * Declare CANTalon (TalonSRX) objects
 	 */
@@ -60,10 +62,6 @@ public class Robot extends TimedRobot {
 	/*
 	 * Declare subsystems for the robot
 	 */
-	public static Scrounger intake;
-	public static Shooter shooter;
-	public static Climber climber;
-	public static GearRod gearMech;
 	
 	public String autoType = "LEFTGEAR";
 

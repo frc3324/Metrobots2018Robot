@@ -4,6 +4,7 @@ package org.metrobots.subsystems;
 import org.metrobots.Constants;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,21 +23,22 @@ public class DriveTrain extends	Subsystem {
 	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
 	
-	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
-	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
+	WPI_VictorSPX flMotor = new WPI_VictorSPX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
+	WPI_VictorSPX blMotor = new WPI_VictorSPX(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
 	
-	WPI_TalonSRX frMotor = new WPI_TalonSRX(Constants.frMotorPort); //repeat for right motors
-	WPI_TalonSRX brMotor = new WPI_TalonSRX(Constants.brMotorPort);
+	WPI_VictorSPX frMotor = new WPI_VictorSPX(Constants.frMotorPort); //repeat for right motors
+	WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.brMotorPort);
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
 	
 	public DriveTrain() {
-		lEncoder.setDistancePerPulse(distancePerPulse);
-		rEncoder.setDistancePerPulse(distancePerPulse);
+		//mDrive.setSafetyEnabled(false);
+		/*lEncoder.setDistancePerPulse(distancePerPulse);
+		rEncoder.setDistancePerPulse(distancePerPulse);*/
 	}
-	
+	/*
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
@@ -44,7 +46,7 @@ public class DriveTrain extends	Subsystem {
 	public static double getRightDistance() {
 		return rEncoder.getDistance();
 	}
-	
+	*/
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
 		//mDrive.tankDrive(leftSpeed, rightSpeed, true);

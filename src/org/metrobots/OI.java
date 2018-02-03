@@ -1,11 +1,31 @@
 package org.metrobots;
 
+import org.metrobots.commands.teleop.MoveArm;
+import org.metrobots.util.MetroController;
+
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
 	
+	XboxController gamepad;
+	
+	Button aButton = new JoystickButton(gamepad, MetroController.BUTTON_A);
+	Button bButton = new JoystickButton(gamepad, MetroController.BUTTON_B);
+	Button xButton = new JoystickButton(gamepad, MetroController.BUTTON_X);
+	Button yButton = new JoystickButton(gamepad, MetroController.BUTTON_Y);
+	
+	public OI() {
+		aButton.whenPressed(new MoveArm());	
+//		bButton.whenPressed(new someCommand());
+//		xButton.whenPressed(new someCommand());
+//		yButton.whenPressed(new someCommand());
+	}
 	
 	
     //// CREATING BUTTONS

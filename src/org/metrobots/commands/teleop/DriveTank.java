@@ -1,5 +1,6 @@
 package org.metrobots.commands.teleop;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
@@ -51,6 +52,7 @@ public class DriveTank extends Command {
 		}
 		
 		Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
+		DriverStation.reportError("something", false);
 	}
 	
 	@Override

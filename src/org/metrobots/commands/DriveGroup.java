@@ -4,6 +4,8 @@ import org.metrobots.Robot;
 import org.metrobots.commands.teleop.Climb;
 import org.metrobots.commands.teleop.DriveTank;
 import org.metrobots.commands.teleop.GearPlacement;
+import org.metrobots.commands.teleop.PressureSwitch;
+import org.metrobots.subsystems.IntakeArm;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -30,7 +32,8 @@ public class DriveGroup extends CommandGroup {
 		this.addParallel(new GearPlacement(Robot.gearMech, Robot.mechanismGamepad));
 		*/
 		this.addParallel(new DriveTank());
-		
+		this.addParallel(new PressureSwitch());
+		//this.addParallel(new IntakeArm());
 	}
 	
 }

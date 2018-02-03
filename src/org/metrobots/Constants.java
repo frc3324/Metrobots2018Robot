@@ -1,4 +1,4 @@
-package src.org.metrobots;
+package org.metrobots;
 
 //import edu.wpi.first.wpilibj.SPI;
 
@@ -18,11 +18,12 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 6;
-	public final static int blMotorPort = 7;
-	public final static int frMotorPort = 0;
-	public final static int brMotorPort = 1;
-	public final static int intakeMotorPort = 8;//6
+	public final static int flMotorPort = 0;
+	public final static int blMotorPort = 2;
+	public final static int frMotorPort = 4;
+	public final static int brMotorPort = 6;
+	public final static int leftArmMotorPort = 8;//6
+	public final static int rightArmMotorPort = 9;
 	public final static int climbMotorPort = 7; //5
 	public final static int launchMotorPort = 4;
 	public final static int feederMotorPort = 5; //7
@@ -39,31 +40,35 @@ public class Constants {
 	 */
 	public final static int opticalEncoderPort = 0; // Analog
 	//public final static SPI.Port navxPort = SPI.Port.kMXP;
-	public final static int flEncoder1 = 4; // Not actually
+	/*public final static int flEncoder1 = 4; // Not actually
 	public final static int flEncoder2 = 5; // Not actually
 	public final static int blEncoder1 = 0;
 	public final static int blEncoder2 = 1;
 	public final static int frEncoder1 = 6; // Not actually
 	public final static int frEncoder2 = 7; // Not actually
 	public final static int brEncoder1 = 2;
-	public final static int brEncoder2 = 3;
+	public final static int brEncoder2 = 3;*/
 	public final static int shooterEncoder1 = 10; // Pin 0 on MXP theoretically
 	public final static int shooterEncoder2 = 11; // Pin 1 on MXP
 	public final static int ultrasonicOut = 8;
 	public final static int ultrasonicIn = 9;
 	
-	/*public final static int leftEncoderPortA = ?;
-	public final static int leftEncoderPortB = ?;
-	public final static int rightEncoderPortA = ?;
-	public final static int rightEncoderPortB = ?;*/
+	public final static int leftEncoderPortA = 0;
+	public final static int leftEncoderPortB = 1;
+	public final static int rightEncoderPortA = 2;
+	public final static int rightEncoderPortB = 3;
+	public final static int leftArmEncoderA = 4;
+	public final static int leftArmEncoderB = 5;
+	public final static int rightArmEncoderA = 6;
+	public final static int rightArmEncoderB = 7;
 	
 
 	/*
 	 * Driver station ports
 	 */
-	public final static int motionGamepadPort = 0; //Primary driver controller
-	public final static int mechanismGamepadPort = 1; //Secondary driver controller
-
+	public final static int primaryGamepadPort = 0; 
+	public final static int secondaryGamepadPort = 1; 
+	
 	/*
 	 * 
 	 * Shooter variables
