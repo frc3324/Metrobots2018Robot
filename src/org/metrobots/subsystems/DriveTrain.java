@@ -35,8 +35,8 @@ public class DriveTrain extends	Subsystem {
 	
 	public DriveTrain() {
 		//mDrive.setSafetyEnabled(false);
-		/*lEncoder.setDistancePerPulse(distancePerPulse);
-		rEncoder.setDistancePerPulse(distancePerPulse);*/
+		lEncoder.setDistancePerPulse(distancePerPulse);
+		rEncoder.setDistancePerPulse(distancePerPulse);
 	}
 	/*
 	public static double getLeftDistance() {

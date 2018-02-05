@@ -5,7 +5,6 @@ import org.metrobots.Constants;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -15,12 +14,13 @@ public class PressureSwitch extends Command {
 	boolean gearShifterStatus = false;
 	Compressor compressor;
 	Solenoid gearshifter;
-	XboxController gamepad;
 	
+	/**
+	 * Move pnuematic piston to opposite state when called. <p>
+	 */
     public PressureSwitch() {
     	compressor = new Compressor(0);
     	gearshifter = new Solenoid(4);
-    	gamepad = new XboxController(0);
     }
 
     // Called just before this Command runs the first time
@@ -32,12 +32,8 @@ public class PressureSwitch extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	DriverStation.reportError("random world", false);
-    	//try {
-	    	if (gamepad.getAButtonPressed()) {
-	    		gearShifterStatus = !gearShifterStatus;
-	    	}
-	    	gearshifter.set(gearShifterStatus);
-    	//}
+	    gearShifterStatus = !gearShifterStatus;
+	    gearshifter.set(gearShifterStatus);
     	
     	/*catch (RuntimeException ex){
     		DriverStation.reportError(""+ ex, true);

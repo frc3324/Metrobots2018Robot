@@ -1,11 +1,9 @@
 package org.metrobots.commands;
 
 import org.metrobots.Robot;
-import org.metrobots.commands.teleop.Climb;
 import org.metrobots.commands.teleop.DriveTank;
-import org.metrobots.commands.teleop.GearPlacement;
 import org.metrobots.commands.teleop.PressureSwitch;
-import org.metrobots.subsystems.IntakeArm;
+import org.metrobots.commands.teleop.MoveArm;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,24 +14,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class DriveGroup extends CommandGroup {
+	
 	/**
-	 * Adds 4 commands to be run in parallel:<br>
-	 * &emsp;MecanumDrive<br>
-	 * &emsp;IntakeFuel<br>
-	 * &emsp;Climb<br>
-	 * &emsp;LaunchFuel<br>
+	 * Adds teleop commands to be run in parallel:<br>
+	 * &emsp;DriveTank<br>
+	 * &emsp;PressureSwitch<br>
+	 * &emsp;MoveArm<br>
 	 */
 	public DriveGroup() {
-		/*
-		this.addParallel(new MecanumDrive(Robot.driveTrain, Robot.motionGamepad));
-		this.addParallel(new IntakeFuel(Robot.intake, Robot.mechanismGamepad));
-		this.addParallel(new Climb(Robot.climber, Robot.mechanismGamepad));
-		this.addParallel(new LaunchFuel(Robot.shooter, Robot.mechanismGamepad));
-		this.addParallel(new GearPlacement(Robot.gearMech, Robot.mechanismGamepad));
-		*/
 		this.addParallel(new DriveTank());
 		this.addParallel(new PressureSwitch());
-		//this.addParallel(new IntakeArm());
+		this.addParallel(new MoveArm());
 	}
 	
 }

@@ -1,6 +1,9 @@
 package org.metrobots;
 
+import org.metrobots.commands.teleop.Intake;
 import org.metrobots.commands.teleop.MoveArm;
+import org.metrobots.commands.teleop.Outtake;
+import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,10 +23,21 @@ public class OI {
 	Button xButton = new JoystickButton(gamepad, MetroController.BUTTON_X);
 	Button yButton = new JoystickButton(gamepad, MetroController.BUTTON_Y);
 	
+	Button leftBumper = new JoystickButton(gamepad, MetroController.LB);
+	Button rightBumper = new JoystickButton(gamepad, MetroController.RB);
+	
+	/**
+	 * Controller buttons.
+	 * 
+	 * aButton -> PressureSwitch
+	 * bButton -> MoveArm
+	 * 
+	 */
 	public OI() {
-		aButton.whenPressed(new MoveArm());	
-//		bButton.whenPressed(new someCommand());
-//		xButton.whenPressed(new someCommand());
+		aButton.whenPressed(new PressureSwitch());
+		bButton.whenPressed(new MoveArm());
+		leftBumper.whileHeld(new Intake());
+		rightBumper.whileHeld(new Outtake());
 //		yButton.whenPressed(new someCommand());
 	}
 	

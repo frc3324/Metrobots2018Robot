@@ -5,14 +5,7 @@ import java.io.IOException;
 import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.DriveGroup;
 import org.metrobots.commands.teleop.PressureSwitch;
-import org.metrobots.subsystems.Climber;
 import org.metrobots.subsystems.DriveTrain;
-import org.metrobots.subsystems.GearRod;
-import org.metrobots.subsystems.IntakeArm;
-import org.metrobots.subsystems.Scrounger;
-import org.metrobots.subsystems.Shooter;
-import org.metrobots.util.MetroController;
-import org.metrobots.util.OpticalEncoder;
 
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
@@ -27,8 +20,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import net.sf.lipermi.handler.CallHandler;
-import net.sf.lipermi.net.Client;
 
 /**
  * Main robot code<br>

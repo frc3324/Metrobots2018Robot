@@ -27,7 +27,7 @@ public class MetroController {
 	public static final int RIGHT_Y = 5;
 
 	/*
-	 * Digital Inputs (Buttons)
+	 * Digital Inputs/Ports (Buttons)
 	 */
 	public static final int BUTTON_A = 1;
 	public static final int BUTTON_B = 2;

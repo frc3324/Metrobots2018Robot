@@ -24,10 +24,8 @@ public class Constants {
 	public final static int brMotorPort = 6;
 	public final static int leftArmMotorPort = 8;//6
 	public final static int rightArmMotorPort = 9;
-	public final static int climbMotorPort = 7; //5
-	public final static int launchMotorPort = 4;
-	public final static int feederMotorPort = 5; //7
-	public final static int agitatorMotorPort = 6;//8
+	public final static int leftIntakeMotorPort = 1;
+	public final static int rightIntakeMotorPort = 3;
 	
 	/*
 	 * Pneumatic Ports
@@ -92,7 +90,8 @@ public class Constants {
 	public final static double driveTrainAngleDeadband = 3;
 	public final static double AXIS_DEADBAND = 0.05;
 	
-	public final static double CIRCUMFERENCE = 2; //Need to measure
+	public final static double CIRCUMFERENCE = 2; //Need to measure in inches
 	public final static double PULSES = 256; 
+	public final static double INCH_PER_PULSE = 4; //circumference of wheel in inches / pulses
 	
 }
