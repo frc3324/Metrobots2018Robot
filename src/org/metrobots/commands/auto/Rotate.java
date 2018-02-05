@@ -19,13 +19,17 @@ public class Rotate extends Command {
 	
 	AHRS navx;
 	
+	double leftSideSpeed, rightSideSpeed, speed;
 	/**
 	 * Rotates to the specified angle at the specified speed. 
 	 * @param angle
 	 * @param speed
 	 */
 	public Rotate(float angle, double speed) {
-		specifiedAngle = angle;  
+		this.speed = speed;
+		specifiedAngle = angle;
+		leftSideSpeed = speed;
+		rightSideSpeed = speed; 
 	}
 	
 	/**
@@ -44,18 +48,19 @@ public class Rotate extends Command {
 		double measuredAngle = navx.pidGet();
 		double angleDifference = specifiedAngle - measuredAngle;
 		
-		
 		if (measuredAngle > specifiedAngle) {
-			/*leftSideSpeed = angleDifference / 180;
-			rightSideSpeed = angleDifference / 180;*/
+			leftSideSpeed = angleDifference / -180;
+			rightSideSpeed = angleDifference / 180;
+		} else if (specifiedAngle > measuredAngle) {
+			leftSideSpeed = angleDifference / -180;
+			rightSideSpeed = angleDifference / 180;
+		}
+		if (Math.abs(measuredAngle) + (Math.abs(specifiedAngle)) > 180) {
+			leftSideSpeed *= -1;
+			rightSideSpeed *= -1; 
 		}
 		
-		//speed = angleDifference / 180;
-		
-		//leftSideSpeed = x;
-		//rightSideSpeed = -x; 
-		
-		//drivetrain.tankDrive(leftSpeed, rightSpeed);
+		Robot.mDriveTrain.tankDrive(leftSideSpeed * speed, rightSideSpeed * speed);
 	}
 
 	/**
@@ -63,15 +68,22 @@ public class Rotate extends Command {
 	 */
 	@Override
 	protected boolean isFinished() {
-		return false;
+		double measuredAngle = navx.pidGet();
+		double angleDifference = specifiedAngle - measuredAngle;
+		if (Math.abs(angleDifference) > 5) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	/**
 	 * Does nothing after the current angle is equal to the specified angle.
 	 */
 	@Override
-	protected void end() {}
-	
+	protected void end() {
+		Robot.mDriveTrain.tankDrive(0, 0);
+	}
 	/**
 	 * Do nothing
 	 */
