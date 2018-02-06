@@ -68,9 +68,9 @@ public class Constants {
 	 * 
 	 * Shooter variables
 	 */
-	public final static double kStraightP = 0.03; //80, 20 700
-	public final static double kStraightI = 0.0;
-	public final static double kStraightD = 0.0; //175, 100 300
+	public final static double kP = 0.03; //80, 20 700
+	public final static double kI = 0.0;
+	public final static double kD = 0.0; //175, 100 300
 	public final static double kFloatPeriod = 0.00;
 	public final static double kTolerance = 2.0;
 	public final static double maxShooterRPM = 5675.0;
