@@ -25,21 +25,21 @@ public class DriveForward extends Command{
 
 	@Override
 	protected void execute() {
-		//pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
-		//speed = pulsesToTravel / totalPulses;
+		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
+		speed = pulsesToTravel / totalPulses;
 		Robot.mDriveTrain.arcadeDrive(speed, 0.0, true);
 	}
 	
 	@Override
 	protected void initialize() {
-		//startingLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
+		startingLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
 	}
 	
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		//currentLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
+		currentLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
 		if ((currentLocation - startingLocation) < distance) {
 			return false;
 		} else {

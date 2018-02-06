@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*TODO Auto-generated constructor stub
  Add encoders, gyro, and/or other sensors */
@@ -21,6 +22,8 @@ public class DriveTrain extends	Subsystem {
 	
 	static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB);
 	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
+	private int rightEncoderValue = rEncoder.get();
+	private int leftEncoderValue = lEncoder.get();
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
 	
 	WPI_VictorSPX flMotor = new WPI_VictorSPX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
@@ -47,6 +50,10 @@ public class DriveTrain extends	Subsystem {
 		return rEncoder.getDistance();
 	}
 	*/
+	public void printEncoder() {
+		SmartDashboard.putNumber("Right Encoder Value", rightEncoderValue);
+		SmartDashboard.putNumber("Left Encoder Value", leftEncoderValue);s
+	}
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
 		//mDrive.tankDrive(leftSpeed, rightSpeed, true);
