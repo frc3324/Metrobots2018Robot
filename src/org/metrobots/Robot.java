@@ -12,6 +12,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -32,6 +33,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
 
+	public String autoSet = "";
+	
 	/*
 	 * Declare gamepad objects
 	 */
@@ -120,7 +123,26 @@ public class Robot extends TimedRobot {
 	 * Initialize whatever you need to when the robot starts autonomous
 	 */
 	public void autonomousInit() {
-		
+		if (Scheduler.getInstance().getName() == "FL") {
+			autoSet = "LEFTFORWARD";
+			DriverStation.reportError("Autoset: " + autoSet, false);
+		}
+		if (Scheduler.getInstance().getName() == "FR") {
+			autoSet = "RIGHTFORWARD";
+			DriverStation.reportError("Autoset: " + autoSet, false);
+		}
+		if (Scheduler.getInstance().getName() == "ML") {
+			autoSet = "MIDDLEFORWARD";
+			DriverStation.reportError("Autoset: " + autoSet, false);
+		}
+		if (Scheduler.getInstance().getName() == "MR") {
+			autoSet = "MIDDLERIGHT";
+			DriverStation.reportError("Autoset: " + autoSet, false);
+		}
+		if (Scheduler.getInstance().getName() == "") {
+			
+		}
+			
 		
 	}
 
@@ -131,6 +153,7 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run(); // Run scheduler
 		//System.out.println("dir: " + comms.getDirection() + " mag:" + comms.getMagnitude());
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
+		
 	}
 	
 	/**
