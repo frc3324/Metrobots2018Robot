@@ -51,9 +51,8 @@ public class DriveTrain extends	Subsystem {
 	}
 	*/
 	public void printEncoder() {
-		SmartDashboard.putNumber("Right Encoder Value", rightEncoderValue);
-		SmartDashboard.putNumber("Left Encoder Value", (double)leftEncoderValue);
-		SmartDashboard.putData("tag", leftEncoderValue+"");
+		SmartDashboard.setDefaultNumber("Right Encoder Value", rightEncoderValue);
+		SmartDashboard.putNumber("Left Encoder Value", leftEncoderValue);
 	}
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
