@@ -1,23 +1,28 @@
-package org.metrobots.commands.teleop;
+package src.org.metrobots.commands.teleop;
+
+import src.org.metrobots.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
+import src.org.metrobots.subsystems.WPI_VictorSPX;
 
-/**
- *
- */
-public class Winch extends Command {
 
-    public Winch() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public class Winches extends Command {
+
+	Climber mClimber = new Climber();
+	
+    public Winches() {
+    	requires(mClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // executes like a guillotine
+    //or the salem witch trials
     protected void execute() {
+    	Climber.mClimber.winch(0.3);
     }
 
     // Make this return true when this Command no longer needs to run execute()

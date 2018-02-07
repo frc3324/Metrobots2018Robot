@@ -1,48 +1,32 @@
 package org.metrobots.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import src.org.metrobots.commands.teleop.WPI_VictorSPX;
+import src.org.metrobots.Constants;
 
 /**
- * Climber mechanism for Metrobot<br>
- * <br>
- * 
- * Feb 5: Refactored. Also, added Javadocs - Cameron
- * 
+ *
  */
 public class Climber extends Subsystem {
 
-	public static SpeedController climber;
-
-	/**
-	 * Climber object
-	 * 
-	 * @param climbMotor
-	 *            motor that is on the climber
-	 */
-	public Climber(SpeedController climbMotor) {
-		climber = climbMotor;
-		climber.set(0);
+	WPI_VictorSPX winch = new WPI_VictorSPX(Constants.winchMotorPort);
+	
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+	public void Climber() {
+		
 	}
-
-	/**
-	 * Spins winch to pick up robot
-	 * 
-	 * @param up
-	 *            boolean which tells robot whether or not it should winch
-	 */
-	public void climb(boolean up) {
-		if (up) {
-			climber.set(1.0);
-		} else {
-			climber.set(0);
-		}
+	
+	public void SetClimberSpeed() {
+		
 	}
-
-	/*
-	 * Necessary method that contains nothing
-	 */
-	protected void initDefaultCommand() {
+	public void winch(double speed) {
+		winch.set(speed);
 	}
-
+	
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
 }
+

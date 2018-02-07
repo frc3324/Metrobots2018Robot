@@ -36,6 +36,7 @@ public class OI {
 	public OI() {
 		aButton.whenPressed(new PressureSwitch());
 		bButton.whenPressed(new MoveArm());
+		xButton.whileHeld(new Winches());
 		leftBumper.whileHeld(new Intake());
 		rightBumper.whileHeld(new Outtake());
 //		yButton.whenPressed(new someCommand());

@@ -1,4 +1,4 @@
-package org.metrobots;
+package src.org.metrobots;
 
 //import edu.wpi.first.wpilibj.SPI;
 
@@ -22,10 +22,11 @@ public class Constants {
 	public final static int blMotorPort = 2;
 	public final static int frMotorPort = 4;
 	public final static int brMotorPort = 6;
-	public final static int leftArmMotorPort = 8;//6
+	public final static int leftArmMotorPort = 8;
 	public final static int rightArmMotorPort = 9;
 	public final static int leftIntakeMotorPort = 1;
 	public final static int rightIntakeMotorPort = 3;
+	public final static int winchMotorPort = 7;
 	
 	/*
 	 * Pneumatic Ports
