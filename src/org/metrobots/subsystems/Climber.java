@@ -1,5 +1,7 @@
 package org.metrobots.subsystems;
 
+import org.metrobots.Constants;
+
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,33 +14,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 
-	public static SpeedController climber;
-
+	WPI_VictorSPX miniMotor = new WPI_VictorSPX(Constants.climberNotTheWinch);
 	/**
 	 * Climber object
 	 * 
 	 * @param climbMotor
 	 *            motor that is on the climber
 	 */
-	public Climber(SpeedController climbMotor) {
-		climber = climbMotor;
-		climber.set(0);
-	}
-
 	/**
 	 * Spins winch to pick up robot
 	 * 
 	 * @param up
 	 *            boolean which tells robot whether or not it should winch
 	 */
-	public void climb(boolean up) {
-		if (up) {
-			climber.set(1.0);
-		} else {
-			climber.set(0);
-		}
+	public void climberArm(double speed) {
+		miniMotor.set(speed);
 	}
-
 	/*
 	 * Necessary method that contains nothing
 	 */
