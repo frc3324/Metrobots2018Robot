@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*TODO Auto-generated constructor stub
  Add encoders, gyro, and/or other sensors */
@@ -19,10 +20,13 @@ public class DriveTrain extends	Subsystem {
 	
 	//Template for constructor of the SpeedControllerGroup class
 	
-	/*static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB);
+	static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB);
 	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
-	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;*/
-	
+	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
+
+	private int rightEncoderValue = rEncoder.get();
+	private int leftEncoderValue = lEncoder.get();
+
 	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
 	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
@@ -32,13 +36,13 @@ public class DriveTrain extends	Subsystem {
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
-	
+
 	public DriveTrain() {
 		//mDrive.setSafetyEnabled(false);
 		/*lEncoder.setDistancePerPulse(distancePerPulse);
 		rEncoder.setDistancePerPulse(distancePerPulse);*/
 	}
-	/*
+	
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
@@ -46,7 +50,11 @@ public class DriveTrain extends	Subsystem {
 	public static double getRightDistance() {
 		return rEncoder.getDistance();
 	}
-	*/
+	
+	public void printEncoder() {
+		SmartDashboard.setDefaultNumber("Right Encoder Value", rightEncoderValue);
+		SmartDashboard.putNumber("Left Encoder Value", leftEncoderValue);
+	}
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
 		//mDrive.tankDrive(leftSpeed, rightSpeed, true);

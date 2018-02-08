@@ -22,6 +22,8 @@ public class Constants {
 	public final static int blMotorPort = 7; //2
 	public final static int frMotorPort = 5; //4
 	public final static int brMotorPort = 3; //6
+
+	public final static int climberNotTheWinch = 13;
 	public final static int leftArmMotorPort = 8;//6
 	public final static int rightArmMotorPort = 9;
 	public final static int leftIntakeMotorPort = 1;
@@ -91,8 +93,8 @@ public class Constants {
 	public final static double driveTrainAngleDeadband = 3;
 	public final static double AXIS_DEADBAND = 0.05;
 	
-	public final static double CIRCUMFERENCE = 2; //Need to measure in inches
+	public final static double CIRCUMFERENCE = 18.85; // (Inches) Need to measure in inches
 	public final static double PULSES = 256; 
-	public final static double INCH_PER_PULSE = 4; //circumference of wheel in inches / pulses
+	public final static double INCH_PER_PULSE = 0.074; //circumference of wheel in inches / pulses
 	
 }
