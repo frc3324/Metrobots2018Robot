@@ -1,10 +1,11 @@
-package org.metrobots.commands.auto;
+spackage org.metrobots.commands.auto;
 
 import org.metrobots.Constants;
 import org.metrobots.Robot;
 import org.metrobots.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class DriveForward extends Command{
 	double pulsesToTravel, speed, distance, startingLocation, currentLocation;

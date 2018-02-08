@@ -35,7 +35,7 @@ public class DriveTrain extends	Subsystem {
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
-	
+	WPI_VictorSPX climberNotTheWinch = new WPI_VictorSPX(Constants.climberNotTheWinch);
 	public DriveTrain() {
 		//mDrive.setSafetyEnabled(false);
 		lEncoder.setDistancePerPulse(distancePerPulse);
