@@ -50,9 +50,15 @@ public class DriveTank extends Command {
 		if (leftY > 0) {
 			rightX = -rightX;
 		}
+		DriverStation.reportError("A before: " + rightX, false);
+		if (gamepad.getAButtonPressed()) {
+			DriverStation.reportError("A after: " + rightX, false);
+			leftY = leftY * 0.5;
+			rightX = rightX * 0.5;
+		}
 		
 		Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
-		DriverStation.reportError("something", false);
+		//DriverStation.reportError("something", false);
 	}
 	
 	@Override

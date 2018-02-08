@@ -19,24 +19,24 @@ public class DriveTrain extends	Subsystem {
 	
 	//Template for constructor of the SpeedControllerGroup class
 	
-	static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB);
+	/*static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB);
 	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
-	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
+	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;*/
 	
-	WPI_VictorSPX flMotor = new WPI_VictorSPX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
-	WPI_VictorSPX blMotor = new WPI_VictorSPX(Constants.blMotorPort); 
+	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
+	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
 	
-	WPI_VictorSPX frMotor = new WPI_VictorSPX(Constants.frMotorPort); //repeat for right motors
-	WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.brMotorPort);
+	WPI_TalonSRX frMotor = new WPI_TalonSRX(Constants.frMotorPort); //repeat for right motors
+	WPI_TalonSRX brMotor = new WPI_TalonSRX(Constants.brMotorPort);
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
 	
 	public DriveTrain() {
 		//mDrive.setSafetyEnabled(false);
-		lEncoder.setDistancePerPulse(distancePerPulse);
-		rEncoder.setDistancePerPulse(distancePerPulse);
+		/*lEncoder.setDistancePerPulse(distancePerPulse);
+		rEncoder.setDistancePerPulse(distancePerPulse);*/
 	}
 	/*
 	public static double getLeftDistance() {

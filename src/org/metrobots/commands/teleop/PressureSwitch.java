@@ -1,8 +1,10 @@
 package org.metrobots.commands.teleop;
 
 import org.metrobots.Constants;
+import org.metrobots.OI;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,28 +14,39 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PressureSwitch extends Command {
 	boolean gearShifterStatus = false;
-	Compressor compressor;
-	Solenoid gearshifter;
+	Compressor compressor = new Compressor(0);
+	DoubleSolenoid gearshifter = new DoubleSolenoid(0, 1);
 	
 	/**
 	 * Move pnuematic piston to opposite state when called. <p>
 	 */
     public PressureSwitch() {
-    	compressor = new Compressor(0);
-    	gearshifter = new Solenoid(4);
+    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	//compressor.setClosedLoopControl(true);
     	//compressor.start();
+    	//compressor = new Compressor(0);
+    	
+    	//compressor.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	DriverStation.reportError("random world", false);
-	    gearShifterStatus = !gearShifterStatus;
-	    gearshifter.set(gearShifterStatus);
+    	//.reportError("random world", false);
+    	if (OI.isButtonPressed()) {
+    		if (gearShifterStatus) {
+    			gearshifter.set(DoubleSolenoid.Value.kForward);
+    			gearShifterStatus = !gearShifterStatus;
+    		}
+    		else {
+    			gearshifter.set(DoubleSolenoid.Value.kReverse);
+    			gearShifterStatus = !gearShifterStatus;
+    		}
+
+    	}
     	
     	/*catch (RuntimeException ex){
     		DriverStation.reportError(""+ ex, true);

@@ -1,8 +1,9 @@
 package org.metrobots;
 
-import org.metrobots.commands.teleop.Intake;
-import org.metrobots.commands.teleop.MoveArm;
-import org.metrobots.commands.teleop.Outtake;
+//import org.metrobots.commands.teleop.Climb;
+//import org.metrobots.commands.teleop.Intake;
+//import org.metrobots.commands.teleop.MoveArm;
+//import org.metrobots.commands.teleop.Outtake;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
@@ -16,15 +17,16 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
-	XboxController gamepad;
+	static XboxController gamepad0 = new XboxController(0);
+	XboxController gamepad1 = new XboxController(1);
 	
-	Button aButton = new JoystickButton(gamepad, MetroController.BUTTON_A);
-	Button bButton = new JoystickButton(gamepad, MetroController.BUTTON_B);
-	Button xButton = new JoystickButton(gamepad, MetroController.BUTTON_X);
-	Button yButton = new JoystickButton(gamepad, MetroController.BUTTON_Y);
+//	static Button aButton = new JoystickButton(gamepad0, MetroController.BUTTON_A);
+//	Button bButton = new JoystickButton(gamepad0, MetroController.BUTTON_B);
+//	Button xButton = new JoystickButton(gamepad0, MetroController.BUTTON_X);
+//	Button yButton = new JoystickButton(gamepad0, MetroController.BUTTON_Y);
 	
-	Button leftBumper = new JoystickButton(gamepad, MetroController.LB);
-	Button rightBumper = new JoystickButton(gamepad, MetroController.RB);
+	Button leftBumper = new JoystickButton(gamepad0, MetroController.LB);
+	Button rightBumper = new JoystickButton(gamepad0, MetroController.RB);
 	
 	/**
 	 * Controller buttons.
@@ -34,11 +36,15 @@ public class OI {
 	 * 
 	 */
 	public OI() {
-		aButton.whenPressed(new PressureSwitch());
-		bButton.whenPressed(new MoveArm());
-		leftBumper.whileHeld(new Intake());
-		rightBumper.whileHeld(new Outtake());
-//		yButton.whenPressed(new someCommand());
+//		aButton.whenPressed(new PressureSwitch());
+//		bButton.whenPressed(new MoveArm());
+//		leftBumper.whileHeld(new Intake());
+//		rightBumper.whileHeld(new Outtake());
+//		yButton.whileHeld(new Climb());
+	}
+	
+	public static boolean isButtonPressed() {
+		return gamepad0.getAButtonPressed();
 	}
 	
 	
