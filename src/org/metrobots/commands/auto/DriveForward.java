@@ -1,8 +1,8 @@
-package org.metrobots.commands.auto;
+package src.org.metrobots.commands.auto;
 
-import org.metrobots.Constants;
-import org.metrobots.Robot;
-import org.metrobots.subsystems.DriveTrain;
+import src.org.metrobots.Constants;
+import src.org.metrobots.Robot;
+import src.org.metrobots.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Encoder;
