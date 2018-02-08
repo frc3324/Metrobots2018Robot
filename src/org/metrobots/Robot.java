@@ -123,27 +123,47 @@ public class Robot extends TimedRobot {
 	 * Initialize whatever you need to when the robot starts autonomous
 	 */
 	public void autonomousInit() {
-		if (Scheduler.getInstance().getName() == "FL") {
-			autoSet = "LEFTFORWARD";
-			DriverStation.reportError("Autoset: " + autoSet, false);
-		}
-		if (Scheduler.getInstance().getName() == "FR") {
-			autoSet = "RIGHTFORWARD";
-			DriverStation.reportError("Autoset: " + autoSet, false);
-		}
-		if (Scheduler.getInstance().getName() == "ML") {
-			autoSet = "MIDDLEFORWARD";
-			DriverStation.reportError("Autoset: " + autoSet, false);
-		}
-		if (Scheduler.getInstance().getName() == "MR") {
-			autoSet = "MIDDLERIGHT";
-			DriverStation.reportError("Autoset: " + autoSet, false);
-		}
-		if (Scheduler.getInstance().getName() == "") {
-			
-		}
-			
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		String autoSet;
 		
+		if (gameData.charAt(0) == 'L') {
+			//left auto code
+			autoSet = "L";
+		} 
+		else {
+			autoSet = "R";
+		}
+		
+		if (gameData.charAt(1) == 'L') {
+			autoSet = autoSet + "L";
+		} 
+		else {
+			autoSet = autoSet + "R";
+		}
+		
+//		
+//		if (gameData.charAt(2) == 'L') {
+//			autoSet = autoSet + "L";
+//		} 
+//		else {
+//			autoSet = autoSet + "R";
+//		}
+//		System.out.println(autoSet); //for testing
+//	}
+	
+		if (autoSet == "LR") {
+			
+		}
+		else if (autoSet == "LL") {
+			
+		}
+		else if (autoSet == "RL") {
+			
+		}
+		else {
+			
+		}
 	}
 
 	/**

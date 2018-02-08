@@ -41,7 +41,7 @@ public class DriveTrain extends	Subsystem {
 		lEncoder.setDistancePerPulse(distancePerPulse);
 		rEncoder.setDistancePerPulse(distancePerPulse);
 	}
-	/*
+	
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
@@ -49,7 +49,7 @@ public class DriveTrain extends	Subsystem {
 	public static double getRightDistance() {
 		return rEncoder.getDistance();
 	}
-	*/
+	
 	public void printEncoder() {
 		SmartDashboard.setDefaultNumber("Right Encoder Value", rightEncoderValue);
 		SmartDashboard.putNumber("Left Encoder Value", leftEncoderValue);

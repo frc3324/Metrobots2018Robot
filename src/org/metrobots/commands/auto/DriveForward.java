@@ -25,8 +25,8 @@ public class DriveForward extends Command{
 
 	@Override
 	protected void execute() {
-		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
-		speed = pulsesToTravel / totalPulses;
+//		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
+//		speed = pulsesToTravel / totalPulses;
 		Robot.mDriveTrain.arcadeDrive(speed, 0.0, true);
 	}
 	
@@ -34,7 +34,6 @@ public class DriveForward extends Command{
 	protected void initialize() {
 		startingLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
 	}
-	
 	
 	@Override
 	protected boolean isFinished() {

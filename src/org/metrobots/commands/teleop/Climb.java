@@ -1,4 +1,4 @@
-package org.metrobots.commands.teleop;
+ package org.metrobots.commands.teleop;
 
 import org.metrobots.subsystems.Climber;
 import org.metrobots.util.MetroController;
@@ -30,6 +30,7 @@ public class Climb extends Command {
 		climber = cl;
 		gamepad = gp;
 	}
+	double number = 0.0;
 
 	/**
 	 * Function constantly run during teleop. Controls:<br>

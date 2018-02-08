@@ -43,7 +43,7 @@ public class MoveArm extends Command {
     protected void execute() {
     	double armSpeed;
     	double currentPosition = 0.0;
-    	double maxPulse = 60.0;
+    	double maxPulse = 60.0; //pulses in a wheel turn
     	
     	if (leftEncoder.getDirection() == false && rightEncoder.getDirection() == false) { //meaning arm in position 0.0 and moving forward
     		currentPosition = ((Math.abs(leftEncoder.getDistance()) - maxPulse) + (Math.abs(rightEncoder.getDistance())) - maxPulse) / 2.0; //Average distance in degrees from encoders, scaled from distancePerPulse
@@ -53,7 +53,7 @@ public class MoveArm extends Command {
     		}
     	}
     	//The else is wrong
-    	else { //meaning arm in position "60.0"
+    	else {
     		currentPosition = -((Math.abs(leftEncoder.getDistance()) + Math.abs(rightEncoder.getDistance())) / 2.0);
     		if (currentPosition == 0.0) {
     			finished = true;
