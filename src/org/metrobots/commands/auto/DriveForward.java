@@ -1,4 +1,4 @@
-spackage org.metrobots.commands.auto;
+package org.metrobots.commands.auto;
 
 import org.metrobots.Constants;
 import org.metrobots.Robot;
