@@ -5,6 +5,7 @@ import org.metrobots.Robot;
 import org.metrobots.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class DriveForward extends Command{
@@ -26,7 +27,7 @@ public class DriveForward extends Command{
 
 	@Override
 	protected void execute() {
-//		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
+		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
 //		speed = pulsesToTravel / totalPulses;
 		Robot.mDriveTrain.arcadeDrive(speed, 0.0, true);
 	}

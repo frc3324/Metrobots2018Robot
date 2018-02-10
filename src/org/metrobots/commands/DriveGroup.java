@@ -23,7 +23,7 @@ public class DriveGroup extends CommandGroup {
 	 */
 	public DriveGroup() {
 		this.addParallel(new DriveTank());
-		//this.addParallel(new PressureSwitch());
+		this.addParallel(new PressureSwitch());
 		//this.addParallel(new MoveArm());
 		//There is something wrong with the intakeArm or MoveArm class that make the robot not move and prints out "output not updated enough"
 	}

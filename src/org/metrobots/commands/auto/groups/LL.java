@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LL extends CommandGroup {
 
     public LL() {
-    	addSequential(new DriveForward(0.5, 5));
+    	addSequential(new DriveForward(0.5, 5)); //inches
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

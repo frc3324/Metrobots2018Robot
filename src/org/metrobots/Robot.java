@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.DriveGroup;
+import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.DriveTrain;
 
@@ -33,6 +34,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
 
+	XboxController gamepad0 = new XboxController(0);
+	
 	public String autoSet = "";
 	
 	/*
@@ -122,7 +125,12 @@ public class Robot extends TimedRobot {
 	/**
 	 * Initialize whatever you need to when the robot starts autonomous
 	 */
+	
 	public void autonomousInit() {
+		if (autoType.equals("LL")) {
+			Scheduler.getInstance().add(new LL());
+		}
+		
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		String autoSet;

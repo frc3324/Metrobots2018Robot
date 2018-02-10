@@ -36,11 +36,17 @@ public class DriveTrain extends	Subsystem {
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
-
+	
+	
 	public DriveTrain() {
-		//mDrive.setSafetyEnabled(false);
+		mDrive.setSafetyEnabled(false);
 		/*lEncoder.setDistancePerPulse(distancePerPulse);
 		rEncoder.setDistancePerPulse(distancePerPulse);*/
+	
+	}
+	
+	public void setSafetyEnabled(boolean status) {
+		mDrive.setSafetyEnabled(status);
 	}
 	
 	public static double getLeftDistance() {
