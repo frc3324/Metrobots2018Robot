@@ -32,9 +32,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Feb 8: Added agitator Talon and stuff - Xander
  * 
  */
-public class Robot extends TimedRobot {
-
-	XboxController gamepad0 = new XboxController(0);
+public class Robot extends IterativeRobot {
 	
 	public String autoSet = "";
 	
