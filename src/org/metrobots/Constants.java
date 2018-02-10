@@ -18,7 +18,7 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 9; //0
+	public final static int flMotorPort = 1; //0
 	public final static int blMotorPort = 7; //2
 	public final static int frMotorPort = 5; //4
 	public final static int brMotorPort = 3; //6
@@ -26,7 +26,7 @@ public class Constants {
 	public final static int climberNotTheWinch = 13;
 	public final static int leftArmMotorPort = 8;//6
 	public final static int rightArmMotorPort = 9;
-	public final static int leftIntakeMotorPort = 1;
+	//public final static int leftIntakeMotorPort = 1;
 	public final static int rightIntakeMotorPort = 3;
 	public final static int climberMotorPort = 5;
 	
@@ -54,10 +54,10 @@ public class Constants {
 	public final static int ultrasonicOut = 8;
 	public final static int ultrasonicIn = 9;
 	
-	public final static int leftEncoderPortA = 0;
-	public final static int leftEncoderPortB = 1;
-	public final static int rightEncoderPortA = 2;
-	public final static int rightEncoderPortB = 3;
+	public final static int leftEncoderPortA = 3;
+	public final static int leftEncoderPortB = 2;
+	public final static int rightEncoderPortA = 0;
+	public final static int rightEncoderPortB = 1;
 	public final static int leftArmEncoderA = 4;
 	public final static int leftArmEncoderB = 5;
 	public final static int rightArmEncoderA = 6;

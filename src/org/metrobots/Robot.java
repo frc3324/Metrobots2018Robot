@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.DriveGroup;
+//import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.DriveTrain;
 
@@ -31,8 +32,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Feb 8: Added agitator Talon and stuff - Xander
  * 
  */
-public class Robot extends TimedRobot {
-
+public class Robot extends IterativeRobot {
+	
 	public String autoSet = "";
 	
 	/*
@@ -122,7 +123,12 @@ public class Robot extends TimedRobot {
 	/**
 	 * Initialize whatever you need to when the robot starts autonomous
 	 */
+	
 	public void autonomousInit() {
+		if (autoType.equals("LL")) {
+//			Scheduler.getInstance().add(new LL());
+		}
+		
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		String autoSet;

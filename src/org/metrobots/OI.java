@@ -1,7 +1,6 @@
 package org.metrobots;
 
-import org.metrobots.commands.teleop.Intake;
-import org.metrobots.commands.teleop.Outtake;
+//import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Climb;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.MoveArm;
@@ -50,8 +49,8 @@ public class OI {
 		/**
 		 * Secondary driver gamepad (gamepad1)
 		 */
-		leftBumper.whileHeld(new Intake());
-		rightBumper.whileHeld(new Outtake());
+//		leftBumper.whileHeld(new Intake());
+//		rightBumper.whileHeld(new Outtake());
 		//yButton.whileHeld(new Climb()); //Actually, make this a trigger, b/c not enough buttons 
 	}
 	

@@ -2,6 +2,8 @@ package org.metrobots.commands.teleop;
 
 import org.metrobots.Constants;
 import org.metrobots.OI;
+import org.metrobots.Robot;
+import org.metrobots.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -21,7 +23,6 @@ public class PressureSwitch extends Command {
 	 * Move pnuematic piston to opposite state when called. <p>
 	 */
     public PressureSwitch() {
-    	
     }
 
     // Called just before this Command runs the first time
@@ -35,6 +36,7 @@ public class PressureSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.mDriveTrain.setSafetyEnabled(false);
     	//.reportError("random world", false);
     	if (OI.isButtonPressed()) {
     		if (gearShifterStatus) {
