@@ -57,10 +57,11 @@ public class DriveTank extends Command {
 //			leftY = leftY * 0.5;
 //			rightX = rightX * 0.5;
 //		}
-		Robot.mDriveTrain.tankDrive(leftY, leftY, true);
+		//leftY = leftY * 0.1;
+		Robot.mDriveTrain.tankDrive(leftY, rightY, true);
 		//Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
-		
-		
+	//	DriverStation.reportError(", printTrace);
+		//Robot.mDriveTrain.printEncoder();
 		//DriverStation.reportError("something", false);
 	}
 	
@@ -68,6 +69,8 @@ public class DriveTank extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
+//		DriveTrain.clearEncoder();
+	
 	}
 	
 	@Override

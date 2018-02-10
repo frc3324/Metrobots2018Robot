@@ -19,13 +19,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends	Subsystem {
 	
 	//Template for constructor of the SpeedControllerGroup class
-	
-	static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB);
-	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
-	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
-
-	private int rightEncoderValue = rEncoder.get();
-	private int leftEncoderValue = lEncoder.get();
+//	private int val = 0;
+//	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
+//	private 	static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB);
+//	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
+//
+//	private double rightEncoderDistance = 0.0;
+//	private double leftEncoderDistance = 0.0;
 
 	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
 	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
@@ -40,27 +40,36 @@ public class DriveTrain extends	Subsystem {
 	
 	public DriveTrain() {
 		mDrive.setSafetyEnabled(false);
-		/*lEncoder.setDistancePerPulse(distancePerPulse);
-		rEncoder.setDistancePerPulse(distancePerPulse);*/
-	
+//		lEncoder.setDistancePerPulse(distancePerPulse);
+//		rEncoder.setDistancePerPulse(distancePerPulse);
 	}
 	
 	public void setSafetyEnabled(boolean status) {
 		mDrive.setSafetyEnabled(status);
 	}
 	
-	public static double getLeftDistance() {
-		return lEncoder.getDistance();
-	}
+//	public static double getLeftDistance() {
+//		return lEncoder.getDistance();
+//	}
 	
-	public static double getRightDistance() {
-		return rEncoder.getDistance();
-	}
+//	public static double getRightDistance() {
+//		return rEncoder.getDistance();
+//	}
 	
-	public void printEncoder() {
-		SmartDashboard.setDefaultNumber("Right Encoder Value", rightEncoderValue);
-		SmartDashboard.putNumber("Left Encoder Value", leftEncoderValue);
-	}
+//	public static void clearEncoder() {
+//		lEncoder.reset();
+//		rEncoder.reset();
+//	}
+	
+//	public void printEncoder() {
+//		leftEncoderDistance = getLeftDistance();
+//		rightEncoderDistance = getRightDistance();
+//		//SmartDashboard.setDefaultNumber("Right Encoder Value", rightEncoderDistance);
+//		SmartDashboard.putNumber("Counter", val);
+//		val++;
+//		SmartDashboard.putNumber("Left Encoder Distance", leftEncoderDistance);
+//		SmartDashboard.putNumber("Right Encoder Distance", rightEncoderDistance);
+//	}
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.arcadeDrive(ySpeed, rotationSpeed, squaredInputs);
 		//mDrive.tankDrive(leftSpeed, rightSpeed, true);
