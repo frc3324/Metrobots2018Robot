@@ -1,36 +1,36 @@
+
 package org.metrobots.commands.teleop;
 
-import org.metrobots.subsystems.CubeController;
+import edu.wpi.first.wpilibj.XboxController;
 
-import edu.wpi.first.wpilibj.AnalogTrigger;
+import org.metrobots.subsystems.Climber;
+
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Intake extends Command {
-
-	CubeController mCubeController = new CubeController();
-	AnalogTrigger limitSwitch = new AnalogTrigger(0);
+public class ClimberArm extends Command {
+	XboxController gamepad = new XboxController(1);
+	Climber mClimber = new Climber();
 	
-	/**
-	 * Spin wheels inward. <p>
-	 */
-    public Intake() {
-    	requires(mCubeController);
+	
+    public ClimberArm() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(mClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (limitSwitch.getTriggerState() == true) {
-    		mCubeController.intake(0.2);
-    	}
-    	
-    	mCubeController.intake(1.0);
+		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
+		mClimber.climberArm(leftY);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -47,3 +47,4 @@ public class Intake extends Command {
     protected void interrupted() {
     }
 }
+>>>>>>> e4dfad3c9327c90a8a1e0e3d4fe422084637b938:src/org/metrobots/commands/teleop/ClimberArm.java

@@ -1,13 +1,9 @@
 package org.metrobots.subsystems;
 
 import org.metrobots.Constants;
-
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
 
