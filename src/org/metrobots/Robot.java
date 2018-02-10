@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.DriveGroup;
-import org.metrobots.commands.auto.groups.LL;
+//import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.DriveTrain;
 
@@ -128,7 +128,7 @@ public class Robot extends TimedRobot {
 	
 	public void autonomousInit() {
 		if (autoType.equals("LL")) {
-			Scheduler.getInstance().add(new LL());
+//			Scheduler.getInstance().add(new LL());
 		}
 		
 		String gameData;

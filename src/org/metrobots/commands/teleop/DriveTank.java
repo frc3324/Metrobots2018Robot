@@ -23,7 +23,7 @@ public class DriveTank extends Command {
 		//Add robot sensitivity
 		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
 		//double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
-		//double rightY = gamepad.getY(Hand.kLeft);
+		double rightY = gamepad.getY(Hand.kRight);
 		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);

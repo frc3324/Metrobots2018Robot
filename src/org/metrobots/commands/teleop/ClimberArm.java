@@ -47,4 +47,3 @@ public class ClimberArm extends Command {
     protected void interrupted() {
     }
 }
->>>>>>> e4dfad3c9327c90a8a1e0e3d4fe422084637b938:src/org/metrobots/commands/teleop/ClimberArm.java
