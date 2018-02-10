@@ -10,11 +10,11 @@ import org.metrobots.commands.auto.Rotate;
 public class RLMiddle extends CommandGroup {
 //ALL NUMBERS ARE ARBITRARY DO NOT RUN
     public RLMiddle() {
-    	this.addSequential(new DriveForward(0.5, 5));
+    	this.addSequential(new DriveForward(5));
     	this.addSequential(new Rotate(90, 1));
-    	this.addSequential(new DriveForward(0.5, 5));
+    	this.addSequential(new DriveForward(5));
     	this.addSequential(new Rotate(-90, 1));
-    	this.addSequential(new DriveForward(0.5, 5));
+    	this.addSequential(new DriveForward(5));
     	//addSequential(new arm);
     }
 

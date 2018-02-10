@@ -98,7 +98,7 @@ public class MoveArm extends Command {
 //	    }
 //    }
 //    
-    while (diffPulse != 0.0) {
+    while (Math.abs(diffPulse) > 1.9) {
     	armSpeed = diffPulse / maxPulse;
         mIntakeArm.armMovement(armSpeed);
     }

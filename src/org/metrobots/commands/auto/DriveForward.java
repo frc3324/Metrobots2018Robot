@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class DriveForward extends Command{
-	double pulsesToTravel, speed, distance, startingLocation, currentLocation;
+
+	double distance, speed, currentDistance, goalDistance, distanceToTravel;
 	
 	/**
 	 * Method for auto drive forward.<p>
@@ -18,29 +19,30 @@ public class DriveForward extends Command{
 	 * @param speed
 	 * @param distance
 	 */
-	public DriveForward(double speed, double distance) {
-		//distance is equal to the circumference of the wheel times the amount of pulses.
-		this.speed = speed;
-		this.distance = distance;
-	}
-
-	@Override
-	protected void execute() {
-//		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
-//		speed = pulsesToTravel / totalPulses;
-		Robot.mDriveTrain.arcadeDrive(speed, 0.0, true);
+	public DriveForward(double distance) {
+		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
+		this.distance = goalDistance;
 	}
 	
 	@Override
 	protected void initialize() {
-		startingLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
+		currentDistance = (DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2;
+	}
+	
+	@Override
+	protected void execute() {
+//		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
+//		speed = pulsesToTravel / totalPulses;
+		distanceToTravel = goalDistance - currentDistance;
+		speed = distanceToTravel / goalDistance;
+		Robot.mDriveTrain.tankDrive(speed, speed, true);
 	}
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		currentLocation = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
-		if ((currentLocation - startingLocation) < distance) {
+		currentDistance = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2);
+		if (distanceToTravel != goalDistance) {
 			return false;
 		} else {
 			return true;

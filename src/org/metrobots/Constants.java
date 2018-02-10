@@ -96,5 +96,6 @@ public class Constants {
 	public final static double CIRCUMFERENCE = 18.85; // (Inches) Need to measure in inches
 	public final static double PULSES = 256; 
 	public final static double INCH_PER_PULSE = 0.074; //circumference of wheel in inches / pulses
+	public final static double AUTO_ROTATE_ANGLE_THRESHOLD = 1.0;
 	
 }
