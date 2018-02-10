@@ -1,5 +1,7 @@
 package org.metrobots;
 
+import org.metrobots.commands.teleop.Intake;
+import org.metrobots.commands.teleop.Outtake;
 //import org.metrobots.commands.teleop.Climb;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.MoveArm;
@@ -20,13 +22,16 @@ public class OI {
 	static XboxController gamepad0 = new XboxController(0);
 	XboxController gamepad1 = new XboxController(1);
 	
-//	static Button aButton = new JoystickButton(gamepad0, MetroController.BUTTON_A);
-//	Button bButton = new JoystickButton(gamepad0, MetroController.BUTTON_B);
-//	Button xButton = new JoystickButton(gamepad0, MetroController.BUTTON_X);
-//	Button yButton = new JoystickButton(gamepad0, MetroController.BUTTON_Y);
+	/**
+	 * DO NOT USE FOR SECONDARY DRIVER (x, y, a, b)
+	 */
+	Button aButton = new JoystickButton(gamepad1, MetroController.BUTTON_A);
+	Button bButton = new JoystickButton(gamepad1, MetroController.BUTTON_B);
+	Button xButton = new JoystickButton(gamepad1, MetroController.BUTTON_X);
+	Button yButton = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
 	
-	Button leftBumper = new JoystickButton(gamepad0, MetroController.LB);
-	Button rightBumper = new JoystickButton(gamepad0, MetroController.RB);
+	Button leftBumper = new JoystickButton(gamepad1, MetroController.LB);
+	Button rightBumper = new JoystickButton(gamepad1, MetroController.RB);
 	
 	/**
 	 * Controller buttons.
@@ -36,11 +41,18 @@ public class OI {
 	 * 
 	 */
 	public OI() {
-//		aButton.whenPressed(new PressureSwitch());
-//		bButton.whenPressed(new MoveArm());
-//		leftBumper.whileHeld(new Intake());
-//		rightBumper.whileHeld(new Outtake());
-//		yButton.whileHeld(new Climb());
+		
+		/** Primary driver gamepad (gamepad0)
+		 * 
+		 */
+		aButton.whenPressed(new PressureSwitch());
+		
+		/**
+		 * Secondary driver gamepad (gamepad1)
+		 */
+		leftBumper.whileHeld(new Intake());
+		rightBumper.whileHeld(new Outtake());
+		//yButton.whileHeld(new Climb()); //Actually, make this a trigger, b/c not enough buttons 
 	}
 	
 	public static boolean isButtonPressed() {

@@ -19,8 +19,9 @@ public class IntakeArm extends Subsystem {
 	WPI_VictorSPX lArmMotor = new WPI_VictorSPX(Constants.leftArmMotorPort);
 	WPI_VictorSPX rArmMotor = new WPI_VictorSPX(Constants.rightArmMotorPort);
 	
+	
 	SpeedControllerGroup armMotors = new SpeedControllerGroup (lArmMotor, rArmMotor);
-	//CAN YOU SEE ME?
+	
 	public IntakeArm() {
 		leftEncoder.setDistancePerPulse(5); //5 is arbitrary number; would mean 5 degrees for every pulse
 		rightEncoder.setDistancePerPulse(5);
