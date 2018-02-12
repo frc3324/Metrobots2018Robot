@@ -21,14 +21,13 @@ public class Constants {
 	public final static int flMotorPort = 1; //0
 	public final static int blMotorPort = 7; //2
 	public final static int frMotorPort = 5; //4
-	public final static int brMotorPort = 3; //6
-
-	public final static int climberNotTheWinch = 13;
+	public final static int brMotorPort = 2; //6
 	public final static int leftArmMotorPort = 8;//6
 	public final static int rightArmMotorPort = 9;
 	//public final static int leftIntakeMotorPort = 1;
 	public final static int rightIntakeMotorPort = 3;
-	public final static int climberMotorPort = 5;
+	public final static int LINEAR_SLIDE_MOTOR_PORT = 5;
+	public final static int WINCH_PORT = 0;
 	
 	/*
 	 * Pneumatic Ports

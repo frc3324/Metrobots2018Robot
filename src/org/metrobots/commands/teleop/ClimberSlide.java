@@ -1,4 +1,3 @@
-
 package org.metrobots.commands.teleop;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -9,14 +8,13 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * 
  */
-public class ClimberArm extends Command {
+public class ClimberSlide extends Command {
 	XboxController gamepad = new XboxController(1);
 	Climber mClimber = new Climber();
 	
-	
-    public ClimberArm() {
+    public ClimberSlide() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(mClimber);
@@ -30,7 +28,7 @@ public class ClimberArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
-		mClimber.climberArm(leftY);
+		mClimber.grabBar(leftY);
     }
 
     // Make this return true when this Command no longer needs to run execute()
