@@ -3,13 +3,13 @@ package org.metrobots.commands.auto;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Command for moving arm in auto.
  */
-public class Intake extends Command {
+public class MoveArm extends Command {
 
-	
-    public Intake(double distance, double speed) {
-        //distance = 
+    public MoveArm() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

@@ -2,7 +2,6 @@ package org.metrobots.commands.auto.groups;
 
 import org.metrobots.commands.auto.DriveForward;
 import org.metrobots.commands.auto.Rotate;
-import org.metrobots.subsystems.IntakeArm;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

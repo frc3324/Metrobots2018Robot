@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * The button acts as a toggle.
  * 
  */
-public class MoveArm extends Command {
+public class ControlArm extends Command {
 
 	public IntakeArm mIntakeArm = new IntakeArm();
 	Encoder leftEncoder;
@@ -25,7 +25,7 @@ public class MoveArm extends Command {
 	/**
 	 * Move the arm to its opposite position when called. <p>
 	 */
-    public MoveArm() {
+    public ControlArm() {
     	requires(mIntakeArm);
     }
 

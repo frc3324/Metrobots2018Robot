@@ -125,51 +125,51 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void autonomousInit() {
-		if (autoType.equals("LL")) {
-//			Scheduler.getInstance().add(new LL());
-		}
-		
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		String autoSet;
-		
-		if (gameData.charAt(0) == 'L') {
-			//left auto code
-			autoSet = "L";
-		} 
-		else {
-			autoSet = "R";
-		}
-		
-		if (gameData.charAt(1) == 'L') {
-			autoSet = autoSet + "L";
-		} 
-		else {
-			autoSet = autoSet + "R";
-		}
-		
+//		if (autoType.equals("LL")) {
+////			Scheduler.getInstance().add(new LL());
+//		}
 //		
-//		if (gameData.charAt(2) == 'L') {
+//		String gameData;
+//		gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		String autoSet;
+//		
+//		if (gameData.charAt(0) == 'L') {
+//			//left auto code
+//			autoSet = "L";
+//		} 
+//		else {
+//			autoSet = "R";
+//		}
+//		
+//		if (gameData.charAt(1) == 'L') {
 //			autoSet = autoSet + "L";
 //		} 
 //		else {
 //			autoSet = autoSet + "R";
 //		}
-//		System.out.println(autoSet); //for testing
-//	}
-	
-		if (autoSet == "LR") {
-			
-		}
-		else if (autoSet == "LL") {
-			
-		}
-		else if (autoSet == "RL") {
-			
-		}
-		else {
-			
-		}
+//		
+////		
+////		if (gameData.charAt(2) == 'L') {
+////			autoSet = autoSet + "L";
+////		} 
+////		else {
+////			autoSet = autoSet + "R";
+////		}
+////		System.out.println(autoSet); //for testing
+////	}
+//	
+//		if (autoSet == "LR") {
+//			
+//		}
+//		else if (autoSet == "LL") {
+//			
+//		}
+//		else if (autoSet == "RL") {
+//			
+//		}
+//		else {
+//			
+//		}
 	}
 
 	/**
