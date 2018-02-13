@@ -40,8 +40,8 @@ public class DriveTrain extends	Subsystem {
 	
 	public DriveTrain() {
 		mDrive.setSafetyEnabled(false);
-//		lEncoder.setDistancePerPulse(distancePerPulse);
-//		rEncoder.setDistancePerPulse(distancePerPulse);
+		lEncoder.setDistancePerPulse(distancePerPulse);
+		rEncoder.setDistancePerPulse(distancePerPulse);
 	}
 	
 	public void setSafetyEnabled(boolean status) {
@@ -62,12 +62,12 @@ public class DriveTrain extends	Subsystem {
 	}
 	
 	public void printEncoder() {
-//		leftEncoderDistance = getLeftDistance();
-//		rightEncoderDistance = getRightDistance();
+		leftEncoderDistance = getLeftDistance();
+		rightEncoderDistance = getRightDistance();
 		
 		// using raw values here, test purpose only
-		leftEncoderDistance = lEncoder.get();
-		rightEncoderDistance = rEncoder.get();
+		//leftEncoderDistance = lEncoder.get();
+		//rightEncoderDistance = rEncoder.get();
 		
 		
 		// 

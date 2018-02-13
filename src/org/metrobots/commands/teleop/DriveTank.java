@@ -57,7 +57,10 @@ public class DriveTank extends Command {
 //			leftY = leftY * 0.5;
 //			rightX = rightX * 0.5;
 //		}
+		//Robot.mDriveTrain.printEncoder();
 		//leftY = leftY * 0.1;
+		leftY *= 0.975;
+		//rightY *= 1;
 		Robot.mDriveTrain.tankDrive(leftY, rightY, true);
 		//Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
 	//	DriverStation.reportError(", printTrace);

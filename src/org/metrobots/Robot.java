@@ -3,6 +3,7 @@ package org.metrobots;
 import java.io.IOException;
 
 import org.metrobots.botcv.communication.CommInterface;
+import org.metrobots.commands.AutoConfiguration;
 import org.metrobots.commands.DriveGroup;
 //import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
@@ -125,7 +126,10 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void autonomousInit() {
-//		if (autoType.equals("LL")) {
+		Scheduler.getInstance().run(new AutoConfiguration());
+
+		
+		//		if (autoType.equals("LL")) {
 ////			Scheduler.getInstance().add(new LL());
 //		}
 //		
@@ -148,15 +152,15 @@ public class Robot extends IterativeRobot {
 //			autoSet = autoSet + "R";
 //		}
 //		
-////		
-////		if (gameData.charAt(2) == 'L') {
-////			autoSet = autoSet + "L";
-////		} 
-////		else {
-////			autoSet = autoSet + "R";
-////		}
-////		System.out.println(autoSet); //for testing
-////	}
+//		
+//		if (gameData.charAt(2) == 'L') {
+//			autoSet = autoSet + "L";
+//		} 
+//		else {
+//			autoSet = autoSet + "R";
+//		}
+//		System.out.println(autoSet); //for testing
+//	}
 //	
 //		if (autoSet == "LR") {
 //			
