@@ -106,7 +106,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run(); // Run scheduler
-		
+		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
 		//System.out.println("Ultrasonic" + ultrasonic.getRangeInches());
 		
 		/*System.out.println("flE:" + flEncoder.getDistance());
@@ -126,54 +126,7 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void autonomousInit() {
-		Scheduler.getInstance().run(new AutoConfiguration());
-
-		
-		//		if (autoType.equals("LL")) {
-////			Scheduler.getInstance().add(new LL());
-//		}
-//		
-//		String gameData;
-//		gameData = DriverStation.getInstance().getGameSpecificMessage();
-//		String autoSet;
-//		
-//		if (gameData.charAt(0) == 'L') {
-//			//left auto code
-//			autoSet = "L";
-//		} 
-//		else {
-//			autoSet = "R";
-//		}
-//		
-//		if (gameData.charAt(1) == 'L') {
-//			autoSet = autoSet + "L";
-//		} 
-//		else {
-//			autoSet = autoSet + "R";
-//		}
-//		
-//		
-//		if (gameData.charAt(2) == 'L') {
-//			autoSet = autoSet + "L";
-//		} 
-//		else {
-//			autoSet = autoSet + "R";
-//		}
-//		System.out.println(autoSet); //for testing
-//	}
-//	
-//		if (autoSet == "LR") {
-//			
-//		}
-//		else if (autoSet == "LL") {
-//			
-//		}
-//		else if (autoSet == "RL") {
-//			
-//		}
-//		else {
-//			
-//		}
+		Scheduler.getInstance().run();
 	}
 
 	/**
@@ -181,6 +134,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run(); // Run scheduler
+		Scheduler.getInstance().add(new AutoConfiguration());
 		//System.out.println("dir: " + comms.getDirection() + " mag:" + comms.getMagnitude());
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
 		

@@ -22,6 +22,10 @@ public class OI {
 	XboxController gamepad1 = new XboxController(1);
 	
 	/**
+	 * Primary driver buttons assignments
+	 */
+	
+	/**
 	 * DO NOT USE FOR SECONDARY DRIVER (x, y, a, b)
 	 */
 	Button aButton = new JoystickButton(gamepad1, MetroController.BUTTON_A);
@@ -54,10 +58,37 @@ public class OI {
 		//yButton.whileHeld(new Climb()); //Actually, make this a trigger, b/c not enough buttons 
 	}
 	
-	public static boolean isButtonPressed() {
+	/**
+	 * Determine if the A button is pressed on the primary driver controller.
+	 * @return true or false
+	 */
+	public static boolean isAPressed() {
 		return gamepad0.getAButtonPressed();
 	}
 	
+	/**
+	 * Determine if the B button is pressed on the primary driver controller.
+	 * @return true or false
+	 */
+	public static boolean isBPressed() {
+		return gamepad0.getBButton();
+	}
+	
+	/**
+	 * Determine if the X button is pressed on the primary driver controller.
+	 * @return true or false
+	 */
+	public static boolean isXPressed() {
+		return gamepad0.getXButton();
+	}
+	
+	/**
+	 * Determine if the Y button is pressed on the primary driver controller.
+	 * @return true or false
+	 */
+	public static boolean isYPressed() {
+		return gamepad0.getYButton();
+	}
 	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.

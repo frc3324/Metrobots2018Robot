@@ -1,5 +1,6 @@
 package org.metrobots.commands;
 
+import org.metrobots.OI;
 import org.metrobots.commands.auto.groups.LLLeft;
 import org.metrobots.commands.auto.groups.LLMiddle;
 import org.metrobots.commands.auto.groups.LLRight;
@@ -8,20 +9,32 @@ import org.metrobots.commands.auto.groups.RLMiddle;
 import org.metrobots.commands.auto.groups.RLRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-public class AutoConfiguration {
+/**
+ * Command for translating FMS input (in form of three letters as an L or R).
+ * Also determined by the button pressed on the primary driver controller for driverstation position.
+ */
+public class AutoConfiguration extends Command {
+
 	
-	public String autoType = "";
+	String autoSet = "";
 	
-	XboxController gamepad0 = new XboxController(0);
-	
-	public AutoConfiguration() {
-	
+    public AutoConfiguration() {
+    	
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	DriverStation.reportError("You have reached the beginning of execute in autoconfig", true);
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		String autoSet;
 		
 		if (gameData.charAt(0) == 'L') {
 			//left auto code
@@ -30,12 +43,9 @@ public class AutoConfiguration {
 		else {
 			autoSet = "R";
 		}
-	
-		if (autoSet == "R" || autoSet == "L") {
-			System.out.println("X Button if the robot is on the left side, A for middle, B for right.");
-		}
 		
-		if (gamepad0.getXButtonPressed()) {		//left side on the field
+		if (OI.isXPressed()) {		//left side on the field
+			DriverStation.reportError("You pressed X", true);
 			if (autoSet == "R") {
 				Scheduler.getInstance().add(new RLLeft());
 			}
@@ -45,7 +55,8 @@ public class AutoConfiguration {
 			}
 		}
 		
-		else if (gamepad0.getAButtonPressed()) {	//middle side on the field
+		else if (OI.isYPressed()) {	//middle side on the field
+			DriverStation.reportError("You pressed Y", true);
 			if (autoSet == "R")	{
 				Scheduler.getInstance().add(new RLMiddle());
 			}
@@ -54,7 +65,8 @@ public class AutoConfiguration {
 			}
 		}
 		
-		else if (gamepad0.getBButtonPressed()) {	//right side of the field
+		else if (OI.isBPressed()) {	//right side of the field
+			DriverStation.reportError("You pressed B", true);
 			if (autoSet == "R")	{
 				Scheduler.getInstance().add(new RLRight());
 			}
@@ -66,6 +78,19 @@ public class AutoConfiguration {
 		else {
 			
 		}
+    }
 
-	}
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    }
 }
