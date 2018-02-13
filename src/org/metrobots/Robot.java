@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	public String autoSet = "";
+	public static boolean isAuto = false;
 	
 	/*
 	 * Declare gamepad objects
@@ -66,6 +67,9 @@ public class Robot extends IterativeRobot {
 	 * controllers, sensors, and subsystems
 	 */
 	public void robotInit() {
+		
+		Scheduler.getInstance().add(new AutoConfiguration());
+		
 		/*
 		 * Initialize gamepads
 		 */
@@ -98,6 +102,8 @@ public class Robot extends IterativeRobot {
 	 * Initialize whatever you need to when the robot becomes disables
 	 */
 	public void disabledInit() {
+		isAuto = false;
+		Scheduler.getInstance().add(new AutoConfiguration());
 	}
 
 	/**
@@ -106,7 +112,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run(); // Run scheduler
-		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
+		//DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
 		//System.out.println("Ultrasonic" + ultrasonic.getRangeInches());
 		
 		/*System.out.println("flE:" + flEncoder.getDistance());
@@ -126,7 +132,9 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void autonomousInit() {
+		isAuto = true;
 		Scheduler.getInstance().run();
+		Scheduler.getInstance().add(new AutoConfiguration());
 	}
 
 	/**
@@ -134,7 +142,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run(); // Run scheduler
-		Scheduler.getInstance().add(new AutoConfiguration());
 		//System.out.println("dir: " + comms.getDirection() + " mag:" + comms.getMagnitude());
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
 		

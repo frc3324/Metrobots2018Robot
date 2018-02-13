@@ -21,6 +21,7 @@ public class DriveTank extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
+		Robot.mDriveTrain.printEncoder();
 		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
 		//double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
 		double rightY = gamepad.getY(Hand.kRight);

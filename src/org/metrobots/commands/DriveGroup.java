@@ -1,9 +1,9 @@
 package org.metrobots.commands;
 
 import org.metrobots.Robot;
+import org.metrobots.commands.teleop.ControlArm;
 import org.metrobots.commands.teleop.DriveTank;
 import org.metrobots.commands.teleop.PressureSwitch;
-//import org.metrobots.commands.teleop.MoveArm;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -24,7 +24,7 @@ public class DriveGroup extends CommandGroup {
 	public DriveGroup() {
 		this.addParallel(new DriveTank());
 		//this.addParallel(new PressureSwitch());
-		//this.addParallel(new MoveArm());
+		this.addParallel(new ControlArm());
 		//There is something wrong with the intakeArm or MoveArm class that make the robot not move and prints out "output not updated enough"
 	}
 	

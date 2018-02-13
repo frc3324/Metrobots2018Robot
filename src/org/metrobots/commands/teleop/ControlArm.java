@@ -2,7 +2,9 @@ package org.metrobots.commands.teleop;
 
 import org.metrobots.subsystems.IntakeArm;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,13 +16,15 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ControlArm extends Command {
 
 	public IntakeArm mIntakeArm = new IntakeArm();
-	Encoder leftEncoder;
-	Encoder rightEncoder;
+//	Encoder leftEncoder;
+//	Encoder rightEncoder;
 	boolean finished = false;
 	
 	XboxController gamepad1 = new XboxController(1);
 	
 	boolean startPosition = true; //Assumes arm in starting position at match start
+	
+	double armSpeed = 0.0;
 	
 	/**
 	 * Move the arm to its opposite position when called. <p>
@@ -34,8 +38,8 @@ public class ControlArm extends Command {
      * Arm should be set to starting position.
      */
     protected void initialize() {
-    	leftEncoder.reset();
-    	rightEncoder.reset();
+    	mIntakeArm.resetEncoders();
+    	DriverStation.reportError("Init speed: " + armSpeed, true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,6 +48,13 @@ public class ControlArm extends Command {
      * 
      */
     protected void execute() {
+//    	double leftY = gamepad1.getY(Hand.kLeft);
+//    	mIntakeArm.armMovement(leftY);
+    	
+//    	mIntakeArm.armMovement(0.5);
+    	mIntakeArm.printEncoder();
+    	//mIntakeArm.printEncoder(); //right
+    	
      /**
       * Variables for moving the arm.
       * 
@@ -64,16 +75,26 @@ public class ControlArm extends Command {
       */
     double goalPulse = 0.0;
     if (gamepad1.getAButtonPressed()) {
+    	DriverStation.reportError("A pressed", false);
     	goalPulse = 180.0; //should be the maxPulse
     }
-    if (gamepad1.getXButtonPressed()) {
+
+    else if (gamepad1.getXButtonPressed()) {
+    	DriverStation.reportError("X pressed", false);
     	goalPulse = 155.0;
     }
-    if (gamepad1.getYButtonPressed()) {
+    
+    else if (gamepad1.getYButtonPressed()) {
+    	DriverStation.reportError("Y pressed", false);
     	goalPulse = 70.0;
     }
-    if (gamepad1.getBButtonPressed()) {
+    
+    else if (gamepad1.getBButtonPressed()) {
+    	DriverStation.reportError("B pressed", false);
     	goalPulse = 0.0;
+    }
+    else {
+    	mIntakeArm.armMovement(0.0);
     }
 //    double goalPulseFullForward = 180.0;
 //    double goalPulseSwitchForward = 155.0;
@@ -81,14 +102,16 @@ public class ControlArm extends Command {
 //    double goalPulseScaleBackward = 70.0;
 //    double goalPulseSwitchBackward = 45.0;	
 //    double goalPulseFullBackward = 0.0;
-    
-    double currentPulse = (leftEncoder.get() + rightEncoder.get()) / 2.0;
-    double maxPulse = 0.0;
-    double armSpeed = 0.0;
+    /***********************************/
+    double currentPulse = (mIntakeArm.getLeftEncoderRaw() + mIntakeArm.getRightEncoderRaw()) / 2.0;
+    DriverStation.reportError("currenPulse: " + currentPulse, false);
+    double maxPulse = 60.0;
+//    double armSpeed = 0.0;
     boolean state = false;
     
     double diffPulse = goalPulse - currentPulse;
-    
+    DriverStation.reportError("diffPulse: " + diffPulse, true);
+    /*************************************/
 //    if (state) {
 //    	
 //    }
@@ -98,11 +121,13 @@ public class ControlArm extends Command {
 //	    }
 //    }
 //    
+    /*********************************/
     while (Math.abs(diffPulse) > 1.9) {
+    	DriverStation.reportError("diffpulse: " + diffPulse, true);
     	armSpeed = diffPulse / maxPulse;
         mIntakeArm.armMovement(armSpeed);
     }
-	
+	/**********************************/
 //    	if (leftEncoder.getDirection() == false && rightEncoder.getDirection() == false) { //meaning arm in position 0.0 and moving forward
 //    		goalValue = ((Math.abs(leftEncoder.getDistance()) - maxPulse) + (Math.abs(rightEncoder.getDistance())) - maxPulse) / 2.0; //Average distance in degrees from encoders, scaled from distancePerPulse
 //    		//motors will move at most speed 1 (forwards), but that can be changed if needed
@@ -171,7 +196,8 @@ public class ControlArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished; 
+//        return finished; 
+    	return false;
     }
 
     // Called once after isFinished returns true

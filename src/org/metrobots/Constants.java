@@ -50,17 +50,17 @@ public class Constants {
 	public final static int brEncoder2 = 3;*/
 	public final static int shooterEncoder1 = 10; // Pin 0 on MXP theoretically
 	public final static int shooterEncoder2 = 11; // Pin 1 on MXP
-	public final static int ultrasonicOut = 8;
-	public final static int ultrasonicIn = 9;
+//	public final static int ultrasonicOut = 8;
+//	public final static int ultrasonicIn = 9;
 	
 	public final static int leftEncoderPortA = 3;
 	public final static int leftEncoderPortB = 2;
-	public final static int rightEncoderPortA = 0;
-	public final static int rightEncoderPortB = 1;
+	public final static int rightEncoderPortA = 8;
+	public final static int rightEncoderPortB = 9;
 	public final static int leftArmEncoderA = 4;
 	public final static int leftArmEncoderB = 5;
-	public final static int rightArmEncoderA = 6;
-	public final static int rightArmEncoderB = 7;
+	public final static int rightArmEncoderA = 0;
+	public final static int rightArmEncoderB = 1;
 	
 
 	/*

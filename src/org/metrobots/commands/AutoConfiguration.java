@@ -1,6 +1,7 @@
 package org.metrobots.commands;
 
 import org.metrobots.OI;
+import org.metrobots.Robot;
 import org.metrobots.commands.auto.groups.LLLeft;
 import org.metrobots.commands.auto.groups.LLMiddle;
 import org.metrobots.commands.auto.groups.LLRight;
@@ -82,7 +83,7 @@ public class AutoConfiguration extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.isAuto;
     }
 
     // Called once after isFinished returns true

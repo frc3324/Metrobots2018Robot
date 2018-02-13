@@ -6,6 +6,7 @@ import org.metrobots.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,7 +24,7 @@ public class DriveTrain extends	Subsystem {
 	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
 	private static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB, false, Encoder.EncodingType.k4X);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
-//
+
 	private double rightEncoderDistance = 0.0;
 	private double leftEncoderDistance = 0.0;
 
@@ -71,13 +72,13 @@ public class DriveTrain extends	Subsystem {
 		
 		
 		// 
-		SmartDashboard.putNumber("Program is Running", val);
-		val++;
+//		SmartDashboard.putNumber("Program is Running", val);
+//		val++;
 		SmartDashboard.putNumber("L Encoder Distance", leftEncoderDistance);
 		SmartDashboard.putNumber("R Encoder Distance", rightEncoderDistance);
 		// print speeds
 		SmartDashboard.putNumber("L Rate", lEncoder.getRate());
-		SmartDashboard.putNumber("R Rate", rEncoder.getRate()); // unit: distance per sec
+		SmartDashboard.putNumber("R Rate", rEncoder.get()); // unit: distance per sec
 	}
 	
 	public void arcadeDrive(double ySpeed, double rotationSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
