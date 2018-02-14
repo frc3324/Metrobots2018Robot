@@ -38,7 +38,7 @@ public class ControlArm extends Command {
      * Arm should be set to starting position.
      */
     protected void initialize() {
-    	mIntakeArm.resetEncoders();
+    	mIntakeArm.resetEncoder();
     	DriverStation.reportError("Init speed: " + armSpeed, true);
     }
 
@@ -93,25 +93,28 @@ public class ControlArm extends Command {
     	DriverStation.reportError("B pressed", false);
     	goalPulse = 0.0;
     }
-    else {
-    	mIntakeArm.armMovement(0.0);
-    }
-//    double goalPulseFullForward = 180.0;
-//    double goalPulseSwitchForward = 155.0;
-//    double goalPulseScaleForward = 110.0;
-//    double goalPulseScaleBackward = 70.0;
-//    double goalPulseSwitchBackward = 45.0;	
-//    double goalPulseFullBackward = 0.0;
-    /***********************************/
-    double currentPulse = (mIntakeArm.getLeftEncoderRaw() + mIntakeArm.getRightEncoderRaw()) / 2.0;
+    
+    double currentPulse = mIntakeArm.getRawArm();
     DriverStation.reportError("currenPulse: " + currentPulse, false);
     double maxPulse = 60.0;
 //    double armSpeed = 0.0;
-    boolean state = false;
     
     double diffPulse = goalPulse - currentPulse;
     DriverStation.reportError("diffPulse: " + diffPulse, true);
-    /*************************************/
+    
+    while (Math.abs(diffPulse) > 10.0) {
+    	DriverStation.reportError("diffpulse: " + diffPulse, true);
+    	armSpeed = diffPulse / maxPulse;
+        mIntakeArm.armMovement(armSpeed);
+    }
+    
+//  double goalPulseFullForward = 180.0;
+//  double goalPulseSwitchForward = 155.0;
+//  double goalPulseScaleForward = 110.0;
+//  double goalPulseScaleBackward = 70.0;
+//  double goalPulseSwitchBackward = 45.0;	
+//  double goalPulseFullBackward = 0.0;
+    
 //    if (state) {
 //    	
 //    }
@@ -121,13 +124,6 @@ public class ControlArm extends Command {
 //	    }
 //    }
 //    
-    /*********************************/
-    while (Math.abs(diffPulse) > 1.9) {
-    	DriverStation.reportError("diffpulse: " + diffPulse, true);
-    	armSpeed = diffPulse / maxPulse;
-        mIntakeArm.armMovement(armSpeed);
-    }
-	/**********************************/
 //    	if (leftEncoder.getDirection() == false && rightEncoder.getDirection() == false) { //meaning arm in position 0.0 and moving forward
 //    		goalValue = ((Math.abs(leftEncoder.getDistance()) - maxPulse) + (Math.abs(rightEncoder.getDistance())) - maxPulse) / 2.0; //Average distance in degrees from encoders, scaled from distancePerPulse
 //    		//motors will move at most speed 1 (forwards), but that can be changed if needed

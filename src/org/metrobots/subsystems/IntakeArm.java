@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class IntakeArm extends Subsystem {
 	
-	static Encoder leftEncoder = new Encoder(Constants.leftArmEncoderA, Constants.leftArmEncoderB);
-	static Encoder rightEncoder = new Encoder(Constants.rightArmEncoderA, Constants.rightArmEncoderB);
+	static Encoder armEncoder = new Encoder(Constants.leftArmEncoderA, Constants.leftArmEncoderB);
 	
 	WPI_VictorSPX lArmMotor = new WPI_VictorSPX(Constants.leftArmMotorPort);
 	WPI_VictorSPX rArmMotor = new WPI_VictorSPX(Constants.rightArmMotorPort);
@@ -24,27 +23,21 @@ public class IntakeArm extends Subsystem {
 	SpeedControllerGroup armMotors = new SpeedControllerGroup (lArmMotor, rArmMotor);
 	
 	public IntakeArm() {
-		leftEncoder.setDistancePerPulse(5); //5 is arbitrary number; would mean 5 degrees for every pulse
-		rightEncoder.setDistancePerPulse(5);
-		leftEncoder.getRate();
-		rightEncoder.getRate();
+		armEncoder.setDistancePerPulse(5); //5 is arbitrary number; would mean 5 degrees for every pulse
+		armEncoder.getRate();
 	}
 	
-	public void resetEncoders() {
-		leftEncoder.reset();
-		rightEncoder.reset();
+	public void resetEncoder() {
+		armEncoder.reset();
 	}
 	
-	public double getLeftEncoderRaw() {
-		return leftEncoder.get();
+	public double getRawArm() {
+		return armEncoder.get();
 	}
-	
-	public double getRightEncoderRaw() {
-		return rightEncoder.get();
-	}
+
 	
 	public void printEncoder() {
-		SmartDashboard.putNumber("R Rate: ", rightEncoder.get()); // unit: distance per sec
+		SmartDashboard.putNumber("R Rate: ", armEncoder.get()); // unit: distance per sec
 		int val = 0;
 		SmartDashboard.putNumber("Program is Running", val);
 		val++;
