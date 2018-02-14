@@ -54,40 +54,44 @@ private boolean isInitPosSet = false;
 			autoSet = "R";
 		}
 		
-		if (OI.isXPressed()) {		//left side on the field
-			DriverStation.reportError("You pressed X", true);
-			if (autoSet == "R") {
-				Scheduler.getInstance().add(new RLLeft());
-			}
-		
-			else if (autoSet == "L") {
-				Scheduler.getInstance().add(new LLLeft());
-			}
+		if (autoSet == "L") {
+			Scheduler.getInstance().add(new LLLeft());
 		}
 		
-		else if (OI.isYPressed()) {	//middle side on the field
-			DriverStation.reportError("You pressed Y", true);
-			if (autoSet == "R")	{
-				Scheduler.getInstance().add(new RLMiddle());
-			}
-			else if(autoSet == "L") {
-				Scheduler.getInstance().add(new LLMiddle());
-			}
-		}
-		
-		else if (OI.isBPressed()) {	//right side of the field
-			DriverStation.reportError("You pressed B", true);
-			if (autoSet == "R")	{
-				Scheduler.getInstance().add(new RLRight());
-			}
-			else if(autoSet == "L")	{
-				Scheduler.getInstance().add(new LLRight());
-			}
-		}
-		
-		else {
-			
-		}
+//		if (OI.isXPressed()) {		//left side on the field
+//			DriverStation.reportError("You pressed X", true);
+//			if (autoSet == "R") {
+//				Scheduler.getInstance().add(new RLLeft());
+//			}
+//		
+//			else if (autoSet == "L") {
+//				Scheduler.getInstance().add(new LLLeft());
+//			}
+//		}
+//		
+//		else if (OI.isYPressed()) {	//middle side on the field
+//			DriverStation.reportError("You pressed Y", true);
+//			if (autoSet == "R")	{
+//				Scheduler.getInstance().add(new RLMiddle());
+//			}
+//			else if(autoSet == "L") {
+//				Scheduler.getInstance().add(new LLMiddle());
+//			}
+//		}
+//		
+//		else if (OI.isBPressed()) {	//right side of the field
+//			DriverStation.reportError("You pressed B", true);
+//			if (autoSet == "R")	{
+//				Scheduler.getInstance().add(new RLRight());
+//			}
+//			else if(autoSet == "L")	{
+//				Scheduler.getInstance().add(new LLRight());
+//			}
+//		}
+//		
+//		else {
+//			
+//		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
