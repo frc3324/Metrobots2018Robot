@@ -54,7 +54,7 @@ private boolean isInitPosSet = false;
 			autoSet = "R";
 		}
 		
-		if (OI.isXPressed()) {		//left side on the field
+		if (OI.is0XPressed()) {		//left side on the field
 			DriverStation.reportError("You pressed X", true);
 			if (autoSet == "R") {
 				Scheduler.getInstance().add(new RLLeft());
@@ -65,7 +65,7 @@ private boolean isInitPosSet = false;
 			}
 		}
 		
-		else if (OI.isYPressed()) {	//middle side on the field
+		else if (OI.is0YPressed()) {	//middle side on the field
 			DriverStation.reportError("You pressed Y", true);
 			if (autoSet == "R")	{
 				Scheduler.getInstance().add(new RLMiddle());
@@ -75,7 +75,7 @@ private boolean isInitPosSet = false;
 			}
 		}
 		
-		else if (OI.isBPressed()) {	//right side of the field
+		else if (OI.is0BPressed()) {	//right side of the field
 			DriverStation.reportError("You pressed B", true);
 			if (autoSet == "R")	{
 				Scheduler.getInstance().add(new RLRight());

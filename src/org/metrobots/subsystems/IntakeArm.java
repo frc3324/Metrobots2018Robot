@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class IntakeArm extends Subsystem {
 	
-	static Encoder armEncoder = new Encoder(Constants.leftArmEncoderA, Constants.leftArmEncoderB);
+	static Encoder armEncoder = new Encoder(Constants.ArmEncoderACLK, Constants.ArmEncoderDT, Constants.ArmEncoderSW);
+//	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
+//	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 	
 	WPI_VictorSPX lArmMotor = new WPI_VictorSPX(Constants.leftArmMotorPort);
 	WPI_VictorSPX rArmMotor = new WPI_VictorSPX(Constants.rightArmMotorPort);
@@ -23,16 +25,21 @@ public class IntakeArm extends Subsystem {
 	SpeedControllerGroup armMotors = new SpeedControllerGroup (lArmMotor, rArmMotor);
 	
 	public IntakeArm() {
-		armEncoder.setDistancePerPulse(5); //5 is arbitrary number; would mean 5 degrees for every pulse
-		armEncoder.getRate();
+		armEncoder.setDistancePerPulse(1); //5 is arbitrary number; would mean 5 degrees for every pulse
+		armEncoder.get();
+//		testArmEncoder.setDistancePerPulse(5);
+//		testArmEncoder.getRate();
 	}
 	
 	public void resetEncoder() {
 		armEncoder.reset();
+//		testArmEncoder.reset();
 	}
 	
 	public double getRawArm() {
-		return armEncoder.get();
+//		return armEncoder.getRate();
+		return armEncoder.getDistance();
+//		return testArmEncoder.get();
 	}
 
 	
@@ -41,6 +48,12 @@ public class IntakeArm extends Subsystem {
 		int val = 0;
 		SmartDashboard.putNumber("Program is Running", val);
 		val++;
+		DriverStation.reportError("R rate: " + armEncoder.get(), false);
+//		DriverStation.reportError("TESTRATE: " + testArmEncoder.get(), false);
+//		SmartDashboard.putNumber("R Rate: ", testArmEncoder.get()); // unit: distance per sec
+//		int val = 0;
+//		SmartDashboard.putNumber("Program is Running", val);
+//		val++;
 	}
 	 /**
 	  * Move the arm at specified velocity.

@@ -1,5 +1,6 @@
 package org.metrobots.commands.teleop;
 
+import org.metrobots.OI;
 import org.metrobots.subsystems.IntakeArm;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -7,6 +8,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Moves the intake arm from forward to backward with the press of a button.
@@ -19,13 +21,14 @@ public class ControlArm extends Command {
 //	Encoder leftEncoder;
 //	Encoder rightEncoder;
 	boolean finished = false;
+	int number = 0;
 	
 	XboxController gamepad1 = new XboxController(1);
 	
 	boolean startPosition = true; //Assumes arm in starting position at match start
-	
+	double goalPulse = 0.0;
 	double armSpeed = 0.0;
-	
+	 
 	/**
 	 * Move the arm to its opposite position when called. <p>
 	 */
@@ -36,10 +39,12 @@ public class ControlArm extends Command {
     /*
      * Encoders reset to 0.0.
      * Arm should be set to starting position.
-     */
+     */	
     protected void initialize() {
     	mIntakeArm.resetEncoder();
-    	DriverStation.reportError("Init speed: " + armSpeed, true);
+    	
+//    	DriverStation.reportError("HERE!!!!!", false);
+//    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,13 +53,164 @@ public class ControlArm extends Command {
      * 
      */
     protected void execute() {
+//    	if (OI.is1APressed()) {
+////	    DriverStation.reportError("A pressed", false);
+//	    goalPulse = 180.0; //should be the maxPulse
+//	    armThingy();
+////	    mIntakeArm.armMovement(0.75);
+//	}
+//
+//	else if (OI.is1XPressed()) {
+////	    DriverStation.reportError("X pressed", false);
+//	    goalPulse = 155.0;
+//	    armThingy();
+////	    mIntakeArm.armMovement(0.25);
+//	}
+//	    
+//	else if (OI.is1YPressed()) {
+////	    DriverStation.reportError("Y pressed", false);
+//	    goalPulse = 70.0 + mIntakeArm.getRawArm();
+//	    armThingy();
+////	    mIntakeArm.armMovement(-0.25);
+//	}
+//	    
+//	else if (OI.is1BPressed()) {
+////	    DriverStation.reportError("B pressed", false);
+//	   	goalPulse = 0.0;
+//	    armThingy();
+////	   	mIntakeArm.armMovement(-0.75);
+//	}
+//	else {
+//		//mIntakeArm.armMovement(0.0);
+//	}
+    		
 //    	double leftY = gamepad1.getY(Hand.kLeft);
 //    	mIntakeArm.armMovement(leftY);
+//    	
+//    	if (gamepad1.getAButtonPressed()) {
+//    		DriverStation.reportError("A pressed", true);
+//    		goalPulse = 20.0;
+//    	}
+//    	else if (gamepad1.getBButtonPressed()) {
+//    		DriverStation.reportError("B pressed", true);
+//    		goalPulse = 40.0;
+//    	}
+//    	else {
+//    		goalPulse = 50.0;
+//    	}
+    	
+    	if (gamepad1.getAButtonPressed()) {
+    		goalPulse = 30.0;
+    	}
+    	else {
+    		goalPulse = 20.0;
+    	}
+    	double speed = 0.0;
+    	double currentPulse = mIntakeArm.getRawArm();
+		SmartDashboard.putNumber("currentPulse: ", currentPulse);
+    	double diffPulse = goalPulse - currentPulse;
+    	
+    	if (diffPulse > 4.0) {
+    		speed = diffPulse / 10;
+        	finished = false;
+    	}
+    	else {
+    		speed = 0.0;
+    		finished = true;
+    	}
+    	
+    	mIntakeArm.armMovement(speed);
+    	
+//    	if (diffPulse > 0.5) {
+////        	double velocity = diffPulse / 200;
+//    		if (diffPulse < 0.0) {
+//    			speed = -speed;
+//    		}
+//        	mIntakeArm.armMovement(speed);
+////    		finished = false;
+//    	}
+//    	else {
+////    		mIntakeArm.armMovement(0.0);
+////    		finished = true;
+//    		
+//    	}
+    	SmartDashboard.putNumber("DIFFPULSE: ", diffPulse);
     	
 //    	mIntakeArm.armMovement(0.5);
-    	mIntakeArm.printEncoder();
+//    	mIntakeArm.printEncoder();
     	//mIntakeArm.printEncoder(); //right
     	
+//    	double leftY = gamepad1.getY(Hand.kLeft);
+//    	double speedArm = leftY * 0.5;
+//    	mIntakeArm.armMovement(speedArm);
+//    	if (OI.is1APressed()) {
+////    	    DriverStation.reportError("A pressed", false);
+//    	    goalPulse = 180.0; //should be the maxPulse
+//    	    armThingy();
+////    	    mIntakeArm.armMovement(0.75);
+//    	}
+//
+//    	else if (OI.is1XPressed()) {
+////    	    DriverStation.reportError("X pressed", false);
+//    	    goalPulse = 155.0;
+//    	    armThingy();
+////    	    mIntakeArm.armMovement(0.25);
+//    	}
+//    	    
+//    	else if (OI.is1YPressed()) {
+////    	    DriverStation.reportError("Y pressed", false);
+//    	    goalPulse = 70.0 + mIntakeArm.getRawArm();
+//    	    armThingy();
+////    	    mIntakeArm.armMovement(-0.25);
+//    	}
+//    	    
+//    	else if (OI.is1BPressed()) {
+////    	    DriverStation.reportError("B pressed", false);
+//    	   	goalPulse = 0.0;
+//    	    armThingy();
+////    	   	mIntakeArm.armMovement(-0.75);
+//    	}
+//    	else {
+//    		//mIntakeArm.armMovement(0.0);
+//    	}
+//    }
+//    	
+//   public void armThingy() {
+//	   
+//    	double maxPulse = 60.0;
+//    	double currentPulse = mIntakeArm.getRawArm();
+////    double armSpeed = 0.0;
+//    
+//    double diffPulse = goalPulse - currentPulse;
+////    DriverStation.reportError("diffPulse: " + diffPulse, true);
+//    
+//    
+////    if (goalPulse > currentPulse && diffPulse < 1.0) {
+////    	armSpeed = go positive
+////    }
+////    else if (goalPulse < currentPulse && diffPulse < 1.0) {
+////    	armSpeed = negative;
+////    }
+//    if (Math.abs(diffPulse) > 10.0) {
+////    	DriverStation.reportError("diffpulse: " + diffPulse, true);
+//    	armSpeed = (diffPulse / maxPulse);
+//    	if (armSpeed > 1.0) {
+//    		armSpeed = 1.0;
+//    	}
+//    	else if (armSpeed < -1.0) {
+//    		armSpeed = -1.0;
+//    	}
+//    	else {
+//    		armSpeed = diffPulse / maxPulse;
+//    	}
+//        mIntakeArm.armMovement(-armSpeed);
+//        finished = false;
+//    } else {
+//    	mIntakeArm.armMovement(0.0);
+//    	finished = true;
+//    }
+//    
+//    	DriverStation.reportError("GOALPULSE: " + mIntakeArm.getRawArm(), false);
      /**
       * Variables for moving the arm.
       * 
@@ -73,40 +229,23 @@ public class ControlArm extends Command {
       * state is whether the arm should be moving forward or backward to reach goalPulse. True if going toward front of robot, false if 
       * going backward.
       */
-    double goalPulse = 0.0;
-    if (gamepad1.getAButtonPressed()) {
-    	DriverStation.reportError("A pressed", false);
-    	goalPulse = 180.0; //should be the maxPulse
-    }
-
-    else if (gamepad1.getXButtonPressed()) {
-    	DriverStation.reportError("X pressed", false);
-    	goalPulse = 155.0;
-    }
+//    	mIntakeArm.armMovement(-0.5);
+//    DriverStation.reportError("VALUE FOR THE ENCODER GET: " + mIntakeArm.getRawArm(), true);
+//    double currentPulse = mIntakeArm.getRawArm();
+//    DriverStation.reportError("currenPulse: " + currentPulse, false);
+//    double maxPulse = 60.0;
+////    double armSpeed = 0.0;
+//    
+//    double diffPulse = goalPulse - currentPulse;
+////    DriverStation.reportError("diffPulse: " + diffPulse, true);
+//    
+//    while (Math.abs(diffPulse) > 10.0) {
+////    	DriverStation.reportError("diffpulse: " + diffPulse, true);
+//    	armSpeed = diffPulse / maxPulse;
+//        mIntakeArm.armMovement(armSpeed);
+//        finished = false;
+//    }
     
-    else if (gamepad1.getYButtonPressed()) {
-    	DriverStation.reportError("Y pressed", false);
-    	goalPulse = 70.0;
-    }
-    
-    else if (gamepad1.getBButtonPressed()) {
-    	DriverStation.reportError("B pressed", false);
-    	goalPulse = 0.0;
-    }
-    
-    double currentPulse = mIntakeArm.getRawArm();
-    DriverStation.reportError("currenPulse: " + currentPulse, false);
-    double maxPulse = 60.0;
-//    double armSpeed = 0.0;
-    
-    double diffPulse = goalPulse - currentPulse;
-    DriverStation.reportError("diffPulse: " + diffPulse, true);
-    
-    while (Math.abs(diffPulse) > 10.0) {
-    	DriverStation.reportError("diffpulse: " + diffPulse, true);
-    	armSpeed = diffPulse / maxPulse;
-        mIntakeArm.armMovement(armSpeed);
-    }
     
 //  double goalPulseFullForward = 180.0;
 //  double goalPulseSwitchForward = 155.0;
@@ -189,11 +328,12 @@ public class ControlArm extends Command {
 //    	mIntakeArm.armMovement(armSpeed);
 //    	
     }
+   
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//        return finished; 
-    	return false;
+        return finished; 
+//    	return false;
     }
 
     // Called once after isFinished returns true

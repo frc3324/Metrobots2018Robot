@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	static XboxController gamepad0 = new XboxController(0);
-	XboxController gamepad1 = new XboxController(1);
+	static XboxController gamepad1 = new XboxController(1);
 	
 	/**
 	 * Primary driver buttons assignments
@@ -62,7 +62,7 @@ public class OI {
 	 * Determine if the A button is pressed on the primary driver controller.
 	 * @return true or false
 	 */
-	public static boolean isAPressed() {
+	public static boolean is0APressed() {
 		return gamepad0.getAButtonPressed();
 	}
 	
@@ -70,7 +70,7 @@ public class OI {
 	 * Determine if the B button is pressed on the primary driver controller.
 	 * @return true or false
 	 */
-	public static boolean isBPressed() {
+	public static boolean is0BPressed() {
 		return gamepad0.getBButton();
 	}
 	
@@ -78,7 +78,7 @@ public class OI {
 	 * Determine if the X button is pressed on the primary driver controller.
 	 * @return true or false
 	 */
-	public static boolean isXPressed() {
+	public static boolean is0XPressed() {
 		return gamepad0.getXButton();
 	}
 	
@@ -86,8 +86,24 @@ public class OI {
 	 * Determine if the Y button is pressed on the primary driver controller.
 	 * @return true or false
 	 */
-	public static boolean isYPressed() {
-		return gamepad0.getYButton();
+	public static boolean is0YPressed() {
+		return gamepad0.getYButtonPressed();
+	}
+	
+	public static boolean is1APressed() {
+		return gamepad1.getAButtonPressed();
+	}
+	
+	public static boolean is1BPressed() {
+		return gamepad1.getBButtonPressed();
+	}
+	
+	public static boolean is1XPressed() {
+		return gamepad1.getXButtonPressed();
+	}
+	
+	public static boolean is1YPressed() {
+		return gamepad1.getYButtonPressed();
 	}
 	
     //// CREATING BUTTONS

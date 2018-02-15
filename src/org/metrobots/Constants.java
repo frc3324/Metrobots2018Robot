@@ -53,14 +53,15 @@ public class Constants {
 //	public final static int ultrasonicOut = 8;
 //	public final static int ultrasonicIn = 9;
 	
-	public final static int leftEncoderPortA = 3;
-	public final static int leftEncoderPortB = 2;
-	public final static int rightEncoderPortA = 8;
+	public final static int leftEncoderPortA = 6;
+	public final static int leftEncoderPortB = 0;
+	public final static int rightEncoderPortA = 5;
 	public final static int rightEncoderPortB = 9;
-	public final static int leftArmEncoderA = 4;
-	public final static int leftArmEncoderB = 5;
-	public final static int rightArmEncoderA = 0;
-	public final static int rightArmEncoderB = 1;
+//	public final static int testArmEncoderA = 7; //7 for one on motor
+//	public final static int testArmEncoderB = 8; //8 for one on motor
+	public final static int ArmEncoderACLK = 4;
+	public final static int ArmEncoderSW = 2;
+	public final static int ArmEncoderDT = 3;
 	
 
 	/*
