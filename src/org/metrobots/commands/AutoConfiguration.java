@@ -84,10 +84,6 @@ private boolean isInitPosSet = false;
 				Scheduler.getInstance().add(new LLRight());
 			}
 		}
-		
-		else {
-			
-		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
