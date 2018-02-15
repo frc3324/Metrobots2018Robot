@@ -98,25 +98,33 @@ public class ControlArm extends Command {
 //    	else {
 //    		goalPulse = 50.0;
 //    	}
-    	
-    	if (gamepad1.getAButtonPressed()) {
+    	//BEWARE: ARBITRARY NUMERALS BELOW
+    	//aka don't forget to count pulses in a full rotation of the intake arm
+    	if (gamepad1.getAButton()) {
     		goalPulse = 30.0;
     	}
-    	else {
+    	else if (gamepad1.getBButton()){
     		goalPulse = 20.0;
+    	}
+    	else if (gamepad1.getXButton()) {
+    		goalPulse = 10.0;
+    	}
+    	else if (gamepad1.getYButton()) {
+    		goalPulse = 5.0;
     	}
     	double speed = 0.0;
     	double currentPulse = mIntakeArm.getRawArm();
-		SmartDashboard.putNumber("currentPulse: ", currentPulse);
+		SmartDashboard.putNumber("CURRENTPULSE (LINEPLOT): ", currentPulse);
+		SmartDashboard.putNumber("CURRENTPULSE (textbox): ", currentPulse);
     	double diffPulse = goalPulse - currentPulse;
     	
-    	if (diffPulse > 4.0) {
+    	if (Math.abs(diffPulse) > 0.0) {
     		speed = diffPulse / 10;
-        	finished = false;
+//        	finished = false;
     	}
     	else {
     		speed = 0.0;
-    		finished = true;
+//    		mIntakeArm.armMovement(0.0);
     	}
     	
     	mIntakeArm.armMovement(speed);
@@ -134,7 +142,7 @@ public class ControlArm extends Command {
 ////    		finished = true;
 //    		
 //    	}
-    	SmartDashboard.putNumber("DIFFPULSE: ", diffPulse);
+    	SmartDashboard.putNumber("DIFFPULSE (lineplot): ", diffPulse);
     	
 //    	mIntakeArm.armMovement(0.5);
 //    	mIntakeArm.printEncoder();
@@ -332,8 +340,8 @@ public class ControlArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished; 
-//    	return false;
+//        return finished; 
+    	return false;
     }
 
     // Called once after isFinished returns true
