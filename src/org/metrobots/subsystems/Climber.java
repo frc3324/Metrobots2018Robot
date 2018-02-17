@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class Climber extends Subsystem {
 
+	PowerDistributionPanel pdp = 
 	WPI_VictorSPX linearSlide = new WPI_VictorSPX(Constants.LINEAR_SLIDE_MOTOR_PORT);
 	WPI_VictorSPX winch = new WPI_VictorSPX(Constants.WINCH_PORT);
 	
@@ -28,6 +29,10 @@ public class Climber extends Subsystem {
 	 */
 	public void reelWinch(double speed) {
 		winch.set(speed);
+	}
+	
+	public double getWinchCurrent() {
+		
 	}
 	/*
 	 * Necessary method that contains nothing

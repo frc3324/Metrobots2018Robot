@@ -20,12 +20,11 @@ public class Constants {
 	 */
 	public final static int flMotorPort = 1; //0
 	public final static int blMotorPort = 7; //2
-	public final static int frMotorPort = 5; //4
+	public final static int frMotorPort = 4; //4
 	public final static int brMotorPort = 2; //6
-	public final static int leftArmMotorPort = 8;//6
-	public final static int rightArmMotorPort = 9;
+	public final static int armMotorPort = 6;//6
 	//public final static int leftIntakeMotorPort = 1;
-	public final static int rightIntakeMotorPort = 3;
+//	public final static int rightIntakeMotorPort = 3;
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 5;
 	public final static int WINCH_PORT = 0;
 	
@@ -54,16 +53,23 @@ public class Constants {
 //	public final static int ultrasonicIn = 9;
 	
 	public final static int leftEncoderPortA = 6;
-	public final static int leftEncoderPortB = 0;
+	public final static int leftEncoderPortB = 7;
 	public final static int rightEncoderPortA = 5;
 	public final static int rightEncoderPortB = 9;
 //	public final static int testArmEncoderA = 7; //7 for one on motor
 //	public final static int testArmEncoderB = 8; //8 for one on motor
-	public final static int ArmEncoderACLK = 4;
-	public final static int ArmEncoderSW = 2;
-	public final static int ArmEncoderDT = 3;
+	public final static int ArmEncoderACLK = 0; //white
+	public final static int ArmEncoderSW = 2; //white
+	public final static int ArmEncoderDT = 1; //yellow
+	
+//	public final static int CAMERA_PORT = 0;
 	
 
+	/*
+	 * Current measurement
+	 */
+	public final static int ARM_PORT = 6;
+	
 	/*
 	 * Driver station ports
 	 */

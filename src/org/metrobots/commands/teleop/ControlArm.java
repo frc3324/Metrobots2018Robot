@@ -2,6 +2,7 @@ package org.metrobots.commands.teleop;
 
 import org.metrobots.OI;
 import org.metrobots.subsystems.IntakeArm;
+import org.metrobots.util.PowerDistributionPanel;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -18,11 +19,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ControlArm extends Command {
 
 	public IntakeArm mIntakeArm = new IntakeArm();
+	public PowerDistributionPanel pdp = new PowerDistributionPanel();
+	
 //	Encoder leftEncoder;
 //	Encoder rightEncoder;
 	boolean finished = false;
 	int number = 0;
-	
+	double currentValue = 0.0;
 	XboxController gamepad1 = new XboxController(1);
 	
 	boolean startPosition = true; //Assumes arm in starting position at match start
@@ -98,36 +101,45 @@ public class ControlArm extends Command {
 //    	else {
 //    		goalPulse = 50.0;
 //    	}
+    	/*******************************/
     	//BEWARE: ARBITRARY NUMERALS BELOW
     	//aka don't forget to count pulses in a full rotation of the intake arm
-    	if (gamepad1.getAButton()) {
-    		goalPulse = 30.0;
-    	}
-    	else if (gamepad1.getBButton()){
-    		goalPulse = 20.0;
-    	}
-    	else if (gamepad1.getXButton()) {
-    		goalPulse = 10.0;
-    	}
-    	else if (gamepad1.getYButton()) {
-    		goalPulse = 5.0;
-    	}
-    	double speed = 0.0;
-    	double currentPulse = mIntakeArm.getRawArm();
-		SmartDashboard.putNumber("CURRENTPULSE (LINEPLOT): ", currentPulse);
-		SmartDashboard.putNumber("CURRENTPULSE (textbox): ", currentPulse);
-    	double diffPulse = goalPulse - currentPulse;
-    	
-    	if (Math.abs(diffPulse) > 0.0) {
-    		speed = diffPulse / 10;
-//        	finished = false;
-    	}
-    	else {
-    		speed = 0.0;
-//    		mIntakeArm.armMovement(0.0);
-    	}
-    	
-    	mIntakeArm.armMovement(speed);
+//    	if (gamepad1.getAButton()) {
+//    		goalPulse = 30.0;
+//    		DriverStation.reportError("A pressed", false);
+//    	}
+//    	else if (gamepad1.getBButton()){
+//    		goalPulse = 20.0;
+//    		DriverStation.reportError("B pressed", false);
+//
+//    	}
+//    	else if (gamepad1.getXButton()) {
+//    		goalPulse = 10.0;
+//    		DriverStation.reportError("X pressed", false);
+//
+//    	}
+//    	else if (gamepad1.getYButton()) {
+//    		goalPulse = 5.0;
+//    		DriverStation.reportError("Y pressed", false);
+//
+//    	}
+//    	double speed = 0.0;
+//    	double currentPulse = mIntakeArm.getRawArm();
+//		SmartDashboard.putNumber("CURRENTPULSE (LINEPLOT): ", currentPulse);
+//		SmartDashboard.putNumber("CURRENTPULSE (textbox): ", currentPulse);
+//    	double diffPulse = goalPulse - currentPulse;
+//    	
+//    	if (Math.abs(diffPulse) > 0.0) {
+//    		speed = diffPulse / 50;
+////        	finished = false;
+//    	}
+//    	else {
+//    		speed = 0.0;
+////    		mIntakeArm.armMovement(0.0);
+//    	}
+//    	
+//    	mIntakeArm.armMovement(speed);
+    	/************************************/
     	
 //    	if (diffPulse > 0.5) {
 ////        	double velocity = diffPulse / 200;
@@ -142,15 +154,21 @@ public class ControlArm extends Command {
 ////    		finished = true;
 //    		
 //    	}
-    	SmartDashboard.putNumber("DIFFPULSE (lineplot): ", diffPulse);
+//    	SmartDashboard.putNumber("DIFFPULSE (lineplot): ", diffPulse);
     	
 //    	mIntakeArm.armMovement(0.5);
 //    	mIntakeArm.printEncoder();
     	//mIntakeArm.printEncoder(); //right
     	
-//    	double leftY = gamepad1.getY(Hand.kLeft);
-//    	double speedArm = leftY * 0.5;
-//    	mIntakeArm.armMovement(speedArm);
+    	double leftY = gamepad1.getY(Hand.kLeft);
+    	double speedArm = leftY * 0.75;
+    	mIntakeArm.armMovement(speedArm);
+    	double currentPulse = mIntakeArm.getRawArm();
+    	
+    	currentValue = pdp.getCurrent(14);
+    	SmartDashboard.putNumber("CurrentValue", currentValue);
+    	SmartDashboard.putNumber("CurrentPulse: ", currentPulse);
+    	
 //    	if (OI.is1APressed()) {
 ////    	    DriverStation.reportError("A pressed", false);
 //    	    goalPulse = 180.0; //should be the maxPulse

@@ -113,8 +113,6 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		//Scheduler.getInstance().run(); // Run scheduler
 //		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
-		Scheduler.getInstance().add(new AutoConfiguration());
-		Scheduler.getInstance().run();
 		//System.out.println("Ultrasonic" + ultrasonic.getRangeInches());
 		
 		/*System.out.println("flE:" + flEncoder.getDistance());
@@ -134,16 +132,18 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void autonomousInit() {
+		/*
 		isAuto = true;
 		Scheduler.getInstance().add(new AutoConfiguration());
 		Scheduler.getInstance().run();
+		*/
 	}
 
 	/**
 	 * Runs constantly when autonomous is enabled
 	 */
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run(); // Run scheduler
+		//Scheduler.getInstance().run(); // Run scheduler
 		//System.out.println("dir: " + comms.getDirection() + " mag:" + comms.getMagnitude());
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
 		

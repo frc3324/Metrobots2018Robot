@@ -2,10 +2,12 @@ package org.metrobots.subsystems;
 
 import org.metrobots.Constants;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,16 +15,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * 
  */
+
 public class IntakeArm extends Subsystem {
 	
 	static Encoder armEncoder = new Encoder(Constants.ArmEncoderACLK, Constants.ArmEncoderDT, Constants.ArmEncoderSW);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 	
-	WPI_VictorSPX lArmMotor = new WPI_VictorSPX(Constants.leftArmMotorPort);
-	WPI_VictorSPX rArmMotor = new WPI_VictorSPX(Constants.rightArmMotorPort);
-	
-	SpeedControllerGroup armMotors = new SpeedControllerGroup (lArmMotor, rArmMotor);
+	WPI_TalonSRX armMotor = new WPI_TalonSRX(Constants.armMotorPort);
 	
 	public IntakeArm() {
 		armEncoder.setDistancePerPulse(1); //5 is arbitrary number; would mean 5 degrees for every pulse
@@ -30,7 +30,7 @@ public class IntakeArm extends Subsystem {
 //		testArmEncoder.setDistancePerPulse(5);
 //		testArmEncoder.getRate();
 	}
-	
+	 
 	public void resetEncoder() {
 		armEncoder.reset();
 //		testArmEncoder.reset();
@@ -41,7 +41,6 @@ public class IntakeArm extends Subsystem {
 		return armEncoder.getDistance();
 //		return testArmEncoder.get();
 	}
-
 	
 	public void printEncoder() {
 		SmartDashboard.putNumber("R Rate: ", armEncoder.get()); // unit: distance per sec
@@ -61,7 +60,7 @@ public class IntakeArm extends Subsystem {
 	  */
 	
 	public void armMovement(double speed) {
-		armMotors.set(speed);
+		armMotor.set(speed);
 	}
 	
     public void initDefaultCommand() {
