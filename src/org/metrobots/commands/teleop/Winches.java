@@ -1,38 +1,39 @@
 package org.metrobots.commands.teleop;
 
-import org.metrobots.subsystems.CubeController;
+import org.metrobots.OI;
+import org.metrobots.subsystems.Climber;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class Outtake extends Command {
+public class Winches extends Command {
 
-	CubeController mCubeController = new CubeController();
+	Climber mClimber = new Climber();
+	double winchSpeed = 0.0;
 	XboxController gamepad1 = new XboxController(1);
 	
-	/**
-	 * Spin wheels outward. <p>
-	 */
-    public Outtake() {
-    	requires(mCubeController);
+    public Winches() {
+    	requires(mClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // executes like a guillotine
+    //or the salem witch trials
     protected void execute() {
-    	if (gamepad1.getBumperPressed(Hand.kRight)) {
-    		mCubeController.intake(0.2);
+    	if (gamepad1.getXButton()) {
+    		winchSpeed = -1.0;
+    	}
+    	else if (gamepad1.getYButton()){
+    		winchSpeed = 1.0;
     	}
     	else {
-    		mCubeController.intake(0.0);
+    		winchSpeed = 0.0;
     	}
+    	mClimber.reelWinch(winchSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

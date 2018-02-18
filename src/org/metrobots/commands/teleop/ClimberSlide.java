@@ -2,6 +2,7 @@ package org.metrobots.commands.teleop;
 
 import edu.wpi.first.wpilibj.XboxController;
 
+import org.metrobots.OI;
 import org.metrobots.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * 
  */
 public class ClimberSlide extends Command {
-	XboxController gamepad = new XboxController(1);
+	XboxController gamepad1 = new XboxController(1);
 	Climber mClimber = new Climber();
 	
     public ClimberSlide() {
@@ -27,8 +28,19 @@ public class ClimberSlide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
-		mClimber.grabBar(leftY);
+//		double slideSpeed = gamepad.getY(Hand.kLeft); // Get y value of left joystick
+    	double slideSpeed = 0.0;
+    	
+		if (gamepad1.getAButton()) {
+			slideSpeed = 1.0;
+		}
+		else if (gamepad1.getBButton()) {
+			slideSpeed = -1.0;
+		}
+		else {
+			
+		}
+		mClimber.grabBar(slideSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

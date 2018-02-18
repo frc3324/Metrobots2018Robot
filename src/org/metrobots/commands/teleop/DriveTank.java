@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 //import org.metrobots.subsystems.*; //name of drivetrain subsystem
 import org.metrobots.util.MetroController;
 import org.metrobots.subsystems.DriveTrain;
@@ -24,13 +26,14 @@ public class DriveTank extends Command {
 		Robot.mDriveTrain.printEncoder();
 		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
 		//double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
-		double rightY = gamepad.getY(Hand.kRight);
+		double rightX = gamepad.getX(Hand.kRight);
 		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);
-		if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
-			leftY = 25 * Math.pow(leftY, 3);
-		}
+//		if (Math.abs(leftY) < .2) { // If the Y-axis of the left axis is below 0.2, cube it, reducing the sensitivity when it's below 0.2
+//			leftY = 25 * Math.pow(leftY, 3);
+//		}
+
 //		if (Math.abs(rightX) < .2) {
 //			rightX = 25 * Math.pow(rightX, 3); // repeat for the x-value on the right side 
 //		}
@@ -60,9 +63,11 @@ public class DriveTank extends Command {
 //		}
 		//Robot.mDriveTrain.printEncoder();
 		//leftY = leftY * 0.1;
-		leftY *= 0.975;
+//		leftY *= 0.975;
 		//rightY *= 1;
-		Robot.mDriveTrain.tankDrive(leftY, rightY, true);
+//		leftY *= 0.55;
+//		rightX *= 0.55;
+		Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
 		//Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
 	//	DriverStation.reportError(", printTrace);
 		//Robot.mDriveTrain.printEncoder();

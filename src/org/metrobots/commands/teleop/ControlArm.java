@@ -19,13 +19,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ControlArm extends Command {
 
 	public IntakeArm mIntakeArm = new IntakeArm();
-	public PowerDistributionPanel pdp = new PowerDistributionPanel();
+	//public PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 //	Encoder leftEncoder;
 //	Encoder rightEncoder;
 	boolean finished = false;
 	int number = 0;
-	double currentValue = 0.0;
+//	double currentValue = 0.0;
 	XboxController gamepad1 = new XboxController(1);
 	
 	boolean startPosition = true; //Assumes arm in starting position at match start
@@ -105,21 +105,21 @@ public class ControlArm extends Command {
     	//BEWARE: ARBITRARY NUMERALS BELOW
     	//aka don't forget to count pulses in a full rotation of the intake arm
 //    	if (gamepad1.getAButton()) {
-//    		goalPulse = 30.0;
+//    		goalPulse = 0.0;
 //    		DriverStation.reportError("A pressed", false);
 //    	}
 //    	else if (gamepad1.getBButton()){
-//    		goalPulse = 20.0;
+//    		goalPulse = 11.25;
 //    		DriverStation.reportError("B pressed", false);
 //
 //    	}
 //    	else if (gamepad1.getXButton()) {
-//    		goalPulse = 10.0;
+//    		goalPulse = 33.25;
 //    		DriverStation.reportError("X pressed", false);
 //
 //    	}
 //    	else if (gamepad1.getYButton()) {
-//    		goalPulse = 5.0;
+//    		goalPulse = 45.0;
 //    		DriverStation.reportError("Y pressed", false);
 //
 //    	}
@@ -160,17 +160,20 @@ public class ControlArm extends Command {
 //    	mIntakeArm.printEncoder();
     	//mIntakeArm.printEncoder(); //right
     	
+    	/******************************************************************/
+    	//MAGIC NUMBER: 45
     	double leftY = gamepad1.getY(Hand.kLeft);
-    	double speedArm = leftY * 0.75;
+    	double speedArm = leftY * 0.5;
     	mIntakeArm.armMovement(speedArm);
     	double currentPulse = mIntakeArm.getRawArm();
     	
-    	currentValue = pdp.getCurrent(14);
-    	SmartDashboard.putNumber("CurrentValue", currentValue);
-    	SmartDashboard.putNumber("CurrentPulse: ", currentPulse);
+    	SmartDashboard.putNumber("CURRENTPULSE: ", currentPulse);
+    	/******************************************************************/
+    	//currentValue = pdp.getCurrent(14);
+    	//SmartDashboard.putNumber("CurrentValue", currentValue);
     	
 //    	if (OI.is1APressed()) {
-////    	    DriverStation.reportError("A pressed", false);
+////    	     DriverStation.reportError("A pressed", false);
 //    	    goalPulse = 180.0; //should be the maxPulse
 //    	    armThingy();
 ////    	    mIntakeArm.armMovement(0.75);

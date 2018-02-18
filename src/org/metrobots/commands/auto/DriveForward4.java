@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class DriveForward extends Command {
+public class DriveForward4 extends Command {
 
 	DriveTrain mTrain = new DriveTrain();
 	double speed, currentDistance, distanceToTravel; //goalDistance
@@ -25,9 +25,9 @@ public class DriveForward extends Command {
 	 * @param speed
 	 * @param distance
 	 */
-	public DriveForward(double goalDistance) {
+	public DriveForward4(double distance) {
+		distance = 0.0;
 		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
-		this.goalDistance = goalDistance;
 	}
 	
 	@Override
@@ -39,23 +39,18 @@ public class DriveForward extends Command {
 	
 	@Override
 	protected void execute() {
-//		goalDistance = 10; 
-//		double currentPulse = 0.0;
-//		currentPulse = mTrain.getLeftDistance();
-//		SmartDashboard.putNumber("STRING", currentPulse);
-////		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
-////		speed = pulsesToTravel / totalPulses;
-//		SmartDashboard.putNumber("goalDistance", goalDistance);
-//		distanceToTravel = goalDistance - currentDistance;
-//		speed = distanceToTravel / goalDistance;
-//		SmartDashboard.putNumber("SPEED: ", speed);
-//		//make speed negative to go forward in real life
-//		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
-		currentDistance = (mTrain.getLeftDistance() + mTrain.getRightDistance()) / 2.0;
+		goalDistance = 40; 
+		double currentPulse = 0.0;
+		currentPulse = mTrain.getLeftDistance();
+		SmartDashboard.putNumber("STRING", currentPulse);
+//		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
+//		speed = pulsesToTravel / totalPulses;
+		SmartDashboard.putNumber("goalDistance", goalDistance);
 		distanceToTravel = goalDistance - currentDistance;
-		
-		Robot.mDriveTrain.arcadeDrive(-0.4, 0.0, true);
-		
+		speed = distanceToTravel / goalDistance;
+		SmartDashboard.putNumber("SPEED: ", speed);
+		//make speed negative to go forward in real life
+		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
 	}
 	
 	@Override

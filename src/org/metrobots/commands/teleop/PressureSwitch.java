@@ -39,6 +39,7 @@ public class PressureSwitch extends Command {
     	Robot.mDriveTrain.setSafetyEnabled(false);
     	//.reportError("random world", false);
     	if (OI.is0APressed()) {
+    		DriverStation.reportError("A IS PRESSED!", false);
     		if (gearShifterStatus) {
     			gearshifter.set(DoubleSolenoid.Value.kForward);
     			gearShifterStatus = !gearShifterStatus;

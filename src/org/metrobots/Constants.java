@@ -18,15 +18,16 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 1; //0
-	public final static int blMotorPort = 7; //2
-	public final static int frMotorPort = 4; //4
-	public final static int brMotorPort = 2; //6
-	public final static int armMotorPort = 6;//6
-	//public final static int leftIntakeMotorPort = 1;
-//	public final static int rightIntakeMotorPort = 3;
-	public final static int LINEAR_SLIDE_MOTOR_PORT = 5;
-	public final static int WINCH_PORT = 0;
+	public final static int flMotorPort = 8; //0
+	public final static int blMotorPort = 6; //2
+	//public final static int frMotorPort = 4; //4
+	public final static int frMotorPort = 2; //for testing auto
+	public final static int brMotorPort = 0; //6
+	public final static int armMotorPort = 4;//6
+	public final static int leftIntakeMotorPort = 9;
+	public final static int rightIntakeMotorPort = 1;
+	public final static int LINEAR_SLIDE_MOTOR_PORT = 3;
+	public final static int WINCH_PORT = 7;
 	
 	/*
 	 * Pneumatic Ports
@@ -37,7 +38,6 @@ public class Constants {
 	/*
 	 * Sensor ports
 	 */
-	public final static int opticalEncoderPort = 0; // Analog
 	//public final static SPI.Port navxPort = SPI.Port.kMXP;
 	/*public final static int flEncoder1 = 4; // Not actually
 	public final static int flEncoder2 = 5; // Not actually
@@ -52,15 +52,15 @@ public class Constants {
 //	public final static int ultrasonicOut = 8;
 //	public final static int ultrasonicIn = 9;
 	
-	public final static int leftEncoderPortA = 6;
-	public final static int leftEncoderPortB = 7;
-	public final static int rightEncoderPortA = 5;
-	public final static int rightEncoderPortB = 9;
+	public final static int leftEncoderPortA = 0;
+	public final static int leftEncoderPortB = 1;
+	public final static int rightEncoderPortA = 2;
+	public final static int rightEncoderPortB = 3;
 //	public final static int testArmEncoderA = 7; //7 for one on motor
 //	public final static int testArmEncoderB = 8; //8 for one on motor
-	public final static int ArmEncoderACLK = 0; //white
-	public final static int ArmEncoderSW = 2; //white
-	public final static int ArmEncoderDT = 1; //yellow
+	public final static int ArmEncoderACLK = 6; //yellow
+	public final static int ArmEncoderSW = 4; //yellow
+	public final static int ArmEncoderDT = 5; //white
 	
 //	public final static int CAMERA_PORT = 0;
 	
@@ -100,7 +100,7 @@ public class Constants {
 	public final static double AXIS_DEADBAND = 0.05;
 	
 	public final static double CIRCUMFERENCE = 18.85; // (Inches) Need to measure in inches
-	public final static double PULSES = 256; 
+	public final static double PULSES = 2639.43;
 	public final static double INCH_PER_PULSE = 0.074; //circumference of wheel in inches / pulses
 	public final static double AUTO_ROTATE_ANGLE_THRESHOLD = 1.0;
 	

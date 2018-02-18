@@ -7,9 +7,9 @@ import org.metrobots.commands.auto.DriveForward;
  * Switch = right
  * Left = driver station position
  */
-public class RLLeft extends CommandGroup {
+public class RLeft extends CommandGroup {
 //ALL NUMBERS ARE ARBITRARY DO NOT RUN
-    public RLLeft() {
+    public RLeft() {
     	
     	this.addSequential(new DriveForward(18));
     	

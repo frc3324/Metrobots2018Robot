@@ -2,12 +2,12 @@ package org.metrobots.commands;
 
 import org.metrobots.OI;
 import org.metrobots.Robot;
-import org.metrobots.commands.auto.groups.LLLeft;
-import org.metrobots.commands.auto.groups.LLMiddle;
-import org.metrobots.commands.auto.groups.LLRight;
-import org.metrobots.commands.auto.groups.RLLeft;
-import org.metrobots.commands.auto.groups.RLMiddle;
-import org.metrobots.commands.auto.groups.RLRight;
+import org.metrobots.commands.auto.groups.LLeft;
+import org.metrobots.commands.auto.groups.LMiddle;
+import org.metrobots.commands.auto.groups.LRight;
+import org.metrobots.commands.auto.groups.RLeft;
+import org.metrobots.commands.auto.groups.RMiddle;
+import org.metrobots.commands.auto.groups.RRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Also determined by the button pressed on the primary driver controller for driverstation position.
  */
 public class AutoConfiguration extends Command {
-private boolean isInitPosSet = false;
 	
 	String autoSet = "";
 	
@@ -57,31 +56,31 @@ private boolean isInitPosSet = false;
 		if (OI.is0XPressed()) {		//left side on the field
 			DriverStation.reportError("You pressed X", true);
 			if (autoSet == "R") {
-				Scheduler.getInstance().add(new RLLeft());
+				Scheduler.getInstance().add(new RLeft());
 			}
 		
 			else if (autoSet == "L") {
-				Scheduler.getInstance().add(new LLLeft());
+				Scheduler.getInstance().add(new LLeft());
 			}
 		}
 		
 		else if (OI.is0YPressed()) {	//middle side on the field
 			DriverStation.reportError("You pressed Y", true);
 			if (autoSet == "R")	{
-				Scheduler.getInstance().add(new RLMiddle());
+				Scheduler.getInstance().add(new RMiddle());
 			}
 			else if(autoSet == "L") {
-				Scheduler.getInstance().add(new LLMiddle());
+				Scheduler.getInstance().add(new LMiddle());
 			}
 		}
 		
 		else if (OI.is0BPressed()) {	//right side of the field
 			DriverStation.reportError("You pressed B", true);
 			if (autoSet == "R")	{
-				Scheduler.getInstance().add(new RLRight());
+				Scheduler.getInstance().add(new RRight());
 			}
 			else if(autoSet == "L")	{
-				Scheduler.getInstance().add(new LLRight());
+				Scheduler.getInstance().add(new LRight());
 			}
 		}
     }

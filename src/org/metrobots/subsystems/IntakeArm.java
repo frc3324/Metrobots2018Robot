@@ -22,28 +22,36 @@ public class IntakeArm extends Subsystem {
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 	
-	WPI_TalonSRX armMotor = new WPI_TalonSRX(Constants.armMotorPort);
+	WPI_VictorSPX armMotor = new WPI_VictorSPX(Constants.armMotorPort);
 	
 	public IntakeArm() {
-		armEncoder.setDistancePerPulse(1); //5 is arbitrary number; would mean 5 degrees for every pulse
-		armEncoder.get();
+		//armEncoder.setDistancePerPulse(1); //5 is arbitrary number; would mean 5 degrees for every pulse
+		//armEncoder.get();
 //		testArmEncoder.setDistancePerPulse(5);
 //		testArmEncoder.getRate();
 	}
 	 
+	/**
+	 * Reset the arm encoder to zero.
+	 */
 	public void resetEncoder() {
 		armEncoder.reset();
 //		testArmEncoder.reset();
 	}
 	
+	/**
+	 * Get encoder distance in units.
+	 * @return
+	 */
 	public double getRawArm() {
 //		return armEncoder.getRate();
 		return armEncoder.getDistance();
+//		return 0.00;
 //		return testArmEncoder.get();
 	}
 	
 	public void printEncoder() {
-		SmartDashboard.putNumber("R Rate: ", armEncoder.get()); // unit: distance per sec
+		//SmartDashboard.putNumber("R Rate: ", armEncoder.get()); // unit: distance per sec
 		int val = 0;
 		SmartDashboard.putNumber("Program is Running", val);
 		val++;
@@ -59,6 +67,10 @@ public class IntakeArm extends Subsystem {
 	  * @param speed
 	  */
 	
+	/**
+	 * Move the arm at the specified speed.
+	 * @param speed
+	 */
 	public void armMovement(double speed) {
 		armMotor.set(speed);
 	}

@@ -10,6 +10,7 @@ import org.metrobots.commands.teleop.DriveTank;
 import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Rotate extends Command {
 	
@@ -44,8 +45,8 @@ public class Rotate extends Command {
 	 */
 	protected void execute() {
         double measuredAngle = navx.pidGet();    
-        
-        double runningSpeed = 0;
+//        SmartDashboard.putNumber("Gyro", measuredAngle);
+        double runningSpeed = 0.0;
         
         if (measuredAngle > specifiedAngle) {
             /*leftSideSpeed = angleDifference / 180;

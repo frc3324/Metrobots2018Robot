@@ -7,16 +7,15 @@ import org.metrobots.commands.auto.Rotate;
 /**
  *
  */
-public class RLRight extends CommandGroup {
-//ALL CODE IS ARBITRARY DO NOT RUN
-    public RLRight() {
-
+public class RMiddle extends CommandGroup {
+//ALL NUMBERS ARE ARBITRARY DO NOT RUN
+    public RMiddle() {
     	this.addSequential(new DriveForward(5));
-    	this.addSequential(new Rotate(-90, 1));
-    	//addSequential(new arm)
     	this.addSequential(new Rotate(90, 1));
     	this.addSequential(new DriveForward(5));
-    	
+    	this.addSequential(new Rotate(-90, 1));
+    	this.addSequential(new DriveForward(5));
+    	//addSequential(new arm);
     }
 
 }

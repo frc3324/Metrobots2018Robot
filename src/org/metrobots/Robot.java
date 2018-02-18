@@ -5,13 +5,19 @@ import java.io.IOException;
 import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.AutoConfiguration;
 import org.metrobots.commands.DriveGroup;
+import org.metrobots.commands.auto.groups.LLeft;
+import org.metrobots.commands.auto.groups.LMiddle;
 //import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.DriveTrain;
+//import org.metrobots.util.LimitSwitch;
 
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -35,14 +41,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
-	public String autoSet = "";
+	//public String autoSet = "";      //is already called out in autoconfig
 	public static boolean isAuto = false;
-	
+//	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
+	public static boolean limitSwitchValue = false;  
 	/*
 	 * Declare gamepad objects
 	 */
 	
 	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
+	
 	/*
 	 * Declare CANTalon (TalonSRX) objects
 	 */
@@ -59,16 +67,12 @@ public class Robot extends IterativeRobot {
 	/*
 	 * Declare subsystems for the robot
 	 */
-	
-	public String autoType = "LEFTGEAR";
 
 	/**
 	 * When the robot first boots up, initialize all of the gamepads, motor
 	 * controllers, sensors, and subsystems
 	 */
 	public void robotInit() {
-		
-		Scheduler.getInstance().add(new AutoConfiguration());
 		
 		/*
 		 * Initialize gamepads
@@ -102,8 +106,10 @@ public class Robot extends IterativeRobot {
 	 * Initialize whatever you need to when the robot becomes disables
 	 */
 	public void disabledInit() {
-		isAuto = false;
-		Scheduler.getInstance().add(new AutoConfiguration());
+//		isAuto = false;
+//		Scheduler.getInstance().add(new AutoConfiguration());
+		CameraServer.getInstance().startAutomaticCapture(); 
+		CameraServer.getInstance().putVideo("Camera output", 1280, 720);
 	}
 
 	/**
@@ -111,8 +117,12 @@ public class Robot extends IterativeRobot {
 	 * the driver station
 	 */
 	public void disabledPeriodic() {
-		//Scheduler.getInstance().run(); // Run scheduler
-//		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
+		Scheduler.getInstance().run(); // Run scheduler
+		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
+//		if (OI.is0APressed()) {
+//			Scheduler.getInstance().add(new LLeft());
+//			DriverStation.reportError("A pressed", false);
+//		}
 		//System.out.println("Ultrasonic" + ultrasonic.getRangeInches());
 		
 		/*System.out.println("flE:" + flEncoder.getDistance());
@@ -124,7 +134,10 @@ public class Robot extends IterativeRobot {
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
 		
 		//System.out.println("Autotype: " + autoType);
+			
+//		CameraServer.getInstance().getVideo();
 		
+//		SmartDashboard.putNumber("LEFT DISTANCE: ", mDriveTrain.getLeftDistance());
 	}
 
 	/**
@@ -137,13 +150,17 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new AutoConfiguration());
 		Scheduler.getInstance().run();
 		*/
+//		Scheduler.getInstance().add(new LLeft());
+		Scheduler.getInstance().add(new LMiddle());
+		DriverStation.reportError("SOMETHING", false);
 	}
 
 	/**
 	 * Runs constantly when autonomous is enabled
 	 */
 	public void autonomousPeriodic() {
-		//Scheduler.getInstance().run(); // Run scheduler
+//		Scheduler.getInstance().add(new LLeft());
+		Scheduler.getInstance().run(); // Run scheduler
 		//System.out.println("dir: " + comms.getDirection() + " mag:" + comms.getMagnitude());
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
 		
@@ -153,8 +170,10 @@ public class Robot extends IterativeRobot {
 	 * Initialize whatever you need to when the robot starts teleop
 	 */
 	public void teleopInit() {
+		DriverStation.reportError("HELP ME", false);
 		Scheduler.getInstance().add(new DriveGroup()); // Add DriveGroup to
 														// scheduler
+		mDriveTrain.clearEncoder();
 	}
 
 	/**
@@ -162,7 +181,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run(); // Run Scheduler
-		 
+//		limitSwitchValue = mLimitSwitch.getSwitchPressed();
+		DriverStation.reportError("Pressed: " + limitSwitchValue, false);
+		SmartDashboard.putNumber("TELEOP left: ", mDriveTrain.getLeftDistance());
 	}
 
 	/**

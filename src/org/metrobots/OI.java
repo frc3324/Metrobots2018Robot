@@ -1,10 +1,12 @@
 package org.metrobots;
 
+//import org.metrobots.commands.auto.Outtake;
+import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Climb;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.MoveArm;
-//import org.metrobots.commands.teleop.Outtake;
+import org.metrobots.commands.teleop.Outtake;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
