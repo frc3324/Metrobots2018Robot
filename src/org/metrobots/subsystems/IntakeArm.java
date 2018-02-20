@@ -5,6 +5,8 @@ import org.metrobots.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -18,6 +20,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IntakeArm extends Subsystem {
 	
+//	DigitalInput limitSwitch = new DigitalInput(9);
+//    Counter counter = new Counter(limitSwitch);
 	static Encoder armEncoder = new Encoder(Constants.ArmEncoderACLK, Constants.ArmEncoderDT, Constants.ArmEncoderSW);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
@@ -34,6 +38,12 @@ public class IntakeArm extends Subsystem {
 	/**
 	 * Reset the arm encoder to zero.
 	 */
+//    public boolean isSwitchSet() {
+//        return counter.get() > 0;
+//    }
+//    public void initializeCounter() {
+//        counter.reset();
+//    }
 	public void resetEncoder() {
 		armEncoder.reset();
 //		testArmEncoder.reset();

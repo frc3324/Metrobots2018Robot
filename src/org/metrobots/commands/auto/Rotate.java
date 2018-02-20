@@ -7,6 +7,8 @@ import  org.metrobots.Robot;
 import	org.metrobots.subsystems.DriveTrain;
 import org.metrobots.commands.teleop.DriveTank;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,21 +17,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Rotate extends Command {
 	
 	
-	private float specifiedAngle; //angle that robot should go to
+	private double specifiedAngle = 0; //angle that robot should go to
 	private double startTime, passedTime;
-	private DriveTrain drivetrain;
-	double speed;
-	
-	AHRS navx;
-	
+	private double runningSpeed = 0.0;
+	private double angleToTravel;
+	private static final double speed = 0.5;
+	private boolean isInitialized;
+	private boolean isDone = false;
+	private int count = 0;
 	/**
 	 * Rotates to the specified angle at the specified speed. 
 	 * @param angle
 	 * @param speed
 	 */
-	public Rotate(float angle, double speed) {
-		specifiedAngle = angle;  
-		this.speed = speed;
+	public Rotate(double angle) {
+		requires(Robot.mDriveTrain);
+		requires(Robot.mGyro);
+		specifiedAngle = angle;
 	}
 	
 	/**
@@ -37,17 +41,20 @@ public class Rotate extends Command {
 	 */
 	@Override
 	protected void initialize() {
-		navx.zeroYaw();
 	}
 	
 	/**
 	 * Rotate to specified angle (from current angle), at specified speed. 
 	 */
 	protected void execute() {
-        double measuredAngle = navx.pidGet();    
-//        SmartDashboard.putNumber("Gyro", measuredAngle);
-        double runningSpeed = 0.0;
-        
+//		isDone = false;
+//		SmartDashboard.putBoolean("Initialized?", true);
+		DriverStation.reportError("Initialized ", true);
+		double measuredAngle = Robot.mGyro.getPidAngle();
+        SmartDashboard.putNumber("Gyro", measuredAngle);
+        angleToTravel = Math.abs(specifiedAngle) - Math.abs(measuredAngle);
+        SmartDashboard.putNumber("angle to travel:", angleToTravel);
+//		speed = angleToTravel / specifiedAngle;
         if (measuredAngle > specifiedAngle) {
             /*leftSideSpeed = angleDifference / 180;
             rightSideSpeed = angleDifference / 180;*/
@@ -55,14 +62,15 @@ public class Rotate extends Command {
         } else if (specifiedAngle > measuredAngle) {
             runningSpeed = speed;
         }
-        if ((Math.abs(specifiedAngle)+Math.abs(measuredAngle)) > 180) {
-            runningSpeed *= -1;
+        if (angleToTravel < Constants.AUTO_ROTATE_ANGLE_THRESHOLD ) {
+        	runningSpeed = 0;
+        	isDone = true;
         }
-        
-        //runningSpeed = angleDifference / 180;
-        Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, true);
-        
-        
+    	SmartDashboard.putBoolean("Is turn over?", isDone);
+        SmartDashboard.putNumber("RunningSpeed:", runningSpeed);
+        Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, false);
+        SmartDashboard.putNumber("Turning", count);
+        count++;
         //drivetrain.tankDrive(leftSpeed, rightSpeed);
     }
 
@@ -71,11 +79,7 @@ public class Rotate extends Command {
      */
     @Override
     protected boolean isFinished() {
-        if (Math.abs(navx.pidGet()-specifiedAngle) <= Constants.AUTO_ROTATE_ANGLE_THRESHOLD) {
-            return true;
-        } else {
-            return false;
-        }
+        return isDone;
     }
 	
 	/**

@@ -32,8 +32,8 @@ public class Constants {
 	/*
 	 * Pneumatic Ports
 	 */
-	public final static int gearPushPort = 0;
-	public final static int gearPullPort = 1;
+//	public final static int gearPushPort = 0;
+//	public final static int gearPullPort = 1;
 
 	/*
 	 * Sensor ports

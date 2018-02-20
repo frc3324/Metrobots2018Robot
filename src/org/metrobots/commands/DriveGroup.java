@@ -29,7 +29,7 @@ public class DriveGroup extends CommandGroup {
 	public DriveGroup() {
 		this.addParallel(new DriveTank()); //gamepad0, joysticks
 		this.addParallel(new PressureSwitch()); //gamepad0, a button
-//		this.addParallel(new ControlArm()); //gamepad1, left joystick
+		this.addParallel(new ControlArm()); //gamepad1, left joystick
 		this.addParallel(new Intake()); //gamepad1, left bumper
 		this.addParallel(new Outtake()); //gamepad1, right bumper
 		this.addParallel(new ClimberSlide()); //gamepad1, a button and b button //a and x

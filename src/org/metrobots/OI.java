@@ -11,6 +11,7 @@ import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -20,8 +21,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
-	static XboxController gamepad0 = new XboxController(0);
-	static XboxController gamepad1 = new XboxController(1);
+	private static XboxController gamepad0 = new XboxController(0);
+	private static XboxController gamepad1 = new XboxController(1);
 	
 	/**
 	 * Primary driver buttons assignments
@@ -59,11 +60,30 @@ public class OI {
 //		rightBumper.whileHeld(new Outtake());
 		//yButton.whileHeld(new Climb()); //Actually, make this a trigger, b/c not enough buttons 
 	}
+	public static double get0LeftY () {
+		return gamepad0.getY(Hand.kLeft);
+		
+	}
 	
+	public static double get0LeftX () {
+		return gamepad0.getX(Hand.kLeft);
+		
+	}
+	
+	public static double get0RightX () {
+		return gamepad0.getX(Hand.kRight);
+		
+	}
+	
+	public static double get0RightY () {
+		return gamepad0.getY(Hand.kRight);
+		
+	}
 	/**
 	 * Determine if the A button is pressed on the primary driver controller.
 	 * @return true or false
 	 */
+	
 	public static boolean is0APressed() {
 		return gamepad0.getAButtonPressed();
 	}

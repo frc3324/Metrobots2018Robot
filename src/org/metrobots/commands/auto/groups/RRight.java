@@ -12,9 +12,9 @@ public class RRight extends CommandGroup {
     public RRight() {
 
     	this.addSequential(new DriveForward(5));
-    	this.addSequential(new Rotate(-90, 1));
+//    	this.addSequential(new Rotate(-90, 1));
     	//addSequential(new arm)
-    	this.addSequential(new Rotate(90, 1));
+//    	this.addSequential(new Rotate(90, 1));
     	this.addSequential(new DriveForward(5));
     	
     }

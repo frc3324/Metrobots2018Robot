@@ -11,9 +11,9 @@ public class RMiddle extends CommandGroup {
 //ALL NUMBERS ARE ARBITRARY DO NOT RUN
     public RMiddle() {
     	this.addSequential(new DriveForward(5));
-    	this.addSequential(new Rotate(90, 1));
+//    	this.addSequential(new Rotate(90, 1));
     	this.addSequential(new DriveForward(5));
-    	this.addSequential(new Rotate(-90, 1));
+//    	this.addSequential(new Rotate(-90, 1));
     	this.addSequential(new DriveForward(5));
     	//addSequential(new arm);
     }

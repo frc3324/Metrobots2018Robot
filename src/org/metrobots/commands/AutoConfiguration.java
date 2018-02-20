@@ -36,6 +36,7 @@ public class AutoConfiguration extends Command {
     	DriverStation.reportError("You have reached the beginning of execute in autoconfig", true);
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		SmartDashboard.putString("Game Data:", gameData);
 //		while (!isInitPosSet) {
 //			SmartDashboard.putString("Dr. B", "in the loop");
 //			SmartDashboard.putString("Initial Position", "N/A");
@@ -53,8 +54,8 @@ public class AutoConfiguration extends Command {
 			autoSet = "R";
 		}
 		
-		if (OI.is0XPressed()) {		//left side on the field
-			DriverStation.reportError("You pressed X", true);
+//		if (OI.is0XPressed()) {		//left side on the field
+//			DriverStation.reportError("You pressed X", true);
 			if (autoSet == "R") {
 				Scheduler.getInstance().add(new RLeft());
 			}
@@ -63,27 +64,27 @@ public class AutoConfiguration extends Command {
 				Scheduler.getInstance().add(new LLeft());
 			}
 		}
-		
-		else if (OI.is0YPressed()) {	//middle side on the field
-			DriverStation.reportError("You pressed Y", true);
-			if (autoSet == "R")	{
-				Scheduler.getInstance().add(new RMiddle());
-			}
-			else if(autoSet == "L") {
-				Scheduler.getInstance().add(new LMiddle());
-			}
-		}
-		
-		else if (OI.is0BPressed()) {	//right side of the field
-			DriverStation.reportError("You pressed B", true);
-			if (autoSet == "R")	{
-				Scheduler.getInstance().add(new RRight());
-			}
-			else if(autoSet == "L")	{
-				Scheduler.getInstance().add(new LRight());
-			}
-		}
-    }
+//		
+//		else if (OI.is0YPressed()) {	//middle side on the field
+//			DriverStation.reportError("You pressed Y", true);
+//			if (autoSet == "R")	{
+//				Scheduler.getInstance().add(new RMiddle());
+//			}
+//			else if(autoSet == "L") {
+//				Scheduler.getInstance().add(new LMiddle());
+//			}
+//		}
+//		
+//		else if (OI.is0BPressed()) {	//right side of the field
+//			DriverStation.reportError("You pressed B", true);
+//			if (autoSet == "R")	{
+//				Scheduler.getInstance().add(new RRight());
+//			}
+//			else if(autoSet == "L")	{
+//				Scheduler.getInstance().add(new LRight());
+//			}
+//		}
+//    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

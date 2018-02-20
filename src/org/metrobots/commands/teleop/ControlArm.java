@@ -31,7 +31,7 @@ public class ControlArm extends Command {
 	boolean startPosition = true; //Assumes arm in starting position at match start
 	double goalPulse = 0.0;
 	double armSpeed = 0.0;
-	 
+	
 	/**
 	 * Move the arm to its opposite position when called. <p>
 	 */
@@ -162,8 +162,11 @@ public class ControlArm extends Command {
     	
     	/******************************************************************/
     	//MAGIC NUMBER: 45
+//    	mIntakeArm.initializeCounter();
+//    	boolean isSwitch = mIntakeArm.isSwitchSet();
+//    	SmartDashboard.putBoolean("Switch:", isSwitch);
     	double leftY = gamepad1.getY(Hand.kLeft);
-    	double speedArm = leftY * 0.5;
+    	double speedArm = leftY * 1;
     	mIntakeArm.armMovement(speedArm);
     	double currentPulse = mIntakeArm.getRawArm();
     	

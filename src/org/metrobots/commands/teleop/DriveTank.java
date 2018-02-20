@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.metrobots.util.MetroController;
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.Constants;
+import org.metrobots.OI;
 import org.metrobots.Robot;
 
 public class DriveTank extends Command {
 	
-	XboxController gamepad = new XboxController(0);
 	
 	public DriveTank() {
 		requires(Robot.mDriveTrain);	
@@ -24,9 +24,9 @@ public class DriveTank extends Command {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
 		Robot.mDriveTrain.printEncoder();
-		double leftY = gamepad.getY(Hand.kLeft); // Get y value of left joystick
+		double leftY = OI.get0LeftY(); // Get y value of left joystick
 		//double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
-		double rightX = gamepad.getX(Hand.kRight);
+		double rightX = OI.get0RightX();
 		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);

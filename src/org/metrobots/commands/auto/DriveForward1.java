@@ -13,8 +13,9 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class DriveForward1 extends Command {
 
-	double speed, currentDistance, distanceToTravel; //goalDistance
+	double speed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
 	double goalDistance = 0.0;
+	double currentPulse = 0.0;
 	
 	/**
 	 * Method for auto drive forward.<p>
@@ -24,8 +25,9 @@ public class DriveForward1 extends Command {
 	 * @param speed
 	 * @param distance
 	 */
-	public DriveForward1() {
+	public DriveForward1(double distance) {
 		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
+		goalDistance = distance;
 	}
 	
 	@Override
@@ -36,8 +38,8 @@ public class DriveForward1 extends Command {
 	
 	@Override
 	protected void execute() {
-		goalDistance = 60;
-		double currentPulse = 0.0;
+		speed = 0.75;
+//		goalDistance = 60;
 //		currentPulse = (DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2.0;
 		currentPulse = (DriveTrain.getLeftDistance() - DriveTrain.getRightDistance()) / 2.0;
 		SmartDashboard.putNumber("AVERAGE PULSE: ", currentPulse);
@@ -45,22 +47,27 @@ public class DriveForward1 extends Command {
 //		speed = pulsesToTravel / totalPulses;
 		SmartDashboard.putNumber("goalDistance", goalDistance);
 		distanceToTravel = goalDistance - currentPulse;
-		speed = distanceToTravel / goalDistance;
+		if (Math.abs(distanceToTravel / goalDistance) < 0.35) {
+			speed = distanceToTravel / goalDistance;
+		}
+		LSpeed = speed;
+		RSpeed = speed * 0.95;
 		SmartDashboard.putNumber("SPEED: ", speed);
 		//make speed negative to go forward in real life
-		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
-	}
+		Robot.mDriveTrain.tankDrive(LSpeed, RSpeed, true);
+	}	
 	
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-//		currentDistance = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2.0);
-//		if (distanceToTravel != goalDistance) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-		return false;
+		currentDistance = (int) ((DriveTrain.getLeftDistance() - DriveTrain.getRightDistance()) / 2.0);
+		currentPulse = (DriveTrain.getLeftDistance() - DriveTrain.getRightDistance()) / 2.0;
+		if (Math.abs(speed) > 0.3) {
+			return false;
+		} else {
+			return true;
+		}
+//		return false;
 		
 	}
 	

@@ -11,6 +11,7 @@ import org.metrobots.commands.auto.groups.LMiddle;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.DriveTrain;
 //import org.metrobots.util.LimitSwitch;
+import org.metrobots.subsystems.Gyro;
 
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
@@ -19,6 +20,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -41,6 +43,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
+	DigitalInput forwardLimitSwitch;
 	//public String autoSet = "";      //is already called out in autoconfig
 	public static boolean isAuto = false;
 //	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
@@ -50,6 +53,7 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
+	public static final Gyro mGyro = new Gyro();
 	
 	/*
 	 * Declare CANTalon (TalonSRX) objects
@@ -73,7 +77,7 @@ public class Robot extends IterativeRobot {
 	 * controllers, sensors, and subsystems
 	 */
 	public void robotInit() {
-		
+        DigitalInput forwardLimitSwitch = new DigitalInput(9);
 		/*
 		 * Initialize gamepads
 		 */
@@ -117,8 +121,8 @@ public class Robot extends IterativeRobot {
 	 * the driver station
 	 */
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run(); // Run scheduler
-		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
+	//	Scheduler.getInstance().run(); // Run scheduler
+//		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
 //		if (OI.is0APressed()) {
 //			Scheduler.getInstance().add(new LLeft());
 //			DriverStation.reportError("A pressed", false);
@@ -152,7 +156,7 @@ public class Robot extends IterativeRobot {
 		*/
 //		Scheduler.getInstance().add(new LLeft());
 		Scheduler.getInstance().add(new LMiddle());
-		DriverStation.reportError("SOMETHING", false);
+		//DriverStation.reportError("SOMETHING", false);
 	}
 
 	/**
@@ -184,6 +188,9 @@ public class Robot extends IterativeRobot {
 //		limitSwitchValue = mLimitSwitch.getSwitchPressed();
 		DriverStation.reportError("Pressed: " + limitSwitchValue, false);
 		SmartDashboard.putNumber("TELEOP left: ", mDriveTrain.getLeftDistance());
+		 if (forwardLimitSwitch.get()) {
+			 DriverStation.reportError("It worked?", true);
+		 }
 	}
 
 	/**

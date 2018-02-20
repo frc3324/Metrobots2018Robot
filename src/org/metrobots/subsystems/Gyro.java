@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Gyro extends Subsystem {
-	AHRS mAhrs;
+	private AHRS mAhrs;
 
 	public Gyro() {
 		try {
@@ -18,6 +18,14 @@ public class Gyro extends Subsystem {
 		} catch (RuntimeException ex ) {
 			DriverStation.reportError("Error Connecting:  " + ex.getMessage(), true);
 		}
+	}
+	
+	public double getPidAngle() {
+		return mAhrs.pidGet();
+	}
+	
+	public void clear() {
+		mAhrs.reset();
 	}
 
      public void initDefaultCommand() {
