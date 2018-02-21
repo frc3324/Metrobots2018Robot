@@ -1,12 +1,12 @@
 package org.metrobots;
 
+import org.metrobots.commands.teleop.ClimberSlideDown;
+import org.metrobots.commands.teleop.ClimberSlideUp;
 //import org.metrobots.commands.auto.Outtake;
-import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Climb;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.MoveArm;
-import org.metrobots.commands.teleop.Outtake;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -24,20 +25,25 @@ public class OI {
 	private static XboxController gamepad0 = new XboxController(0);
 	private static XboxController gamepad1 = new XboxController(1);
 	
+	private int val = 0;
+	
 	/**
 	 * Primary driver buttons assignments
 	 */
+	Button aButton0 = new JoystickButton(gamepad0, MetroController.BUTTON_A);
 	
 	/**
-	 * DO NOT USE FOR SECONDARY DRIVER (x, y, a, b)
+	 * Secondary driver buttons assignments
 	 */
-	Button aButton = new JoystickButton(gamepad1, MetroController.BUTTON_A);
-	Button bButton = new JoystickButton(gamepad1, MetroController.BUTTON_B);
-	Button xButton = new JoystickButton(gamepad1, MetroController.BUTTON_X);
-	Button yButton = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
+	Button aButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_A);
+	Button bButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_B);
+	Button xButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_X);
+	Button yButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
+	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
+	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
 	
-	Button leftBumper = new JoystickButton(gamepad1, MetroController.LB);
-	Button rightBumper = new JoystickButton(gamepad1, MetroController.RB);
+	Button leftBumper1 = new JoystickButton(gamepad1, MetroController.LB);
+	Button rightBumper1 = new JoystickButton(gamepad1, MetroController.RB);
 	
 	/**
 	 * Controller buttons.
@@ -51,34 +57,66 @@ public class OI {
 		/** Primary driver gamepad (gamepad0)
 		 * 
 		 */
-		aButton.whenPressed(new PressureSwitch());
+		aButton0.whenPressed(new PressureSwitch());
 		
 		/**
 		 * Secondary driver gamepad (gamepad1)
 		 */
+		
+		backButton1.whenPressed(new ClimberSlideUp());
+		startButton1.whenPressed(new ClimberSlideDown());
+		
+		
+//		aButton.whenPressed(new PressureSwitch());
+		//		if (inTakeEnable = false) {
+//			yButton.whenPressed(new Outtake());;
+//			inTakeEnable = true;
+//		}
+//		else {
+//			leftBumper.whenPressed(new StopIntake());
+//			inTakeEnable = false;
+//		}
+//		if (inTakeEnable = false) {
+//			rightBumper.whenPressed(new ());
+//			inTakeEnable = true;
+//		}
+//		else {
+//			leftBumper.whenPressed(new StopIntake());
+//			inTakeEnable = false;
+//		}
+		
+		
+		
+		SmartDashboard.putNumber("have OI", val);
+		val++;
+		
+		/**
+		 * Secondary driver gamepad (gamepad1)
+		 */
+		
 //		leftBumper.whileHeld(new Intake());
 //		rightBumper.whileHeld(new Outtake());
 		//yButton.whileHeld(new Climb()); //Actually, make this a trigger, b/c not enough buttons 
 	}
-	public static double get0LeftY () {
-		return gamepad0.getY(Hand.kLeft);
-		
-	}
-	
-	public static double get0LeftX () {
-		return gamepad0.getX(Hand.kLeft);
-		
-	}
-	
-	public static double get0RightX () {
-		return gamepad0.getX(Hand.kRight);
-		
-	}
-	
-	public static double get0RightY () {
-		return gamepad0.getY(Hand.kRight);
-		
-	}
+//	public static double get0LeftY () {
+//		return gamepad0.getY(Hand.kLeft);
+//		
+//	}
+//	
+//	public static double get0LeftX () {
+//		return gamepad0.getX(Hand.kLeft);
+//		
+//	}
+//	
+//	public static double get0RightX () {
+//		return gamepad0.getX(Hand.kRight);
+//		
+//	}
+//	
+//	public static double get0RightY () {
+//		return gamepad0.getY(Hand.kRight);
+//		
+//	}
 	/**
 	 * Determine if the A button is pressed on the primary driver controller.
 	 * @return true or false

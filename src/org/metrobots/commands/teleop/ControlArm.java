@@ -1,7 +1,9 @@
 package org.metrobots.commands.teleop;
 
+import org.metrobots.Constants;
 import org.metrobots.OI;
 import org.metrobots.subsystems.IntakeArm;
+//import org.metrobots.subsystems.LimitSwitch;
 import org.metrobots.util.PowerDistributionPanel;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -31,12 +33,15 @@ public class ControlArm extends Command {
 	boolean startPosition = true; //Assumes arm in starting position at match start
 	double goalPulse = 0.0;
 	double armSpeed = 0.0;
+//	LimitSwitch limitA, limitB;
 	
 	/**
 	 * Move the arm to its opposite position when called. <p>
 	 */
     public ControlArm() {
     	requires(mIntakeArm);
+//    	limitA = new LimitSwitch(Constants.LimitSwitchFrontPort);
+//    	limitB = new LimitSwitch(Constants.LimitSwitchBackPort);
     }
 
     /*
@@ -56,51 +61,7 @@ public class ControlArm extends Command {
      * 
      */
     protected void execute() {
-//    	if (OI.is1APressed()) {
-////	    DriverStation.reportError("A pressed", false);
-//	    goalPulse = 180.0; //should be the maxPulse
-//	    armThingy();
-////	    mIntakeArm.armMovement(0.75);
-//	}
-//
-//	else if (OI.is1XPressed()) {
-////	    DriverStation.reportError("X pressed", false);
-//	    goalPulse = 155.0;
-//	    armThingy();
-////	    mIntakeArm.armMovement(0.25);
-//	}
-//	    
-//	else if (OI.is1YPressed()) {
-////	    DriverStation.reportError("Y pressed", false);
-//	    goalPulse = 70.0 + mIntakeArm.getRawArm();
-//	    armThingy();
-////	    mIntakeArm.armMovement(-0.25);
-//	}
-//	    
-//	else if (OI.is1BPressed()) {
-////	    DriverStation.reportError("B pressed", false);
-//	   	goalPulse = 0.0;
-//	    armThingy();
-////	   	mIntakeArm.armMovement(-0.75);
-//	}
-//	else {
-//		//mIntakeArm.armMovement(0.0);
-//	}
-    		
-//    	double leftY = gamepad1.getY(Hand.kLeft);
-//    	mIntakeArm.armMovement(leftY);
-//    	
-//    	if (gamepad1.getAButtonPressed()) {
-//    		DriverStation.reportError("A pressed", true);
-//    		goalPulse = 20.0;
-//    	}
-//    	else if (gamepad1.getBButtonPressed()) {
-//    		DriverStation.reportError("B pressed", true);
-//    		goalPulse = 40.0;
-//    	}
-//    	else {
-//    		goalPulse = 50.0;
-//    	}
+
     	/*******************************/
     	//BEWARE: ARBITRARY NUMERALS BELOW
     	//aka don't forget to count pulses in a full rotation of the intake arm
@@ -165,83 +126,27 @@ public class ControlArm extends Command {
 //    	mIntakeArm.initializeCounter();
 //    	boolean isSwitch = mIntakeArm.isSwitchSet();
 //    	SmartDashboard.putBoolean("Switch:", isSwitch);
+//    	if (!limitA.isSwitchSet() && !limitB.isSwitchSet()) {
+//    		
+//	    	double leftY = gamepad1.getY(Hand.kLeft);
+//	    	double speedArm = leftY * 1;
+//	    	mIntakeArm.armMovement(speedArm);
+//	    	
+//	    } else {
+//	    	
+//	    	mIntakeArm.armMovement(0.0);
+//	    	limitA.reset();
+//	    	limitB.reset();
+//	    	DriverStation.reportWarning("LIMIT SWITCHES WENT OFF", false);
+//	    }
+//    	
     	double leftY = gamepad1.getY(Hand.kLeft);
-    	double speedArm = leftY * 1;
+    	double speedArm = leftY;
     	mIntakeArm.armMovement(speedArm);
     	double currentPulse = mIntakeArm.getRawArm();
-    	
     	SmartDashboard.putNumber("CURRENTPULSE: ", currentPulse);
     	/******************************************************************/
-    	//currentValue = pdp.getCurrent(14);
-    	//SmartDashboard.putNumber("CurrentValue", currentValue);
-    	
-//    	if (OI.is1APressed()) {
-////    	     DriverStation.reportError("A pressed", false);
-//    	    goalPulse = 180.0; //should be the maxPulse
-//    	    armThingy();
-////    	    mIntakeArm.armMovement(0.75);
-//    	}
-//
-//    	else if (OI.is1XPressed()) {
-////    	    DriverStation.reportError("X pressed", false);
-//    	    goalPulse = 155.0;
-//    	    armThingy();
-////    	    mIntakeArm.armMovement(0.25);
-//    	}
-//    	    
-//    	else if (OI.is1YPressed()) {
-////    	    DriverStation.reportError("Y pressed", false);
-//    	    goalPulse = 70.0 + mIntakeArm.getRawArm();
-//    	    armThingy();
-////    	    mIntakeArm.armMovement(-0.25);
-//    	}
-//    	    
-//    	else if (OI.is1BPressed()) {
-////    	    DriverStation.reportError("B pressed", false);
-//    	   	goalPulse = 0.0;
-//    	    armThingy();
-////    	   	mIntakeArm.armMovement(-0.75);
-//    	}
-//    	else {
-//    		//mIntakeArm.armMovement(0.0);
-//    	}
-//    }
-//    	
-//   public void armThingy() {
-//	   
-//    	double maxPulse = 60.0;
-//    	double currentPulse = mIntakeArm.getRawArm();
-////    double armSpeed = 0.0;
-//    
-//    double diffPulse = goalPulse - currentPulse;
-////    DriverStation.reportError("diffPulse: " + diffPulse, true);
-//    
-//    
-////    if (goalPulse > currentPulse && diffPulse < 1.0) {
-////    	armSpeed = go positive
-////    }
-////    else if (goalPulse < currentPulse && diffPulse < 1.0) {
-////    	armSpeed = negative;
-////    }
-//    if (Math.abs(diffPulse) > 10.0) {
-////    	DriverStation.reportError("diffpulse: " + diffPulse, true);
-//    	armSpeed = (diffPulse / maxPulse);
-//    	if (armSpeed > 1.0) {
-//    		armSpeed = 1.0;
-//    	}
-//    	else if (armSpeed < -1.0) {
-//    		armSpeed = -1.0;
-//    	}
-//    	else {
-//    		armSpeed = diffPulse / maxPulse;
-//    	}
-//        mIntakeArm.armMovement(-armSpeed);
-//        finished = false;
-//    } else {
-//    	mIntakeArm.armMovement(0.0);
-//    	finished = true;
-//    }
-//    
+    
 //    	DriverStation.reportError("GOALPULSE: " + mIntakeArm.getRawArm(), false);
      /**
       * Variables for moving the arm.
@@ -261,104 +166,7 @@ public class ControlArm extends Command {
       * state is whether the arm should be moving forward or backward to reach goalPulse. True if going toward front of robot, false if 
       * going backward.
       */
-//    	mIntakeArm.armMovement(-0.5);
-//    DriverStation.reportError("VALUE FOR THE ENCODER GET: " + mIntakeArm.getRawArm(), true);
-//    double currentPulse = mIntakeArm.getRawArm();
-//    DriverStation.reportError("currenPulse: " + currentPulse, false);
-//    double maxPulse = 60.0;
-////    double armSpeed = 0.0;
-//    
-//    double diffPulse = goalPulse - currentPulse;
-////    DriverStation.reportError("diffPulse: " + diffPulse, true);
-//    
-//    while (Math.abs(diffPulse) > 10.0) {
-////    	DriverStation.reportError("diffpulse: " + diffPulse, true);
-//    	armSpeed = diffPulse / maxPulse;
-//        mIntakeArm.armMovement(armSpeed);
-//        finished = false;
-//    }
-    
-    
-//  double goalPulseFullForward = 180.0;
-//  double goalPulseSwitchForward = 155.0;
-//  double goalPulseScaleForward = 110.0;
-//  double goalPulseScaleBackward = 70.0;
-//  double goalPulseSwitchBackward = 45.0;	
-//  double goalPulseFullBackward = 0.0;
-    
-//    if (state) {
-//    	
-//    }
-//    else {
-//	    while (!state) {
-//	    	armSpeed = -armSpeed;
-//	    }
-//    }
-//    
-//    	if (leftEncoder.getDirection() == false && rightEncoder.getDirection() == false) { //meaning arm in position 0.0 and moving forward
-//    		goalValue = ((Math.abs(leftEncoder.getDistance()) - maxPulse) + (Math.abs(rightEncoder.getDistance())) - maxPulse) / 2.0; //Average distance in degrees from encoders, scaled from distancePerPulse
-//    		//motors will move at most speed 1 (forwards), but that can be changed if needed
-//    		if (goalValue > (maxPulse - 0.5)) {
-//    			finished = true;
-//    		}
-//    	}
-//    	//The else is wrong, b/c the execute is run continuously, and will just go the opposite direction when execute is done.
-//    	else { //meaning arm in position "60.0"
-//    		goalValue = -((Math.abs(leftEncoder.getDistance()) + Math.abs(rightEncoder.getDistance())) / 2.0);
-//    		if (goalValue < 0.5) {
-//    			finished = true;
-//    		}
-//    		//motors will move forwards at most speed -1 (backwards) 
-//    	}
-    
-    
-//    	double armSpeed = 0.0;
-//    	double positionGoal = 0.0;
-//    	double maxPulse = 60.0; //Arbitrary number for max pulses in rotation of arm
-//    	double maxDegrees = 50.0; //Number based off the maxPulse, translated to degrees
-//    	
-//    	//If the left encoder value is not within the goal and the left encoders are going in false direction, then...
-//    	if (leftEncoder.getDistancePerPulse() != (maxDegrees - 0.5) && leftEncoder.getDirection() == false) {
-//    		//Get average distance in degrees from encoders, scaled from distancePerPulse
-//    		positionGoal = ((Math.abs(leftEncoder.getDistance()) - maxPulse) + (Math.abs(rightEncoder.getDistance())) - maxPulse) / 2.0; 
-//    		//motors will move at most speed 1 (forwards), but that can be changed if needed
-//    		//If the pulse value is in range of the goal, finish command
-//    		if (positionGoal > (maxPulse - 0.5)) {
-//    			finished = true;
-//    		}
-//    	}
-//    	
-//    	//if (leftencoder value is not in threshold of goal and its last direction was the direction we need to go) {
-//    		
-//    			//if (leftencoder value less than goal and going in the direction that we need to go, it is going to the right) {
-//    			//}
-//    			//else if (leftencoder value more than goal and going in the direction that we need to go, it is going to left) { }
-//    	//}		
-//    	if (leftEncoder.getDirection() == false && rightEncoder.getDirection() == false) { //meaning arm in position 0.0 and moving forward
-//    		positionGoal = ((Math.abs(leftEncoder.getDistance()) - maxPulse) + (Math.abs(rightEncoder.getDistance())) - maxPulse) / 2.0; //Average distance in degrees from encoders, scaled from distancePerPulse
-//    		//motors will move at most speed 1 (forwards), but that can be changed if needed
-//    		if (positionGoal > (maxPulse - 0.5)) {
-//    			finished = true;
-//    		}
-//    	}
-//    	//The else is wrong, b/c the execute is run continuously, and will just go the opposite direction when execute is done.
-//    	else { //meaning arm in position "60.0"
-//    		positionGoal = -((Math.abs(leftEncoder.getDistance()) + Math.abs(rightEncoder.getDistance())) / 2.0);
-//    		if (positionGoal < 0.5) {
-//    			finished = true;
-//    		}
-//    		//motors will move forwards at most speed -1 (backwards) 
-//    	}
-//    	
-//    	if (positionGoal > 50) {
-//    		armSpeed = positionGoal / maxPulse; //Speed decreases as reaches max position of encoder (60 is arbitrary number for max degrees)	
-//    	}
-//    	else {
-//    		armSpeed = positionGoal ;
-//    	}
-//    	
-//    	mIntakeArm.armMovement(armSpeed);
-//    	
+
     }
    
 

@@ -9,18 +9,16 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
-
 /**
  *
  */
-public class Intake extends Command {
-	
-	XboxController gamepad1 = new XboxController(1);
-	
+public class StopIntake extends Command {
+	private static final double MOTOR_SPEED = 0;
+	private boolean isOn = false;
 	/**
 	 * Spin wheels inward. <p>
 	 */
-    public Intake() {
+    public StopIntake() {
     	requires(Robot.mCubeController);
     }
 
@@ -30,15 +28,7 @@ public class Intake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	    if (gamepad1.getBumper(Hand.kLeft))	{
-	    	Robot.mCubeController.intake(-1.0);
-	    } else if (gamepad1.getBumper(Hand.kRight)){
-	    	Robot.mCubeController.intake(1.0);
-	    }
-	    else {
-	    	Robot.mCubeController.intake(0.0);
-	    }
-	    
+    	Robot.mCubeController.intake(MOTOR_SPEED);
     }
     //  
     //protected void execute() {

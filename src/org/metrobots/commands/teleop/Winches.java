@@ -27,9 +27,9 @@ public class Winches extends Command {
     	if (gamepad1.getXButton()) {
     		winchSpeed = -1.0;
     	}
-    	else if (gamepad1.getYButton()){
-    		winchSpeed = 1.0;
-    	}
+//    	else if (gamepad1.getYButton()){
+//    		winchSpeed = 1.0;
+//    	}
     	else {
     		winchSpeed = 0.0;
     	}

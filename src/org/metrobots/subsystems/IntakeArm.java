@@ -29,10 +29,7 @@ public class IntakeArm extends Subsystem {
 	WPI_VictorSPX armMotor = new WPI_VictorSPX(Constants.armMotorPort);
 	
 	public IntakeArm() {
-		//armEncoder.setDistancePerPulse(1); //5 is arbitrary number; would mean 5 degrees for every pulse
-		//armEncoder.get();
-//		testArmEncoder.setDistancePerPulse(5);
-//		testArmEncoder.getRate();
+		
 	}
 	 
 	/**

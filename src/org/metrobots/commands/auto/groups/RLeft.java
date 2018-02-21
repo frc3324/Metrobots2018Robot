@@ -11,7 +11,7 @@ public class RLeft extends CommandGroup {
 //ALL NUMBERS ARE ARBITRARY DO NOT RUN
     public RLeft() {
     	
-    	this.addSequential(new DriveForward(18));
+    	this.addSequential(new DriveForward(100));
     	
     }
 

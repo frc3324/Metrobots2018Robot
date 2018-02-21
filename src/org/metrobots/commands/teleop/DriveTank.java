@@ -15,18 +15,22 @@ import org.metrobots.Robot;
 
 public class DriveTank extends Command {
 	
+	XboxController gamepad0 = new XboxController(0);
 	
 	public DriveTank() {
-		requires(Robot.mDriveTrain);	
+		requires(Robot.mDriveTrain);
 	}
 
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
 		Robot.mDriveTrain.printEncoder();
-		double leftY = OI.get0LeftY(); // Get y value of left joystick
-		//double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
-		double rightX = OI.get0RightX();
+		double leftY = gamepad0.getY(Hand.kLeft); // Get y value of left joystick
+		double rightX = gamepad0.getX(Hand.kRight); // Get x value of right joystick 
+		
+		SmartDashboard.putNumber("RightX", rightX);
+		
+		
 		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);

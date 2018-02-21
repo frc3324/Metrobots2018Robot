@@ -9,6 +9,7 @@ import org.metrobots.commands.auto.groups.LLeft;
 import org.metrobots.commands.auto.groups.LMiddle;
 //import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
+import org.metrobots.subsystems.CubeController;
 import org.metrobots.subsystems.DriveTrain;
 //import org.metrobots.util.LimitSwitch;
 import org.metrobots.subsystems.Gyro;
@@ -51,10 +52,10 @@ public class Robot extends IterativeRobot {
 	/*
 	 * Declare gamepad objects
 	 */
-	
+	public OI mOI;
 	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
 	public static final Gyro mGyro = new Gyro();
-	
+	public static final CubeController mCubeController = new CubeController();
 	/*
 	 * Declare CANTalon (TalonSRX) objects
 	 */
@@ -81,7 +82,7 @@ public class Robot extends IterativeRobot {
 		/*
 		 * Initialize gamepads
 		 */
-	
+        mOI = new OI();
 		/*
 		 * Initialize CANTalons (TalonSRX's)
 		 */
@@ -177,7 +178,7 @@ public class Robot extends IterativeRobot {
 		DriverStation.reportError("HELP ME", false);
 		Scheduler.getInstance().add(new DriveGroup()); // Add DriveGroup to
 														// scheduler
-		mDriveTrain.clearEncoder();
+		//mDriveTrain.clearEncoder();
 	}
 
 	/**
@@ -186,11 +187,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run(); // Run Scheduler
 //		limitSwitchValue = mLimitSwitch.getSwitchPressed();
-		DriverStation.reportError("Pressed: " + limitSwitchValue, false);
+//		DriverStation.reportError("Pressed: " + limitSwitchValue, false);
 		SmartDashboard.putNumber("TELEOP left: ", mDriveTrain.getLeftDistance());
-		 if (forwardLimitSwitch.get()) {
-			 DriverStation.reportError("It worked?", true);
-		 }
 	}
 
 	/**

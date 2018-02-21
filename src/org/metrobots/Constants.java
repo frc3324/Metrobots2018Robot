@@ -25,7 +25,7 @@ public class Constants {
 	public final static int brMotorPort = 0; //6
 	public final static int armMotorPort = 4;//6
 	public final static int leftIntakeMotorPort = 9;
-	public final static int rightIntakeMotorPort = 1;
+	public final static int rightIntakeMotorPort = 5;
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 3;
 	public final static int WINCH_PORT = 7;
 	
@@ -61,6 +61,8 @@ public class Constants {
 	public final static int ArmEncoderACLK = 6; //yellow
 	public final static int ArmEncoderSW = 4; //yellow
 	public final static int ArmEncoderDT = 5; //white
+	public final static int LimitSwitchFrontPort = 8;   //arbitrary ports
+	public final static int LimitSwitchBackPort = 9;	//arbitrary ports
 	
 //	public final static int CAMERA_PORT = 0;
 	

@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  */
-public class ClimberSlide extends Command {
+public class ClimberSlideUp extends Command {
 	XboxController gamepad1 = new XboxController(1);
 	Climber mClimber = new Climber();
 	
-    public ClimberSlide() {
+    public ClimberSlideUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(mClimber);
@@ -28,19 +28,13 @@ public class ClimberSlide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//		double slideSpeed = gamepad.getY(Hand.kLeft); // Get y value of left joystick
-    	double slideSpeed = 0.0;
-    	
-		if (gamepad1.getAButton()) {
-			slideSpeed = 1.0;
-		}
-		else if (gamepad1.getBButton()) {
-			slideSpeed = -1.0;
-		}
-		else {
-			
-		}
-		mClimber.grabBar(slideSpeed);
+    	mClimber.grabBar(1.0);
+//    	if (gamepad1.getAButton()) {
+//    		mClimber.grabBar(1.0);
+//    	}
+//    	else {
+//    		mClimber.grabBar(0.0);
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
