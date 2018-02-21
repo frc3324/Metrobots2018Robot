@@ -1,8 +1,10 @@
 package org.metrobots;
 
+import org.metrobots.commands.auto.Outtake;
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
-//import org.metrobots.commands.auto.Outtake;
+import org.metrobots.commands.teleop.Intake;
+//import org.metrobots.commands.teleop.Outtake;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Climb;
 //import org.metrobots.commands.teleop.Intake;
@@ -39,8 +41,8 @@ public class OI {
 	Button bButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_B);
 	Button xButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_X);
 	Button yButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
-//	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
-//	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
+	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
+	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
 	
 	Button leftBumper1 = new JoystickButton(gamepad1, MetroController.LB);
 	Button rightBumper1 = new JoystickButton(gamepad1, MetroController.RB);
@@ -63,9 +65,11 @@ public class OI {
 		 * Secondary driver gamepad (gamepad1)
 		 */
 		
-	
-//		backButton1.whenPressed(new ClimberSlideUp());
-//		startButton1.whenPressed(new ClimberSlideDown());
+		backButton1.whenPressed(new ClimberSlideUp());
+		startButton1.whenPressed(new ClimberSlideDown());
+		
+		leftBumper1.whenPressed(new Intake());
+//		rightBumper1.whenPressed(new Outtake());
 		
 //		aButton1.whenPressed(new MoveForward());
 //		bButton1.whenPressed(new MoveForwardSwitch());

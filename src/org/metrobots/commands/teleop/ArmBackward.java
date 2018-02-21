@@ -1,13 +1,13 @@
-package org.metrobots.commands.auto;
+package org.metrobots.commands.teleop;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command for moving arm in auto.
+ *
  */
-public class MoveArm extends Command {
+public class ArmBackward extends Command {
 
-    public MoveArm() {
+    public ArmBackward() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
