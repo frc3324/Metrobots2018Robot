@@ -23,7 +23,8 @@ public class Constants {
 	//public final static int frMotorPort = 4; //4
 	public final static int frMotorPort = 2; //for testing auto
 	public final static int brMotorPort = 0; //6
-	public final static int armMotorPort = 4;//6
+	public final static int MOTOR_PORT_ARM_LEFT = 1;//6
+	public final static int MOTOR_PORT_ARM_RIGHT = 4;
 	public final static int leftIntakeMotorPort = 9;
 	public final static int rightIntakeMotorPort = 5;
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 3;

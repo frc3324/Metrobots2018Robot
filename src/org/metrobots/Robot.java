@@ -9,6 +9,7 @@ import org.metrobots.commands.auto.groups.LLeft;
 import org.metrobots.commands.auto.groups.LMiddle;
 //import org.metrobots.commands.auto.groups.LL;
 import org.metrobots.commands.teleop.PressureSwitch;
+import org.metrobots.subsystems.Climber;
 import org.metrobots.subsystems.CubeController;
 import org.metrobots.subsystems.DriveTrain;
 //import org.metrobots.util.LimitSwitch;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
 	public static final Gyro mGyro = new Gyro();
 	public static final CubeController mCubeController = new CubeController();
+	public static final Climber mClimber = new Climber();
 	/*
 	 * Declare CANTalon (TalonSRX) objects
 	 */
@@ -104,6 +106,7 @@ public class Robot extends IterativeRobot {
 		shooter = new Shooter(launchMotor, feederMotor, agitatorMotor, shooterEncoder);
 		gearMech = new GearRod(gearPusher);
 		*/
+        SmartDashboard.putData(Robot.mClimber);
 
 	}
 

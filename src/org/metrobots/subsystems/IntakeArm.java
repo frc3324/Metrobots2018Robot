@@ -26,10 +26,15 @@ public class IntakeArm extends Subsystem {
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 	
-	WPI_VictorSPX armMotor = new WPI_VictorSPX(Constants.armMotorPort);
+	private WPI_VictorSPX armMotorLeft = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
+	private WPI_VictorSPX armMotorRight = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
+	private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
 	
 	public IntakeArm() {
-		
+		// CAUTION: direction already set, don't change it
+		if (armMotorLeft.getInverted()) {
+			armMotorLeft.setInverted(true);
+		}
 	}
 	 
 	/**
@@ -79,7 +84,7 @@ public class IntakeArm extends Subsystem {
 	 * @param speed
 	 */
 	public void armMovement(double speed) {
-		armMotor.set(speed);
+		armMotors.set(speed);
 	}
 	
     public void initDefaultCommand() {

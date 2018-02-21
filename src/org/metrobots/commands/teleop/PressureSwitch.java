@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,8 +19,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class PressureSwitch extends Command {
 	boolean gearShifterStatus = false;
 	XboxController gamepad0  = new XboxController(0);
-	Compressor compressor = new Compressor(0);
-	DoubleSolenoid gearshifter = new DoubleSolenoid(0, 1);
+	private Compressor compressor = new Compressor(0);
+	private DoubleSolenoid gearshifter = new DoubleSolenoid(0, 1);
 	
 	/**
 	 * Move pnuematic piston to opposite state when called. <p>
@@ -34,12 +35,11 @@ public class PressureSwitch extends Command {
     	//compressor = new Compressor(0);
     	
     	//compressor.stop();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.mDriveTrain.setSafetyEnabled(false);
-    	//.reportError("random world", false);
     	if (gamepad0.getAButton()) {
     		DriverStation.reportError("A IS PRESSED!", false);
     		if (gearShifterStatus) {
@@ -50,9 +50,9 @@ public class PressureSwitch extends Command {
     			gearshifter.set(DoubleSolenoid.Value.kReverse);
     			gearShifterStatus = !gearShifterStatus;
     		}
-
     	}
-    	
+//    	gearshifter.set(DoubleSolenoid.Value.kOff);
+    	SmartDashboard.putBoolean("Switch Status", gearShifterStatus);
     }
     	
     	/*catch (RuntimeException ex){
@@ -68,6 +68,7 @@ public class PressureSwitch extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	end();
     }
 
     // Called when another command which requires one or more of the same

@@ -23,12 +23,12 @@ public class ClimberSlideDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    
+    	mClimber.grabBar(-1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	mClimber.grabBar(-1.0);
+    	
 //    	if (gamepad1.getBButton()) {
 //    		mClimber.grabBar(-1.0);
 //    	}
@@ -44,6 +44,7 @@ public class ClimberSlideDown extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	end();
     }
 
     // Called when another command which requires one or more of the same

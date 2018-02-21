@@ -39,8 +39,8 @@ public class OI {
 	Button bButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_B);
 	Button xButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_X);
 	Button yButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
-	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
-	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
+//	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
+//	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
 	
 	Button leftBumper1 = new JoystickButton(gamepad1, MetroController.LB);
 	Button rightBumper1 = new JoystickButton(gamepad1, MetroController.RB);
@@ -57,16 +57,22 @@ public class OI {
 		/** Primary driver gamepad (gamepad0)
 		 * 
 		 */
-		aButton0.whenPressed(new PressureSwitch());
+//		aButton0.whenPressed(new PressureSwitch());
 		
 		/**
 		 * Secondary driver gamepad (gamepad1)
 		 */
 		
-		backButton1.whenPressed(new ClimberSlideUp());
-		startButton1.whenPressed(new ClimberSlideDown());
+	
+//		backButton1.whenPressed(new ClimberSlideUp());
+//		startButton1.whenPressed(new ClimberSlideDown());
 		
-		
+//		aButton1.whenPressed(new MoveForward());
+//		bButton1.whenPressed(new MoveForwardSwitch());
+//		xButton1.whenPressed(new MoveBackwardSwitch());
+//		yButton1.whenPressed(new MoveBackward());
+//		
+//		leftBumper1.whenPressed(new );
 //		aButton.whenPressed(new PressureSwitch());
 		//		if (inTakeEnable = false) {
 //			yButton.whenPressed(new Outtake());;
