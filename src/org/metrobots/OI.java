@@ -1,7 +1,9 @@
 package org.metrobots;
 
+import org.metrobots.commands.auto.Outtake;
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
+import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.auto.Outtake;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Climb;
@@ -65,6 +67,9 @@ public class OI {
 		
 		backButton1.whenPressed(new ClimberSlideUp());
 		startButton1.whenPressed(new ClimberSlideDown());
+		
+		leftBumper1.whenPressed(new Intake());
+		rightBumper1.whenPressed(new Outtake());
 		
 		
 //		aButton.whenPressed(new PressureSwitch());

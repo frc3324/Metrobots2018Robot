@@ -1,7 +1,6 @@
 package org.metrobots.commands.auto.groups;
 
 import org.metrobots.commands.auto.DriveForward;
-import org.metrobots.commands.auto.DriveForward1;
 import org.metrobots.commands.auto.GyroReset;
 import org.metrobots.commands.auto.Rotate;
 import org.metrobots.commands.auto.RotatePID;
@@ -17,8 +16,8 @@ public class LMiddle extends CommandGroup {
     	
     	//test rotate
     	//this.addParallel(new Rotate(90, 0.5));
-    	this.addSequential(new DriveForward1(60));
-    	this.addSequential(new DriveForward1(60));
+    	this.addSequential(new DriveForward(60));
+    	this.addSequential(new DriveForward(60));
     	this.addSequential(new GyroReset());
     	this.addSequential(new Rotate(90));
     	this.addSequential(new GyroReset());
