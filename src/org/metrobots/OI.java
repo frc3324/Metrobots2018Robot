@@ -1,5 +1,13 @@
 package org.metrobots;
 
+<<<<<<< HEAD
+=======
+import org.metrobots.commands.teleop.Outtake;
+import org.metrobots.commands.teleop.ArmBackward;
+import org.metrobots.commands.teleop.ArmBackwardSwitch;
+import org.metrobots.commands.teleop.ArmForward;
+import org.metrobots.commands.teleop.ArmForwardSwitch;
+>>>>>>> origin/master
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
 import org.metrobots.commands.teleop.IntakeTeleop;
@@ -73,9 +81,18 @@ public class OI {
 		backButton1.whenPressed(new ClimberSlideUp());
 		startButton1.whenPressed(new ClimberSlideDown());
 		
+<<<<<<< HEAD
 		leftBumper1.whenPressed(new IntakeTeleop());
 		rightBumper1.whenPressed(new OuttakeTeleop());
 		
+=======
+		leftBumper1.whenPressed(new Intake());
+		rightBumper1.whenPressed(new Outtake());
+		xButton1.whenPressed(new ArmBackward());
+		aButton1.whenPressed(new ArmBackwardSwitch());
+		bButton1.whenPressed(new ArmForwardSwitch());
+		yButton1.whenPressed(new ArmForward());
+>>>>>>> origin/master
 //		rightBumper1.whenPressed(new Outtake());
 		
 //		aButton1.whenPressed(new MoveForward());

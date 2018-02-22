@@ -9,8 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+<<<<<<< HEAD:src/org/metrobots/commands/teleop/IntakeTeleop.java
 public class IntakeTeleop extends Command {
 	
+=======
+public class Intake extends Command {
+		
+>>>>>>> origin/master:src/org/metrobots/commands/teleop/Intake.java
 	/**
 	 * Spin wheels inward. <p>
 	 */
@@ -24,8 +29,13 @@ public class IntakeTeleop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+<<<<<<< HEAD:src/org/metrobots/commands/teleop/IntakeTeleop.java
     	Robot.mCubeController.intake(Constants.intakeMotorSpeed);
+=======
+	    	Robot.mCubeController.intake(1.0);
+>>>>>>> origin/master:src/org/metrobots/commands/teleop/Intake.java
     }
+	    
     //  
     //protected void execute() {
 //    	if (gamepad1.getBumperPressed(Hand.kRight)) {
