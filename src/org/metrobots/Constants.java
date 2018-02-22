@@ -18,11 +18,11 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 8; //0
-	public final static int blMotorPort = 6; //2
+	public final static int flMotorPort = 2; //8
+	public final static int blMotorPort = 0; //6
 	//public final static int frMotorPort = 4; //4
-	public final static int frMotorPort = 2; //for testing auto
-	public final static int brMotorPort = 0; //6
+	public final static int frMotorPort = 8; //for testing auto 2
+	public final static int brMotorPort = 6; //0
 	public final static int armMotorPort = 4;//6
 	public final static int leftIntakeMotorPort = 9;
 	public final static int rightIntakeMotorPort = 1;

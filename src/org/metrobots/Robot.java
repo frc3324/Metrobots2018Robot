@@ -32,6 +32,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 /**
  * Main robot code<br>
  * <br>
@@ -77,7 +78,7 @@ public class Robot extends IterativeRobot {
 	 * controllers, sensors, and subsystems
 	 */
 	public void robotInit() {
-        DigitalInput forwardLimitSwitch = new DigitalInput(9);
+		forwardLimitSwitch = new DigitalInput(9);
 		/*
 		 * Initialize gamepads
 		 */
@@ -188,7 +189,7 @@ public class Robot extends IterativeRobot {
 //		limitSwitchValue = mLimitSwitch.getSwitchPressed();
 		DriverStation.reportError("Pressed: " + limitSwitchValue, false);
 		SmartDashboard.putNumber("TELEOP left: ", mDriveTrain.getLeftDistance());
-		 if (forwardLimitSwitch.get()) {
+		if (forwardLimitSwitch.get()) {
 			 DriverStation.reportError("It worked?", true);
 		 }
 	}
