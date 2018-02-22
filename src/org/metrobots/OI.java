@@ -8,7 +8,7 @@ import org.metrobots.commands.teleop.ArmForwardSwitch;
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
 import org.metrobots.commands.teleop.Intake;
-//import org.metrobots.commands.auto.Outtake;
+//import org.metrobots.commands.teleop.Outtake;
 //import org.metrobots.commands.teleop.Intake;
 //import org.metrobots.commands.teleop.Climb;
 //import org.metrobots.commands.teleop.Intake;
@@ -63,7 +63,7 @@ public class OI {
 		/** Primary driver gamepad (gamepad0)
 		 * 
 		 */
-		aButton0.whenPressed(new PressureSwitch());
+//		aButton0.whenPressed(new PressureSwitch());
 		
 		/**
 		 * Secondary driver gamepad (gamepad1)
@@ -78,7 +78,14 @@ public class OI {
 		aButton1.whenPressed(new ArmBackwardSwitch());
 		bButton1.whenPressed(new ArmForwardSwitch());
 		yButton1.whenPressed(new ArmForward());
+//		rightBumper1.whenPressed(new Outtake());
 		
+//		aButton1.whenPressed(new MoveForward());
+//		bButton1.whenPressed(new MoveForwardSwitch());
+//		xButton1.whenPressed(new MoveBackwardSwitch());
+//		yButton1.whenPressed(new MoveBackward());
+//		
+//		leftBumper1.whenPressed(new );
 //		aButton.whenPressed(new PressureSwitch());
 		//		if (inTakeEnable = false) {
 //			yButton.whenPressed(new Outtake());;
