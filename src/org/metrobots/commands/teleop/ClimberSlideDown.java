@@ -1,18 +1,14 @@
 package org.metrobots.commands.teleop;
 
-import edu.wpi.first.wpilibj.XboxController;
 
-import org.metrobots.OI;
 import org.metrobots.subsystems.Climber;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * 
  */
 public class ClimberSlideDown extends Command {
-	XboxController gamepad1 = new XboxController(1);
 	Climber mClimber = new Climber();
 	
     public ClimberSlideDown() {

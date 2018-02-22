@@ -1,40 +1,32 @@
 package org.metrobots.commands.teleop;
 
-import edu.wpi.first.wpilibj.XboxController;
-
-import org.metrobots.subsystems.Climber;
+import org.metrobots.Constants;
+import org.metrobots.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * 
+ *
  */
-public class ClimberSlideUp extends Command {
-	XboxController gamepad1 = new XboxController(1);
-	Climber mClimber = new Climber();
+public class OuttakeTeleop extends Command {
 	
-    public ClimberSlideUp() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(mClimber);
+	/**
+	 * Spin wheels outward. <p>
+	 */
+    public OuttakeTeleop() {
+    	requires(Robot.mCubeController);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	mClimber.grabBar(1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-//    	if (gamepad1.getAButton()) {
-//    		mClimber.grabBar(1.0);
-//    	}
-//    	else {
-//    		mClimber.grabBar(0.0);
-//    	}
+    	Robot.mCubeController.intake(Constants.outtakeMotorSpeed);
+  
     }
-
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
@@ -42,7 +34,6 @@ public class ClimberSlideUp extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	end();
     }
 
     // Called when another command which requires one or more of the same

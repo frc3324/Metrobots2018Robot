@@ -1,15 +1,10 @@
 package org.metrobots.commands.teleop;
 
-import org.metrobots.Constants;
 import org.metrobots.OI;
 import org.metrobots.subsystems.IntakeArm;
 //import org.metrobots.subsystems.LimitSwitch;
-import org.metrobots.util.PowerDistributionPanel;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -28,7 +23,6 @@ public class ControlArm extends Command {
 	boolean finished = false;
 	int number = 0;
 //	double currentValue = 0.0;
-	XboxController gamepad1 = new XboxController(1);
 	
 	boolean startPosition = true; //Assumes arm in starting position at match start
 	double goalPulse = 0.0;
@@ -140,7 +134,7 @@ public class ControlArm extends Command {
 //	    	DriverStation.reportWarning("LIMIT SWITCHES WENT OFF", false);
 //	    }
 //    	
-    	double leftY = gamepad1.getY(Hand.kLeft);
+    	double leftY = OI.get1YAxis(Hand.kLeft);
     	double speedArm = leftY;
     	mIntakeArm.armMovement(speedArm);
     	double currentPulse = mIntakeArm.getRawArm();

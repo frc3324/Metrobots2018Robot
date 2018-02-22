@@ -2,12 +2,9 @@ package org.metrobots.subsystems;
 // Import WPI libraries
 
 import org.metrobots.Constants;
-import org.metrobots.commands.auto.DriveForward;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;

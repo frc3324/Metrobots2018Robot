@@ -4,8 +4,6 @@ import org.metrobots.Constants;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.AnalogTrigger;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CubeController extends Subsystem {
@@ -19,8 +17,8 @@ public class CubeController extends Subsystem {
 	}
 	
 	public void intake(double speed) {
-	leftIntakeMotor.set(-speed);
-	rightIntakeMotor.set(speed);
+		leftIntakeMotor.set(-speed);
+		rightIntakeMotor.set(speed);
 	}
 	
 	public void initDefaultCommand() {

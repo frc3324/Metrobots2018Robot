@@ -3,14 +3,12 @@ package org.metrobots.commands.teleop;
 import org.metrobots.OI;
 import org.metrobots.subsystems.Climber;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Winches extends Command {
 
 	Climber mClimber = new Climber();
 	double winchSpeed = 0.0;
-	XboxController gamepad1 = new XboxController(1);
 	
     public Winches() {
     	requires(mClimber);
@@ -24,13 +22,9 @@ public class Winches extends Command {
     // executes like a guillotine
     //or the salem witch trials
     protected void execute() {
-    	if (gamepad1.getXButton()) {
+    	if (OI.is1XPressed()) {
     		winchSpeed = -1.0;
-    	}
-//    	else if (gamepad1.getYButton()){
-//    		winchSpeed = 1.0;
-//    	}
-    	else {
+    	} else {
     		winchSpeed = 0.0;
     	}
     	mClimber.reelWinch(winchSpeed);

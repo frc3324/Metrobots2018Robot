@@ -1,15 +1,8 @@
 package org.metrobots.commands.teleop;
 
-import org.metrobots.Constants;
-import org.metrobots.OI;
-import org.metrobots.Robot;
-import org.metrobots.subsystems.DriveTrain;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,8 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PressureSwitch extends Command {
 	boolean gearShifterStatus = false;
-	XboxController gamepad0  = new XboxController(0);
-	private Compressor compressor = new Compressor(0);
 	private DoubleSolenoid gearshifter = new DoubleSolenoid(0, 1);
 	
 	/**
@@ -40,18 +31,16 @@ public class PressureSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (gamepad0.getAButton()) {
-    		DriverStation.reportError("A IS PRESSED!", false);
-    		if (gearShifterStatus) {
-    			gearshifter.set(DoubleSolenoid.Value.kForward);
-    			gearShifterStatus = !gearShifterStatus;
-    		}
-    		else {
-    			gearshifter.set(DoubleSolenoid.Value.kReverse);
-    			gearShifterStatus = !gearShifterStatus;
-    		}
+    	DriverStation.reportError("A IS PRESSED!", false);
+    	
+    	if (gearShifterStatus) {
+    		gearshifter.set(DoubleSolenoid.Value.kForward);
+    		gearShifterStatus = !gearShifterStatus;
+    	} else {
+    		gearshifter.set(DoubleSolenoid.Value.kReverse);
+    		gearShifterStatus = !gearShifterStatus;
     	}
-//    	gearshifter.set(DoubleSolenoid.Value.kOff);
+    	
     	SmartDashboard.putBoolean("Switch Status", gearShifterStatus);
     }
     	

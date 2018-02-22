@@ -1,12 +1,7 @@
 package org.metrobots.commands.teleop;
 
 import org.metrobots.Robot;
-import org.metrobots.subsystems.CubeController;
 
-import edu.wpi.first.wpilibj.AnalogTrigger;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -14,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StopIntake extends Command {
 	private static final double MOTOR_SPEED = 0;
-	private boolean isOn = false;
 	/**
 	 * Spin wheels inward. <p>
 	 */
@@ -30,19 +24,7 @@ public class StopIntake extends Command {
     protected void execute() {
     	Robot.mCubeController.intake(MOTOR_SPEED);
     }
-    //  
-    //protected void execute() {
-//    	if (gamepad1.getBumperPressed(Hand.kRight)) {
-////    		if (isOn = false) {
-//    			motorSpeed = -1;
-////    			isOn = true;
-////    		} else {
-////        		motorSpeed = 0;	
-////        		isOn = false;
-//    		}    
-//    	 mCubeController.intake(motorSpeed);
-//    }
-// 
+   
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

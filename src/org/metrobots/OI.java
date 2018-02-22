@@ -1,15 +1,11 @@
 package org.metrobots;
 
-import org.metrobots.commands.auto.Outtake;
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
-import org.metrobots.commands.teleop.Intake;
-//import org.metrobots.commands.teleop.Outtake;
-//import org.metrobots.commands.teleop.Intake;
-//import org.metrobots.commands.teleop.Climb;
-//import org.metrobots.commands.teleop.Intake;
-//import org.metrobots.commands.teleop.MoveArm;
+import org.metrobots.commands.teleop.IntakeTeleop;
+import org.metrobots.commands.teleop.OuttakeTeleop;
 import org.metrobots.commands.teleop.PressureSwitch;
+import org.metrobots.commands.teleop.StopIntake;
 import org.metrobots.util.MetroController;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -34,18 +30,23 @@ public class OI {
 	 */
 	Button aButton0 = new JoystickButton(gamepad0, MetroController.BUTTON_A);
 	
+	Button leftTrigger0 = new JoystickButton(gamepad0, MetroController.LT);
+	Button rightTrigger0 = new JoystickButton(gamepad0, MetroController.RT);
+	
 	/**
 	 * Secondary driver buttons assignments
 	 */
 	Button aButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_A);
 	Button bButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_B);
 	Button xButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_X);
-	Button yButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
+	static Button yButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
 	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
 	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
 	
 	Button leftBumper1 = new JoystickButton(gamepad1, MetroController.LB);
 	Button rightBumper1 = new JoystickButton(gamepad1, MetroController.RB);
+
+	
 	
 	/**
 	 * Controller buttons.
@@ -59,7 +60,11 @@ public class OI {
 		/** Primary driver gamepad (gamepad0)
 		 * 
 		 */
-//		aButton0.whenPressed(new PressureSwitch());
+		aButton0.whenPressed(new PressureSwitch());
+		
+		leftTrigger0.whenPressed(new StopIntake());
+		rightTrigger0.whenPressed(new StopIntake());
+		
 		
 		/**
 		 * Secondary driver gamepad (gamepad1)
@@ -68,7 +73,9 @@ public class OI {
 		backButton1.whenPressed(new ClimberSlideUp());
 		startButton1.whenPressed(new ClimberSlideDown());
 		
-		leftBumper1.whenPressed(new Intake());
+		leftBumper1.whenPressed(new IntakeTeleop());
+		rightBumper1.whenPressed(new OuttakeTeleop());
+		
 //		rightBumper1.whenPressed(new Outtake());
 		
 //		aButton1.whenPressed(new MoveForward());
@@ -108,25 +115,25 @@ public class OI {
 //		rightBumper.whileHeld(new Outtake());
 		//yButton.whileHeld(new Climb()); //Actually, make this a trigger, b/c not enough buttons 
 	}
-//	public static double get0LeftY () {
-//		return gamepad0.getY(Hand.kLeft);
-//		
-//	}
-//	
-//	public static double get0LeftX () {
-//		return gamepad0.getX(Hand.kLeft);
-//		
-//	}
-//	
-//	public static double get0RightX () {
-//		return gamepad0.getX(Hand.kRight);
-//		
-//	}
-//	
-//	public static double get0RightY () {
-//		return gamepad0.getY(Hand.kRight);
-//		
-//	}
+	public static double get0LeftY () {
+		return gamepad0.getY(Hand.kLeft);
+		
+	}
+	
+	public static double get0LeftX () {
+		return gamepad0.getX(Hand.kLeft);
+		
+	}
+	
+	public static double get0RightX () {
+		return gamepad0.getX(Hand.kRight);
+		
+	}
+	
+	public static double get0RightY () {
+		return gamepad0.getY(Hand.kRight);
+		
+	}
 	/**
 	 * Determine if the A button is pressed on the primary driver controller.
 	 * @return true or false
@@ -174,6 +181,10 @@ public class OI {
 	
 	public static boolean is1YPressed() {
 		return gamepad1.getYButtonPressed();
+	}
+	
+	public static double get1YAxis(Hand hand) {
+		return gamepad1.getY(hand);
 	}
 	
     //// CREATING BUTTONS
