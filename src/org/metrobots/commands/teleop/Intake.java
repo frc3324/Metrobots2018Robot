@@ -14,9 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Intake extends Command {
-	
-	XboxController gamepad1 = new XboxController(1);
-	
+		
 	/**
 	 * Spin wheels inward. <p>
 	 */
@@ -30,16 +28,9 @@ public class Intake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	    if (gamepad1.getBumper(Hand.kLeft))	{
-	    	Robot.mCubeController.intake(-1.0);
-	    } else if (gamepad1.getBumper(Hand.kRight)){
 	    	Robot.mCubeController.intake(1.0);
-	    }
-	    else {
-	    	Robot.mCubeController.intake(0.0);
-	    }
-	    
     }
+	    
     //  
     //protected void execute() {
 //    	if (gamepad1.getBumperPressed(Hand.kRight)) {

@@ -13,6 +13,7 @@ import org.metrobots.subsystems.CubeController;
 import org.metrobots.subsystems.DriveTrain;
 //import org.metrobots.util.LimitSwitch;
 import org.metrobots.subsystems.Gyro;
+import org.metrobots.subsystems.IntakeArm;
 
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
 	public static final Gyro mGyro = new Gyro();
 	public static final CubeController mCubeController = new CubeController();
+	public static final IntakeArm mIntakeArm = new IntakeArm();
 	/*
 	 * Declare CANTalon (TalonSRX) objects
 	 */
