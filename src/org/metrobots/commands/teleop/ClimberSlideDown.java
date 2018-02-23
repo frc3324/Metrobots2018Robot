@@ -1,6 +1,7 @@
 package org.metrobots.commands.teleop;
 
 
+import org.metrobots.Robot;
 import org.metrobots.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,17 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
  * 
  */
 public class ClimberSlideDown extends Command {
-	Climber mClimber = new Climber();
 	
     public ClimberSlideDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(mClimber);
+    	requires(Robot.mClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	mClimber.grabBar(-1.0);
+    	Robot.mClimber.grabBar(-1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run

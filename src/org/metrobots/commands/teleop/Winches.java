@@ -1,17 +1,13 @@
 package org.metrobots.commands.teleop;
 
-import org.metrobots.OI;
-import org.metrobots.subsystems.Climber;
+import org.metrobots.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Winches extends Command {
-
-	Climber mClimber = new Climber();
-	double winchSpeed = 0.0;
 	
     public Winches() {
-    	requires(mClimber);
+    	requires(Robot.mClimber);
     }
 
     // Called just before this Command runs the first time
@@ -22,12 +18,7 @@ public class Winches extends Command {
     // executes like a guillotine
     //or the salem witch trials
     protected void execute() {
-    	if (OI.is1XPressed()) {
-    		winchSpeed = -1.0;
-    	} else {
-    		winchSpeed = 0.0;
-    	}
-    	mClimber.reelWinch(winchSpeed);
+    	Robot.mClimber.reelWinch(-1.0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

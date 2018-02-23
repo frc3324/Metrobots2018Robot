@@ -14,7 +14,6 @@ public class ArmBackwardSwitch extends Command {
 	boolean finished;
     public ArmBackwardSwitch() {
         // Use requires() here to declare subsystem dependencies
-     	IntakeArm mIntakeArm = new IntakeArm();
     }
 
     // Called just before this Command runs the first time

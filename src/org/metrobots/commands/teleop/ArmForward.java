@@ -14,7 +14,6 @@ public class ArmForward extends Command {
 	boolean finished;
     public ArmForward() {
         // Use requires() here to declare subsystem dependencies
-     	IntakeArm mIntakeArm = new IntakeArm();
     }
 
     // Called just before this Command runs the first time

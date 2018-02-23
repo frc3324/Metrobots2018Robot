@@ -1,6 +1,7 @@
 package org.metrobots.commands.teleop;
 
 import org.metrobots.OI;
+import org.metrobots.Robot;
 import org.metrobots.subsystems.IntakeArm;
 //import org.metrobots.subsystems.LimitSwitch;
 
@@ -14,8 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  */
 public class ControlArm extends Command {
-
-	public IntakeArm mIntakeArm = new IntakeArm();
 	//public PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 //	Encoder leftEncoder;
@@ -33,7 +32,7 @@ public class ControlArm extends Command {
 	 * Move the arm to its opposite position when called. <p>
 	 */
     public ControlArm() {
-    	requires(mIntakeArm);
+    	requires(Robot.mIntakeArm);
 //    	limitA = new LimitSwitch(Constants.LimitSwitchFrontPort);
 //    	limitB = new LimitSwitch(Constants.LimitSwitchBackPort);
     }
@@ -43,7 +42,7 @@ public class ControlArm extends Command {
      * Arm should be set to starting position.
      */	
     protected void initialize() {
-    	mIntakeArm.resetEncoder();
+    	Robot.mIntakeArm.resetEncoder();
     	
 //    	DriverStation.reportError("HERE!!!!!", false);
 //    	
@@ -136,8 +135,8 @@ public class ControlArm extends Command {
 //    	
     	double leftY = OI.get1YAxis(Hand.kLeft);
     	double speedArm = leftY;
-    	mIntakeArm.armMovement(speedArm);
-    	double currentPulse = mIntakeArm.getRawArm();
+    	Robot.mIntakeArm.armMovement(speedArm);
+    	double currentPulse = Robot.mIntakeArm.getRawArm();
     	SmartDashboard.putNumber("CURRENTPULSE: ", currentPulse);
     	/******************************************************************/
     

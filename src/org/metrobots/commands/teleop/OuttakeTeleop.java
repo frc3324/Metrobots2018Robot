@@ -3,26 +3,14 @@ package org.metrobots.commands.teleop;
 import org.metrobots.Constants;
 import org.metrobots.Robot;
 
-<<<<<<< HEAD:src/org/metrobots/commands/teleop/OuttakeTeleop.java
-=======
 import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
->>>>>>> origin/master:src/org/metrobots/commands/teleop/Outtake.java
 import edu.wpi.first.wpilibj.command.Command;
 
-
-/**
- *
- */
-<<<<<<< HEAD:src/org/metrobots/commands/teleop/OuttakeTeleop.java
 public class OuttakeTeleop extends Command {
 	
-=======
-public class Outtake extends Command {
-		
->>>>>>> origin/master:src/org/metrobots/commands/teleop/Outtake.java
 	/**
 	 * Spin wheels inward. <p>
 	 */
@@ -36,12 +24,8 @@ public class Outtake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-<<<<<<< HEAD:src/org/metrobots/commands/teleop/OuttakeTeleop.java
     	Robot.mCubeController.intake(Constants.outtakeMotorSpeed);
-  
-=======
-	    	Robot.mCubeController.intake(-1.0);
->>>>>>> origin/master:src/org/metrobots/commands/teleop/Outtake.java
+	    Robot.mCubeController.intake(-1.0);
     }
 	    
     //  

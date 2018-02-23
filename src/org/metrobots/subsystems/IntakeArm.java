@@ -14,10 +14,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * 
- */
-
 public class IntakeArm extends Subsystem {
 	
 //	DigitalInput limitSwitch = new DigitalInput(9);
