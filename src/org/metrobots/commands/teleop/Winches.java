@@ -5,9 +5,10 @@ import org.metrobots.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Winches extends Command {
-	
+	double winchMotorSpeed = -1.0;
     public Winches() {
     	requires(Robot.mClimber);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -18,7 +19,13 @@ public class Winches extends Command {
     // executes like a guillotine
     //or the salem witch trials
     protected void execute() {
-    	Robot.mClimber.reelWinch(-1.0);
+    	double currentPulseArm = Robot.mIntakeArm.getRawArm();
+    	if (currentPulseArm < 45) {
+    		Robot.mIntakeArm.armMovement(0.2);
+    	} else {
+    		Robot.mIntakeArm.armMovement(0.0);
+    	}
+    	Robot.mClimber.reelWinch(winchMotorSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
