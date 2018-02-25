@@ -1,17 +1,17 @@
 package org.metrobots.commands.teleop;
 
-import org.metrobots.Constants;
 import org.metrobots.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CatchCube extends Command {
-
-	/**
-	 * Spin wheels inward. <p>
-	 */
-    public CatchCube() {
-    	requires(Robot.mCubeController);
+/**
+ *
+ */
+public class IntakeStop extends Command {
+public double intakeSpeed;
+    public IntakeStop() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -20,23 +20,10 @@ public class CatchCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.mCubeController.intake(Constants.intakeMotorSpeed);
-	    Robot.mCubeController.intake(1.0);
+        intakeSpeed = 0.0;
+    	Robot.mCubeController.intake(0.0);
     }
-	    
-    //  
-    //protected void execute() {
-//    	if (gamepad1.getBumperPressed(Hand.kRight)) {
-////    		if (isOn = false) {
-//    			motorSpeed = -1;
-////    			isOn = true;
-////    		} else {
-////        		motorSpeed = 0;	
-////        		isOn = false;
-//    		}    
-//    	 mCubeController.intake(motorSpeed);
-//    }
-// 
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

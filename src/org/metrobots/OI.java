@@ -1,13 +1,13 @@
 package org.metrobots;
 
-import org.metrobots.commands.teleop.ArmBackward;
-import org.metrobots.commands.teleop.ArmBackwardSwitch;
 import org.metrobots.commands.teleop.ArmForward;
 import org.metrobots.commands.teleop.ArmForwardSwitch;
+import org.metrobots.commands.teleop.ArmBackward;
+import org.metrobots.commands.teleop.ArmBackwardSwitch;
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
-import org.metrobots.commands.teleop.CatchCube;
 import org.metrobots.commands.teleop.LaunchCube;
+import org.metrobots.commands.teleop.IntakeStop;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
@@ -28,6 +28,7 @@ public class OI {
 	
 	private int val = 0;
 	
+	private boolean commandFinished;
 	/**
 	 * Primary driver buttons assignments
 	 */
@@ -35,6 +36,8 @@ public class OI {
 	
 	Button leftTrigger0 = new JoystickButton(gamepad0, MetroController.LT);
 	Button rightTrigger0 = new JoystickButton(gamepad0, MetroController.RT);
+	
+	Button rightBumper0 = new JoystickButton(gamepad0, MetroController.RB);
 	
 	/**
 	 * Secondary driver buttons assignments
@@ -45,6 +48,7 @@ public class OI {
 	static Button yButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_Y);
 	Button backButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_BACK);
 	Button startButton1 = new JoystickButton(gamepad1, MetroController.BUTTON_START);
+	Button leftJoystickButton = new JoystickButton(gamepad1, MetroController.Joystick_Left);
 	
 	Button leftBumper1 = new JoystickButton(gamepad1, MetroController.LB);
 	Button rightBumper1 = new JoystickButton(gamepad1, MetroController.RB);
@@ -69,16 +73,28 @@ public class OI {
 		 * Secondary driver gamepad (gamepad1)
 		 */
 		
+
 		backButton1.whenPressed(new ClimberSlideUp());
 		startButton1.whenPressed(new ClimberSlideDown());
 
-		leftBumper1.whenPressed(new CatchCube());
-		rightBumper1.whenPressed(new LaunchCube());
+//		rightBumper1.whenPressed(new LaunchCube());
+//		leftBumper1.whenPressed(new IntakeTeleop());
+//		rightBumper1.whenPressed(new OuttakeTeleop());
+//		leftJoystickButton.whenPressed(new IntakeStop());
+//		
+//		leftBumper1.toggleWhenPressed(new IntakeTeleop());
+//		rightBumper1.toggleWhenPressed(new OuttakeTeleop());
 		
-		xButton1.whenPressed(new ArmBackward());
-		aButton1.whenPressed(new ArmBackwardSwitch());
-		bButton1.whenPressed(new ArmForwardSwitch());
-		yButton1.whenPressed(new ArmForward());
+//		leftJoystickButton.cancelWhenPressed(new OuttakeTeleop());
+//		xButton1.whenPressed(new ArmForward());
+//		aButton1.whenPressed(new ArmForwardSwitch());
+//		bButton1.whenPressed(new ArmBackwardSwitch());
+//		yButton1.whenPressed(new ArmBackward());
+		
+//		xButton1.whenPressed(new ArmBackward());
+//		aButton1.whenPressed(new ArmBackwardSwitch());
+//		bButton1.whenPressed(new ArmForwardSwitch());
+//		yButton1.whenPressed(new IntakeStop());
 
 //		rightBumper1.whenPressed(new Outtake());
 		
@@ -138,6 +154,15 @@ public class OI {
 		return gamepad0.getY(Hand.kRight);
 		
 	}
+	
+	public static boolean get0RightBumper() {
+		return gamepad0.getBumper(Hand.kRight);
+	}
+	
+	public static boolean get0RightBumperToggled() {
+		return gamepad0.getBumperPressed(Hand.kRight);
+	}
+	
 	/**
 	 * Determine if the A button is pressed on the primary driver controller.
 	 * @return true or false
@@ -174,7 +199,9 @@ public class OI {
 	public static boolean is1APressed() {
 		return gamepad1.getAButtonPressed();
 	}
-	
+	public static boolean is1RightBumperPressed() {
+		return gamepad1.getBumper(Hand.kRight);
+	}
 	public static boolean is1BPressed() {
 		return gamepad1.getBButtonPressed();
 	}
@@ -189,6 +216,9 @@ public class OI {
 	
 	public static double get1YAxis(Hand hand) {
 		return gamepad1.getY(hand);
+	}
+	public static boolean is1LeftBumperPressed() {
+		return gamepad1.getBumper(Hand.kLeft);
 	}
 	
     //// CREATING BUTTONS

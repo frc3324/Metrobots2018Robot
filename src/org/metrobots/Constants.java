@@ -18,17 +18,16 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 8; //0
-	public final static int blMotorPort = 6; //2
-	//public final static int frMotorPort = 4; //4
-	public final static int frMotorPort = 2; //for testing auto
-	public final static int brMotorPort = 0; //6
-	public final static int MOTOR_PORT_ARM_LEFT = 1;//6
-	public final static int MOTOR_PORT_ARM_RIGHT = 4;
-	public final static int leftIntakeMotorPort = 9;
-	public final static int rightIntakeMotorPort = 5;
+	public final static int flMotorPort = 2; //0
+	public final static int blMotorPort = 0; //2
+	public final static int frMotorPort = 1; //for testing auto
+	public final static int brMotorPort = 6; //6
+	public final static int MOTOR_PORT_ARM_LEFT = 5;//6
+	public final static int MOTOR_PORT_ARM_RIGHT = 8;
+	public final static int leftIntakeMotorPort = 7;
+	public final static int rightIntakeMotorPort = 9; //in brake
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 3;
-	public final static int WINCH_PORT = 7;
+	public final static int WINCH_PORT = 0;
 	
 	/*
 	 * Pneumatic Ports
@@ -79,17 +78,14 @@ public class Constants {
 	public final static int primaryGamepadPort = 0; 
 	public final static int secondaryGamepadPort = 1; 
 	
-	public final static int opticalEncoderLow = 0;
-	public final static int opticalEncoderHigh = 2000;
-	
 	/*
 	 * 
 	 * Intake/Outtake variables
 	 */
 	
-	public final static double intakeMotorSpeed = 1.0; //needs to be validated this is the speed we want
-	public final static double outtakeMotorSpeed = -1.0; //needs to be validated this is the speed we want
-	
+//	public final static double intakeMotorSpeed = 1.0; //needs to be validated this is the speed we want
+//	public final static double outtakeMotorSpeed = -1.0; //needs to be validated this is the speed we want
+//	
 	/*
 	 * DriveTrain variables
 	 */

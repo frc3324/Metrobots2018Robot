@@ -135,6 +135,7 @@ public class ControlArm extends Command {
 //    	
     	double leftY = OI.get1YAxis(Hand.kLeft);
     	double speedArm = leftY;
+    	leftY *= 0.5;
     	Robot.mIntakeArm.armMovement(speedArm);
     	double currentPulse = Robot.mIntakeArm.getRawArm();
     	SmartDashboard.putNumber("CURRENTPULSE: ", currentPulse);

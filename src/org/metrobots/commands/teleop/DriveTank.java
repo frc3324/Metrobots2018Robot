@@ -1,5 +1,6 @@
 package org.metrobots.commands.teleop;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,7 +10,7 @@ import org.metrobots.Robot;
 
 public class DriveTank extends Command {
 	
-	XboxController gamepad0 = new XboxController(0);
+	boolean slowModeActivated = false;
 	
 	public DriveTank() {
 		requires(Robot.mDriveTrain);
@@ -24,8 +25,14 @@ public class DriveTank extends Command {
 		
 		SmartDashboard.putNumber("RightX", rightX);
 		
+		if (OI.get0RightBumperToggled()) {
+			slowModeActivated = !slowModeActivated;
+		}
 		
-		
+		if (slowModeActivated) {
+			leftY *= 0.5;
+		}
+		DriverStation.reportError("LEFTY: "  + leftY, true);
 		Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
 		//Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
 	//	DriverStation.reportError(", printTrace);

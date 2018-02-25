@@ -20,7 +20,7 @@ public class Outtake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.mCubeController.intake(Constants.outtakeMotorSpeed);
+    	Robot.mCubeController.intake(-0.6);
 //	    Robot.mCubeController.intake(1.0);
     }
 	    

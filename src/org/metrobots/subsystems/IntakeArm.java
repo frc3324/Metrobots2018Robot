@@ -22,8 +22,8 @@ public class IntakeArm extends Subsystem {
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 	
-	private WPI_VictorSPX armMotorLeft = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
-	private WPI_VictorSPX armMotorRight = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
+	private WPI_TalonSRX armMotorLeft = new WPI_TalonSRX(Constants.MOTOR_PORT_ARM_LEFT);
+	private WPI_TalonSRX armMotorRight = new WPI_TalonSRX(Constants.MOTOR_PORT_ARM_RIGHT);
 	private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
 	
 	public IntakeArm() {
@@ -63,6 +63,7 @@ public class IntakeArm extends Subsystem {
 		int val = 0;
 		SmartDashboard.putNumber("Program is Running", val);
 		val++;
+		SmartDashboard.putNumber("R Rate:", armEncoder.get());
 		DriverStation.reportError("R rate: " + armEncoder.get(), false);
 //		DriverStation.reportError("TESTRATE: " + testArmEncoder.get(), false);
 //		SmartDashboard.putNumber("R Rate: ", testArmEncoder.get()); // unit: distance per sec

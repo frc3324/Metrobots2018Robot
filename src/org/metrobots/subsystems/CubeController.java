@@ -2,14 +2,15 @@ package org.metrobots.subsystems;
 
 import org.metrobots.Constants;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CubeController extends Subsystem {
 
-	WPI_VictorSPX leftIntakeMotor = new WPI_VictorSPX(Constants.leftIntakeMotorPort);
-	WPI_VictorSPX rightIntakeMotor = new WPI_VictorSPX(Constants.rightIntakeMotorPort);
+	WPI_TalonSRX leftIntakeMotor = new WPI_TalonSRX(Constants.leftIntakeMotorPort);
+	WPI_TalonSRX rightIntakeMotor = new WPI_TalonSRX(Constants.rightIntakeMotorPort);
 //	SpeedControllerGroup intakeMotors = new SpeedControllerGroup(leftIntakeMotor, rightIntakeMotor);
 //	
 	public CubeController() {
