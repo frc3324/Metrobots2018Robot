@@ -6,7 +6,7 @@ import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
 import org.metrobots.commands.teleop.ControlArm;
 import org.metrobots.commands.teleop.DriveTank;
-import org.metrobots.commands.teleop.IntakeTeleop;
+import org.metrobots.commands.teleop.CatchCube;
 //import org.metrobots.commands.teleop.OuttakeGARBAGE;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.commands.teleop.Winches;
@@ -32,7 +32,7 @@ public class DriveGroup extends CommandGroup {
 		this.addParallel(new DriveTank()); //gamepad0, joysticks
 		this.addParallel(new PressureSwitch()); //gamepad0, a button
 		this.addParallel(new ControlArm()); //gamepad1, left joystick
-		this.addParallel(new IntakeTeleop()); //gamepad1, left bumper
+		this.addParallel(new CatchCube()); //gamepad1, left bumper
 //		this.addParallel(new Outtake()); //gamepad1, right bumper
 		this.addParallel(new ClimberSlideUp()); //gamepad1, a button and b button //a and x //a
 		this.addParallel(new ClimberSlideDown()); //b

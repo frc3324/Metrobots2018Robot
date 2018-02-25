@@ -1,19 +1,12 @@
 package org.metrobots.commands.auto;
 
-import org.metrobots.Constants;
 import org.metrobots.Robot;
-import org.metrobots.commands.auto.groups.LLeft;
 import org.metrobots.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class DriveForward extends Command {
-
-	DriveTrain mTrain = new DriveTrain();
+	
 	double speed, currentDistance, distanceToTravel; //goalDistance
 	double goalDistance = 0.0;
 	
@@ -33,8 +26,8 @@ public class DriveForward extends Command {
 	@Override
 	protected void initialize() {
 //		currentDistance = (DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2;
-		mTrain.setSafetyEnabled(false);
-		mTrain.clearEncoder();
+		Robot.mDriveTrain.setSafetyEnabled(false);
+		DriveTrain.clearEncoder();
 	}
 	
 	@Override
@@ -51,7 +44,7 @@ public class DriveForward extends Command {
 //		SmartDashboard.putNumber("SPEED: ", speed);
 //		//make speed negative to go forward in real life
 //		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
-		currentDistance = (mTrain.getLeftDistance() + mTrain.getRightDistance()) / 2.0;
+		currentDistance = (DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2.0;
 		distanceToTravel = goalDistance - currentDistance;
 		
 		Robot.mDriveTrain.arcadeDrive(-0.4, 0.0, true);
@@ -60,7 +53,6 @@ public class DriveForward extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 //		currentDistance = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2.0);
 //		if (distanceToTravel != goalDistance) {
 //			return false;

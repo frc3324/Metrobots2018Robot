@@ -4,7 +4,7 @@ package org.metrobots;
 
 /**
  * Class with tons of constants that won't need to change on the fly.<br>
- * Examples: motor controller ports, sensor ports, xbox controller ports,
+ * Examples: motor controller ports, sensor ports, gamepad ports,
  * etc.<br>
  * <br>
  * 

@@ -5,12 +5,12 @@ import org.metrobots.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeAuto extends Command {
+public class Intake extends Command {
 
 	/**
 	 * Spin wheels inward. <p>
 	 */
-    public IntakeAuto() {
+    public Intake() {
     	requires(Robot.mCubeController);
     }
 

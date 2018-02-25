@@ -148,6 +148,9 @@ public class Robot extends IterativeRobot {
 //		CameraServer.getInstance().getVideo();
 		
 //		SmartDashboard.putNumber("LEFT DISTANCE: ", mDriveTrain.getLeftDistance());
+		
+
+		Scheduler.getInstance().add(new AutoConfiguration());
 	}
 
 	/**
@@ -161,7 +164,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		*/
 //		Scheduler.getInstance().add(new LLeft());
-		Scheduler.getInstance().add(new LMiddle());
+//		Scheduler.getInstance().add(new LMiddle());
 		//DriverStation.reportError("SOMETHING", false);
 	}
 

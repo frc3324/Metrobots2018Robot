@@ -6,8 +6,8 @@ import org.metrobots.commands.teleop.ArmForward;
 import org.metrobots.commands.teleop.ArmForwardSwitch;
 import org.metrobots.commands.teleop.ClimberSlideDown;
 import org.metrobots.commands.teleop.ClimberSlideUp;
-import org.metrobots.commands.teleop.IntakeTeleop;
-import org.metrobots.commands.teleop.OuttakeTeleop;
+import org.metrobots.commands.teleop.CatchCube;
+import org.metrobots.commands.teleop.LaunchCube;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.util.MetroController;
 
@@ -72,8 +72,8 @@ public class OI {
 		backButton1.whenPressed(new ClimberSlideUp());
 		startButton1.whenPressed(new ClimberSlideDown());
 
-		leftBumper1.whenPressed(new IntakeTeleop());
-		rightBumper1.whenPressed(new OuttakeTeleop());
+		leftBumper1.whenPressed(new CatchCube());
+		rightBumper1.whenPressed(new LaunchCube());
 		
 		xButton1.whenPressed(new ArmBackward());
 		aButton1.whenPressed(new ArmBackwardSwitch());
