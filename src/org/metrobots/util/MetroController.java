@@ -39,6 +39,7 @@ public class MetroController {
 	public static final int BUTTON_START = 8;
 	public static final int LEFT_CLICK = 9;
 	public static final int RIGHT_CLICK = 10;
+	public static final int Joystick_Left = 9;
 
 	public static final double AXIS_DEADBAND = 0.01;
 

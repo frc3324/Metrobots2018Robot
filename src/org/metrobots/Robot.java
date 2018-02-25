@@ -2,7 +2,6 @@ package org.metrobots;
 
 import java.io.IOException;
 
-import org.metrobots.botcv.communication.CommInterface;
 import org.metrobots.commands.AutoConfiguration;
 import org.metrobots.commands.DriveGroup;
 import org.metrobots.commands.auto.groups.LLeft;
@@ -51,6 +50,7 @@ public class Robot extends IterativeRobot {
 	public static boolean isAuto = false;
 //	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
 	public static boolean limitSwitchValue = false;  
+	double encoderValue;
 	/*
 	 * Declare gamepad objects
 	 */
@@ -148,6 +148,7 @@ public class Robot extends IterativeRobot {
 //		CameraServer.getInstance().getVideo();
 		
 //		SmartDashboard.putNumber("LEFT DISTANCE: ", mDriveTrain.getLeftDistance());
+		mIntakeArm.printEncoder();
 	}
 
 	/**
@@ -180,7 +181,7 @@ public class Robot extends IterativeRobot {
 	 * Initialize whatever you need to when the robot starts teleop
 	 */
 	public void teleopInit() {
-		DriverStation.reportError("HELP ME", false);
+//		DriverStation.reportError("HELP ME", false);
 		Scheduler.getInstance().add(new DriveGroup()); // Add DriveGroup to
 														// scheduler
 		//mDriveTrain.clearEncoder();

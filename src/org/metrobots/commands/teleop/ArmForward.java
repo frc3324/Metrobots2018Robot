@@ -22,7 +22,7 @@ public class ArmForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double goalPulse = 45;
+    	double goalPulse = 0.0;
 		DriverStation.reportError("A pressed", false);
     	double speed = 0.0;
     	double currentPulse = Robot.mIntakeArm.getRawArm();
