@@ -47,7 +47,7 @@ public class OuttakeTeleop extends Command {
     		motorSpeed = 1;
     	}
     	else if (OI.is1RightBumperPressed()) {
-    		motorSpeed = -0.8;
+    		motorSpeed = -1;
     	}
     	else {
     		motorSpeed = 0.0;
