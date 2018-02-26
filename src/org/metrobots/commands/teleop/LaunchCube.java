@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeTeleop extends Command {
+public class LaunchCube extends Command {
 	boolean isOn = false;
-	private double inSpeed;
+	double motorSpeed;
 	
 	/**
 	 * Spin wheels inward. <p>
 	 */
-    public IntakeTeleop() {
+    public LaunchCube() {
     	requires(Robot.mCubeController);
     }
 
@@ -42,15 +42,21 @@ public class IntakeTeleop extends Command {
 //    		}    
 //    	 Robot.mCubeController.intake(motorSpeed);
 //    	}
-
-    	DriverStation.reportError("bah!!", false);
-    	if (OI.is1RightBumperPressed()) {
-    		inSpeed = -0.2;
+    	if (OI.is1LeftBumperPressed()) { //intake
+    		motorSpeed = 1;
+    	}
+<<<<<<< HEAD:src/org/metrobots/commands/teleop/OuttakeTeleop.java
+    	else if (OI.is1RightBumperPressed()) {
+    		motorSpeed = -1;
+=======
+    	else if (OI.is1RightBumperPressed()) { //outtake
+    		motorSpeed = -0.8;
+>>>>>>> 02b1ea9ef9828fd8e6e3f251e4e3f4fa4a9a7a94:src/org/metrobots/commands/teleop/LaunchCube.java
     	}
     	else {
-    		inSpeed = 0.0;
+    		motorSpeed = 0.0;
     	}
-    	Robot.mCubeController.intake(inSpeed);
+    	Robot.mCubeController.intake(motorSpeed);
     }
  
     // Make this return true when this Command no longer needs to run execute()

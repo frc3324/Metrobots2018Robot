@@ -1,7 +1,6 @@
-package org.metrobots.commands.teleop;
+package org.metrobots.commands.auto;
 
 import org.metrobots.Robot;
-import org.metrobots.subsystems.IntakeArm;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,12 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ArmForward extends Command {
-	
+public class MoveArmStart extends Command {
+
 	boolean finished;
 	
-    public ArmForward() {
-        // Use requires() here to declare subsystem dependencies
+    public MoveArmStart() {
+    	requires(Robot.mIntakeArm);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +23,7 @@ public class ArmForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double goalPulse = 0.0;
+    	double goalPulse = 45;
 		DriverStation.reportError("A pressed", false);
     	double speed = 0.0;
     	double currentPulse = Robot.mIntakeArm.getRawArm();
@@ -43,13 +42,11 @@ public class ArmForward extends Command {
     	}
     	
     	Robot.mIntakeArm.armMovement(speed);
-    	/************************************/
-    	Robot.mIntakeArm.printEncoder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-		return finished;
+        return finished;
     }
 
     // Called once after isFinished returns true

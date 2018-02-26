@@ -2,6 +2,7 @@ package org.metrobots.commands;
 
 import org.metrobots.OI;
 import org.metrobots.Robot;
+import org.metrobots.commands.auto.DriveForward;
 import org.metrobots.commands.auto.groups.LLeft;
 import org.metrobots.commands.auto.groups.LMiddle;
 import org.metrobots.commands.auto.groups.LRight;
@@ -11,6 +12,7 @@ import org.metrobots.commands.auto.groups.RRight;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,12 +23,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutoConfiguration extends Command {
 	
+	LLeft LLeft = new LLeft();
+	LMiddle LMiddle = new LMiddle();
+	LRight LRight = new LRight();
+	RLeft RLeft = new RLeft();
+	RMiddle RMiddle = new RMiddle();
+	RRight RRight = new RRight();
+	
+	int defaultSet = 0;
+	int left = 1;
+	int middle = 2;
+	int right = 3;
+	
 	String autoSet = "";
-	String positionSet = "";
-	int fieldPosition = 0;
+	String gameData;
 	
-	SendableChooser autoSelect = new SendableChooser();
+	boolean finished;
 	
+	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>();
+
     public AutoConfiguration() {
     	
     }
@@ -38,11 +53,19 @@ public class AutoConfiguration extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	autoSelect.addObject("Left position", );
-    	DriverStation.reportError("You have reached the beginning of execute in autoconfig", true);
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		SmartDashboard.putString("Game Data:", gameData);
+    	
+    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	
+    	SmartDashboard.putString("Game Data:", gameData);
+    	SmartDashboard.putString("What driverstation position are you in?", null);
+    	
+    	autoSelector.addDefault("Default", defaultSet);
+    	autoSelector.addObject("Left position", left);
+    	autoSelector.addObject("Middle position", middle);
+    	autoSelector.addObject("Right position", right);
+    	
+    	SmartDashboard.putData("Autonomous selector", autoSelector);
+    	
 //		while (!isInitPosSet) {
 //			SmartDashboard.putString("Dr. B", "in the loop");
 //			SmartDashboard.putString("Initial Position", "N/A");
@@ -51,25 +74,52 @@ public class AutoConfiguration extends Command {
 //				isInitPosSet = !isInitPosSet;
 //			}
 //		}
-//		SmartDashboard.putString("Dr. B", "You are out of the loop");
-		if (gameData.charAt(0) == 'L') {
-			//left auto code
-			autoSet = "L";
-		} 
-		else {
-			autoSet = "R";
+		
+		if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
+			SmartDashboard.putString("You selected LLeft!", null);
+			Scheduler.getInstance().add(new LLeft());
+			finished = true;
+		}
+		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
+			SmartDashboard.putString("You selected LMiddle!", null);
+			Scheduler.getInstance().add(new LMiddle());
+			finished = true;
+		}
+		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
+			SmartDashboard.putString("You selected LRight!", null);
+			Scheduler.getInstance().add(new LRight());
+			finished = true;
+		}
+		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
+			SmartDashboard.putString("You selected RLeft!", null);
+			Scheduler.getInstance().add(new RLeft());
+			finished = true;
+		}
+		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
+			SmartDashboard.putString("You selectedc RMiddle!", null);
+			Scheduler.getInstance().add(new RMiddle());
+			finished = true;
+		}
+		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
+			SmartDashboard.putString("You selected RRight!", null);
+			Scheduler.getInstance().add(new RRight());
+			finished = true;
+		}
+		else if (gameData == null || autoSelector.getSelected() == null) {
+			finished = false;
 		}
 		
+    }
 //		if (OI.is0XPressed()) {		//left side on the field
 //			DriverStation.reportError("You pressed X", true);
-			if (autoSet == "R") {
-				Scheduler.getInstance().add(new RLeft());
-			}
-		
-			else if (autoSet == "L") {
-				Scheduler.getInstance().add(new LLeft());
-			}
-		}
+//			if (autoSet == "R") {
+//				Scheduler.getInstance().add(new RLeft());
+//			}
+//		
+//			else if (autoSet == "L") {
+//				Scheduler.getInstance().add(new LLeft());
+//			}
+//		}
 //		
 //		else if (OI.is0YPressed()) {	//middle side on the field
 //			DriverStation.reportError("You pressed Y", true);
@@ -94,7 +144,7 @@ public class AutoConfiguration extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.isAuto;
+        return finished;
     }
 
     // Called once after isFinished returns true

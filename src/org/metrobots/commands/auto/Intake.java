@@ -5,12 +5,12 @@ import org.metrobots.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class OuttakeAuto extends Command {
+public class Intake extends Command {
 
 	/**
 	 * Spin wheels inward. <p>
 	 */
-    public OuttakeAuto() {
+    public Intake() {
     	requires(Robot.mCubeController);
     }
 
@@ -20,8 +20,7 @@ public class OuttakeAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.mCubeController.intake(Constants.outtakeMotorSpeed);
-//	    Robot.mCubeController.intake(1.0);
+	    Robot.mCubeController.intake(1.0);
     }
 	    
     //  

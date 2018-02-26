@@ -7,9 +7,9 @@ import org.metrobots.commands.auto.DriveForward;
  *
  */
 public class LRight extends CommandGroup {
-//THIS IS ARBITRARY DO NOT RUN
+
     public LRight() {
-        this.addSequential(new DriveForward(100));
+        this.addSequential(new DriveForward(200));
     }
 
 }

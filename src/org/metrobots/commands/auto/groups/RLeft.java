@@ -8,10 +8,10 @@ import org.metrobots.commands.auto.DriveForward;
  * Left = driver station position
  */
 public class RLeft extends CommandGroup {
-//ALL NUMBERS ARE ARBITRARY DO NOT RUN
+
     public RLeft() {
     	
-    	this.addSequential(new DriveForward(100));
+    	this.addSequential(new DriveForward(200));
     	
     }
 
