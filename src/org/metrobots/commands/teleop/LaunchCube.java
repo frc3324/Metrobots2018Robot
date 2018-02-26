@@ -43,15 +43,13 @@ public class LaunchCube extends Command {
 //    	 Robot.mCubeController.intake(motorSpeed);
 //    	}
     	if (OI.is1LeftBumperPressed()) { //intake
-    		motorSpeed = 1;
+    		motorSpeed = 1.0;
     	}
-<<<<<<< HEAD:src/org/metrobots/commands/teleop/OuttakeTeleop.java
     	else if (OI.is1RightBumperPressed()) {
-    		motorSpeed = -1;
-=======
+    		motorSpeed = -1.0;
+    	}
     	else if (OI.is1RightBumperPressed()) { //outtake
     		motorSpeed = -0.8;
->>>>>>> 02b1ea9ef9828fd8e6e3f251e4e3f4fa4a9a7a94:src/org/metrobots/commands/teleop/LaunchCube.java
     	}
     	else {
     		motorSpeed = 0.0;
