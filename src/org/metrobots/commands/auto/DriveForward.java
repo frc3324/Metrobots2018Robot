@@ -30,37 +30,40 @@ public class DriveForward extends Command {
 	@Override
 	protected void initialize() {
 //		currentDistance = (DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2;
-		Robot.mDriveTrain.setSafetyEnabled(false);
+//		Robot.mDriveTrain.setSafetyEnabled(false);
 		DriveTrain.clearEncoder();
 	}
 	
 	@Override
 	protected void execute() {
-//		goalDistance = 10; 
-//		double currentPulse = 0.0;
-//		currentPulse = mTrain.getLeftDistance();
-//		SmartDashboard.putNumber("STRING", currentPulse);
-////		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
-////		speed = pulsesToTravel / totalPulses;
-//		SmartDashboard.putNumber("goalDistance", goalDistance);
+
 //		distanceToTravel = goalDistance - currentDistance;
 //		speed = distanceToTravel / goalDistance;
-//		SmartDashboard.putNumber("SPEED: ", speed);
-//		//make speed negative to go forward in real life
+//		Smd artDashboard.putNumber("SPEED: ", speed);
+//		//make speed negative to go forward in real lifes
 //		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
-		currentDistance = (DriveTrain.getLeftDistance() - DriveTrain.getRightDistance()) / 2.0;
-		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE: ", currentPulse);
+		currentDistance = (Math.abs(DriveTrain.getLeftDistance()) + Math.abs(DriveTrain.getRightDistance())) / 2.0;
+		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
 		distanceToTravel = goalDistance - currentDistance;
-		if (Math.abs(distanceToTravel / goalDistance) < 0.35) {
-			speed = distanceToTravel / goalDistance;
-		}
+		
+//		if (Math.abs(distanceToTravel / goalDistance) < 0.35) {
+//			speed = distanceToTravel / goalDistance;
+//		} else {
+			speed = 1;
+//		}
+//		speed = distanceToTravel / goalDistance;
+		
 		LSpeed = speed;
-		RSpeed = speed * 0.95;
+		RSpeed = speed;
+		SmartDashboard.putNumber("LSpeed", LSpeed);
+		SmartDashboard.putNumber("RSpeed", RSpeed);
+
 		if (Math.abs(distanceToTravel) < 1) {
 			driveFinished = true;
 		}
+		
 		//make speed negative to go forward in real life
-		Robot.mDriveTrain.tankDrive(LSpeed, RSpeed, true);
+		Robot.mDriveTrain.tankDrive(-LSpeed, -RSpeed, true);
 		
 //		Robot.mDriveTrain.arcadeDrive(-0.4, 0.0, true);
 		
@@ -91,6 +94,10 @@ public class DriveForward extends Command {
 //	
 	}	
 
+	
+	protected void end() {
+		Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
+	}
 	@Override
 	protected void interrupted() {}
 	

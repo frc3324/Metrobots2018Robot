@@ -26,11 +26,6 @@ public class RotatePID extends Command {
 	private static final double kP = 1.0;
 	private static final double kI = 0.0;
 	private static final double kD = 0.0;
-
-
-	
-	
-	
 	
     public RotatePID(double angle) {
         // Use requires() here to declare subsystem dependencies
@@ -58,7 +53,6 @@ public class RotatePID extends Command {
     	turnController.setContinuous(true);
 	}
     
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	turnController.enable();

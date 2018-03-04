@@ -18,16 +18,16 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 2; //0
-	public final static int blMotorPort = 0; //2
-	public final static int frMotorPort = 1; //for testing auto
-	public final static int brMotorPort = 6; //6
-	public final static int MOTOR_PORT_ARM_LEFT = 5;//6
-	public final static int MOTOR_PORT_ARM_RIGHT = 8;
-	public final static int leftIntakeMotorPort = 7;
-	public final static int rightIntakeMotorPort = 9; //in brake
-	public final static int LINEAR_SLIDE_MOTOR_PORT = 3;
-	public final static int WINCH_PORT = 0;
+	public final static int flMotorPort = 4; //checked
+	public final static int blMotorPort = 6; //checked
+	public final static int frMotorPort = 0; //checked
+	public final static int brMotorPort = 2; //checked
+	public final static int MOTOR_PORT_ARM_LEFT = 9; //checked
+	public final static int MOTOR_PORT_ARM_RIGHT = 8; //checked
+	public final static int leftIntakeMotorPort = 5; //checked
+	public final static int rightIntakeMotorPort = 3; //checked
+	public final static int LINEAR_SLIDE_MOTOR_PORT = 1; 
+	public final static int WINCH_PORT = 7;
 	
 	/*
 	 * Pneumatic Ports
@@ -47,22 +47,22 @@ public class Constants {
 	public final static int frEncoder2 = 7; // Not actually
 	public final static int brEncoder1 = 2;
 	public final static int brEncoder2 = 3;*/
-	public final static int shooterEncoder1 = 10; // Pin 0 on MXP theoretically
-	public final static int shooterEncoder2 = 11; // Pin 1 on MXP
+//	public final static int shooterEncoder1 = 10; // Pin 0 on MXP theoretically
+//	public final static int shooterEncoder2 = 11; // Pin 1 on MXP
 //	public final static int ultrasonicOut = 8;
 //	public final static int ultrasonicIn = 9;
 	
-	public final static int leftEncoderPortA = 0;
-	public final static int leftEncoderPortB = 1;
-	public final static int rightEncoderPortA = 2;
-	public final static int rightEncoderPortB = 3;
+	public final static int leftEncoderPortA = 0; //checked
+	public final static int leftEncoderPortB = 1; //checked
+	public final static int rightEncoderPortA = 2; //chece
+	public final static int rightEncoderPortB = 3; //checked
 //	public final static int testArmEncoderA = 7; //7 for one on motor
 //	public final static int testArmEncoderB = 8; //8 for one on motor
-	public final static int ArmEncoderACLK = 1; //yellow
-	public final static int ArmEncoderSW = 2; //yellow
-	public final static int ArmEncoderDT = 0; //white
-	public final static int LimitSwitchFrontPort = 8;   //arbitrary ports
-	public final static int LimitSwitchBackPort = 9;	//arbitrary ports
+	public final static int ArmEncoderACLK = 6; //yellow
+	public final static int ArmEncoderSW = 4; //yellow
+	public final static int ArmEncoderDT = 5; //white
+//	public final static int LimitSwitchFrontPort = 8;   //arbitrary ports
+//	public final static int LimitSwitchBackPort = 9;	//arbitrary ports
 	
 //	public final static int CAMERA_PORT = 0;
 	

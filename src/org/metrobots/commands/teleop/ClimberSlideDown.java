@@ -1,6 +1,7 @@
 package org.metrobots.commands.teleop;
 
 
+import org.metrobots.OI;
 import org.metrobots.Robot;
 import org.metrobots.subsystems.Climber;
 
@@ -19,17 +20,19 @@ public class ClimberSlideDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.mClimber.grabBar(-1.0);
+//    	Robot.mClimber.grabBar(-1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-//    	if (gamepad1.getBButton()) {
-//    		mClimber.grabBar(-1.0);
+//    	if (OI.get1LeftButton()) {
+//    		Robot.mClimber.grabBar(-1.0);
+//    	}
+//    	else if (OI.get1RightButton()) {
+//    		Robot.mClimber.grabBar(1.0);
 //    	}
 //    	else {
-//    		mClimber.grabBar(0.0);
+//    		Robot.mClimber.grabBar(0.0);
 //    	}
     }
 
@@ -46,5 +49,6 @@ public class ClimberSlideDown extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.mClimber.grabBar(0.0);
     }
 }

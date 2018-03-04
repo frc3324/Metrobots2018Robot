@@ -17,13 +17,13 @@ public class DriveTank extends Command {
 	}
 
 	protected void execute() {
-		// TODO Auto-generated method stub
-		//Add robot sensitivity
+//		// TODO Auto-generated method stub
+//		//Add robot sensitivity
 		Robot.mDriveTrain.printEncoder();
 		double leftY = OI.get0LeftY(); // Get y value of left joystick
 		double rightX = OI.get0RightX(); // Get x value of right joystick 
 		
-		SmartDashboard.putNumber("RightX", rightX);
+//		SmartDashboard.putNumber("RightX", rightX);
 		
 		if (OI.get0RightBumperToggled()) {
 			slowModeActivated = !slowModeActivated;

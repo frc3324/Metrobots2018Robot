@@ -1,31 +1,53 @@
 package org.metrobots.commands.teleop;
 
+import org.metrobots.OI;
 import org.metrobots.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Winches extends Command {
-	double winchMotorSpeed = -1.0;
+	
+	double upSpeed;
+	
     public Winches() {
     	requires(Robot.mClimber);
-    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
-    // executes like a guillotine
-    //or the salem witch trials
     protected void execute() {
     	double currentPulseArm = Robot.mIntakeArm.getRawArm();
-    	if (currentPulseArm < 45) {
-    		Robot.mIntakeArm.armMovement(0.2);
-    	} else {
-    		Robot.mIntakeArm.armMovement(0.0);
+//    	if (currentPulseArm < 45) {
+//    		Robot.mIntakeArm.armMovement(0.2);
+//    	} else {
+//    		Robot.mIntakeArm.armMovement(0.0);
+//    	}
+    	
+    	if (OI.get1BButton()) {
+    		Robot.mClimber.reelWinch(-1.0);
     	}
-    	Robot.mClimber.reelWinch(winchMotorSpeed);
+    	else {
+    		Robot.mClimber.reelWinch(0.0);
+    	}
+    	
+    	if (OI.get1LeftButton()) {
+    		Robot.mClimber.grabBar(1.0);
+    		DriverStation.reportError("Pressed left", false);
+    	}
+    	else if (OI.get1RightButton()) {
+    		Robot.mClimber.grabBar(-1.0);
+    		DriverStation.reportError("Pressed right", false);
+    	}
+    	else {
+    		Robot.mClimber.grabBar(0.0);
+    	}
+//    	upSpeed = OI.get1RightY();
+//    	SmartDashboard.putNumber("Slide speed", upSpeed);
+//     	Robot.mClimber.grabBar(upSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

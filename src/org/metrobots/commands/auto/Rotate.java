@@ -5,7 +5,6 @@ import com.kauailabs.navx.frc.AHRS;
 import org.metrobots.Constants;
 import  org.metrobots.Robot;
 import	org.metrobots.subsystems.DriveTrain;
-import org.metrobots.commands.teleop.DriveTank;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
@@ -48,8 +47,6 @@ public class Rotate extends Command {
 	 */
 	protected void execute() {
 //		isDone = false;
-//		SmartDashboard.putBoolean("Initialized?", true);
-		DriverStation.reportError("Initialized ", true);
 		double measuredAngle = Robot.mGyro.getPidAngle();
         SmartDashboard.putNumber("Gyro", measuredAngle);
         angleToTravel = Math.abs(specifiedAngle) - Math.abs(measuredAngle);

@@ -30,10 +30,14 @@ public class AutoConfiguration extends Command {
 	RMiddle RMiddle = new RMiddle();
 	RRight RRight = new RRight();
 	
+	Command selectedCommand;
+	
 	int defaultSet = 0;
 	int left = 1;
 	int middle = 2;
 	int right = 3;
+	
+	int aValue = 0;
 	
 	String autoSet = "";
 	String gameData;
@@ -57,7 +61,7 @@ public class AutoConfiguration extends Command {
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
     	SmartDashboard.putString("Game Data:", gameData);
-    	SmartDashboard.putString("What driverstation position are you in?", null);
+//    	SmartDashboard.putString("What driverstation position are you in?", null);
     	
     	autoSelector.addDefault("Default", defaultSet);
     	autoSelector.addObject("Left position", left);
@@ -74,40 +78,51 @@ public class AutoConfiguration extends Command {
 //				isInitPosSet = !isInitPosSet;
 //			}
 //		}
-		
-		if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
-			SmartDashboard.putString("You selected LLeft!", null);
-			Scheduler.getInstance().add(new LLeft());
+		if (autoSelector.getSelected() == 0) {
+			selectedCommand = new DriveForward(10);
+			finished = false;
+		}
+		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
+			SmartDashboard.putString("You selected LLeft!", "");
+//			Scheduler.getInstance().add(new LLeft());
+			selectedCommand = new LLeft();
 			finished = true;
 		}
 		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
-			SmartDashboard.putString("You selected LMiddle!", null);
-			Scheduler.getInstance().add(new LMiddle());
+			SmartDashboard.putString("You selected LMiddle!", "");
+//			Scheduler.getInstance().add(new LMiddle());
+			selectedCommand = new LMiddle();
 			finished = true;
 		}
 		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
-			SmartDashboard.putString("You selected LRight!", null);
-			Scheduler.getInstance().add(new LRight());
+			SmartDashboard.putString("You selected LRight!", "");
+//			Scheduler.getInstance().add(new LRight());
+			selectedCommand = new LRight();
 			finished = true;
 		}
 		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
-			SmartDashboard.putString("You selected RLeft!", null);
-			Scheduler.getInstance().add(new RLeft());
+			SmartDashboard.putString("You selected RLeft!", "");
+//			Scheduler.getInstance().add(new RLeft());
+			selectedCommand = new RLeft();
 			finished = true;
 		}
 		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
-			SmartDashboard.putString("You selectedc RMiddle!", null);
-			Scheduler.getInstance().add(new RMiddle());
+			SmartDashboard.putString("You selected RMiddle!", "");
+//			Scheduler.getInstance().add(new RMiddle());
+			selectedCommand = new RMiddle();
 			finished = true;
 		}
 		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
-			SmartDashboard.putString("You selected RRight!", null);
-			Scheduler.getInstance().add(new RRight());
+			SmartDashboard.putString("You selected RRight!", "");
+//			Scheduler.getInstance().add(new RRight());
+			selectedCommand = new RRight();
 			finished = true;
 		}
-		else if (gameData == null || autoSelector.getSelected() == null) {
-			finished = false;
-		}
+		DriverStation.reportError("Selected" + autoSelector.getSelected(), false);
+//		else if (gameData == null || autoSelector.getSelected() == null) {
+//			selectedCommand = new DriveForward(192);
+//			finished = false;
+//		}
 		
     }
 //		if (OI.is0XPressed()) {		//left side on the field
@@ -149,6 +164,10 @@ public class AutoConfiguration extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    }
+    
+    public Command getAutoCommand() {
+    	return selectedCommand;
     }
 
     // Called when another command which requires one or more of the same

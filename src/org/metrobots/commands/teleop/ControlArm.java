@@ -5,6 +5,7 @@ import org.metrobots.Robot;
 import org.metrobots.subsystems.IntakeArm;
 //import org.metrobots.subsystems.LimitSwitch;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -42,7 +43,7 @@ public class ControlArm extends Command {
      * Arm should be set to starting position.
      */	
     protected void initialize() {
-    	Robot.mIntakeArm.resetEncoder();
+//    	Robot.mIntakeArm.resetEncoder();
     	
 //    	DriverStation.reportError("HERE!!!!!", false);
 //    	
@@ -56,35 +57,34 @@ public class ControlArm extends Command {
     protected void execute() {
 
     	/*******************************/
-    	//BEWARE: ARBITRARY NUMERALS BELOW
     	//aka don't forget to count pulses in a full rotation of the intake arm
-//    	if (gamepad1.getAButton()) {
+//    	if (OI.get1AButton()) {
 //    		goalPulse = 0.0;
 //    		DriverStation.reportError("A pressed", false);
 //    	}
-//    	else if (gamepad1.getBButton()){
+//    	else if (OI.get1BButton()){
 //    		goalPulse = 11.25;
 //    		DriverStation.reportError("B pressed", false);
 //
 //    	}
-//    	else if (gamepad1.getXButton()) {
+//    	else if (OI.get1XButton()) {
 //    		goalPulse = 33.25;
 //    		DriverStation.reportError("X pressed", false);
 //
 //    	}
-//    	else if (gamepad1.getYButton()) {
+//    	else if (OI.get1YButton()) {
 //    		goalPulse = 45.0;
 //    		DriverStation.reportError("Y pressed", false);
 //
-//    	}
+//    	}//useful like me
 //    	double speed = 0.0;
-//    	double currentPulse = mIntakeArm.getRawArm();
-//		SmartDashboard.putNumber("CURRENTPULSE (LINEPLOT): ", currentPulse);
-//		SmartDashboard.putNumber("CURRENTPULSE (textbox): ", currentPulse);
-//    	double diffPulse = goalPulse - currentPulse;
+//    	double currentPulse = Robot.mIntakeArm.getRawArm();
+//		SmartDashboard.putNumber("CURRENTPULSE", currentPulse);
+//		SmartDashboard.putNumber("GOALPULSE", goalPulse);
+//    	double diffPulse = goalPulse + currentPulse; //change to minus if the currentPulse is positive
 //    	
 //    	if (Math.abs(diffPulse) > 0.0) {
-//    		speed = diffPulse / 50;
+//    		speed = diffPulse / 15;
 ////        	finished = false;
 //    	}
 //    	else {
@@ -92,7 +92,7 @@ public class ControlArm extends Command {
 ////    		mIntakeArm.armMovement(0.0);
 //    	}
 //    	
-//    	mIntakeArm.armMovement(speed);
+//    	Robot.mIntakeArm.armMovement(speed);
     	/************************************/
     	
 //    	if (diffPulse > 0.5) {
@@ -133,12 +133,13 @@ public class ControlArm extends Command {
 //	    	DriverStation.reportWarning("LIMIT SWITCHES WENT OFF", false);
 //	    }
 //    	
-    	double leftY = OI.get1YAxis(Hand.kLeft);
+    	/******************************************************************/
+    	double leftY = OI.get1LeftYAxis();
+    	DriverStation.reportError("X AXIS" + leftY, false);
     	double speedArm = leftY;
-    	leftY *= 1;
     	Robot.mIntakeArm.armMovement(speedArm);
-    	double currentPulse = Robot.mIntakeArm.getRawArm();
-    	SmartDashboard.putNumber("CURRENTPULSE: ", currentPulse);
+    	double joystickCurrentPulse = Robot.mIntakeArm.getRawArm();
+    	SmartDashboard.putNumber("CURRENTPULSE: ", joystickCurrentPulse);
     	/******************************************************************/
     
 //    	DriverStation.reportError("GOALPULSE: " + mIntakeArm.getRawArm(), false);

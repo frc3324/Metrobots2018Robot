@@ -1,6 +1,9 @@
 package org.metrobots.commands.teleop;
 
 
+import org.metrobots.OI;
+import org.metrobots.Robot;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
@@ -12,24 +15,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PressureSwitch extends Command {
 	boolean gearShifterStatus = false;
-	private DoubleSolenoid gearshifter = new DoubleSolenoid(0, 1);
-	
 	
 	Timer timer;
 	private double currentTime;
 	private double currentEncoder;
 	private double velocity;
+	boolean switchFinished;
+	private int val = 0;
 	/**
 	 * Move pnuematic piston to opposite state when called. <p>
 	 */
 	
     public PressureSwitch() {
+    	requires(Robot.mPneumatics);
     	timer = new Timer();
-
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	DriverStation.reportError("HERE", false);
     	timer.start();
     	//compressor.setClosedLoopControl(true);
     	//compressor.start();
@@ -41,15 +45,18 @@ public class PressureSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	DriverStation.reportError("A IS PRESSED!", false);
-    	
-    	
+    	DriverStation.reportError("0A IS PRESSED!", false);
+    	SmartDashboard.putNumber("Pressure Count", val);
+    	val++;
     	if (gearShifterStatus) {
-    		gearshifter.set(DoubleSolenoid.Value.kForward);
+//    		Robot.mPneumatics.setHighGear();
     		gearShifterStatus = !gearShifterStatus;
+    		switchFinished = true;
+    		
     	} else {
-    		gearshifter.set(DoubleSolenoid.Value.kReverse);
-    		gearShifterStatus = !gearShifterStatus;
+    		Robot.mPneumatics.setLowGear();
+//    		gearShifterStatus = !gearShifterStatus;
+    		switchFinished = true;
     	}
     	
 //    	if (/*Current Encoder*/ > 18.85) {
@@ -58,7 +65,7 @@ public class PressureSwitch extends Command {
 //    		velocity = currentTime / currentEncoder;
 //    		
 //    	}
-    	SmartDashboard.putBoolean("Switch Status", gearShifterStatus);
+//    	SmartDashboard.putBoolean("Switch Status", gearShifterStatus);
     }
     	
     	/*catch (RuntimeException ex){
@@ -69,7 +76,7 @@ public class PressureSwitch extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return switchFinished;
     }
 
     // Called once after isFinished returns true
