@@ -2,12 +2,20 @@ package org.metrobots.subsystems;
 // Import WPI libraries
 
 import org.metrobots.Constants;
+import org.metrobots.Robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,15 +24,31 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  Add encoders, gyro, and/or other sensors */
 
 // Identify Drivetrain as a subsystem (class)
-public class DriveTrain extends	Subsystem {
+public class DriveTrain extends	Subsystem implements PIDOutput {
 	
 	//Template for constructor of the SpeedControllerGroup class
+	  AHRS ahrs;
+	  PIDController turnController;
+	  double rotateToAngleRate;
+	  
+	  /* The following PID Controller coefficients will need to be tuned */
+	  /* to match the dynamics of your drive system.  Note that the      */
+	  /* SmartDashboard in Test mode has support for helping you tune    */
+	  /* controllers by displaying a form where you can enter new P, I,  */
+	  /* and D constants and test the mechanism.                         */
+	  
+	static final double kP = 0.03;
+	static final double kI = 0.00;
+	static final double kD = 0.00;
+	static final double kF = 0.00;
 	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
 	private static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB, false, Encoder.EncodingType.k4X);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
 	
 	private double rightEncoderDistance = 0.0;
 	private double leftEncoderDistance = 0.0;
+	static final double kToleranceDegrees = 2.0f;
+
 
 	WPI_VictorSPX flMotor = new WPI_VictorSPX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
 	WPI_VictorSPX blMotor = new WPI_VictorSPX(Constants.blMotorPort); 
@@ -41,7 +65,24 @@ public class DriveTrain extends	Subsystem {
 		mDrive.setSafetyEnabled(true);
 		lEncoder.setDistancePerPulse(distancePerPulse);
 		rEncoder.setDistancePerPulse(distancePerPulse);
-	}
+		  try {
+	          /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
+	          /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+	          /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+	          ahrs = new AHRS(SPI.Port.kMXP); 
+	      } catch (RuntimeException ex ) {
+	          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
+	      }
+	      turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+	      turnController.setInputRange(-180.0f,  180.0f);
+	      turnController.setOutputRange(-1.0, 1.0);
+	      turnController.setAbsoluteTolerance(kToleranceDegrees);
+	      turnController.setContinuous(true);
+	      
+	      /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
+	      /* tuning of the Turn Controller's P, I and D coefficients.            */
+	      /* Typically, only the P value needs to be modified.                   */
+	  }
 	
 	/**
 	 * Set safety status of drivetrain motor controllers
@@ -50,6 +91,7 @@ public class DriveTrain extends	Subsystem {
 	public void setSafetyEnabled(boolean status) {
 		mDrive.setSafetyEnabled(status);
 	}
+
 	
 	/**
 	 * Get distance of the left encoder in inches.
@@ -58,7 +100,46 @@ public class DriveTrain extends	Subsystem {
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
-	
+	  public double RotatePID() {
+          boolean rotateToAngle = false;
+              turnController.setSetpoint(90.0f);
+              rotateToAngle = true;
+          double currentRotationRate;
+          if ( rotateToAngle ) {
+              turnController.enable();
+              currentRotationRate = rotateToAngleRate;
+          } else {
+              turnController.disable();
+              currentRotationRate = 0;
+          }
+          try {
+              /* Use the joystick X axis for lateral movement,          */
+              /* Y axis for forward movement, and the current           */
+              /* calculated rotation rate (or joystick Z axis),         */
+              /* depending upon whether "rotate to angle" is active.    */
+             mDrive.arcadeDrive(0, currentRotationRate, false);
+          } catch( RuntimeException ex ) {
+              DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
+          }
+          Timer.delay(0.005);		// wait for a motor update time
+          SmartDashboard.putNumber("Gyro", currentRotationRate);
+          SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
+          return currentRotationRate;
+      }
+//	  SmartDashboard.putNumber("Gyro", currentRotationRate);
+
+  /**
+   * Runs during test mode
+   */
+
+
+  @Override
+  /* This function is invoked periodically by the PID Controller, */
+  /* based upon navX-MXP yaw angle input and PID Coefficients.    */
+  public void pidWrite(double output) {
+      rotateToAngleRate = output;
+  }
+
 	/**
 	 * Get distance of the right encoder in inches.
 	 * @return

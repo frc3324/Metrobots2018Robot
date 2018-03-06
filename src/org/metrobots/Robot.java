@@ -9,6 +9,8 @@ import org.metrobots.commands.auto.CubeControl;
 import org.metrobots.commands.auto.DriveForward;
 import org.metrobots.commands.auto.DriveForwardTime;
 import org.metrobots.commands.auto.Rotate;
+import org.metrobots.commands.auto.RotatePID;
+//import org.metrobots.commands.auto.RotatePID1;
 import org.metrobots.commands.auto.groups.LLeft;
 //import org.metrobots.commands.auto.groups.LLeft;
 //import org.metrobots.commands.auto.groups.LMiddle;
@@ -20,6 +22,7 @@ import org.metrobots.subsystems.DriveTrain;
 //import org.metrobots.util.LimitSwitch;
 import org.metrobots.subsystems.Gyro;
 import org.metrobots.subsystems.IntakeArm;
+import org.metrobots.subsystems.LimitSwitch;
 import org.metrobots.subsystems.Pneumatics;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -33,6 +36,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
@@ -70,7 +76,11 @@ public class Robot extends IterativeRobot {
 	public static final Climber mClimber = new Climber();
 	public static final AutoConfiguration mConfiguration = new AutoConfiguration();
 	public static final Pneumatics mPneumatics = new Pneumatics();
-//	public static final DriveForward mDriveForward = new DriveForward(192);
+	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
+
+	
+
+//	public static final DriveForward mDriveForward = new DriveForward(192);            */
 	
 	
 	/*
@@ -93,9 +103,10 @@ public class Robot extends IterativeRobot {
 	/**
 	 * When the robot first boots up, initialize all of the gamepads, motor
 	 * controllers, sensors, and subsystems
+	 * 
 	 */
+
 	public void robotInit() {
-        DigitalInput forwardLimitSwitch = new DigitalInput(9);
         SmartDashboard.putData(mClimber);
 		/*
 		 * Initialize gamepads
@@ -202,6 +213,7 @@ public class Robot extends IterativeRobot {
 		/*******************CODETHATWORKS**************************/
 		Robot.mIntakeArm.resetEncoder();
 		Scheduler.getInstance().add(new DriveForward(100));
+//		Scheduler.getInstance().add(new RotatePID1());
 		/*******************CODETHATWORKS**************************/
 //		}
     	

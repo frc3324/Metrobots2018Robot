@@ -27,6 +27,9 @@ public class ControlArm extends Command {
 	boolean startPosition = true; //Assumes arm in starting position at match start
 	double goalPulse = 0.0;
 	double armSpeed = 0.0;
+	
+	boolean pastSwitch = false;
+	
 //	LimitSwitch limitA, limitB;
 	
 	/**
@@ -141,6 +144,19 @@ public class ControlArm extends Command {
     	double joystickCurrentPulse = Robot.mIntakeArm.getRawArm();
     	SmartDashboard.putNumber("CURRENTPULSE: ", joystickCurrentPulse);
     	/******************************************************************/
+    	
+    	/***********************LIMITSWITCH*******************************/
+    	if (Robot.mLimitSwitch.isBackSwitchPressed()) { // && Math.abs(leftY) > 0
+//    		Robot.mIntakeArm.armMovement(0.2);
+    		SmartDashboard.putBoolean("Limit switch pressed", pastSwitch);
+    		if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == false) {
+    			Robot.mIntakeArm.armMovement(leftY);
+    			pastSwitch = true;
+    			SmartDashboard.putBoolean("Out of pressed zone", pastSwitch);
+    		}
+    		pastSwitch = false;
+    	}
+    	/***********************LIMITSWITCH*******************************/
     
 //    	DriverStation.reportError("GOALPULSE: " + mIntakeArm.getRawArm(), false);
      /**
