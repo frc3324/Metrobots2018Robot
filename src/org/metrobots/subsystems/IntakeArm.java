@@ -40,6 +40,11 @@ public class IntakeArm extends Subsystem implements PIDOutput {
 		if (armMotorLeft.getInverted()) {
 			armMotorLeft.setInverted(true);
 		}
+		 turnController = new PIDController(kP, kI, kD, kF, armEncoder, this);
+	      turnController.setInputRange(-45f,  45f);
+	      turnController.setOutputRange(-1.0, 1.0);
+	      turnController.setAbsoluteTolerance(kToleranceDegrees);
+	      turnController.setContinuous(true);
 	}
 	 
 	/**
@@ -51,18 +56,13 @@ public class IntakeArm extends Subsystem implements PIDOutput {
 //    public void initializeCounter() {
 //        counter.reset();
 //    }
-	  public double RotatePID(double angle, double speed) { // Necessary code for rotating using PID with rotate
-          boolean rotateToAngle = false;
+	  public double RotateARM(double angle, double speed) { // Necessary code for rotating using PID with rotate
               turnController.setSetpoint(angle);
-              rotateToAngle = true;
           double currentMovementRate;
-          if ( rotateToAngle ) {
               turnController.enable();
               currentMovementRate = rotateToAngleRate * speed;
-          } else {
               turnController.disable();
               currentMovementRate = 0;
-          }
           try {
              
           } catch( RuntimeException ex ) {
@@ -117,5 +117,8 @@ public class IntakeArm extends Subsystem implements PIDOutput {
 	
     public void initDefaultCommand() {
         //Do nothing
+    }
+    public void pidWrite(double output) {
+        rotateToAngleRate = output;
     }
 }

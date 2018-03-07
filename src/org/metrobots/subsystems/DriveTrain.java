@@ -101,17 +101,12 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		return lEncoder.getDistance();
 	}
 	  public double RotatePID(double angle, double speed) { // Necessary code for rotating using PID with rotate
-          boolean rotateToAngle = false;
               turnController.setSetpoint(angle);
-              rotateToAngle = true;
-          double currentRotationRate;
-          if ( rotateToAngle ) {
+              double currentRotationRate;
               turnController.enable();
               currentRotationRate = rotateToAngleRate * speed;
-          } else {
               turnController.disable();
               currentRotationRate = 0;
-          }
           try {
              mDrive.arcadeDrive(0, -currentRotationRate, false);
           } catch( RuntimeException ex ) {
@@ -129,13 +124,10 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
               turnController.setSetpoint(0);
               rotateToAngle = true;
           double currentRotationRate;
-          if ( rotateToAngle ) {
               turnController.enable();
               currentRotationRate = rotateToAngleRate * speed;
-          } else {
               turnController.disable();
               currentRotationRate = 0;
-          }
           try {
               /* Use the joystick X axis for lateral movement,          */
               /* Y axis for forward movement, and the current           */
