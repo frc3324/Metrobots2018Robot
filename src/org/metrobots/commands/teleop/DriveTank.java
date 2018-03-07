@@ -11,6 +11,7 @@ import org.metrobots.Robot;
 public class DriveTank extends Command {
 	
 	boolean slowModeActivated = false;
+	boolean isTurning;
 	
 	public DriveTank() {
 		requires(Robot.mDriveTrain);
@@ -24,7 +25,18 @@ public class DriveTank extends Command {
 		double rightX = OI.get0RightX(); // Get x value of right joystick 
 		
 //		SmartDashboard.putNumber("RightX", rightX);
-		
+		if (rightX == 0) {
+			Robot.mDriveTrain.GyroStabilize(leftY);
+			if (isTurning) {
+				// Reset Gyro
+				Robot.mGyro.clear();
+				isTurning = false;
+			}
+		} else if (Math.abs(rightX) > 0) {
+			Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
+			isTurning = true;
+		}
+	
 		if (OI.get0RightBumperToggled()) {
 			slowModeActivated = !slowModeActivated;
 		}
@@ -33,7 +45,6 @@ public class DriveTank extends Command {
 			leftY *= 0.5;
 		}
 		DriverStation.reportError("LEFTY: "  + leftY, true);
-		Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
 		//Robot.mDriveTrain.arcadeDrive(leftY, rightX, true);
 	//	DriverStation.reportError(", printTrace);
 		//Robot.mDriveTrain.printEncoder();

@@ -9,13 +9,22 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class IntakeArm extends Subsystem {
-	
+public class IntakeArm extends Subsystem implements PIDOutput {
+	  PIDController turnController;
+	private double rotateToAngleRate;	  
+	static final double kP = 0.03;
+	static final double kI = 0.00;
+	static final double kD = 0.00;
+	static final double kF = 0.00;
+	static final double kToleranceDegrees = 2.0f;
+
 //	DigitalInput limitSwitch = new DigitalInput(9);
 //    Counter counter = new Counter(limitSwitch);
 	static Encoder armEncoder = new Encoder(Constants.ArmEncoderACLK, Constants.ArmEncoderDT, Constants.ArmEncoderSW);
@@ -42,6 +51,28 @@ public class IntakeArm extends Subsystem {
 //    public void initializeCounter() {
 //        counter.reset();
 //    }
+	  public double RotatePID(double angle, double speed) { // Necessary code for rotating using PID with rotate
+          boolean rotateToAngle = false;
+              turnController.setSetpoint(angle);
+              rotateToAngle = true;
+          double currentMovementRate;
+          if ( rotateToAngle ) {
+              turnController.enable();
+              currentMovementRate = rotateToAngleRate * speed;
+          } else {
+              turnController.disable();
+              currentMovementRate = 0;
+          }
+          try {
+             
+          } catch( RuntimeException ex ) {
+              DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
+          }
+          SmartDashboard.putNumber("Gyro", currentMovementRate);
+//          SmartDashboard.putNumber("Gyro1", ());
+          return currentMovementRate;
+      }
+	  
 	public void resetEncoder() {
 		armEncoder.reset();
 //		testArmEncoder.reset();

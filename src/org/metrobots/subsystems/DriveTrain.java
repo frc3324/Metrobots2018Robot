@@ -100,9 +100,33 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
-	  public double RotatePID(double angle, double speed) {
+	  public double RotatePID(double angle, double speed) { // Necessary code for rotating using PID with rotate
           boolean rotateToAngle = false;
               turnController.setSetpoint(angle);
+              rotateToAngle = true;
+          double currentRotationRate;
+          if ( rotateToAngle ) {
+              turnController.enable();
+              currentRotationRate = rotateToAngleRate * speed;
+          } else {
+              turnController.disable();
+              currentRotationRate = 0;
+          }
+          try {
+             mDrive.arcadeDrive(0, -currentRotationRate, false);
+          } catch( RuntimeException ex ) {
+              DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
+          }
+          SmartDashboard.putNumber("Gyro", currentRotationRate);
+          SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
+          return currentRotationRate;
+      }
+	  public void turnControllerDisable() { //Disables the PIDController
+		  turnController.disable();
+	  }
+	  public double GyroStabilize(double speed) { // Same as above, but always turns to 0 and is used to keep going straight in teleop
+          boolean rotateToAngle = false;
+              turnController.setSetpoint(0);
               rotateToAngle = true;
           double currentRotationRate;
           if ( rotateToAngle ) {
@@ -117,7 +141,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
               /* Y axis for forward movement, and the current           */
               /* calculated rotation rate (or joystick Z axis),         */
               /* depending upon whether "rotate to angle" is active.    */
-             mDrive.arcadeDrive(0, currentRotationRate, false);
+             mDrive.arcadeDrive(speed, -currentRotationRate, false);
           } catch( RuntimeException ex ) {
               DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
           }
