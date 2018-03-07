@@ -41,6 +41,7 @@ public class IntakeArm extends Subsystem implements PIDOutput {
 			armMotorLeft.setInverted(true);
 		}
 		 turnController = new PIDController(kP, kI, kD, kF, armEncoder, this);
+//		 turnController = new PIDController(kP, kI, kD, kF, armEncoder.getDistance(), this); Option 2
 	      turnController.setInputRange(-45f,  45f);
 	      turnController.setOutputRange(-1.0, 1.0);
 	      turnController.setAbsoluteTolerance(kToleranceDegrees);
