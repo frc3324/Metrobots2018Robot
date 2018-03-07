@@ -100,14 +100,14 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
-	  public double RotatePID() {
+	  public double RotatePID(double angle, double speed) {
           boolean rotateToAngle = false;
-              turnController.setSetpoint(90.0f);
+              turnController.setSetpoint(angle);
               rotateToAngle = true;
           double currentRotationRate;
           if ( rotateToAngle ) {
               turnController.enable();
-              currentRotationRate = rotateToAngleRate;
+              currentRotationRate = rotateToAngleRate * speed;
           } else {
               turnController.disable();
               currentRotationRate = 0;
@@ -121,7 +121,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
           } catch( RuntimeException ex ) {
               DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
           }
-          Timer.delay(0.005);		// wait for a motor update time
           SmartDashboard.putNumber("Gyro", currentRotationRate);
           SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
           return currentRotationRate;

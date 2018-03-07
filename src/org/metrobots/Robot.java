@@ -5,12 +5,10 @@ import java.io.IOException;
 import org.metrobots.commands.AutoConfiguration;
 //import org.metrobots.commands.AutoConfiguration;
 import org.metrobots.commands.DriveGroup;
-import org.metrobots.commands.auto.CubeControl;
+//import org.metrobots.commands.auto.CubeControl;
 import org.metrobots.commands.auto.DriveForward;
-import org.metrobots.commands.auto.DriveForwardTime;
+//import org.metrobots.commands.auto.DriveForwardTime;
 import org.metrobots.commands.auto.Rotate;
-import org.metrobots.commands.auto.RotatePID;
-//import org.metrobots.commands.auto.RotatePID1;
 import org.metrobots.commands.auto.groups.LLeft;
 //import org.metrobots.commands.auto.groups.LLeft;
 //import org.metrobots.commands.auto.groups.LMiddle;
@@ -23,7 +21,7 @@ import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.subsystems.Gyro;
 import org.metrobots.subsystems.IntakeArm;
 import org.metrobots.subsystems.LimitSwitch;
-import org.metrobots.subsystems.Pneumatics;
+//import org.metrobots.subsystems.Pneumatics;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -75,7 +73,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeArm mIntakeArm = new IntakeArm();
 	public static final Climber mClimber = new Climber();
 	public static final AutoConfiguration mConfiguration = new AutoConfiguration();
-	public static final Pneumatics mPneumatics = new Pneumatics();
+//	public static final Pneumatics mPneumatics = new Pneumatics();
 	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
 
 	

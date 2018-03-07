@@ -46,7 +46,6 @@ public class DriveForward extends Command {
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
 		distanceToTravel = goalDistance - currentDistance;
 		
-		Robot.mDriveTrain.RotatePID();
 
 		
 //		if (Math.abs(distanceToTravel / goalDistance) < 0.35) {

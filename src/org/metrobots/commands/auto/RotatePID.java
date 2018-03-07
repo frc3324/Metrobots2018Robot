@@ -2,130 +2,43 @@ package org.metrobots.commands.auto;
 
 import org.metrobots.Robot;
 
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This is a demo program showing the use of the navX-MXP to implement
- * a "rotate to angle" feature.
  *
- * This example will automatically rotate the robot to one of four
- * angles (0, 90, 180 and 270 degrees).
- *
- * This rotation can occur when the robot is still, but can also occur
- * when the robot is driving.  When using field-oriented control, this
- * will cause the robot to drive in a straight line, in whathever direction
- * is selected.
- *
- * This example also includes a feature allowing the driver to "reset"
- * the "yaw" angle.  When the reset occurs, the new gyro angle will be
- * 0 degrees.  This can be useful in cases when the gyro drifts, which
- * doesn't typically happen during a FRC match, but can occur during
- * long practice sessions.
- *
- * Note that the PID Controller coefficients defined below will need to
- * be tuned for your drive system.
  */
+public class RotatePID extends Command {
+	double angle2;
+	double speed2;
 
-public class RotatePID implements PIDOutput {
-  AHRS ahrs;
-  Joystick stick;
-  PIDController turnController;
-  double rotateToAngleRate;
-  
-  /* The following PID Controller coefficients will need to be tuned */
-  /* to match the dynamics of your drive system.  Note that the      */
-  /* SmartDashboard in Test mode has support for helping you tune    */
-  /* controllers by displaying a form where you can enter new P, I,  */
-  /* and D constants and test the mechanism.                         */
-  
-  static final double kP = 0.03;
-  static final double kI = 0.00;
-  static final double kD = 0.00;
-  static final double kF = 0.00;
-  
-/* This tuning parameter indicates how close to "on target" the    */
-/* PID Controller will attempt to get.                             */
+    public RotatePID(double angle1, double speed1) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.mDriveTrain);
+    	angle2 = angle1;
+    	speed2 = speed1;
+    }
 
-  static final double kToleranceDegrees = 2.0f;
-  
-  public RotatePID() {
-      try {
-          /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
-          /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
-          /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
-          ahrs = new AHRS(SPI.Port.kMXP); 
-      } catch (RuntimeException ex ) {
-          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
-      }
-      turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-      turnController.setInputRange(-180.0f,  180.0f);
-      turnController.setOutputRange(-1.0, 1.0);
-      turnController.setAbsoluteTolerance(kToleranceDegrees);
-      turnController.setContinuous(true);
-      
-      /* Add the PID Controller to the Test-mode dashboard, allowing manual  */
-      /* tuning of the Turn Controller's P, I and D coefficients.            */
-      /* Typically, only the P value needs to be modified.                   */
-  }
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    }
 
-  /**
-   * Drive left & right motors for 2 seconds then stop
-   */
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	Robot.mDriveTrain.RotatePID(angle2, speed2);
+    }
 
-  /**
-   * Runs the motors with onnidirectional drive steering.
-   * 
-   * Implements Field-centric drive control.
-   * 
-   * Also implements "rotate to angle", where the angle
-   * being rotated to is defined by one of four buttons.
-   * 
-   * Note that this "rotate to angle" approach can also 
-   * be used while driving to implement "straight-line
-   * driving".
-   */
-  public void operatorControl() {
-          boolean rotateToAngle = false;
-              turnController.setSetpoint(90.0f);
-              rotateToAngle = true;
-          double currentRotationRate;
-          if ( rotateToAngle ) {
-              turnController.enable();
-              currentRotationRate = rotateToAngleRate;
-          } else {
-              turnController.disable();
-              currentRotationRate = 0;
-          }
-          try {
-              /* Use the joystick X axis for lateral movement,          */
-              /* Y axis for forward movement, and the current           */
-              /* calculated rotation rate (or joystick Z axis),         */
-              /* depending upon whether "rotate to angle" is active.    */
-             Robot.mDriveTrain.arcadeDrive(0, currentRotationRate, false);
-          } catch( RuntimeException ex ) {
-              DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
-          }
-          Timer.delay(0.005);		// wait for a motor update time
-      }
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
 
-  /**
-   * Runs during test mode
-   */
-  public void test() {
-  }
+    // Called once after isFinished returns true
+    protected void end() {
+    }
 
-  @Override
-  /* This function is invoked periodically by the PID Controller, */
-  /* based upon navX-MXP yaw angle input and PID Coefficients.    */
-  public void pidWrite(double output) {
-      rotateToAngleRate = output;
-  }
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    }
 }
