@@ -24,8 +24,9 @@ public class DriveTank extends Command {
 		double leftY = OI.get0LeftY(); // Get y value of left joystick
 		double rightX = OI.get0RightX(); // Get x value of right joystick 
 		
-//		SmartDashboard.putNumber("RightX", rightX);
-		if (rightX == 0) {
+		SmartDashboard.putNumber("RightX", rightX);
+		SmartDashboard.putNumber("LeftY", leftY);
+		if (Math.abs(rightX) < 0.05) {
 			Robot.mDriveTrain.GyroStabilize(leftY);
 			if (isTurning) {
 				// Reset Gyro

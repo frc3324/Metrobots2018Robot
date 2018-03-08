@@ -22,6 +22,7 @@ import org.metrobots.subsystems.Gyro;
 import org.metrobots.subsystems.IntakeArm;
 import org.metrobots.subsystems.LimitSwitch;
 import org.metrobots.subsystems.Pneumatics;
+import org.metrobots.util.StatusLED;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -56,7 +57,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	DigitalInput forwardLimitSwitch;
-	//public String autoSet = "";      //is already called out in autoconfig
 	public static boolean isAuto = false;
 //	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
 	public static boolean limitSwitchValue = false;  
@@ -67,19 +67,16 @@ public class Robot extends IterativeRobot {
 	 * Declare gamepad objects
 	 */
 	public OI mOI;
-	public static final DriveTrain mDriveTrain = new DriveTrain(); //DriveTrain instantiated here
+	public static final DriveTrain mDriveTrain = new DriveTrain();
 	public static final Gyro mGyro = new Gyro();
 	public static final CubeController mCubeController = new CubeController();
 	public static final IntakeArm mIntakeArm = new IntakeArm();
 	public static final Climber mClimber = new Climber();
 	public static final AutoConfiguration mConfiguration = new AutoConfiguration();
-//	public static final Pneumatics mPneumatics = new Pneumatics();
+	public static final Pneumatics mPneumatics = new Pneumatics();
 	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
+//	public static final StatusLED mStatusLED = new StatusLED();
 
-	
-
-//	public static final DriveForward mDriveForward = new DriveForward(192);            */
-	
 	
 	/*
 	 * Declare CANTalon (TalonSRX) objects
@@ -151,29 +148,15 @@ public class Robot extends IterativeRobot {
 	 * the driver station
 	 */
 	public void disabledPeriodic() {
-	//	Scheduler.getInstance().run(); // Run scheduler
 //		DriverStation.reportError("X Button if the robot is on the left side, Y for middle, B for right.", false);
-//		if (OI.is0APressed()) {
-//			Scheduler.getInstance().add(new LLeft());
-//			DriverStation.reportError("A pressed", false);
-//		}
 		//System.out.println("Ultrasonic" + ultrasonic.getRangeInches());
-		
-		/*System.out.println("flE:" + flEncoder.getDistance());
-		System.out.println("blE:" + blEncoder.getDistance());
-		System.out.println("frE:" + frEncoder.getDistance());
-		System.out.println("brE:" + brEncoder.getDistance());*/
 		
 		//System.out.println("dir: " + comms.getDirection() + " mag:" + comms.getMagnitude());
 		//System.out.println("x: " + comms.getXOffset() + " y:" + comms.getYOffset());
-		
-		//System.out.println("Autotype: " + autoType);
 			
 //		CameraServer.getInstance().getVideo();
 		
 //		SmartDashboard.putNumber("LEFT DISTANCE: ", mDriveTrain.getLeftDistance());
-
-//		Scheduler.getInstance().add(new AutoConfiguration());
 		
 		/***************************************************/
 //		Scheduler.getInstance().add(new AutoConfiguration());
@@ -225,7 +208,6 @@ public class Robot extends IterativeRobot {
 	 * Runs constantly when autonomous is enabled
 	 */
 	public void autonomousPeriodic() {
-//		Scheduler.getInstance().add(new LLeft());
 		/*******************CODETHATWORKS**************************/
 		Scheduler.getInstance().run(); // Run scheduler
 		/*******************CODETHATWORKS**************************/
@@ -237,9 +219,7 @@ public class Robot extends IterativeRobot {
 	 * Initialize whatever you need to when the robot starts teleop
 	 */
 	public void teleopInit() {
-//		DriverStation.reportError("HELP ME", false);
-		Scheduler.getInstance().add(new DriveGroup()); // Add DriveGroup to
-														// scheduler
+		Scheduler.getInstance().add(new DriveGroup());
 		//mDriveTrain.clearEncoder();
 	}
 
@@ -247,7 +227,7 @@ public class Robot extends IterativeRobot {
 	 * Runs constantly when teleop is enabled
 	 */
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run(); // Run Scheduler
+		Scheduler.getInstance().run();
 //		limitSwitchValue = mLimitSwitch.getSwitchPressed();
 //		DriverStation.reportError("Pressed: " + limitSwitchValue, false);
 //		SmartDashboard.putNumber("TELEOP left: ", mDriveTrain.getLeftDistance());

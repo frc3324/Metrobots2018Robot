@@ -146,17 +146,19 @@ public class ControlArm extends Command {
     	/******************************************************************/
     	
     	/***********************LIMITSWITCH*******************************/
-    	if (Robot.mLimitSwitch.isBackSwitchPressed()) { // && Math.abs(leftY) > 0
+    	if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == false) { // && Math.abs(leftY) > 0
 //    		Robot.mIntakeArm.armMovement(0.2);
     		SmartDashboard.putBoolean("Limit switch pressed", pastSwitch);
-    		if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == false) {
-    			Robot.mIntakeArm.armMovement(leftY);
-    			pastSwitch = true;
-    			SmartDashboard.putBoolean("Out of pressed zone", pastSwitch);
-    		}
+    		pastSwitch = true;
+    	}
+    	else if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == true) {
+    		Robot.mIntakeArm.armMovement(leftY);
     		pastSwitch = false;
+    		SmartDashboard.putBoolean("Out of pressed zone", pastSwitch);
     	}
     	/***********************LIMITSWITCH*******************************/
+    	
+    }
     
 //    	DriverStation.reportError("GOALPULSE: " + mIntakeArm.getRawArm(), false);
      /**
@@ -177,8 +179,6 @@ public class ControlArm extends Command {
       * state is whether the arm should be moving forward or backward to reach goalPulse. True if going toward front of robot, false if 
       * going backward.
       */
-
-    }
    
 
     // Make this return true when this Command no longer needs to run execute()

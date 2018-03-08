@@ -1,5 +1,4 @@
 package org.metrobots.subsystems;
-// Import WPI libraries
 
 import org.metrobots.Constants;
 import org.metrobots.Robot;
@@ -37,7 +36,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	  /* controllers by displaying a form where you can enter new P, I,  */
 	  /* and D constants and test the mechanism.                         */
 	  
-	static final double kP = 0.03;
+	static final double kP = 0.06;
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	static final double kF = 0.00;
@@ -50,12 +49,12 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	static final double kToleranceDegrees = 2.0f;
 
 
-	WPI_VictorSPX flMotor = new WPI_VictorSPX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
-	WPI_VictorSPX blMotor = new WPI_VictorSPX(Constants.blMotorPort); 
+	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
+	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
 	
-	WPI_VictorSPX frMotor = new WPI_VictorSPX(Constants.frMotorPort); //repeat for right motors
-	WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.brMotorPort);
+	WPI_TalonSRX frMotor = new WPI_TalonSRX(Constants.frMotorPort); //repeat for right motors
+	WPI_TalonSRX brMotor = new WPI_TalonSRX(Constants.brMotorPort);
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
@@ -74,7 +73,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
 	      }
 	      turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-	      turnController.setInputRange(-180.0f,  180.0f);
+	      turnController.setInputRange(-20.0f,  20.0f);
 	      turnController.setOutputRange(-1.0, 1.0);
 	      turnController.setAbsoluteTolerance(kToleranceDegrees);
 	      turnController.setContinuous(true);
@@ -100,7 +99,8 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	public static double getLeftDistance() {
 		return lEncoder.getDistance();
 	}
-	  public double RotatePID(double angle, double speed) { // Necessary code for rotating using PID with rotate
+	
+	public double RotatePID(double angle, double speed) { // Necessary code for rotating using PID with rotate
               turnController.setSetpoint(angle);
               double currentRotationRate;
               turnController.enable();
@@ -120,25 +120,27 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		  turnController.disable();
 	  }
 	  public double GyroStabilize(double speed) { // Same as above, but always turns to 0 and is used to keep going straight in teleop
-          boolean rotateToAngle = false;
               turnController.setSetpoint(0);
-              rotateToAngle = true;
           double currentRotationRate;
               turnController.enable();
-              currentRotationRate = rotateToAngleRate * speed;
-              turnController.disable();
-              currentRotationRate = 0;
+              currentRotationRate = rotateToAngleRate*speed;
           try {
               /* Use the joystick X axis for lateral movement,          */
               /* Y axis for forward movement, and the current           */
               /* calculated rotation rate (or joystick Z axis),         */
               /* depending upon whether "rotate to angle" is active.    */
-             mDrive.arcadeDrive(speed, -currentRotationRate, false);
+            if (ahrs.getAngle() > 0){
+            	mDrive.arcadeDrive(speed, currentRotationRate, false);
+            }
+            if (ahrs.getAngle() < 0){
+            	mDrive.arcadeDrive(speed, -currentRotationRate, false);
+            }
+            
           } catch( RuntimeException ex ) {
               DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
           }
-          SmartDashboard.putNumber("Gyro", currentRotationRate);
-          SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
+          SmartDashboard.putNumber("CurrentGoalStabilization", currentRotationRate);
+          SmartDashboard.putNumber("Gyro Reading", ahrs.getAngle());
           return currentRotationRate;
       }
 //	  SmartDashboard.putNumber("Gyro", currentRotationRate);
@@ -179,8 +181,8 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		rightEncoderDistance = getRightDistance();
 		
 		// using raw values here, test purpose only
-		leftEncoderDistance = lEncoder.get();
-		rightEncoderDistance = rEncoder.get();
+		leftEncoderDistance = lEncoder.getDistance();
+		rightEncoderDistance = rEncoder.getDistance();
 		
 		
 		// 
@@ -188,9 +190,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 //		val++;
 		SmartDashboard.putNumber("L Encoder Distance", leftEncoderDistance);
 		SmartDashboard.putNumber("R Encoder Distance", rightEncoderDistance);
-		// print speeds
-		SmartDashboard.putNumber("L Rate", lEncoder.getRate());
-		SmartDashboard.putNumber("R Rate", rEncoder.get()); // unit: distance per sec
 	}
 	
 	/**

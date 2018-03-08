@@ -18,10 +18,10 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 4; //checked
-	public final static int blMotorPort = 6; //checked
-	public final static int frMotorPort = 0; //checked
-	public final static int brMotorPort = 2; //checked
+	public final static int flMotorPort = 0; //checked
+	public final static int blMotorPort = 2; //checked
+	public final static int frMotorPort = 4; //checked
+	public final static int brMotorPort = 6; //checked
 	public final static int MOTOR_PORT_ARM_LEFT = 9; //checked
 	public final static int MOTOR_PORT_ARM_RIGHT = 8; //checked
 	public final static int leftIntakeMotorPort = 5; //checked

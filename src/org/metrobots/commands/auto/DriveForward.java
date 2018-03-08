@@ -45,22 +45,16 @@ public class DriveForward extends Command {
 		currentDistance = (Math.abs(DriveTrain.getLeftDistance()) + Math.abs(DriveTrain.getRightDistance())) / 2.0;
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
 		distanceToTravel = goalDistance - currentDistance;
+		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
-
-		
-//		if (Math.abs(distanceToTravel / goalDistance) < 0.35) {
-//			speed = distanceToTravel / goalDistance;
-//		} else {
-			speed = 1;
-//		}
-//		speed = distanceToTravel / goalDistance;
+		speed = 1;
 		
 		LSpeed = speed;
 		RSpeed = speed;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
 
-		if (Math.abs(distanceToTravel) < 1) {
+		if (Math.abs(distanceToTravel) < 0.5) {
 			driveFinished = true;
 		}
 		
