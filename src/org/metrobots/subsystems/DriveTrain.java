@@ -151,19 +151,19 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	 * Print the encoder values in inches.
 	 */
 	public void printEncoder() {
-		leftEncoderDistance = getLeftDistance();
-		rightEncoderDistance = getRightDistance();
-		
+//		leftEncoderDistance = getLeftDistance();
+//		rightEncoderDistance = getRightDistance();
+//		
 		// using raw values here, test purpose only
-		leftEncoderDistance = lEncoder.getDistance();
-		rightEncoderDistance = rEncoder.getDistance();
-		
+//		leftEncoderDistance = lEncoder.getDistance();
+//		rightEncoderDistance = rEncoder.getDistance();
+//		
 		
 		// 
 //		SmartDashboard.putNumber("Program is Running", val);
 //		val++;
-		SmartDashboard.putNumber("L Encoder Distance", leftEncoderDistance);
-		SmartDashboard.putNumber("R Encoder Distance", rightEncoderDistance);
+		SmartDashboard.putNumber("L Encoder Distance", getLeftDistance());
+		SmartDashboard.putNumber("R Encoder Distance", getRightDistance());
 	}
 	
 	/**

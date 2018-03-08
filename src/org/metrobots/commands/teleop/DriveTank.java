@@ -12,7 +12,7 @@ public class DriveTank extends Command {
 	
 	boolean slowModeActivated = false;
 	boolean isTurning;
-	
+	double turnRate;
 	public DriveTank() {
 		requires(Robot.mDriveTrain);
 	}
@@ -27,7 +27,8 @@ public class DriveTank extends Command {
 		SmartDashboard.putNumber("RightX", rightX);
 		SmartDashboard.putNumber("LeftY", leftY);
 		if (Math.abs(rightX) < 0.05) {
-			Robot.mPIDStabilzation.GyroStabilize(leftY);
+		turnRate =	Robot.mPIDStabilzation.GyroStabilize() * leftY;
+			Robot.mDriveTrain.arcadeDrive(leftY, turnRate, false);	
 			if (isTurning) {
 				// Reset Gyro
 				Robot.mGyro.clear();

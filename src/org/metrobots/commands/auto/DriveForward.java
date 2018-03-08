@@ -44,13 +44,13 @@ public class DriveForward extends Command {
 //		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
 		currentDistance = (Math.abs(DriveTrain.getLeftDistance()) + Math.abs(DriveTrain.getRightDistance())) / 2.0;
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
-		distanceToTravel = goalDistance - currentDistance;
+		distanceToTravel = goalDistance - currentDistance;	
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
 		speed = 1;
 		
 		LSpeed = speed;
-		RSpeed = speed;
+		RSpeed = speed * 1.1; //only do this compensation on the practice robot!!!
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
 

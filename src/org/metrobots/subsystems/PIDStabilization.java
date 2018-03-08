@@ -35,7 +35,7 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
 	          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
 	      }
 	      turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-	      turnController.setInputRange(-180.0f,  180.0f);
+	      turnController.setInputRange(-10.0f,  10.0f);
 	      turnController.setOutputRange(-1.0, 1.0);
 	      turnController.setAbsoluteTolerance(kToleranceDegrees);
 	      turnController.setContinuous(true);
@@ -44,16 +44,11 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
         //                  to
         // enable() - Enables the PID controller.
     }
-	public double GyroStabilize(double speed) { // Necessary code for rotating using PID with rotate
+	public double GyroStabilize() { // Necessary code for rotating using PID with rotate
         turnController.setSetpoint(0);
         double currentRotationRate;
         turnController.enable();
-        currentRotationRate = rotateToAngleRate * Math.abs(speed);
-    try {
-       Robot.mDriveTrain.arcadeDrive(0, currentRotationRate, false);
-    } catch( RuntimeException ex ) {
-        DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
-    }
+        currentRotationRate = rotateToAngleRate;
     SmartDashboard.putNumber("Gyro", currentRotationRate);
     SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
     return currentRotationRate;
