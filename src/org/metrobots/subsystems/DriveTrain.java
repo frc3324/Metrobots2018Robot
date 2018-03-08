@@ -73,7 +73,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
 	      }
 	      turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-	      turnController.setInputRange(-20.0f,  20.0f);
+	      turnController.setInputRange(-180.0f,  180.0f);
 	      turnController.setOutputRange(-1.0, 1.0);
 	      turnController.setAbsoluteTolerance(kToleranceDegrees);
 	      turnController.setContinuous(true);
@@ -86,7 +86,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	/**
 	 * Set safety status of drivetrain motor controllers
 	 * @param status
-	 */
+	 */ 
 	public void setSafetyEnabled(boolean status) {
 		mDrive.setSafetyEnabled(status);
 	}
@@ -105,8 +105,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
               double currentRotationRate;
               turnController.enable();
               currentRotationRate = rotateToAngleRate * speed;
-              turnController.disable();
-              currentRotationRate = 0;
           try {
              mDrive.arcadeDrive(0, -currentRotationRate, false);
           } catch( RuntimeException ex ) {
@@ -119,30 +117,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	  public void turnControllerDisable() { //Disables the PIDController
 		  turnController.disable();
 	  }
-	  public double GyroStabilize(double speed) { // Same as above, but always turns to 0 and is used to keep going straight in teleop
-              turnController.setSetpoint(0);
-          double currentRotationRate;
-              turnController.enable();
-              currentRotationRate = rotateToAngleRate*speed;
-          try {
-              /* Use the joystick X axis for lateral movement,          */
-              /* Y axis for forward movement, and the current           */
-              /* calculated rotation rate (or joystick Z axis),         */
-              /* depending upon whether "rotate to angle" is active.    */
-            if (ahrs.getAngle() > 0){
-            	mDrive.arcadeDrive(speed, currentRotationRate, false);
-            }
-            if (ahrs.getAngle() < 0){
-            	mDrive.arcadeDrive(speed, -currentRotationRate, false);
-            }
-            
-          } catch( RuntimeException ex ) {
-              DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
-          }
-          SmartDashboard.putNumber("CurrentGoalStabilization", currentRotationRate);
-          SmartDashboard.putNumber("Gyro Reading", ahrs.getAngle());
-          return currentRotationRate;
-      }
 //	  SmartDashboard.putNumber("Gyro", currentRotationRate);
 
   /**

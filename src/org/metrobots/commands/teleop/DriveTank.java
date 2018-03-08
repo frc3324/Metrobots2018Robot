@@ -27,7 +27,7 @@ public class DriveTank extends Command {
 		SmartDashboard.putNumber("RightX", rightX);
 		SmartDashboard.putNumber("LeftY", leftY);
 		if (Math.abs(rightX) < 0.05) {
-			Robot.mDriveTrain.GyroStabilize(leftY);
+			Robot.mPIDStabilzation.GyroStabilize(leftY);
 			if (isTurning) {
 				// Reset Gyro
 				Robot.mGyro.clear();
