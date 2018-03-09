@@ -35,7 +35,7 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
 	          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
 	      }
 	      turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
-	      turnController.setInputRange(-10.0f,  10.0f);
+	      turnController.setInputRange(-180.0f,  180.0f);
 	      turnController.setOutputRange(-1.0, 1.0);
 	      turnController.setAbsoluteTolerance(kToleranceDegrees);
 	      turnController.setContinuous(true);
@@ -44,14 +44,19 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
         //                  to
         // enable() - Enables the PID controller.
     }
-	public double GyroStabilize() { // Necessary code for rotating using PID with rotate
-        turnController.setSetpoint(0);
-        double currentRotationRate;
-        turnController.enable();
-        currentRotationRate = rotateToAngleRate;
-    SmartDashboard.putNumber("Gyro", currentRotationRate);
-    SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
-    return currentRotationRate;
+	public void GyroStabilize(double leftY) { // Necessary code for rotating using PID with rotate
+		if(!turnController.isEnabled()) {
+			// Acquire current yaw angle, using this as the target angle.
+			turnController.setSetpoint(ahrs.getYaw());
+			rotateToAngleRate = 0; // This value will be updated in the pidWrite() method.
+			turnController.enable();
+		}
+		double magnitude = leftY;
+		double leftStickValue = magnitude + rotateToAngleRate;
+		double rightStickValue = magnitude - rotateToAngleRate;
+		SmartDashboard.putNumber("GyroGoal", rotateToAngleRate);
+		SmartDashboard.putNumber("GyroReading", ahrs.getYaw());
+Robot.mDriveTrain.tankDrive(leftStickValue, rightStickValue, false);		
 }
 public void turnControllerDisable() { //Disables the PIDController
 	  turnController.disable();
