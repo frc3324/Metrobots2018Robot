@@ -164,7 +164,7 @@ public class Robot extends IterativeRobot {
 //		Scheduler.getInstance().add(new AutoConfiguration());
 //		Scheduler.getInstance().run();
 //		setAutoCommand = mConfiguration.getAutoCommand();
-//		DriverStation.reportError("" + setAutoCommand, false);
+//		DriverStation.reportError("Supposed command: " + setAutoCommand, false);
 //		mIntakeArm.printEncoder();
 		/***************************************************/
 		
@@ -195,7 +195,7 @@ public class Robot extends IterativeRobot {
 //		Scheduler.getInstance().add(new LLeft());
 		/*******************CODETHATWORKS**************************/
 		Robot.mIntakeArm.resetEncoder();
-		Scheduler.getInstance().add(new DriveForward(100));
+		Scheduler.getInstance().add(new DriveForward(76.78));
 //		Scheduler.getInstance().add(new RotatePID1());
 		/*******************CODETHATWORKS**************************/
 //		}

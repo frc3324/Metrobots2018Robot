@@ -88,7 +88,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	 * @param status
 	 */ 
 	public void setSafetyEnabled(boolean status) {
-		mDrive.setSafetyEnabled(status);
+		mDrive.setSafetyEnabled(true);
 	}
 
 	
@@ -114,9 +114,10 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
           SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
           return currentRotationRate;
       }
-	  public void turnControllerDisable() { //Disables the PIDController
-		  turnController.disable();
-	  }
+	public void turnControllerDisable() { //Disables the PIDController
+		turnController.disable();
+	}
+	
 //	  SmartDashboard.putNumber("Gyro", currentRotationRate);
 
   /**

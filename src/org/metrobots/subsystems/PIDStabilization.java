@@ -24,6 +24,7 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
 	static final double kD = 0.00;
 	static final double kF = 0.00;
 	static final double kToleranceDegrees = 2.0f;
+	double currentRotationRate;
     // Initialize your subsystem here
     public PIDStabilization() {
     	  try {
@@ -44,26 +45,27 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
         //                  to
         // enable() - Enables the PID controller.
     }
-	public void GyroStabilize(double leftY) { // Necessary code for rotating using PID with rotate
+	public void GyroStabilize(double speed) { // Necessary code for rotating using PID with rotate
 		if(!turnController.isEnabled()) {
 			// Acquire current yaw angle, using this as the target angle.
 			turnController.setSetpoint(ahrs.getYaw());
 			rotateToAngleRate = 0; // This value will be updated in the pidWrite() method.
 			turnController.enable();
 		}
-		double magnitude = leftY;
-		double leftStickValue = magnitude + rotateToAngleRate;
-		double rightStickValue = magnitude - rotateToAngleRate;
+		double leftStickValue = speed + rotateToAngleRate;
+		double rightStickValue = speed - rotateToAngleRate;
 		SmartDashboard.putNumber("GyroGoal", rotateToAngleRate);
 		SmartDashboard.putNumber("GyroReading", ahrs.getYaw());
-Robot.mDriveTrain.tankDrive(leftStickValue, rightStickValue, false);		
-}
-public void turnControllerDisable() { //Disables the PIDController
-	  turnController.disable();
-}
-public void pidWrite(double output) {
-    rotateToAngleRate = output;
-}
+		Robot.mDriveTrain.tankDrive(leftStickValue, rightStickValue, false);	
+	}
+	
+	public void turnControllerDisable() { //Disables the PIDController
+		  turnController.disable();
+	}
+	
+	public void pidWrite(double output) {
+	    rotateToAngleRate = output;
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

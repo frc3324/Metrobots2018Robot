@@ -258,6 +258,9 @@ public class OI {
 	public static boolean get0AButton() {
 		return gamepad0.getAButton();
 	}
+	public static boolean is0BPressed() {
+		return gamepad0.getBButton();
+	}
 	
 	public static boolean get1LeftButton() {
 		return gamepad1.getBackButton();

@@ -42,18 +42,19 @@ public class DriveForward extends Command {
 //		Smd artDashboard.putNumber("SPEED: ", speed);
 //		//make speed negative to go forward in real lifes
 //		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
-		currentDistance = (Math.abs(DriveTrain.getLeftDistance()) + Math.abs(DriveTrain.getRightDistance())) / 2.0;
+		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance()) + Math.abs(Robot.mDriveTrain.getRightDistance())) / 2.0;
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
+		SmartDashboard.putNumber("Right from robot encoder: ", Robot.mDriveTrain.getRightDistance());
 		distanceToTravel = goalDistance - currentDistance;	
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
 		speed = 1;
 		
 		LSpeed = speed;
-		RSpeed = speed * 1.1; //only do this compensation on the practice robot!!!
+		RSpeed = speed * 0.96;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
-
+//		Robot.mPIDStabilzation.GyroStabilize(-speed);
 		if (Math.abs(distanceToTravel) < 0.5) {
 			driveFinished = true;
 		}

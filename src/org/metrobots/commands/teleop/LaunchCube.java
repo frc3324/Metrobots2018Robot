@@ -42,11 +42,11 @@ public class LaunchCube extends Command {
 //    		}    
 //    	 Robot.mCubeController.intake(motorSpeed);
 //    	}
-    	if (OI.is1LeftBumperPressed()) { //intake
+    	if (OI.is1LeftBumperPressed()) { //outtake (3/10/18)
     		DriverStation.reportError("LEFT BUMPER", false);
     		motorSpeed = 1.0;
     	}
-    	else if (OI.is1RightBumperPressed()) { //outtake
+    	else if (OI.is1RightBumperPressed()) { //intake (3/10/18)
     		DriverStation.reportError("RIGHT BUMPER", false);
     		motorSpeed = -0.8;
     	}

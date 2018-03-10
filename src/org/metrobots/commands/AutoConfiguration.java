@@ -37,8 +37,6 @@ public class AutoConfiguration extends Command {
 	int middle = 2;
 	int right = 3;
 	
-	int aValue = 0;
-	
 	String autoSet = "";
 	String gameData;
 	
@@ -61,6 +59,7 @@ public class AutoConfiguration extends Command {
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
     	SmartDashboard.putString("Game Data:", gameData);
+    	DriverStation.reportError("Game data: " + gameData, false);
 //    	SmartDashboard.putString("What driverstation position are you in?", null);
     	
     	autoSelector.addDefault("Default", defaultSet);
@@ -117,6 +116,9 @@ public class AutoConfiguration extends Command {
 //			Scheduler.getInstance().add(new RRight());
 			selectedCommand = new RRight();
 			finished = true;
+		}
+		else {
+			DriverStation.reportError("No game data received.", false);
 		}
 		DriverStation.reportError("Selected" + autoSelector.getSelected(), false);
 //		else if (gameData == null || autoSelector.getSelected() == null) {

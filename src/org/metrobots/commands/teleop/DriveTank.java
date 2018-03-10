@@ -26,11 +26,11 @@ public class DriveTank extends Command {
 		
 		SmartDashboard.putNumber("RightX", rightX);
 		SmartDashboard.putNumber("LeftY", leftY);
-		if (Math.abs(rightX) < 0.05) {
+		if (OI.is0BPressed()) {
 			Robot.mPIDStabilzation.GyroStabilize(leftY);
-		} else if (Math.abs(rightX) > 0) {
-			Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
+		} else {
 			Robot.mPIDStabilzation.turnControllerDisable();
+			Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
 		}
 	
 		if (OI.get0RightBumperToggled()) {
