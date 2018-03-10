@@ -15,6 +15,25 @@ public class DriveForward extends Command {
 	boolean driveFinished = false;
 	
 	/**
+	 * Measurement testing from 3/10/18
+	 * Speed: 1.0 Set: 100 Received: 174 in
+	Speed: 1.0 Set: 100 Received: 167 in
+	Speed: 0.5 Set: 100 Received: 
+	Speed: 1.0 Set: 60 Received: 110 in
+	Speed: 1.0 Set: 60 Received: 118 in
+	Speed: 1.0 Set: 60 Received: 111 in
+	//minus 2ish inches
+	Speed: 1.0 Set: 76.78 Received: 135 in Encoder distance: 76.3849
+	Speed: 1.0 Set: 100 Received: 172 R: 0.95
+	Speed: 1.0 Set: 100 Received: 169 R: 0.95
+	Speed: 0.75 Set: 100 Received: 146 R: 0.9
+	//minus 2ish inches
+	Speed: 0.5 Set: 100 Received: 137
+	Speed: 0.5 Set: 100 Received: 137
+	Speed: 1.0 Set: 76.78 Received: 133.75
+	 */
+	
+	/**
 	 * Method for auto drive forward.<p>
 	 * 
 	 * Speed of motor, -1 to 1. Distance to be 
