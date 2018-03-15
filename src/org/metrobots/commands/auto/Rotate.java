@@ -1,27 +1,18 @@
 package org.metrobots.commands.auto;
 
-import com.kauailabs.navx.frc.AHRS;
-
 import org.metrobots.Constants;
-import  org.metrobots.Robot;
-import	org.metrobots.subsystems.DriveTrain;
+import org.metrobots.Robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Rotate extends Command {
 	
 	
 	private double specifiedAngle = 0; //angle that robot should go to
-	private double startTime, passedTime;
 	private double runningSpeed = 0.0;
 	private double angleToTravel;
 	private static final double speed = 0.5;
-	private boolean isInitialized;
 	private boolean isDone = false;
 	private int count = 0;
 	/**

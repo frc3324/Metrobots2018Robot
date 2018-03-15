@@ -1,10 +1,8 @@
 package org.metrobots.commands.teleop;
 
 
-import org.metrobots.OI;
 import org.metrobots.Robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -17,9 +15,6 @@ public class PressureSwitch extends Command {
 	boolean gearShifterStatus = false;
 	
 	Timer timer;
-	private double currentTime;
-	private double currentEncoder;
-	private double velocity;
 	boolean switchFinished;
 	private int val = 0;
 	/**

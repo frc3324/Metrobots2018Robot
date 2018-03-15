@@ -25,7 +25,7 @@ public class RMiddle extends CommandGroup {
     	this.addSequential(new DriveForward(36));
     	this.addSequential(new Rotate(-90));
     	this.addSequential(new DriveForward(64));
-    	this.addSequential(new CubeControl(-0.5));
+    	this.addSequential(new CubeControl(-0.5, 2));
     }
 
 }

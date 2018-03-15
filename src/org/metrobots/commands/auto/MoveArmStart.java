@@ -2,16 +2,14 @@ package org.metrobots.commands.auto;
 
 import org.metrobots.Robot;
 
-//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class MoveArmStart extends Command {
 
-	boolean finished = false;
+	private boolean finished = false;
 	
     public MoveArmStart() {
     	requires(Robot.mIntakeArm);
@@ -41,6 +39,9 @@ public class MoveArmStart extends Command {
 //    	
 //    	Robot.mIntakeArm.armMovement(speed);
     	Robot.mIntakeArm.RotateARM(45, 0.5);
+      	if (Robot.mIntakeArm.RotateARM(45, 0.5) < 0.1) {
+    		finished = true;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

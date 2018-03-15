@@ -39,7 +39,6 @@ public class DriveGroup extends CommandGroup {
 //		this.addParallel(new ClimberSlideUp()); //gamepad1, a button and b button //a and x //a
 //		this.addParallel(new ClimberSlideDown()); //b
 		this.addParallel(new Winches()); //gamepad1, x button // b button
-		//There is something wrong with the intakeArm or MoveArm class that make the robot not move and prints out "output not updated enough"
 	}
 	
 }

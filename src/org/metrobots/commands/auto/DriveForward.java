@@ -67,7 +67,12 @@ public class DriveForward extends Command {
 		distanceToTravel = goalDistance - currentDistance;	
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
-		speed = 1;
+		if (distanceToTravel < 10) {
+			speed = 0.5;
+		} 
+		else {
+			speed = 1;
+		}
 		
 		LSpeed = speed;
 		RSpeed = speed * 0.96;

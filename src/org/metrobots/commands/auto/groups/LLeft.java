@@ -20,6 +20,6 @@ public class LLeft extends CommandGroup {
 //    	this.addSequential(new MoveArm(11.75));
     	this.addSequential(new GyroReset());
     	this.addSequential(new DriveForward(37));
-    	this.addSequential(new CubeControl(-0.5));
+    	this.addSequential(new CubeControl(-0.5, 2));
     }
 }

@@ -2,11 +2,9 @@ package org.metrobots.commands.teleop;
 
 import org.metrobots.OI;
 import org.metrobots.Robot;
-import org.metrobots.subsystems.IntakeArm;
 //import org.metrobots.subsystems.LimitSwitch;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

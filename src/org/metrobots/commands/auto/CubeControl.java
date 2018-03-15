@@ -1,48 +1,48 @@
 package org.metrobots.commands.auto;
 
-import org.metrobots.Constants;
 import org.metrobots.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CubeControl extends Command {
 
 	double cubeSpeed;
+	double controlTime;
+	boolean controlDone;
+	
+	Timer timer = new Timer();
 	
 	/**
-	 * Spin wheels inward. <p>
+	 * Spin intake/outtake wheels.
 	 * Set a positive number to intake, a negative number to outtake.
+	 * Time in seconds.
 	 */
-    public CubeControl(double speed) {
+    public CubeControl(double speed, double time) {
     	cubeSpeed = speed;
+    	controlTime = time;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.mCubeController.intake(cubeSpeed); //was -0.6
-//	    Robot.mCubeController.intake(1.0);
+    	if (timer.get() < controlTime) {
+    		Robot.mCubeController.intake(cubeSpeed); //was -0.6
+    		controlDone = false;
+    	}
+    	else {
+    		Robot.mCubeController.intake(0.0);
+    		controlDone = true;
+    	}
     }
-	    
-    //  
-    //protected void execute() {
-//    	if (gamepad1.getBumperPressed(Hand.kRight)) {
-////    		if (isOn = false) {
-//    			motorSpeed = -1;
-////    			isOn = true;
-////    		} else {
-////        		motorSpeed = 0;	
-////        		isOn = false;
-//    		}    
-//    	 mCubeController.intake(motorSpeed);
-//    }
-// 
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return controlDone;
     }
 
     // Called once after isFinished returns true

@@ -1,13 +1,9 @@
 package org.metrobots.commands.teleop;
 
-import org.metrobots.Constants;
 import org.metrobots.OI;
 import org.metrobots.Robot;
 
-import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class LaunchCube extends Command {

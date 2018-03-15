@@ -1,7 +1,5 @@
 package org.metrobots.subsystems;
 
-import org.metrobots.Robot;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 

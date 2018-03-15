@@ -24,40 +24,20 @@ public class Constants {
 	public final static int brMotorPort = 6; //checked
 	public final static int MOTOR_PORT_ARM_LEFT = 9; //checked
 	public final static int MOTOR_PORT_ARM_RIGHT = 8; //checked
-	public final static int leftIntakeMotorPort = 5; //checked
-	public final static int rightIntakeMotorPort = 3; //checked
+	public final static int leftIntakeMotorPort = 3; //checked
+	public final static int rightIntakeMotorPort = 5; //checked
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 1; 
 	public final static int WINCH_PORT = 7;
-	
-	/*
-	 * Pneumatic Ports
-	 */
-//	public final static int gearPushPort = 0;
-//	public final static int gearPullPort = 1;
 
 	/*
 	 * Sensor ports
 	 */
 	//public final static SPI.Port navxPort = SPI.Port.kMXP;
-	/*public final static int flEncoder1 = 4; // Not actually
-	public final static int flEncoder2 = 5; // Not actually
-	public final static int blEncoder1 = 0;
-	public final static int blEncoder2 = 1;
-	public final static int frEncoder1 = 6; // Not actually
-	public final static int frEncoder2 = 7; // Not actually
-	public final static int brEncoder1 = 2;
-	public final static int brEncoder2 = 3;*/
-//	public final static int shooterEncoder1 = 10; // Pin 0 on MXP theoretically
-//	public final static int shooterEncoder2 = 11; // Pin 1 on MXP
-//	public final static int ultrasonicOut = 8;
-//	public final static int ultrasonicIn = 9;
 	
 	public final static int leftEncoderPortA = 0; //checked
 	public final static int leftEncoderPortB = 1; //checked
 	public final static int rightEncoderPortA = 2; //chece
 	public final static int rightEncoderPortB = 3; //checked
-//	public final static int testArmEncoderA = 7; //7 for one on motor
-//	public final static int testArmEncoderB = 8; //8 for one on motor
 	public final static int ArmEncoderACLK = 6; //yellow
 	public final static int ArmEncoderSW = 4; //yellow
 	public final static int ArmEncoderDT = 5; //white
@@ -66,11 +46,6 @@ public class Constants {
 	
 //	public final static int CAMERA_PORT = 0;
 	
-
-	/*
-	 * Current measurement
-	 */
-	public final static int ARM_PORT = 6;
 	
 	/*
 	 * Driver station ports
@@ -82,10 +57,6 @@ public class Constants {
 	 * 
 	 * Intake/Outtake variables
 	 */
-	
-//	public final static double intakeMotorSpeed = 1.0; //needs to be validated this is the speed we want
-//	public final static double outtakeMotorSpeed = -1.0; //needs to be validated this is the speed we want
-//	
 	/*
 	 * DriveTrain variables
 	 */
