@@ -1,6 +1,7 @@
 package org.metrobots.commands.teleop;
 
 
+import org.metrobots.OI;
 import org.metrobots.Robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -40,18 +41,17 @@ public class PressureSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	DriverStation.reportError("0A IS PRESSED!", false);
-    	SmartDashboard.putNumber("Pressure Count", val);
-    	val++;
-    	if (gearShifterStatus) {
-//    		Robot.mPneumatics.setHighGear();
-    		gearShifterStatus = !gearShifterStatus;
-    		switchFinished = true;
-    		
-    	} else {
-    		Robot.mPneumatics.setLowGear();
-//    		gearShifterStatus = !gearShifterStatus;
-    		switchFinished = true;
+    	if (OI.get0AButtonPressed()) {
+    		if (gearShifterStatus) {
+        		Robot.mPneumatics.setHighGear();
+        		DriverStation.reportError("True", false);
+        		gearShifterStatus = !gearShifterStatus;
+        		
+        	} else {
+        		DriverStation.reportError("False", false);
+        		Robot.mPneumatics.setLowGear();
+        		gearShifterStatus = !gearShifterStatus;
+        	}
     	}
     	
 //    	if (/*Current Encoder*/ > 18.85) {
@@ -71,7 +71,7 @@ public class PressureSwitch extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return switchFinished;
+        return false;
     }
 
     // Called once after isFinished returns true

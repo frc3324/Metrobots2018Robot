@@ -3,6 +3,7 @@ package org.metrobots.commands.auto;
 import org.metrobots.Constants;
 import org.metrobots.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,7 +24,7 @@ public class Rotate extends Command {
 	public Rotate(double angle) {
 		requires(Robot.mDriveTrain);
 		requires(Robot.mGyro);
-		specifiedAngle = angle;
+		specifiedAngle = -angle;
 	}
 	
 	/**
@@ -40,15 +41,19 @@ public class Rotate extends Command {
 //		isDone = false;
 		double measuredAngle = Robot.mGyro.getPidAngle();
         SmartDashboard.putNumber("Gyro", measuredAngle);
-        angleToTravel = Math.abs(specifiedAngle) - Math.abs(measuredAngle);
+        angleToTravel = specifiedAngle - Math.abs(measuredAngle);
         SmartDashboard.putNumber("angle to travel:", angleToTravel);
 //		speed = angleToTravel / specifiedAngle;
-        if (measuredAngle > specifiedAngle) {
+        if (measuredAngle > specifiedAngle && angleToTravel > 30) {
             /*leftSideSpeed = angleDifference / 180;
             rightSideSpeed = angleDifference / 180;*/
             runningSpeed = -speed;
-        } else if (specifiedAngle > measuredAngle) {
+        } else if (measuredAngle > specifiedAngle && angleToTravel < 30) {
+        	runningSpeed = -speed * 0.5;
+        } else if (specifiedAngle > measuredAngle && angleToTravel > 30) {
             runningSpeed = speed;
+        } else if (specifiedAngle > measuredAngle && angleToTravel < 30) {
+        	runningSpeed = speed * 0.5;
         }
         if (angleToTravel < Constants.AUTO_ROTATE_ANGLE_THRESHOLD ) {
         	runningSpeed = 0;
@@ -60,6 +65,7 @@ public class Rotate extends Command {
         SmartDashboard.putNumber("Turning", count);
         count++;
         //drivetrain.tankDrive(leftSpeed, rightSpeed);
+        
     }
 
     /**
@@ -67,7 +73,8 @@ public class Rotate extends Command {
      */
     @Override
     protected boolean isFinished() {
-        return isDone;
+       DriverStation.reportError("Is done?", isDone);
+    	return isDone;
     }
 	
 	/**

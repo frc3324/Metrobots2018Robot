@@ -1,10 +1,12 @@
 package org.metrobots.commands.teleop;
 
+import org.metrobots.Constants;
 import org.metrobots.OI;
 import org.metrobots.Robot;
 //import org.metrobots.subsystems.LimitSwitch;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  */
 public class ControlArm extends Command {
-	//public PowerDistributionPanel pdp = new PowerDistributionPanel();
+//	public PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
 //	Encoder leftEncoder;
 //	Encoder rightEncoder;
@@ -137,23 +139,24 @@ public class ControlArm extends Command {
     	/******************************************************************/
     	double leftY = OI.get1LeftYAxis();
     	DriverStation.reportError("X AXIS" + leftY, false);
-    	double speedArm = leftY;
-    	Robot.mIntakeArm.armMovement(speedArm);
+    	Robot.mIntakeArm.armMovement(leftY);
     	double joystickCurrentPulse = Robot.mIntakeArm.getRawArm();
     	SmartDashboard.putNumber("CURRENTPULSE: ", joystickCurrentPulse);
+//    	double armCurrent = pdp.getCurrent(Constants.MOTOR_PORT_ARM_LEFT);
+//    	SmartDashboard.putNumber("Left arm current", armCurrent);
     	/******************************************************************/
     	
     	/***********************LIMITSWITCH*******************************/
-    	if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == false) { // && Math.abs(leftY) > 0
-//    		Robot.mIntakeArm.armMovement(0.2);
-    		SmartDashboard.putBoolean("Limit switch pressed", pastSwitch);
-    		pastSwitch = true;
-    	}
-    	else if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == true) {
-    		Robot.mIntakeArm.armMovement(leftY);
-    		pastSwitch = false;
-    		SmartDashboard.putBoolean("Out of pressed zone", pastSwitch);
-    	}
+//    	if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == false) { // && Math.abs(leftY) > 0
+////    		Robot.mIntakeArm.armMovement(0.2);
+//    		SmartDashboard.putBoolean("Limit switch pressed", pastSwitch);
+//    		pastSwitch = true;
+//    	}
+//    	else if (Robot.mLimitSwitch.isBackSwitchPressed() && pastSwitch == true) {
+//    		Robot.mIntakeArm.armMovement(leftY);
+//    		pastSwitch = false;
+//    		SmartDashboard.putBoolean("Out of pressed zone", pastSwitch);
+//    	}
     	/***********************LIMITSWITCH*******************************/
     	
     }

@@ -64,18 +64,19 @@ public class DriveForward extends Command {
 		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance()) + Math.abs(Robot.mDriveTrain.getRightDistance())) / 2.0;
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
 		SmartDashboard.putNumber("Right from robot encoder: ", Robot.mDriveTrain.getRightDistance());
+		SmartDashboard.putNumber("Left from robot encoder: ", Robot.mDriveTrain.getRightDistance());
 		distanceToTravel = goalDistance - currentDistance;	
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
 		if (distanceToTravel < 10) {
-			speed = 0.5;
+			speed = 0.4;
 		} 
 		else {
 			speed = 1;
 		}
 		
-		LSpeed = speed;
-		RSpeed = speed * 0.96;
+		LSpeed = speed * 0.95;
+		RSpeed = speed;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
 //		Robot.mPIDStabilzation.GyroStabilize(-speed);
@@ -84,7 +85,8 @@ public class DriveForward extends Command {
 		}
 		
 		//make speed negative to go forward in real life
-		Robot.mDriveTrain.tankDrive(-LSpeed, -RSpeed, true);
+		Robot.mDriveTrain.tankDrive(-LSpeed, -RSpeed, false);
+		SmartDashboard.putNumber("Gyro!!!!", Robot.mGyro.getPidAngle());
 		
 //		Robot.mDriveTrain.arcadeDrive(-0.4, 0.0, true);
 		

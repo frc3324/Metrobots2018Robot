@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RotatePID extends Command {
 	double angle2;
 	double speed2;
+	double turn;
 	private boolean finished;
     public RotatePID(double angle1, double speed1) {
         // Use requires() here to declare subsystem dependencies
@@ -25,7 +26,8 @@ public class RotatePID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.mDriveTrain.RotatePID(angle2, speed2);
+    	turn = Robot.mDriveTrain.RotatePID(angle2, speed2);
+    	Robot.mDriveTrain.arcadeDrive(0, turn, false);
     	if (Robot.mDriveTrain.RotatePID(angle2, speed2) < 0.1) {
     		finished = true;
     	}

@@ -30,7 +30,7 @@ public class DriveGroup extends CommandGroup {
 	//Set ControlArm and ClimberSlide to different controls
 	public DriveGroup() {
 		this.addParallel(new DriveTank()); //gamepad0, joysticks
-//		this.addParallel(new PressureSwitch()); //gamepad0, a button
+		this.addParallel(new PressureSwitch()); //gamepad0, a button
 		this.addParallel(new ControlArm()); //gamepad1, left joystick
 		this.addParallel(new LaunchCube());
 //		this.addParallel(new Outtake()); //gamepad1, right bumper

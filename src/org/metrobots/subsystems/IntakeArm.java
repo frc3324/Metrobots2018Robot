@@ -28,8 +28,8 @@ public class IntakeArm extends Subsystem implements PIDOutput {
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 //	static Encoder testArmEncoder = new Encoder(Constants.testArmEncoderA, Constants.testArmEncoderB);
 	
-	private WPI_VictorSPX armMotorLeft = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
-	private WPI_VictorSPX armMotorRight = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
+	private WPI_TalonSRX armMotorLeft = new WPI_TalonSRX(Constants.MOTOR_PORT_ARM_LEFT);
+	private WPI_TalonSRX armMotorRight = new WPI_TalonSRX(Constants.MOTOR_PORT_ARM_RIGHT);
 	private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
 	
 	public IntakeArm() {

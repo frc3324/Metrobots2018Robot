@@ -2,13 +2,15 @@ package org.metrobots.commands.auto;
 
 import org.metrobots.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class GyroReset extends Command {
-	private boolean isDone = false;
+	private boolean isReset = false;
 	
     public GyroReset() {
     	
@@ -24,12 +26,13 @@ public class GyroReset extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.mGyro.clear();
-    	isDone = true;
+    	DriverStation.reportError("GYRO RESET", false);
+    	isReset = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isDone;
+        return isReset;
     }
 
     // Called once after isFinished returns true
