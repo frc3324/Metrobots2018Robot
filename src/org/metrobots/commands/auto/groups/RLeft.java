@@ -11,7 +11,7 @@ public class RLeft extends CommandGroup {
 
     public RLeft() {
     	
-    	this.addSequential(new DriveForward(200));
+    	this.addSequential(new DriveForward(100));
     	
     }
 

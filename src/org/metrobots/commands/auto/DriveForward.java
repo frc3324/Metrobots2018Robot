@@ -75,12 +75,12 @@ public class DriveForward extends Command {
 			speed = 1;
 		}
 		
-		LSpeed = speed * 0.95;
+		LSpeed = speed;
 		RSpeed = speed;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
 //		Robot.mPIDStabilzation.GyroStabilize(-speed);
-		if (Math.abs(distanceToTravel) < 0.5) {
+		if (Math.abs(distanceToTravel) < 1) { //0.5
 			driveFinished = true;
 		}
 		

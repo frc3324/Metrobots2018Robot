@@ -41,7 +41,8 @@ public class Rotate extends Command {
 //		isDone = false;
 		double measuredAngle = Robot.mGyro.getPidAngle();
         SmartDashboard.putNumber("Gyro", measuredAngle);
-        angleToTravel = specifiedAngle - Math.abs(measuredAngle);
+        angleToTravel = Math.abs(specifiedAngle) - Math.abs(measuredAngle);
+        
         SmartDashboard.putNumber("angle to travel:", angleToTravel);
 //		speed = angleToTravel / specifiedAngle;
         if (measuredAngle > specifiedAngle && angleToTravel > 30) {
@@ -55,7 +56,8 @@ public class Rotate extends Command {
         } else if (specifiedAngle > measuredAngle && angleToTravel < 30) {
         	runningSpeed = speed * 0.5;
         }
-        if (angleToTravel < Constants.AUTO_ROTATE_ANGLE_THRESHOLD ) {
+        if (Math.abs(angleToTravel) < Constants.AUTO_ROTATE_ANGLE_THRESHOLD) {
+        	DriverStation.reportError("Is done:", isDone);
         	runningSpeed = 0;
         	isDone = true;
         }
@@ -73,15 +75,16 @@ public class Rotate extends Command {
      */
     @Override
     protected boolean isFinished() {
-       DriverStation.reportError("Is done?", isDone);
-    	return isDone;
+       return isDone;
     }
 	
 	/**
 	 * Does nothing after the current angle is equal to the specified angle.
 	 */
 	@Override
-	protected void end() {}
+	protected void end() {
+		Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
+	}
 	
 	/**
 	 * Do nothing
