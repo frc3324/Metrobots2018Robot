@@ -64,8 +64,6 @@ public class Rotate extends Command {
     	SmartDashboard.putBoolean("Is turn over?", isDone);
         SmartDashboard.putNumber("RunningSpeed:", runningSpeed);
         Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, false);
-        SmartDashboard.putNumber("Turning", count);
-        count++;
         //drivetrain.tankDrive(leftSpeed, rightSpeed);
         
     }

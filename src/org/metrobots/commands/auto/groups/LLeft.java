@@ -15,11 +15,11 @@ public class LLeft extends CommandGroup {
     public LLeft() {
     	
     	this.addSequential(new DriveForward(100)); //was 192
-    	this.addSequential(new GyroReset());
+//    	this.addSequential(new GyroReset());
     	this.addSequential(new Rotate(90));
 //    	this.addSequential(new MoveArm(11.75));
 //    	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(26));
+    	this.addSequential(new DriveForward(30));
     	this.addSequential(new CubeControl(-0.5, 2));
     }
 }

@@ -19,13 +19,13 @@ public class LMiddle extends CommandGroup {
     public LMiddle() {
 
     	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(65));
-    	this.addSequential(new RotatePID(-90f, 1));
-    	this.addSequential(new MoveArm(11.75));
+    	this.addSequential(new DriveForward(25));
+    	this.addSequential(new Rotate(-90));
+//    	this.addSequential(new MoveArm(11.75));
 //    	this.addParallel(new MoveArm(0));
     	this.addSequential(new GyroReset());
     	this.addSequential(new DriveForward(36));
-    	this.addSequential(new RotatePID(90, 1));
+    	this.addSequential(new Rotate(90));
     	this.addSequential(new DriveForward(65));
     	this.addSequential(new CubeControl(-0.5, 2));
     	

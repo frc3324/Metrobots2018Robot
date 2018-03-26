@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class StatusLED {
 
 	// Chasing LED strip lights?!! Maybe?!!
-	Solenoid redLights = new Solenoid(2);
+	 Solenoid redLights = new Solenoid(2);
 	Solenoid greenLights = new Solenoid(3);
 	Solenoid blueLights = new Solenoid(4);
 	

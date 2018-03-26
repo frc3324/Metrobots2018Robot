@@ -17,9 +17,9 @@ public class RMiddle extends CommandGroup {
     public RMiddle() {
     	
     	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(65));
+    	this.addSequential(new DriveForward(25));
     	this.addSequential(new Rotate(90));
-    	this.addSequential(new MoveArm(11.75));
+//    	this.addSequential(new MoveArm(11.75));
 //    	this.addParallel(new MoveArm(0));
     	this.addSequential(new GyroReset());
     	this.addSequential(new DriveForward(36));

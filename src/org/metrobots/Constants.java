@@ -22,8 +22,8 @@ public class Constants {
 	public final static int blMotorPort = 2; //checked
 	public final static int frMotorPort = 4; //checked
 	public final static int brMotorPort = 6; //checked
-	public final static int MOTOR_PORT_ARM_LEFT = 9; //checked
-	public final static int MOTOR_PORT_ARM_RIGHT = 8; //checked
+	public final static int MOTOR_PORT_ARM_LEFT = 8; //checked
+	public final static int MOTOR_PORT_ARM_RIGHT = 9; //checked
 	public final static int leftIntakeMotorPort = 3; //checked
 	public final static int rightIntakeMotorPort = 5; //checked
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 1; 

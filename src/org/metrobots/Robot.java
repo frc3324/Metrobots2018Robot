@@ -110,7 +110,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledPeriodic() {
 //		CameraServer.getInstance().getVideo();
-		
 		/***************************************************/
 //		Scheduler.getInstance().add(new AutoConfiguration());
 //		setAutoCommand = mConfiguration.getAutoCommand();
@@ -192,7 +191,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 //		mStatusLED.setStateHigh();
 		Scheduler.getInstance().run();
-		
 	}
 
 	/**
