@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.metrobots.commands.auto.DriveForward;
 import org.metrobots.commands.auto.GyroReset;
 import org.metrobots.commands.auto.MoveArm;
+import org.metrobots.commands.auto.Pause;
 import org.metrobots.commands.auto.CubeControl;
 import org.metrobots.commands.auto.Rotate;
 
@@ -14,6 +15,7 @@ public class LLeft extends CommandGroup {
 
     public LLeft() {
     	
+    	this.addSequential(new Pause(0.5));
     	this.addSequential(new DriveForward(100)); //was 192
 //    	this.addSequential(new GyroReset());
     	this.addSequential(new Rotate(90));

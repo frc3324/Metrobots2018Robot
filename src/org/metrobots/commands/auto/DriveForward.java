@@ -10,7 +10,6 @@ public class DriveForward extends Command {
 
 	double speed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
 	double goalDistance = 0.0;
-	double currentPulse = 0.0;
 	
 	boolean driveFinished = false;
 	

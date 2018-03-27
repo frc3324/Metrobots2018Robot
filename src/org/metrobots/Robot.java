@@ -131,10 +131,8 @@ public class Robot extends IterativeRobot {
 		/*******************CODETHATWORKS**************************/
 		Robot.mGyro.clear();
 		if (autoSelector.getSelected() == 0) {
-//			selectedCommand = new DriveForward(68);
-			selectedCommand = new Rotate(90);
-//			selectedCommand = new RotatePID(90f, 0.75);
-			infoString = "Default (driveForward) :(";
+			selectedCommand = new DriveForward(68);
+			infoString = "Default set (driveForward)";
 		}
 		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
 			infoString = "LLeft";

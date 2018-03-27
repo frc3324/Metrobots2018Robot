@@ -9,7 +9,7 @@ import org.metrobots.commands.auto.DriveForward;
 public class LRight extends CommandGroup {
 
     public LRight() {
-        this.addSequential(new DriveForward(200));
+        this.addSequential(new DriveForward(100));
     }
 
 }
