@@ -14,15 +14,17 @@ public class Rotate extends Command {
 	private double angleToTravel;
 	private static final double speed = 0.5;
 	private boolean isDone = false;
+	private double coast;
 	
 	/**
 	 * Rotates to the specified angle at the specified speed. 
 	 * @param angle
 	 */
-	public Rotate(double angle) {
+	public Rotate(double angle, double speed) {
 		requires(Robot.mDriveTrain);
 		requires(Robot.mGyro);
 		specifiedAngle = -angle;
+		coast = speed;
 	}
 	
 	/**
@@ -69,7 +71,8 @@ public class Rotate extends Command {
         }
     	SmartDashboard.putBoolean("Is turn over?", isDone);
         SmartDashboard.putNumber("RunningSpeed:", runningSpeed);
-        Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, false);
+//        Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, false);
+        Robot.mDriveTrain.arcadeDrive(-coast, runningSpeed, false);
         //drivetrain.tankDrive(leftSpeed, rightSpeed);
         
     }

@@ -7,7 +7,6 @@ import org.metrobots.commands.teleop.ClimberSlideUp;
 import org.metrobots.commands.teleop.ControlArm;
 import org.metrobots.commands.teleop.DriveTank;
 import org.metrobots.commands.teleop.LaunchCube;
-//import org.metrobots.commands.teleop.OuttakeGARBAGE;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.commands.teleop.Winches;
 

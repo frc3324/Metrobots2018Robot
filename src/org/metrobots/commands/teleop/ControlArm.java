@@ -81,8 +81,8 @@ public class ControlArm extends Command {
 //
 //    	}//useful like me
 //    	double speed = 0.0;
-//    	double currentPulse = Robot.mIntakeArm.getRawArm();
-//		SmartDashboard.putNumber("CURRENTPULSE", currentPulse);
+    	double currentPulse = Robot.mIntakeArm.getRawArm();
+		SmartDashboard.putNumber("CURRENTPULSE", currentPulse);
 //		SmartDashboard.putNumber("GOALPULSE", goalPulse);
 //    	double diffPulse = goalPulse + currentPulse; //change to minus if the currentPulse is positive
 //    	

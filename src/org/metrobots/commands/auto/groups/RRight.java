@@ -16,9 +16,9 @@ public class RRight extends CommandGroup {
     public RRight() {
 
 //    	this.addSequential(new GyroReset());
-    	this.addSequential(new Pause(0.5));
+//    	this.addSequential(new Pause(0.5));
     	this.addSequential(new DriveForward(100));
-    	this.addSequential(new Rotate(-90));
+    	this.addSequential(new Rotate(-90, 0));
 //    	this.addSequential(new MoveArm(11.75));
 //    	this.addParallel(new MoveArm(0));
 //    	this.addSequential(new GyroReset());

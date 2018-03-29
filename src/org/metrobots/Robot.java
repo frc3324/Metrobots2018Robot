@@ -18,7 +18,7 @@ import org.metrobots.subsystems.CubeController;
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.subsystems.Gyro;
 import org.metrobots.subsystems.IntakeArm;
-import org.metrobots.subsystems.LimitSwitch;
+//import org.metrobots.subsystems.LimitSwitch;
 import org.metrobots.subsystems.PIDStabilization;
 import org.metrobots.subsystems.Pneumatics;
 import org.metrobots.util.StatusLED;
@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeArm mIntakeArm = new IntakeArm();
 	public static final Climber mClimber = new Climber();
 	public static final Pneumatics mPneumatics = new Pneumatics();
-	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
+//	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
 	public static final StatusLED mStatusLED = new StatusLED();
 //	public static final PowerDistributionPanel mPowerDistributionPanel = new PowerDistributionPanel();
 

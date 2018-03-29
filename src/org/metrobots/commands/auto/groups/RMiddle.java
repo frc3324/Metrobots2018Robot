@@ -16,18 +16,21 @@ import org.metrobots.commands.auto.Rotate;
 public class RMiddle extends CommandGroup {
 
     public RMiddle() {
-    	this.addSequential(new Pause(0.5));
+    	this.addSequential(new Pause(0.1));
     	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(25));
-    	this.addSequential(new Rotate(90));
+    	this.addSequential(new GyroReset());
+//    	this.addSequential(new DriveForward(5));
+    	this.addSequential(new Rotate(45, 0.55));
 //    	this.addSequential(new MoveArm(11.75));
 //    	this.addParallel(new MoveArm(0));
-    	this.addSequential(new Pause(0.5));
+    	this.addSequential(new Pause(0.1));
     	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(36));
-    	this.addSequential(new Rotate(-90));
-    	this.addSequential(new DriveForward(50));
-    	this.addSequential(new CubeControl(-0.5, 2));
+    	this.addSequential(new GyroReset());
+    	this.addSequential(new Rotate(-45, 0.5));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(-30, 0));
+//    	this.addSequential(new DriveForward(50));
+//    	this.addSequential(new CubeControl(-0.5, 2));
     }
 
 }

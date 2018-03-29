@@ -12,6 +12,7 @@ public class DriveTank extends Command {
 	boolean slowModeActivated = false;
 	boolean isTurning;
 	double turnRate;
+	
 	public DriveTank() {
 		requires(Robot.mDriveTrain);
 	}
@@ -25,7 +26,7 @@ public class DriveTank extends Command {
 		
 		SmartDashboard.putNumber("RightX", rightX);
 		SmartDashboard.putNumber("LeftY", leftY);
-			Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
+		Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
 	
 		if (OI.get0RightBumperToggled()) {
 			slowModeActivated = !slowModeActivated;

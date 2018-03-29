@@ -18,14 +18,14 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 0; //checked
-	public final static int blMotorPort = 2; //checked
-	public final static int frMotorPort = 4; //checked
-	public final static int brMotorPort = 6; //checked
-	public final static int MOTOR_PORT_ARM_LEFT = 8; //checked
-	public final static int MOTOR_PORT_ARM_RIGHT = 9; //checked
-	public final static int leftIntakeMotorPort = 3; //checked
-	public final static int rightIntakeMotorPort = 5; //checked
+	public final static int flMotorPort = 0; 
+	public final static int blMotorPort = 2; 
+	public final static int frMotorPort = 4; 
+	public final static int brMotorPort = 6; 
+	public final static int MOTOR_PORT_ARM_LEFT = 8; 
+	public final static int MOTOR_PORT_ARM_RIGHT = 9; 
+	public final static int leftIntakeMotorPort = 3; 
+	public final static int rightIntakeMotorPort = 5; 
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 1; 
 	public final static int WINCH_PORT = 7;
 
@@ -34,15 +34,15 @@ public class Constants {
 	 */
 	//public final static SPI.Port navxPort = SPI.Port.kMXP;
 	
-	public final static int leftEncoderPortA = 0; //checked
-	public final static int leftEncoderPortB = 1; //checked
-	public final static int rightEncoderPortA = 2; //chece
-	public final static int rightEncoderPortB = 3; //checked
-	public final static int ArmEncoderACLK = 6; //yellow
-	public final static int ArmEncoderSW = 4; //yellow
-	public final static int ArmEncoderDT = 5; //white
-	public final static int LimitSwitchFrontPort = 8;   //arbitrary ports
-	public static final int LimitSwitchBackPort = 9;
+	public final static int leftEncoderPortA = 0; //Checked Buckeye
+	public final static int leftEncoderPortB = 1; //Checked Buckeye
+	public final static int rightEncoderPortA = 2; //Checked Buckeye
+	public final static int rightEncoderPortB = 3; //Checked Buckeye
+	public final static int ArmEncoderACLK = 6; //Checked Buckeye
+	public final static int ArmEncoderSW = 4; //Checked Buckeye
+	public final static int ArmEncoderDT = 5; //Checked Buckeye
+//	public final static int LimitSwitchFrontPort = 8;
+//	public static final int LimitSwitchBackPort = 9;
 	
 //	public final static int CAMERA_PORT = 0;
 	

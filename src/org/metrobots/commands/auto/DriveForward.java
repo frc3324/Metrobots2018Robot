@@ -84,7 +84,7 @@ public class DriveForward extends Command {
 		}
 		
 		//make speed negative to go forward in real life
-		Robot.mDriveTrain.tankDrive(-LSpeed, -RSpeed, false);
+		Robot.mDriveTrain.tankDrive(LSpeed, RSpeed, false);
 		SmartDashboard.putNumber("Gyro!!!!", Robot.mGyro.getPidAngle());
 		
 //		Robot.mDriveTrain.arcadeDrive(-0.4, 0.0, true);
