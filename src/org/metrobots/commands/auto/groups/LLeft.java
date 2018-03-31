@@ -15,7 +15,7 @@ public class LLeft extends CommandGroup {
 
     public LLeft() {
     	
-    	this.addSequential(new Pause(0.5));
+//    	this.addSequential(new Pause(0.5));
     	this.addSequential(new DriveForward(100)); //was 192
 //    	this.addSequential(new GyroReset());
     	this.addSequential(new Rotate(90, 0));

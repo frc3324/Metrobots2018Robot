@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
@@ -74,6 +75,8 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>();
 
 	String gameData;
+	char firstLetter;
+	String positionString;
 	String infoString;
 	int defaultSet = 0;
 	int left = 1;
@@ -87,7 +90,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
         mOI = new OI();
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
         autoSelector.addDefault("Default", defaultSet);
     	autoSelector.addObject("Left position", left);
     	autoSelector.addObject("Middle position", middle);
@@ -109,7 +111,8 @@ public class Robot extends IterativeRobot {
 	 * the driver station
 	 */
 	public void disabledPeriodic() {
-//		CameraServer.getInstance().getVideo();
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		CameraServer.getInstance().getVideo();
 		/***************************************************/
 //		Scheduler.getInstance().add(new AutoConfiguration());
 //		setAutoCommand = mConfiguration.getAutoCommand();
@@ -117,6 +120,75 @@ public class Robot extends IterativeRobot {
 //		Scheduler.getInstance().run();
 		/***************************************************/
 		
+		/***************OLDCODE*********************/
+		if (autoSelector.getSelected() == defaultSet) {
+			positionString = "Default position";
+		}
+		else if (autoSelector.getSelected() == left) {
+			positionString = "Left position";
+		}
+		else if (autoSelector.getSelected() == middle) {
+			positionString = "Middle position";
+		}
+		else if (autoSelector.getSelected() == right) {
+			positionString = "Right position";
+		}
+//		Scheduler.getInstance().add(selectedCommand);
+		SmartDashboard.putString("You are in: ", positionString);
+		/***************OLDCODE*********************/
+		
+//		try {
+//			firstLetter = gameData.charAt(0);
+//		}
+//		catch (Exception e) {
+//			DriverStation.reportError("Exception", false);
+//		}
+//		
+//		try {
+//			firstLetter = gameData.charAt(0);
+//		} catch (Exception e) {
+//		}
+		
+		if (gameData != null && gameData.length() > 0) {
+			
+			firstLetter = gameData.charAt(0);
+			if (positionString.equals("Default position")) {
+				selectedCommand = new DriveForward(100);
+				infoString = "Drive forward (default)";
+			}
+			else if (firstLetter == 'L' && positionString.equals("Left position")) {
+				selectedCommand = new LLeft();
+				infoString = "LLeft";
+			}
+			else if (firstLetter == 'L' && positionString.equals("Middle position")) {
+				selectedCommand = new LMiddle();
+				infoString = "LMiddle";
+			}
+			else if (firstLetter == 'L' && positionString.equals("Right position")) {
+				selectedCommand = new LRight();
+				infoString = "LRight";
+			}
+			else if (firstLetter == 'R' && positionString.equals("Left position")) {
+				selectedCommand = new RLeft();
+				infoString = "RLeft";
+			}
+			else if (firstLetter == 'R' && positionString.equals("Middle position")) {
+				selectedCommand = new RMiddle();
+				infoString = "RMiddle";
+			}
+			else if (firstLetter == 'R' && positionString.equals("Right position")) {
+				selectedCommand = new RRight();
+				infoString = "RRight";
+			}
+			else {
+				DriverStation.reportError("No game data received.", false);
+				selectedCommand = new DriveForward(100);
+			}	
+		}
+		else {
+			DriverStation.reportError("Here", false);
+		}
+				
 	}
 
 	/**
@@ -129,41 +201,91 @@ public class Robot extends IterativeRobot {
 //		Scheduler.getInstance().add(new DriveForward(60)); //little less than 60
 //		Scheduler.getInstance().add(new RotatePID1());
 		/*******************CODETHATWORKS**************************/
-		Robot.mGyro.clear();
-		if (autoSelector.getSelected() == 0) {
-			selectedCommand = new DriveForward(68);
-			infoString = "Default set (driveForward)";
-		}
-		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
-			infoString = "LLeft";
-			selectedCommand = new LLeft();
-		}
-		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
-			infoString = "LMiddle";
-			selectedCommand = new LMiddle();
-		}
-		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
-			infoString = "LRight";
-			selectedCommand = new LRight();
-		}
-		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
-			infoString = "RLeft";
-			selectedCommand = new RLeft();
-		}
-		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
-			infoString = "RMiddle";
-			selectedCommand = new RMiddle();
-		}
-		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
-			infoString = "RRight";
-			selectedCommand = new RRight();
-		}
-		else {
-			DriverStation.reportError("No game data received.", false);
-			selectedCommand = new DriveForward(68);
-		}
 		Scheduler.getInstance().add(selectedCommand);
 		SmartDashboard.putString("COMMENCING: ", infoString);
+
+//		Robot.mGyro.clear();
+		
+//		try {
+//			if (autoSelector.getSelected() == 0) {
+//				selectedCommand = new DriveForward(100);
+//				infoString = "Default set (driveForward)";
+//			}
+//			else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
+//				infoString = "LLeft";
+//				selectedCommand = new LLeft();
+//			}
+//			else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
+//				infoString = "LMiddle";
+//				selectedCommand = new LMiddle();
+//			}
+//			else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
+//				infoString = "LRight";
+//				selectedCommand = new LRight();
+//			}
+//			else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
+//				infoString = "RLeft";
+//				selectedCommand = new RLeft();
+//			}
+//			else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
+//				infoString = "RMiddle";
+//				selectedCommand = new RMiddle();
+//			}
+//			else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
+//				infoString = "RRight";
+//				selectedCommand = new RRight();
+//			}
+//			else {
+//				DriverStation.reportError("No game data received.", false);
+//				selectedCommand = new DriveForward(100);
+//			}
+//			Scheduler.getInstance().add(selectedCommand);
+//			SmartDashboard.putString("COMMENCING: ", infoString);
+//			
+//		}
+//		catch (Exception e){
+//			DriverStation.reportError("Null data", false);
+//			selectedCommand = new DriveForward(100);
+//		}
+//			
+//		Scheduler.getInstance().add(selectedCommand);
+		/********************Ble*****************************/
+		
+		/********************Ble*****************************/
+//		if (autoSelector.getSelected() == 0) {
+//			selectedCommand = new DriveForward(68);
+//			infoString = "Default set (driveForward)";
+//		}
+//		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
+//			infoString = "LLeft";
+//			selectedCommand = new LLeft();
+//		}
+//		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
+//			infoString = "LMiddle";
+//			selectedCommand = new LMiddle();
+//		}
+//		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
+//			infoString = "LRight";
+//			selectedCommand = new LRight();
+//		}
+//		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
+//			infoString = "RLeft";
+//			selectedCommand = new RLeft();
+//		}
+//		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
+//			infoString = "RMiddle";
+//			selectedCommand = new RMiddle();
+//		}
+//		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
+//			infoString = "RRight";
+//			selectedCommand = new RRight();
+//		}
+//		else {
+//			DriverStation.reportError("No game data received.", false);
+//			selectedCommand = new DriveForward(68);
+//		}
+//		Scheduler.getInstance().add(selectedCommand);
+//		SmartDashboard.putString("COMMENCING: ", infoString);
 	}
 
 	/**
@@ -188,6 +310,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 //		mStatusLED.setStateHigh();
+		CameraServer.getInstance().getVideo();
 		Scheduler.getInstance().run();
 	}
 

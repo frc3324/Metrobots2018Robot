@@ -40,14 +40,14 @@ public class LaunchCube extends Command {
 //    	}
     	if (OI.is1LeftBumperPressed()) { //outtake (3/10/18)
     		DriverStation.reportError("LEFT BUMPER", false);
-    		motorSpeed = 1.0;
+    		motorSpeed = -0.8;
     	}
     	else if (OI.is1RightBumperPressed()) { //intake (3/10/18)
     		DriverStation.reportError("RIGHT BUMPER", false);
-    		motorSpeed = -0.8;
+    		motorSpeed = 1.0;
     	}
     	else if (OI.is1APressed()) {
-    		motorSpeed = -0.6;
+    		motorSpeed = 0.3;
     	}
     	else {
     		motorSpeed = 0.0;

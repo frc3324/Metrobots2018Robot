@@ -24,7 +24,13 @@ public class GyroReset extends Command {
     protected void execute() {
     	Robot.mGyro.clear();
     	DriverStation.reportError("GYRO RESET", false);
-    	isReset = true;
+    	if (Math.abs(Robot.mGyro.getPidAngle()) < 0.1) {
+    		DriverStation.reportError("Gyro auto: " + Robot.mGyro.getPidAngle(), false);
+    		isReset = true;
+    	}
+    	else {
+    		isReset = false;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

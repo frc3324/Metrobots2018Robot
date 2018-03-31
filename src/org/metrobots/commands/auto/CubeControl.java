@@ -19,7 +19,7 @@ public class CubeControl extends Command {
 	 * Time in seconds.
 	 */
     public CubeControl(double speed, double time) {
-    	cubeSpeed = speed;
+    	cubeSpeed = -speed;
     	controlTime = time;
     }
 
