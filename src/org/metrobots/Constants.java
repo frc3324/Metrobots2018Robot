@@ -63,7 +63,6 @@ public class Constants {
 	public static double kDriveHoldAngleP = 0.007;
 	public final static double driveTrainAngleDeadband = 3;
 	public final static double AXIS_DEADBAND = 0.05;
-	
 	public final static double CIRCUMFERENCE = 18.85; // (Inches) Need to measure in inches
 	public final static double PULSES = 2639.43;
 	public final static double INCH_PER_PULSE = 0.074; //circumference of wheel in inches / pulses

@@ -153,7 +153,7 @@ public class Robot extends IterativeRobot {
 			
 			firstLetter = gameData.charAt(0);
 			if (positionString.equals("Default position")) {
-				selectedCommand = new DriveForward(100);
+				selectedCommand = new DriveForward(90, 1);
 				infoString = "Drive forward (default)";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Left position")) {
@@ -182,7 +182,7 @@ public class Robot extends IterativeRobot {
 			}
 			else {
 				DriverStation.reportError("No game data received.", false);
-				selectedCommand = new DriveForward(100);
+				selectedCommand = new DriveForward(90, 1);
 			}	
 		}
 		else {

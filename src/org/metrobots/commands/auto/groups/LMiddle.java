@@ -38,20 +38,43 @@ public class LMiddle extends CommandGroup {
 //    	this.addSequential(new CubeControl(-0.5, 2));
     	/*************FANCYTURN**************/
     	
-    	this.addSequential(new Pause(0.1));
-    	this.addSequential(new DriveForward(25));
+//    	this.addSequential(new Pause(0.1));
+//    	this.addSequential(new DriveForward(25));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(-90, 0));
+////    	this.addSequential(new MoveArm(11.75));
+////    	this.addParallel(new MoveArm(0));
+//    	this.addSequential(new Pause(0.5));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new DriveForward(36));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(90,0));
+//    	this.addSequential(new DriveForward(44));
+//    	this.addSequential(new Pause(0.01));
+//    	this.addSequential(new CubeControl(-0.4, 2));
+    	
+    	/******IN SHAPE OF TRIANGLE, ONE CUBE, HAS NOT BEEN TESTED******/
+    	this.addSequential(new DriveForward(9.758952, 1));
     	this.addSequential(new GyroReset());
-    	this.addSequential(new Rotate(-90, 0));
-//    	this.addSequential(new MoveArm(11.75));
-//    	this.addParallel(new MoveArm(0));
-    	this.addSequential(new Pause(0.5));
+    	this.addSequential(new Rotate(-36, 0));
     	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(36));
     	this.addSequential(new GyroReset());
-    	this.addSequential(new Rotate(90,0));
-    	this.addSequential(new DriveForward(44));
-    	this.addSequential(new Pause(0.01));
-    	this.addSequential(new CubeControl(-0.4, 2));
+    	this.addSequential(new DriveForward(70, 1));
+    	this.addSequential(new GyroReset());
+    	this.addSequential(new Rotate(36, 0.15));
+    	this.addSequential(new GyroReset());
+    	this.addSequential(new CubeControl(0.4, 2));
+    	
+    	//For two cube, VEEEEEERRRRRRRRRRYYYYYYY rough draft
+//    	this.addSequential(new DriveForward(-7));
+//    	this.addSequential(new Rotate(90, 0));
+//    	this.addParallel(new MoveArm(/*a number*/));
+//    	this.addParallel(new DriveForward(20));
+//    	this.addParallel(new CubeControl(-0.4, 3));
+//    	this.addSequential(new DriveForward(-20));
+//    	this.addSequential(new Rotate(-90, 0));
+//    	this.addSequential(new MoveArm(/*a number*/));
+//    	this.addSequential(new CubeControl(0.4, 2));
     }
     	
     }

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForward extends Command {
 
-	double speed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
+	double FinalSpeed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
 	double goalDistance = 0.0;
 	
 	boolean driveFinished = false;
@@ -40,9 +40,11 @@ public class DriveForward extends Command {
 	 * @param speed
 	 * @param distance
 	 */
-	public DriveForward(double distance) {
+	public DriveForward(double distance, double speed) {
 		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
 		goalDistance = distance;
+		FinalSpeed = 1 * speed; 
+		
 	}
 	
 	@Override
@@ -61,6 +63,7 @@ public class DriveForward extends Command {
 //		//make speed negative to go forward in real lifes
 //		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
 		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance()) + Math.abs(Robot.mDriveTrain.getRightDistance())) / 2.0;
+//		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance());
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
 		SmartDashboard.putNumber("Right from robot encoder: ", Robot.mDriveTrain.getRightDistance());
 		SmartDashboard.putNumber("Left from robot encoder: ", Robot.mDriveTrain.getRightDistance());
@@ -68,14 +71,14 @@ public class DriveForward extends Command {
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
 		if (distanceToTravel < 10) {
-			speed = 0.4;
+			FinalSpeed = -0.4;
 		} 
 		else {
-			speed = 1;
+			FinalSpeed = -1;
 		}
 		
-		LSpeed = speed;
-		RSpeed = speed;
+		LSpeed = FinalSpeed;
+		RSpeed = FinalSpeed;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
 //		Robot.mPIDStabilzation.GyroStabilize(-speed);

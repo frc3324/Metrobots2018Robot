@@ -16,20 +16,27 @@ import org.metrobots.commands.auto.Rotate;
 public class RMiddle extends CommandGroup {
 
     public RMiddle() {
-    	this.addSequential(new Pause(0.5));
-    	this.addSequential(new DriveForward(25));
+//    	this.addSequential(new Pause(0.5));
+//    	this.addSequential(new DriveForward(25));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(90, 0));
+////    	this.addSequential(new MoveArm(11.75));
+////    	this.addParallel(new MoveArm(0));
+//    	this.addSequential(new Pause(0.5));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new DriveForward(36));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(-90,0));
+//    	this.addSequential(new DriveForward(32));
+//    	this.addSequential(new Pause(0.01));
+//    	this.addSequential(new CubeControl(-0.4, 2));
+    	
+    	/**********COPIED FROM LMIDDLE, NEEDS ADJUSTED ANGLES AND DISTANCE(TRIG STUFF), ONE CUBE, NOT TESTED**********/
+    	this.addSequential(new DriveForward(9.758952, 1));
+    	this.addSequential(new Rotate(22.28, 0));
     	this.addSequential(new GyroReset());
-    	this.addSequential(new Rotate(90, 0));
-//    	this.addSequential(new MoveArm(11.75));
-//    	this.addParallel(new MoveArm(0));
-    	this.addSequential(new Pause(0.5));
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(36));
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new Rotate(-90,0));
-    	this.addSequential(new DriveForward(32));
-    	this.addSequential(new Pause(0.01));
-    	this.addSequential(new CubeControl(-0.4, 2));
+    	this.addSequential(new DriveForward(130, 1));
+    	this.addSequential(new Rotate(22.28, 0.15));
     }
 
 }
