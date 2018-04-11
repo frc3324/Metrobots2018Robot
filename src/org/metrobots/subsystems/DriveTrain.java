@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,12 +29,12 @@ public class DriveTrain extends	Subsystem {
 	private double rightEncoderDistance = 0.0;
 	private double leftEncoderDistance = 0.0;
 
-	WPI_TalonSRX flMotor = new WPI_TalonSRX(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
-	WPI_TalonSRX blMotor = new WPI_TalonSRX(Constants.blMotorPort); 
+	Victor flMotor = new Victor(Constants.flMotorPort); // Instantiate the motors as a new TalonSRX motor controller
+	Victor blMotor = new Victor(Constants.blMotorPort); 
 	SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
 	
-	WPI_TalonSRX frMotor = new WPI_TalonSRX(Constants.frMotorPort); //repeat for right motors
-	WPI_TalonSRX brMotor = new WPI_TalonSRX(Constants.brMotorPort);
+	Victor frMotor = new Victor(Constants.frMotorPort); //repeat for right motors
+	Victor brMotor = new Victor(Constants.brMotorPort);
 	SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 	
 	DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);

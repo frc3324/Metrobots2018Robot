@@ -2,6 +2,7 @@ package org.metrobots.commands.teleop;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,19 +15,22 @@ import org.metrobots.OI;
 import org.metrobots.Robot;
 
 public class DriveTank extends Command {
-	
+	Joystick mjoystick = new Joystick(0);
 	
 	public DriveTank() {
 		requires(Robot.mDriveTrain);	
+		
 	}
 
 	protected void execute() {
 		// TODO Auto-generated method stub
 		//Add robot sensitivity
 		Robot.mDriveTrain.printEncoder();
-		double leftY = OI.get0LeftY(); // Get y value of left joystick
+//		double leftY = OI.get0LeftY(); // Get y value of left joystick
 		//double rightX = -gamepad.getX(Hand.kRight); // Get x value of right joystick 
-		double rightX = OI.get0RightX();
+//		double rightX = OI.get0RightX();
+		double rightX = mjoystick.getX();
+		double leftY = mjoystick.getY();
 		//System.out.println("LEFTY: " + leftY + " RIGHTX: " + rightX);
 		//System.out.println("LeftY: " + leftY);
 		//System.out.println("RightX: " + rightX);
