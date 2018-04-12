@@ -12,6 +12,7 @@ import org.metrobots.commands.auto.groups.LRight;
 import org.metrobots.commands.auto.groups.RLeft;
 import org.metrobots.commands.auto.groups.RMiddle;
 import org.metrobots.commands.auto.groups.RRight;
+import org.metrobots.commands.auto.groups.TestArc;
 import org.metrobots.commands.teleop.PressureSwitch;
 import org.metrobots.subsystems.Climber;
 import org.metrobots.subsystems.CubeController;
@@ -153,7 +154,8 @@ public class Robot extends IterativeRobot {
 			
 			firstLetter = gameData.charAt(0);
 			if (positionString.equals("Default position")) {
-				selectedCommand = new DriveForward(90, 1);
+//				selectedCommand = new DriveForward(90, 1);
+				selectedCommand = new TestArc();
 				infoString = "Drive forward (default)";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Left position")) {

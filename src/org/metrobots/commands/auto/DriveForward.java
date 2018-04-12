@@ -35,10 +35,10 @@ public class DriveForward extends Command {
 	/**
 	 * Method for auto drive forward.<p>
 	 * 
-	 * Speed of motor, -1 to 1. Distance to be 
-	 * traveled by robot in inches.
-	 * @param speed
+	 * Distance to be traveled by robot in inches.
+	 * Speed of motor, -1 to 1. 
 	 * @param distance
+	 * @param speed
 	 */
 	public DriveForward(double distance, double speed) {
 		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
