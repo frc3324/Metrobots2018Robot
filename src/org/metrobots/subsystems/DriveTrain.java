@@ -191,8 +191,8 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	 * @param squaredInputs
 	 * 	Sensitivity set when true. False when not.
 	 */
-	public void tankDrive(double xSpeed, double ySpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
-		mDrive.tankDrive(xSpeed, ySpeed, squaredInputs);
+	public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
+		mDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
 		//mDrive.tankDrive(leftSpeed, rightSpeed, true);
 	
 	}
