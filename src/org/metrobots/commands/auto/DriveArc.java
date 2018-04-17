@@ -15,7 +15,7 @@ public class DriveArc extends Command {
 
 	double circleAngle, circleRadius;
 	double leftSideSpeed, rightSideSpeed;
-	double innerLeftSpeed, innerRightSpeed;
+	double innerSpeed;
 	double leftDistance, rightDistance, innerDistance, outerDistance;
 	double encoderDifference;
 	
@@ -33,8 +33,7 @@ public class DriveArc extends Command {
     protected void initialize() {
     	Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
     	DriveTrain.clearEncoder();
-    	innerLeftSpeed = (circleRadius * (2 / distanceBetweenWheels) - 1) / (circleRadius * (2 / distanceBetweenWheels) + 1);
-    	innerRightSpeed = (circleRadius * (2 / distanceBetweenWheels) + 1) / (circleRadius * (2 / distanceBetweenWheels) - 1);
+    	innerSpeed = (circleRadius * (2 / distanceBetweenWheels) - 1) / (circleRadius * (2 / distanceBetweenWheels) + 1);
     	innerDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius - (distanceBetweenWheels / 2));
     	outerDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius + (distanceBetweenWheels / 2));
     }
@@ -87,7 +86,7 @@ public class DriveArc extends Command {
     			arcFinished = true;
     		}
     		else {
-    			leftSideSpeed = innerLeftSpeed;
+    			leftSideSpeed = innerSpeed;
         		rightSideSpeed = 1.0;
         		arcFinished = false;
     		}
@@ -114,7 +113,7 @@ public class DriveArc extends Command {
     			arcFinished = true;
     		}
     		else {
-    			rightSideSpeed = innerRightSpeed;
+    			rightSideSpeed = innerSpeed;
     			SmartDashboard.putNumber("rightSideSpeed: ", rightSideSpeed);
         		leftSideSpeed = 1.0;
         		arcFinished = false;
