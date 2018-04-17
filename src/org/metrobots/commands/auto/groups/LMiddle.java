@@ -54,17 +54,37 @@ public class LMiddle extends CommandGroup {
 //    	this.addSequential(new CubeControl(-0.4, 2));
     	
     	/******IN SHAPE OF TRIANGLE, ONE CUBE, HAS NOT BEEN TESTED******/
-    	this.addSequential(new DriveForward(9.758952, 1));
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new Rotate(-36, 0));
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new DriveForward(70, 1));
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new Rotate(36, 0.15));
-    	this.addSequential(new GyroReset());
-    	this.addSequential(new CubeControl(0.4, 2));
-    	
+//    	this.addSequential(new DriveForward(9.758952, 1));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(-36, 0));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new DriveForward(70, 1));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new Rotate(36, 0.15));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new CubeControl(0.4, 2));
+    	/***************************Fourth Generation LMiddle Auto Code*******************/
+    	this.addSequential(new DriveForward(60*0.6716417904477));
+    	this.addSequential(new Rotate(-90, 0));
+    	this.addSequential(new DriveForward(40*0.6716417904477));
+    	this.addSequential(new Rotate(90, 0));
+    	this.addSequential(new DriveForward(44*0.6716417904477));
+    	this.addSequential(new CubeControl(-0.4, 2));
+    	this.addSequential(new DriveForward(-30*0.6716417904477));
+    	this.addSequential(new Rotate(-90, 0));
+    	this.addSequential(new DriveForward(20*0.6716417904477));
+    	this.addSequential(new Rotate(90, 0));
+    	this.addSequential(new DriveForward(108*0.6716417904477));
+    	this.addSequential(new Rotate(90, 0));
+    	this.addSequential(new DriveForward(161.25*0.6716417904477));
+    	this.addSequential(new Rotate(-90, 0));
+
+//    	this.addSequential(new DriveForward(9.758952, 1));
+//    	this.addSequential(new Rotate(22.28, 0));
+//    	this.addSequential(new GyroReset());
+//    	this.addSequential(new DriveForward(130, 1));
+//    	this.addSequential(new Rotate(22.28, 0.15));
     	//For two cube, VEEEEEERRRRRRRRRRYYYYYYY rough draft
 //    	this.addSequential(new DriveForward(-7));
 //    	this.addSequential(new Rotate(90, 0));
