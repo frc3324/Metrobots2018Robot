@@ -2,6 +2,7 @@ package org.metrobots.commands.auto;
 
 import org.metrobots.Constants;
 import org.metrobots.Robot;
+import org.metrobots.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,14 +13,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveArc extends Command {
 
-	double circleAngle;
-	double circleRadius;
-	double leftSideSpeed;
-	double rightSideSpeed;
-	double leftDistance;
-	double rightDistance;
-	double speedProportion;
+	double circleAngle, circleRadius;
+	double leftSideSpeed, rightSideSpeed;
+	double innerLeftSpeed, innerRightSpeed;
+	double leftDistance, rightDistance, innerDistance, outerDistance;
 	double encoderDifference;
+	
+	double distanceBetweenWheels = Constants.DISTANCE_BETWEEN_WHEELS;
 	
 	boolean arcFinished;
 	
@@ -32,7 +32,11 @@ public class DriveArc extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
-    	Robot.mDriveTrain.clearEncoder();
+    	DriveTrain.clearEncoder();
+    	innerLeftSpeed = (circleRadius * (2 / distanceBetweenWheels) - 1) / (circleRadius * (2 / distanceBetweenWheels) + 1);
+    	innerRightSpeed = (circleRadius * (2 / distanceBetweenWheels) + 1) / (circleRadius * (2 / distanceBetweenWheels) - 1);
+    	innerDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius - (distanceBetweenWheels / 2));
+    	outerDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius + (distanceBetweenWheels / 2));
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -55,8 +59,8 @@ public class DriveArc extends Command {
     		 *  leftDistance and rightDistance are in inches, and are not yet converted to encoder pulses.
     		*/
     		
-    		leftDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius - (Constants.DISTANCE_BETWEEN_WHEELS / 2));
-    		rightDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius + (Constants.DISTANCE_BETWEEN_WHEELS / 2));
+    		leftDistance = innerDistance;
+    		rightDistance = outerDistance;
     		
     		/*
     		 * Encoder pulse count is used to check that the robot has traveled the correct distance.
@@ -76,14 +80,14 @@ public class DriveArc extends Command {
     		 */
     		
     		// Fix
-    		encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - Robot.mDriveTrain.getRightDistance();
+    		encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
     		SmartDashboard.putNumber("Encoder Difference:", encoderDifference);
     		
-    		if (encoderDifference < 0.5) {
+    		if (Math.abs(encoderDifference) < 0.5) {
     			arcFinished = true;
     		}
     		else {
-    			leftSideSpeed = leftDistance / rightDistance;
+    			leftSideSpeed = innerLeftSpeed;
         		rightSideSpeed = 1.0;
         		arcFinished = false;
     		}
@@ -98,25 +102,26 @@ public class DriveArc extends Command {
     		 * 
     		 * The math is the same as the left turn, except the wheels are switched.
     		 */
-    		leftDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius + (Constants.DISTANCE_BETWEEN_WHEELS / 2)); // 40 pi / 3
-    		rightDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius - (Constants.DISTANCE_BETWEEN_WHEELS / 2)); // 20 pi / 3
+    		leftDistance = outerDistance;
+    		rightDistance = innerDistance;
     		SmartDashboard.putNumber("rightDistance", rightDistance);
     		SmartDashboard.putNumber("leftDistance", leftDistance);
-    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - Robot.mDriveTrain.getLeftDistance());
+    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
     		SmartDashboard.putNumber("Encoder Difference:", encoderDifference);
-    		SmartDashboard.putNumber("Left distance auto: ", Robot.mDriveTrain.getLeftDistance());
-    		if (encoderDifference < 0.5) {
+    		SmartDashboard.putNumber("Left distance auto: ", DriveTrain.getLeftDistance());
+    		
+    		if (Math.abs(encoderDifference) < 0.5) {
     			arcFinished = true;
     		}
     		else {
-    			rightSideSpeed = 0.5; //rightDistance / leftDistance
+    			rightSideSpeed = innerRightSpeed;
     			SmartDashboard.putNumber("rightSideSpeed: ", rightSideSpeed);
         		leftSideSpeed = 1.0;
         		arcFinished = false;
     		}
     	}
     	
-    	// If the robot has an angle of zero, the robot will not move.
+    	// If the robot has an angle of zero, the robot will not move. This will be changed to incorporate rotate at some point.
     	
     	else {
     		leftSideSpeed = 0;
