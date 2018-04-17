@@ -12,7 +12,7 @@ public class Rotate extends Command {
 	private double specifiedAngle = 0; //angle that robot should go to
 	private double runningSpeed = 0.0;
 	private double angleToTravel;
-	private static final double speed = 0.5;
+	private static final double speed = 1;
 	private boolean isDone = false;
 	private double coast;
 	
@@ -53,13 +53,13 @@ public class Rotate extends Command {
             runningSpeed = -speed;
             DriverStation.reportError("Here", false);
         } else if (measuredAngle > specifiedAngle && angleToTravel < 30) {
-        	runningSpeed = -speed * 0.7;
+        	runningSpeed = -speed * 1;
         	DriverStation.reportError("Here1", false);
         } else if (specifiedAngle > measuredAngle && angleToTravel > 30) {
             runningSpeed = speed;
             DriverStation.reportError("Here2", false);
         } else if (specifiedAngle > measuredAngle && angleToTravel < 30) {
-        	runningSpeed = speed * 0.7;
+        	runningSpeed = speed * 1;
         	DriverStation.reportError("Here3", false);
         } else {
         	DriverStation.reportError("You have reached the forbidden zone!", false);

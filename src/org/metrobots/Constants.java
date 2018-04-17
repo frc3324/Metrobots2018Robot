@@ -67,6 +67,6 @@ public class Constants {
 	public final static double PULSES = 2639.43;
 	public final static double INCH_PER_PULSE = 0.074; //circumference of wheel in inches / pulses
 	public final static double AUTO_ROTATE_ANGLE_THRESHOLD = 0.3;
-	public final static double ENCODER_CONVERSION_RATE = 0.6581352833638026;
+	public final static double ENCODER_CONVERSION_RATE = 0.68667;
 	public final static double DISTANCE_BETWEEN_WHEELS = 22.5;
 }

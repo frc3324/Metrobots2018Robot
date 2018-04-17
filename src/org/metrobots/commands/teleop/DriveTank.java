@@ -26,6 +26,7 @@ public class DriveTank extends Command {
 		
 		SmartDashboard.putNumber("RightX", rightX);
 		SmartDashboard.putNumber("LeftY", leftY);
+		SmartDashboard.putNumber("LDistanceDT", Robot.mDriveTrain.getLeftDistance());
 		Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
 	
 		if (OI.get0RightBumperToggled()) {

@@ -18,6 +18,7 @@ public class DriveArc extends Command {
 	double innerSpeed;
 	double leftDistance, rightDistance, innerDistance, outerDistance;
 	double encoderDifference;
+	double outerDifference;
 	
 	double distanceBetweenWheels = Constants.DISTANCE_BETWEEN_WHEELS;
 	
@@ -80,7 +81,6 @@ public class DriveArc extends Command {
     		
     		// Fix
     		encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
-    		SmartDashboard.putNumber("Encoder Difference:", encoderDifference);
     		
     		if (Math.abs(encoderDifference) < 0.5) {
     			arcFinished = true;
@@ -103,13 +103,10 @@ public class DriveArc extends Command {
     		 */
     		leftDistance = outerDistance;
     		rightDistance = innerDistance;
-    		SmartDashboard.putNumber("rightDistance", rightDistance);
-    		SmartDashboard.putNumber("leftDistance", leftDistance);
-    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
-    		SmartDashboard.putNumber("Encoder Difference:", encoderDifference);
-    		SmartDashboard.putNumber("Left distance auto: ", DriveTrain.getLeftDistance());
+//    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
+    		outerDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getRightDistance());
     		
-    		if (Math.abs(encoderDifference) < 0.5) {
+    		if (Math.abs(outerDifference) < 0.5) {
     			arcFinished = true;
     		}
     		else {
@@ -128,6 +125,12 @@ public class DriveArc extends Command {
     	}
     	
     	Robot.mDriveTrain.tankDrive(-leftSideSpeed, -rightSideSpeed, false);
+    	SmartDashboard.putNumber("rightDistance", rightDistance);
+		SmartDashboard.putNumber("leftDistance", leftDistance);
+		SmartDashboard.putNumber("Left encoder difference:", encoderDifference);
+		SmartDashboard.putNumber("Right encoder difference", outerDifference);
+		SmartDashboard.putNumber("Left distance auto: ", DriveTrain.getLeftDistance());
+		SmartDashboard.putNumber("Right distance auto", DriveTrain.getRightDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()

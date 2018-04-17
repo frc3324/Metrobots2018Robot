@@ -10,6 +10,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TestArc extends CommandGroup {
 
     public TestArc() {
-        this.addSequential(new DriveArc(140, 10.34));
+        this.addSequential(new DriveArc(140, 20));
     }
 }

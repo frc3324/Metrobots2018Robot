@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForward extends Command {
 
-	double FinalSpeed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
+	double finalSpeed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
 	double goalDistance = 0.0;
 	
 	boolean driveFinished = false;
@@ -43,7 +43,7 @@ public class DriveForward extends Command {
 	public DriveForward(double distance, double speed) {
 		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
 		goalDistance = distance;
-		FinalSpeed = 1 * speed; 
+		finalSpeed = 1 * speed; 
 		
 	}
 	
@@ -71,14 +71,14 @@ public class DriveForward extends Command {
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
 		if (distanceToTravel < 10) {
-			FinalSpeed = -0.4;
+			finalSpeed = -0.4;
 		} 
 		else {
-			FinalSpeed = -1;
+			finalSpeed = -1;
 		}
 		
-		LSpeed = FinalSpeed;
-		RSpeed = FinalSpeed;
+		LSpeed = finalSpeed;
+		RSpeed = finalSpeed;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
 //		Robot.mPIDStabilzation.GyroStabilize(-speed);

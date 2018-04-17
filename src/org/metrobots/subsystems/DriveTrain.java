@@ -196,6 +196,12 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		//mDrive.tankDrive(leftSpeed, rightSpeed, true);
 	
 	}
+	public void BrakeMode() {
+		frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		brMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		blMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		flMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+	}
 	
 	protected void initDefaultCommand() {
 		//Do nothing by default if code is broken
