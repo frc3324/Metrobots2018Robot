@@ -154,7 +154,7 @@ public class Robot extends IterativeRobot {
 			
 			firstLetter = gameData.charAt(0);
 			if (positionString.equals("Default position")) {
-//				selectedCommand = new DriveForward(120, 1);
+//				selectedCommand = new DriveForward(40, -1);
 				selectedCommand = new TestArc();
 				infoString = "Drive forward (default)";
 			}

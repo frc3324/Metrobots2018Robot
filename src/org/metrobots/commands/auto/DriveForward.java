@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForward extends Command {
 
-	double finalSpeed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
+	double finalSpeed, currentSpeed, currentDistance, distanceToTravel, LSpeed, RSpeed; //goalDistance
 	double goalDistance = 0.0;
 	
 	boolean driveFinished = false;
@@ -43,7 +43,7 @@ public class DriveForward extends Command {
 	public DriveForward(double distance, double speed) {
 		//distance is equal to the circumference of the wheel times the amount of pulses = inches.
 		goalDistance = distance;
-		finalSpeed = 1 * speed; 
+		currentSpeed = speed; 
 		
 	}
 	
@@ -71,10 +71,10 @@ public class DriveForward extends Command {
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
 		if (distanceToTravel < 10) {
-			finalSpeed = -0.4;
+			finalSpeed = -0.4 * currentSpeed;
 		} 
 		else {
-			finalSpeed = -1;
+			finalSpeed = -1 * currentSpeed;
 		}
 		
 		LSpeed = finalSpeed;

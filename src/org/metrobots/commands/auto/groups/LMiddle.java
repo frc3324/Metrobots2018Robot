@@ -75,7 +75,7 @@ public class LMiddle extends CommandGroup {
     	this.addSequential(new GyroReset());
     	this.addSequential(new DriveForward(44*0.6716417904477, 1));
     	this.addSequential(new CubeControl(-0.4, 2));
-    	this.addSequential(new DriveForward(-30*0.6716417904477, 1));
+    	this.addSequential(new DriveForward(30*0.6716417904477, -1));
     	this.addSequential(new GyroReset());
     	this.addSequential(new Rotate(-90, 0));
     	this.addSequential(new GyroReset());

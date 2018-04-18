@@ -34,9 +34,9 @@ public class DriveArc extends Command {
     protected void initialize() {
     	Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
     	DriveTrain.clearEncoder();
-    	innerSpeed = (circleRadius * (2 / distanceBetweenWheels) - 1) / (circleRadius * (2 / distanceBetweenWheels) + 1);
-    	innerDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius - (distanceBetweenWheels / 2));
-    	outerDistance = (circleAngle / 360) * (2 * Math.PI) * (circleRadius + (distanceBetweenWheels / 2));
+    	innerSpeed = ((circleRadius * (2 / distanceBetweenWheels)) - 1) / ((circleRadius * (2 / distanceBetweenWheels)) + 1);
+    	innerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius - (distanceBetweenWheels / 2)));
+    	outerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius + (distanceBetweenWheels / 2)));
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -106,12 +106,11 @@ public class DriveArc extends Command {
     		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
     		outerDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE) + DriveTrain.getRightDistance());
     		
-    		if (Math.abs(outerDifference) < 2) {
+    		if (Math.abs(encoderDifference) < 0.1 || encoderDifference < 0) { // || outerDifference < 0
     			arcFinished = true;
     		}
     		else {
-    			rightSideSpeed = innerSpeed;
-    			SmartDashboard.putNumber("rightSideSpeed: ", rightSideSpeed);
+    			rightSideSpeed = innerSpeed; //innerSpeed
         		leftSideSpeed = 1.0;
         		arcFinished = false;
     		}
@@ -125,6 +124,8 @@ public class DriveArc extends Command {
     	}
     	
     	Robot.mDriveTrain.tankDrive(-leftSideSpeed, -rightSideSpeed, false);
+    	SmartDashboard.putNumber("Left speed auto", leftSideSpeed);
+    	SmartDashboard.putNumber("Right speed auto", rightSideSpeed);
     	SmartDashboard.putNumber("rightDistance", rightDistance);
 		SmartDashboard.putNumber("leftDistance", leftDistance);
 		SmartDashboard.putNumber("Left encoder difference:", encoderDifference);
