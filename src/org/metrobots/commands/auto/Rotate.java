@@ -53,13 +53,13 @@ public class Rotate extends Command {
             runningSpeed = -speed;
             DriverStation.reportError("Here", false);
         } else if (measuredAngle > specifiedAngle && angleToTravel < 30) {
-        	runningSpeed = -speed * 1;
+        	runningSpeed = -speed * 0.7;
         	DriverStation.reportError("Here1", false);
         } else if (specifiedAngle > measuredAngle && angleToTravel > 30) {
             runningSpeed = speed;
             DriverStation.reportError("Here2", false);
         } else if (specifiedAngle > measuredAngle && angleToTravel < 30) {
-        	runningSpeed = speed * 1;
+        	runningSpeed = speed * 0.7;
         	DriverStation.reportError("Here3", false);
         } else {
         	DriverStation.reportError("You have reached the forbidden zone!", false);
@@ -75,6 +75,7 @@ public class Rotate extends Command {
         }
     	SmartDashboard.putBoolean("Is turn over?", isDone);
         SmartDashboard.putNumber("RunningSpeed:", runningSpeed);
+        Robot.mDriveTrain.BrakeMode();
 //        Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, false);
         Robot.mDriveTrain.arcadeDrive(coast, runningSpeed, false); //negative in shop
         //drivetrain.tankDrive(leftSpeed, rightSpeed);

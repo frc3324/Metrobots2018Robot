@@ -202,7 +202,12 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		blMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		flMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 	}
-	
+	public void CoastMode() {
+		frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		brMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		blMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		flMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+	}
 	protected void initDefaultCommand() {
 		//Do nothing by default if code is broken
 	}
