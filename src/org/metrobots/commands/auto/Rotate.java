@@ -69,6 +69,10 @@ public class Rotate extends Command {
         	runningSpeed = 0;
         	isDone = true;
         }
+        if (angleToTravel < Constants.AUTO_ROTATE_ANGLE_THRESHOLD) {
+        	runningSpeed = 0;
+        	isDone = true;
+        }
     	SmartDashboard.putBoolean("Is turn over?", isDone);
         SmartDashboard.putNumber("RunningSpeed:", runningSpeed);
 //        Robot.mDriveTrain.tankDrive(runningSpeed, -runningSpeed, false);

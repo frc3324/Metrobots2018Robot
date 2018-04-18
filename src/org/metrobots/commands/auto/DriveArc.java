@@ -103,10 +103,10 @@ public class DriveArc extends Command {
     		 */
     		leftDistance = outerDistance;
     		rightDistance = innerDistance;
-//    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
-    		outerDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getRightDistance());
+    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
+    		outerDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE) + DriveTrain.getRightDistance());
     		
-    		if (Math.abs(outerDifference) < 0.5) {
+    		if (Math.abs(outerDifference) < 2) {
     			arcFinished = true;
     		}
     		else {
