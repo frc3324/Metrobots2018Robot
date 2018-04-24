@@ -56,17 +56,17 @@ public class DriveForward extends Command {
 	
 	@Override
 	protected void execute() {
-
+		
 //		distanceToTravel = goalDistance - currentDistance;
 //		speed = distanceToTravel / goalDistance;
 //		Smd artDashboard.putNumber("SPEED: ", speed);
 //		//make speed negative to go forward in real lifes
 //		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
-		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance()) + Math.abs(Robot.mDriveTrain.getRightDistance())) / 2.0;
+		currentDistance = (Math.abs(DriveTrain.getLeftDistance()) + Math.abs(DriveTrain.getRightDistance())) / 2.0;
 //		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance());
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
-		SmartDashboard.putNumber("Right from robot encoder: ", Robot.mDriveTrain.getRightDistance());
-		SmartDashboard.putNumber("Left from robot encoder: ", Robot.mDriveTrain.getRightDistance());
+		SmartDashboard.putNumber("Right from robot encoder: ", DriveTrain.getRightDistance());
+		SmartDashboard.putNumber("Left from robot encoder: ", DriveTrain.getRightDistance());
 		distanceToTravel = goalDistance - currentDistance;	
 		SmartDashboard.putNumber("GOAL DISTANCE", distanceToTravel);
 		
