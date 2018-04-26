@@ -4,8 +4,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class StatusLED {
 
-	// Chasing LED strip lights?!! Maybe?!!
-	 Solenoid redLights = new Solenoid(2);
+	Solenoid redLights = new Solenoid(2);
 	Solenoid greenLights = new Solenoid(3);
 	Solenoid blueLights = new Solenoid(4);
 	
@@ -15,19 +14,22 @@ public class StatusLED {
 		blueLights.setPulseDuration(100);
 	}
 	
+	/**
+	 * Set state to show cube is in the intake (green).
+	 */
 	public void setStateHigh() {
 		greenLights.set(true);
 	}
 	
 	/**
-	 * Set state to show cube is not in the intake.
+	 * Set state to show cube is not in the intake (red).
 	 */
 	public void setStateLow() {
 		redLights.set(true);
 	}
 	
 	/**
-	 * Alternatively turn on and off the lights of the robot.
+	 * Alternatively turn on and off the lights of the robot (red, green, blue).
 	 */
 	public void setPartyMode() {
 		redLights.startPulse();
@@ -44,7 +46,7 @@ public class StatusLED {
 	}
 	
 	/**
-	 * Set state of robot to brownout.
+	 * Set state of robot to brownout (rapid blinking red).
 	 */
 	public void setStateBrownout() {
 		redLights.setPulseDuration(10);

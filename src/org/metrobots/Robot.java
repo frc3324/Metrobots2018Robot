@@ -114,6 +114,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		CameraServer.getInstance().getVideo();
+//		mStatusLED.setStateHigh();
 		/***************************************************/
 //		Scheduler.getInstance().add(new AutoConfiguration());
 //		setAutoCommand = mConfiguration.getAutoCommand();
@@ -154,8 +155,7 @@ public class Robot extends IterativeRobot {
 			
 			firstLetter = gameData.charAt(0);
 			if (positionString.equals("Default position")) {
-//				selectedCommand = new DriveForward(40, -1);
-				selectedCommand = new LMiddleArc();
+				selectedCommand = new DriveForward(90.0, -1.0);
 				infoString = "Drive forward (default)";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Left position")) {
@@ -311,7 +311,6 @@ public class Robot extends IterativeRobot {
 	 * Runs constantly when teleop is enabled
 	 */
 	public void teleopPeriodic() {
-//		mStatusLED.setStateHigh();
 		CameraServer.getInstance().getVideo();
 		Scheduler.getInstance().run();
 		mDriveTrain.printEncoder();
