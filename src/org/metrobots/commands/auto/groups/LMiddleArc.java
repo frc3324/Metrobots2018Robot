@@ -25,7 +25,8 @@ public class LMiddleArc extends CommandGroup {
         this.addSequential(new CubeControl(-0.3, 1.0));
         this.addSequential(new DriveForward(7.53, -1.0)); //20 inches
         this.addSequential(new Rotate(-70.0, 0.0));
-        this.addSequential(new DriveForward(2.06, 1.0)); //3 inches
-        this.addSequential(new DriveArc(90.0, 98.88)); //144 inches
+        //TODO Test lines below
+//        this.addSequential(new DriveForward(2.06, 1.0)); //3 inches
+//        this.addSequential(new DriveArc(90.0, 98.88)); //144 inches
     }
 }
