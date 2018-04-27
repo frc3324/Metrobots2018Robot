@@ -11,6 +11,7 @@ import org.metrobots.commands.auto.groups.LMiddle;
 import org.metrobots.commands.auto.groups.LRight;
 import org.metrobots.commands.auto.groups.RLeft;
 import org.metrobots.commands.auto.groups.RMiddle;
+import org.metrobots.commands.auto.groups.RMiddleArc;
 import org.metrobots.commands.auto.groups.RRight;
 import org.metrobots.commands.auto.groups.LMiddleArc;
 import org.metrobots.commands.teleop.PressureSwitch;
@@ -69,7 +70,7 @@ public class Robot extends IterativeRobot {
 	public static final Climber mClimber = new Climber();
 	public static final Pneumatics mPneumatics = new Pneumatics();
 //	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
-	public static final StatusLED mStatusLED = new StatusLED();
+//	public static final StatusLED mStatusLED = new StatusLED();
 //	public static final PowerDistributionPanel mPowerDistributionPanel = new PowerDistributionPanel();
 
 	Command selectedCommand;
@@ -155,7 +156,7 @@ public class Robot extends IterativeRobot {
 			
 			firstLetter = gameData.charAt(0);
 			if (positionString.equals("Default position")) {
-				selectedCommand = new DriveForward(90.0, -1.0);
+				selectedCommand = new DriveForward(90.0, 1.0);
 				infoString = "Drive forward (default)";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Left position")) {
@@ -163,7 +164,7 @@ public class Robot extends IterativeRobot {
 				infoString = "LLeft";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Middle position")) {
-				selectedCommand = new LMiddle();
+				selectedCommand = new LMiddleArc();
 				infoString = "LMiddle";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Right position")) {
@@ -175,7 +176,7 @@ public class Robot extends IterativeRobot {
 				infoString = "RLeft";
 			}
 			else if (firstLetter == 'R' && positionString.equals("Middle position")) {
-				selectedCommand = new RMiddle();
+				selectedCommand = new RMiddleArc();
 				infoString = "RMiddle";
 			}
 			else if (firstLetter == 'R' && positionString.equals("Right position")) {
@@ -185,10 +186,12 @@ public class Robot extends IterativeRobot {
 			else {
 				DriverStation.reportError("No game data received.", false);
 				selectedCommand = new DriveForward(90, 1);
+				infoString = "No game data received.";
 			}	
 		}
 		else {
 			DriverStation.reportError("Here", false);
+			infoString = "Null game data.";
 		}
 				
 	}
@@ -203,9 +206,15 @@ public class Robot extends IterativeRobot {
 //		Scheduler.getInstance().add(new DriveForward(60)); //little less than 60
 //		Scheduler.getInstance().add(new RotatePID1());
 		/*******************CODETHATWORKS**************************/
+		
+		
+		
 		Scheduler.getInstance().add(selectedCommand);
 		SmartDashboard.putString("COMMENCING: ", infoString);
 
+		
+		
+		
 //		Robot.mGyro.clear();
 		
 //		try {
