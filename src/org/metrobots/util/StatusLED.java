@@ -1,18 +1,21 @@
 package org.metrobots.util;
 
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StatusLED {
 
 	// Chasing LED strip lights?!! Maybe?!!
-	 Solenoid redLights = new Solenoid(2);
-	Solenoid greenLights = new Solenoid(3);
-	Solenoid blueLights = new Solenoid(4);
+	private DigitalOutput redLights;
+	private DigitalOutput greenLights;
+	private DigitalOutput blueLights;
+	boolean isPulsing = false; 
 	
 	public StatusLED() {
-		redLights.setPulseDuration(100);
-		greenLights.setPulseDuration(100);
-		blueLights.setPulseDuration(100);
+		redLights = new DigitalOutput(4);
+		greenLights = new DigitalOutput(5);
+		blueLights = new DigitalOutput(6);
 	}
 	
 	public void setStateHigh() {
@@ -30,9 +33,11 @@ public class StatusLED {
 	 * Alternatively turn on and off the lights of the robot.
 	 */
 	public void setPartyMode() {
-		redLights.startPulse();
-		greenLights.startPulse();
-		blueLights.startPulse();
+		redLights.pulse(100);
+		greenLights.pulse(100);
+		blueLights.pulse(100);
+		isPulsing = redLights.isPulsing();
+		SmartDashboard.putBoolean("Pulsing?", isPulsing);
 	}
 	
 	/**
@@ -47,8 +52,7 @@ public class StatusLED {
 	 * Set state of robot to brownout.
 	 */
 	public void setStateBrownout() {
-		redLights.setPulseDuration(10);
-		redLights.startPulse();
+		redLights.pulse(10);
 	}
 	
 }
