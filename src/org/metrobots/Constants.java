@@ -18,16 +18,16 @@ public class Constants {
 	/*
 	 * Motor ports
 	 */
-	public final static int flMotorPort = 0; 
-	public final static int blMotorPort = 2; 
-	public final static int frMotorPort = 4; 
-	public final static int brMotorPort = 6; 
-	public final static int MOTOR_PORT_ARM_LEFT = 8; 
-	public final static int MOTOR_PORT_ARM_RIGHT = 9; 
-	public final static int leftIntakeMotorPort = 3; 
-	public final static int rightIntakeMotorPort = 5; 
+	public final static int flMotorPort = 6; 
+	public final static int blMotorPort = 4; 
+	public final static int frMotorPort = 0; 
+	public final static int brMotorPort = 2; 
+	public final static int MOTOR_PORT_ARM_LEFT = 9; 
+	public final static int MOTOR_PORT_ARM_RIGHT = 8; 
+	public final static int leftIntakeMotorPort = 7; 
+	public final static int rightIntakeMotorPort = 3; 
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 1; 
-	public final static int WINCH_PORT = 7;
+	public final static int WINCH_PORT = 5;
 
 	/*
 	 * Sensor ports

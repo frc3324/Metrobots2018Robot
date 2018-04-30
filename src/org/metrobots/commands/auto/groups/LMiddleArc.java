@@ -19,13 +19,14 @@ Parameters: (140, 50) to Speeds: Outside (1.0) Inside (0.632653061)
 public class LMiddleArc extends CommandGroup {
 
     public LMiddleArc() {
-        this.addSequential(new DriveArc(-90.0, 23.09)); //33.625 inches
-        this.addSequential(new DriveArc(90.0, 23.09));
-        this.addSequential(new DriveForward(49.78, 1.0)); //90 inches
-        this.addSequential(new CubeControl(-0.5, 1.0));
+        this.addSequential(new DriveArc(-180.0, 25.0)); // ~29.5 inches //20.26
+        this.addSequential(new DriveArc(110.0, 15.0));
+//        this.addSequential(new DriveForward(28.84, 1.0)); //42 inches
+        this.addSequential(new CubeControl(-0.3, 1.0));
         this.addSequential(new DriveForward(7.53, -1.0)); //20 inches
-        this.addSequential(new Rotate(-90.0, 0.0));
-        this.addSequential(new DriveForward(9.79, 1.0)); //14.25 inches
-        this.addSequential(new DriveArc(90.0, 98.88)); //144 inches
+        this.addSequential(new Rotate(-70.0, 0.0));
+        //TODO Test lines below
+//        this.addSequential(new DriveForward(2.06, 1.0)); //3 inches
+//        this.addSequential(new DriveArc(90.0, 98.88)); //144 inches
     }
 }

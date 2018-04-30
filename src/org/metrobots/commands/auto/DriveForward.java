@@ -35,7 +35,7 @@ public class DriveForward extends Command {
 	/**
 	 * Method for auto drive forward.<p>
 	 * 
-	 * Distance to be traveled by robot in inches.
+	 * Distance to be traveled by robot.
 	 * Speed of motor, -1 to 1. 
 	 * @param distance
 	 * @param speed

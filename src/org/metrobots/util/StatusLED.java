@@ -18,19 +18,22 @@ public class StatusLED {
 		blueLights = new DigitalOutput(6);
 	}
 	
+	/**
+	 * Set state to show cube is in the intake (green).
+	 */
 	public void setStateHigh() {
 		greenLights.set(true);
 	}
 	
 	/**
-	 * Set state to show cube is not in the intake.
+	 * Set state to show cube is not in the intake (red).
 	 */
 	public void setStateLow() {
 		redLights.set(true);
 	}
 	
 	/**
-	 * Alternatively turn on and off the lights of the robot.
+	 * Alternatively turn on and off the lights of the robot (red, green, blue).
 	 */
 	public void setPartyMode() {
 		redLights.pulse(100);
@@ -49,7 +52,7 @@ public class StatusLED {
 	}
 	
 	/**
-	 * Set state of robot to brownout.
+	 * Set state of robot to brownout (rapid blinking red).
 	 */
 	public void setStateBrownout() {
 		redLights.pulse(10);
