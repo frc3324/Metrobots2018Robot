@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
@@ -43,7 +44,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
 	private static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB, false, Encoder.EncodingType.k4X);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
-	
+	PowerDistributionPanel mPDP = new PowerDistributionPanel();
 	private double rightEncoderDistance = 0.0;
 	private double leftEncoderDistance = 0.0;
 	static final double kToleranceDegrees = 2.0f;
@@ -90,6 +91,12 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	public void setSafetyEnabled(boolean status) {
 		mDrive.setSafetyEnabled(true);
 	}
+	public double getCurrent(int port) { //int currentPort
+//		SmartDashboard.putNumber("Total Current:", mPDP.getTotalCurrent());
+//		SmartDashboard.putNumber("Current1: ", mPDP.getCurrent(port));
+		SmartDashboard.putNumber("Voltage: ", mPDP.getVoltage());
+    	return mPDP.getCurrent(port);
+    }
 
 	
 	/**

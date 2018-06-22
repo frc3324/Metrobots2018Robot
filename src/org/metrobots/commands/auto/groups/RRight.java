@@ -26,6 +26,12 @@ public class RRight extends CommandGroup {
     	this.addSequential(new DriveForward(15.0, -1.0));
     	this.addSequential(new Rotate(90, 0));
 //    	this.addSequential(new DriveForward(30.0, 1.0));
+    	
+//    	// Two cube auto
+//    	this.addSequential(new DriveForward(20.0, 1.0));
+//    	this.addSequential(new Rotate(-100.0, 0.0));
+//    	this.addSequential(new DriveForward(10.0, 1.0));
+//    	this.addSequential(new CubeControl(1.0, 2.0));
     }
 
 }

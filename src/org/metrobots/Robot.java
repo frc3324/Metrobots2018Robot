@@ -71,7 +71,6 @@ public class Robot extends IterativeRobot {
 	public static final Pneumatics mPneumatics = new Pneumatics();
 //	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
 //	public static final StatusLED mStatusLED = new StatusLED();
-//	public static final PowerDistributionPanel mPowerDistributionPanel = new PowerDistributionPanel();
 
 	Command selectedCommand;
 	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>();
@@ -155,31 +154,31 @@ public class Robot extends IterativeRobot {
 		if (gameData != null && gameData.length() > 0) {
 			
 			firstLetter = gameData.charAt(0);
-			if (positionString.equals("Default position")) {
-				selectedCommand = new DriveForward(90.0, 1.0);
-				infoString = "Drive forward (default)";
+//			if (positionString.equals("Default position")) {
+//				selectedCommand = new DriveForward(90.0, 1.0);
+//				infoString = "Drive forward (default)";
+//			}
+//			else if (firstLetter == 'L' && positionString.equals("Left position")) {
+//				selectedCommand = new LLeft();
+//				infoString = "LLeft";
+//			}
+//			if (firstLetter == 'L' && positionString.equals("Default position")) {
+//				selectedCommand = new LMiddleArc();
+//				infoString = "LMiddle";
 			}
-			else if (firstLetter == 'L' && positionString.equals("Left position")) {
-				selectedCommand = new LLeft();
-				infoString = "LLeft";
-			}
-			else if (firstLetter == 'L' && positionString.equals("Middle position")) {
-				selectedCommand = new LMiddleArc();
-				infoString = "LMiddle";
-			}
-			else if (firstLetter == 'L' && positionString.equals("Right position")) {
-				selectedCommand = new LRight();
-				infoString = "LRight";
-			}
-			else if (firstLetter == 'R' && positionString.equals("Left position")) {
+//			else if (firstLetter == 'L' && positionString.equals("Right position")) {
+//				selectedCommand = new LRight(); 
+//				infoString = "LRight";
+//			}
+			if (firstLetter == 'L') { // && positionString.equals("Default position")
 				selectedCommand = new RLeft();
 				infoString = "RLeft";
 			}
-			else if (firstLetter == 'R' && positionString.equals("Middle position")) {
-				selectedCommand = new RMiddleArc();
-				infoString = "RMiddle";
-			}
-			else if (firstLetter == 'R' && positionString.equals("Right position")) {
+//			else if (firstLetter == 'R' && positionString.equals("Default position")) {
+//				selectedCommand = new RMiddleArc();
+//				infoString = "RMiddle";
+//			}
+			else if (firstLetter == 'R') {
 				selectedCommand = new RRight();
 				infoString = "RRight";
 			}
@@ -188,13 +187,7 @@ public class Robot extends IterativeRobot {
 				selectedCommand = new DriveForward(90, 1);
 				infoString = "No game data received.";
 			}	
-		}
-		else {
-			DriverStation.reportError("Here", false);
-			infoString = "Null game data.";
-		}
-				
-	}
+		}					
 
 	/**
 	 * Initialize whatever you need to when the robot starts autonomous
@@ -323,6 +316,7 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().getVideo();
 		Scheduler.getInstance().run();
 		mDriveTrain.printEncoder();
+		Robot.mDriveTrain.getCurrent(12);
 	}
 
 	/**

@@ -12,7 +12,7 @@ public class DriveTank extends Command {
 	boolean slowModeActivated = false;
 	boolean isTurning;
 	double turnRate;
-	
+	double driveTrainCurrent;
 	public DriveTank() {
 		requires(Robot.mDriveTrain);
 	}
@@ -22,13 +22,18 @@ public class DriveTank extends Command {
 //		//Add robot sensitivity
 		Robot.mDriveTrain.printEncoder();
 		double leftY = OI.get0LeftY(); // Get y value of left joystick
-		double rightX = OI.get0RightX(); // Get x value of right joystick 
+		double leftX = OI.get0LeftX(); // Get x value of right joystick 
 		
-		SmartDashboard.putNumber("RightX", rightX);
+		SmartDashboard.putNumber("RightX", leftX);
 		SmartDashboard.putNumber("LeftY", leftY);
 		SmartDashboard.putNumber("LDistanceDT", Robot.mDriveTrain.getLeftDistance());
-		Robot.mDriveTrain.arcadeDrive(leftY, -rightX, true);
-	
+		
+		Robot.mDriveTrain.arcadeDrive(leftY, -leftX, true);
+//		Robot.mDriveTrain.getCurrent();
+//		driveTrainPower1 = Robot.mDriveTrain.getCurrent();
+//		SmartDashboard.putNumber("DriveTrain1:", driveTrainPower1);
+		driveTrainCurrent = Robot.mDriveTrain.getCurrent(12) + Robot.mDriveTrain.getCurrent(13) + Robot.mDriveTrain.getCurrent(14) + Robot.mDriveTrain.getCurrent(15);
+		SmartDashboard.putNumber("Total Drivetrain Current Draw:", driveTrainCurrent);
 		if (OI.get0RightBumperToggled()) {
 			slowModeActivated = !slowModeActivated;
 		}

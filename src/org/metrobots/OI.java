@@ -272,6 +272,11 @@ public class OI {
 	public static boolean get1RightButton() {
 		return gamepad1.getStartButton();
 	}
+
+	public static double get0LeftX() {
+		// TODO Auto-generated method stub
+		return gamepad0.getX(Hand.kLeft);
+	}
 	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
