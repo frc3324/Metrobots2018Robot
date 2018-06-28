@@ -6,6 +6,7 @@ import org.metrobots.commands.DriveGroup;
 import org.metrobots.commands.auto.DriveForward;
 import org.metrobots.commands.auto.Rotate;
 import org.metrobots.commands.auto.RotatePID;
+import org.metrobots.commands.auto.groups.JaciTest;
 import org.metrobots.commands.auto.groups.LLeft;
 import org.metrobots.commands.auto.groups.LMiddle;
 import org.metrobots.commands.auto.groups.LRight;
@@ -46,6 +47,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.followers.EncoderFollower;
 
 /**
  * Main robot code<br>
@@ -105,6 +107,7 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().startAutomaticCapture(); 
 		CameraServer.getInstance().putVideo("Camera output", 1280, 720);
 //		SmartDashboard.clearPersistent("");
+		mDriveTrain.clearEncoder();
 	}
 
 	/**
@@ -112,6 +115,8 @@ public class Robot extends IterativeRobot {
 	 * the driver station
 	 */
 	public void disabledPeriodic() {
+		SmartDashboard.putNumber("LRawDistance(Robot)", mDriveTrain.getRightDistanceRaw());
+		mDriveTrain.printEncoder();
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		CameraServer.getInstance().getVideo();
 //		mStatusLED.setStateHigh();
@@ -154,39 +159,40 @@ public class Robot extends IterativeRobot {
 		if (gameData != null && gameData.length() > 0) {
 			
 			firstLetter = gameData.charAt(0);
-//			if (positionString.equals("Default position")) {
-//				selectedCommand = new DriveForward(90.0, 1.0);
-//				infoString = "Drive forward (default)";
-//			}
-//			else if (firstLetter == 'L' && positionString.equals("Left position")) {
-//				selectedCommand = new LLeft();
-//				infoString = "LLeft";
-//			}
-//			if (firstLetter == 'L' && positionString.equals("Default position")) {
-//				selectedCommand = new LMiddleArc();
-//				infoString = "LMiddle";
+			if (positionString.equals("Default position")) {
+				selectedCommand = new DriveForward(90, 1);
+				infoString = "Drive forward (default)";
 			}
-//			else if (firstLetter == 'L' && positionString.equals("Right position")) {
-//				selectedCommand = new LRight(); 
-//				infoString = "LRight";
-//			}
-			if (firstLetter == 'L') { // && positionString.equals("Default position")
+			else if (firstLetter == 'L' && positionString.equals("Left position")) {
+				selectedCommand = new LLeft();
+				infoString = "LLeft";
+			}
+			if (firstLetter == 'L' && positionString.equals("Middle position")) {
+				selectedCommand = new LMiddleArc();
+				infoString = "LMiddle";
+			}
+			else if (firstLetter == 'L' && positionString.equals("Right position")) {
+				selectedCommand = new LRight(); 
+				infoString = "LRight";
+			}
+			if (firstLetter == 'L'  && positionString.equals("Right position")){
 				selectedCommand = new RLeft();
 				infoString = "RLeft";
 			}
-//			else if (firstLetter == 'R' && positionString.equals("Default position")) {
-//				selectedCommand = new RMiddleArc();
-//				infoString = "RMiddle";
-//			}
+			else if (firstLetter == 'R' && positionString.equals("Middle position")) {
+				selectedCommand = new RMiddleArc();
+				infoString = "RMiddle";
+			}
 			else if (firstLetter == 'R') {
 				selectedCommand = new RRight();
 				infoString = "RRight";
 			}
 			else {
 				DriverStation.reportError("No game data received.", false);
-				selectedCommand = new DriveForward(90, 1);
+				selectedCommand = new JaciTest();
 				infoString = "No game data received.";
-			}	
+			}
+		}
 		}					
 
 	/**

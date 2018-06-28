@@ -64,9 +64,13 @@ public class Constants {
 	public final static double driveTrainAngleDeadband = 3; 
 	public final static double AXIS_DEADBAND = 0.05;
 	public final static double CIRCUMFERENCE = 18.85; // (Inches) Need to measure in inches
+	public final static double wheelDiameterMeters = 0.15240359; 
 	public final static double PULSES = 2639.43;
+	public final static int actualPulses = 1896;  // 256 * 3
 	public final static double INCH_PER_PULSE = 0.074; //circumference of wheel in inches / pulses
 	public final static double AUTO_ROTATE_ANGLE_THRESHOLD = 0.3;
 	public final static double ENCODER_CONVERSION_RATE = 0.68667;
 	public final static double DISTANCE_BETWEEN_WHEELS = 22.5;
+	public final static double DISTANCE_BETWEEN_WHEELS_METERS = 0.5715;
+	public final static double lowgearSpeedMeters = 2.4384;
 }

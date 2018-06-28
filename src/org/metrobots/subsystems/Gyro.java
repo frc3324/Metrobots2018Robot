@@ -27,6 +27,9 @@ public class Gyro extends Subsystem {
 	public void clear() {
 		mAhrs.reset();
 	}
+	public double getYaw() {
+		return mAhrs.getYaw();
+	}
 
      public void initDefaultCommand() {
         // Set the default command for a subsystem here.

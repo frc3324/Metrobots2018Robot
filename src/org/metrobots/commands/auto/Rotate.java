@@ -32,6 +32,10 @@ public class Rotate extends Command {
 	 */
 	@Override
 	protected void initialize() {
+		Robot.mGyro.clear();
+		Robot.mGyro.clear();
+		Robot.mGyro.clear();
+
 	}
 	
 	/**
