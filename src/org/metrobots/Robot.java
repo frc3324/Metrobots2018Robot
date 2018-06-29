@@ -6,7 +6,7 @@ import org.metrobots.commands.DriveGroup;
 import org.metrobots.commands.auto.DriveForward;
 import org.metrobots.commands.auto.Rotate;
 import org.metrobots.commands.auto.RotatePID;
-import org.metrobots.commands.auto.groups.JaciTest;
+import org.metrobots.commands.auto.groups.JaciTestLeft;
 import org.metrobots.commands.auto.groups.LLeft;
 import org.metrobots.commands.auto.groups.LMiddle;
 import org.metrobots.commands.auto.groups.LRight;
@@ -189,7 +189,7 @@ public class Robot extends IterativeRobot {
 			}
 			else {
 				DriverStation.reportError("No game data received.", false);
-				selectedCommand = new JaciTest();
+				selectedCommand = new JaciTestLeft();
 				infoString = "No game data received.";
 			}
 		}

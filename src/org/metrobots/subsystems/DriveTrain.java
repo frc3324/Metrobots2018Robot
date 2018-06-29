@@ -43,7 +43,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	static final double kF = 0.00;
 	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
 	private static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB, false, Encoder.EncodingType.k4X);
-	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.PULSES;
+	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.actualPulses;
 	private double distancePerPulseOne = 1;
 	PowerDistributionPanel mPDP = new PowerDistributionPanel();
 	private double rightEncoderDistance = 0.0;
@@ -222,14 +222,14 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	public static int getLeftDistanceRaw() {
 //		final double LDistance = lEncoder.getDistance();
 //	    final int rawLDista;nce = (int) (Constants.CIRCUMFERENCE / LDistance);
-	    final int rawLDistance = (int) lEncoder.get();
+	    final int rawLDistance = (int) lEncoder.getRaw();
 	    SmartDashboard.putNumber("RawL", rawLDistance); 
 	    return rawLDistance;
 	}
 	public static int getRightDistanceRaw() {
 //		final double RDistance = rEncoder.getDistance();
 //	    final double rawLDistance = (Constants.CIRCUMFERENCE / RDistance);
-	    final double rawLDistance = rEncoder.get();
+	    final double rawLDistance = rEncoder.getRaw();
 	    SmartDashboard.putNumber("Right Distance Raw", rawLDistance);
 	    return (int) rawLDistance;
 	}

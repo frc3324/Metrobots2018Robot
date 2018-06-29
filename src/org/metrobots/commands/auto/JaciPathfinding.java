@@ -22,26 +22,24 @@ double y;
 double angle;
 boolean thing = true;
 double turn;
+double angleDifference;
 boolean leftFinished;
 boolean rightFinished;
 EncoderFollower left;
 EncoderFollower right;
-    public JaciPathfinding(double x, double y, double angle) {
+    public JaciPathfinding(double x1, double y1, double angle1, double x2, double y2, double angle2) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 		SmartDashboard.putBoolean("Here3", true);
-    	this.x = x;
-    	this.y = y;
-    	this.angle = angle;
     	Waypoint[] points = new Waypoint[] {
-    		    new Waypoint(0, 0, 0),      // Waypoint @ x=-0, y=-0, exit angle=-45 degrees
-    		    new Waypoint(4.739, 0.33, 0),                           // Waypoint @ x=0, y=0,   exit angle=0 radians
+    		    new Waypoint(x1, y1, Pathfinder.d2r(angle1)),      // Waypoint @ x=-0, y=-0, exit angle=-45 degrees
+    		    new Waypoint(x2, y2, Pathfinder.d2r(angle2)),                           // Waypoint @ x=0, y=0,   exit angle=0 radians
 //    		    new Waypoint(4.039, 0.2413, Pathfinder.d2r(-90)),                        // Waypoint @ x=-3.429, y=0, exit angle=0 radians
 //    		    new Waypoint(4.353, 4.5, 0),
     		    
     		};
     	    Robot.mDriveTrain.clearEncoder();
-    		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH,  0.02, Constants.lowgearSpeedMeters*0.7, 4.5, 9);
+    		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.02, Constants.lowgearSpeedMeters*0.7, 4.5, 9);
     		Trajectory trajectory = Pathfinder.generate(points, config);
     		TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
     		left = new EncoderFollower(modifier.getLeftTrajectory());
@@ -63,9 +61,11 @@ EncoderFollower right;
     	double Routput = right.calculate(-Robot.mDriveTrain.getRightDistanceRaw());
     	double gyro_heading = -Robot.mGyro.getYaw();    // Assuming the gyro is giving a value in degrees
     	double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
-    	double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
+    	angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
     	turn = 1.2 * (-1.0/80.0) * angleDifference;
-    	SmartDashboard.putNumber("Turn:", gyro_heading);
+    	SmartDashboard.putNumber("Desired Heading", desired_heading);
+    	SmartDashboard.putNumber("gyro_heading", gyro_heading);
+    	SmartDashboard.putNumber("Turn:", turn);
     	Robot.mDriveTrain.tankDrive(-(Loutput + turn), -(Routput - turn), false);
     	SmartDashboard.putNumber("Loutput", Loutput);
     	SmartDashboard.putNumber("Routput", Routput); 
@@ -93,7 +93,7 @@ EncoderFollower right;
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (left.isFinished() == true && right.isFinished() == true) {
+    	if (left.isFinished() == true && right.isFinished() == true && angleDifference < 3) {
     		notifier.stop();    		
     		SmartDashboard.putBoolean("JaciFinished", true);
     		Robot.mDriveTrain.CoastMode();
