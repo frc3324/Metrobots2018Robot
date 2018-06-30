@@ -39,10 +39,6 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
 	      turnController.setOutputRange(-1.0, 1.0);
 	      turnController.setAbsoluteTolerance(kToleranceDegrees);
 	      turnController.setContinuous(true);
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
     }
 	public void GyroStabilize(double speed) { // Necessary code for rotating using PID with rotate
 		if(!turnController.isEnabled()) {
@@ -53,8 +49,6 @@ public class PIDStabilization extends Subsystem implements PIDOutput {
 		}
 		double leftStickValue = speed + rotateToAngleRate;
 		double rightStickValue = speed - rotateToAngleRate;
-		SmartDashboard.putNumber("GyroGoal", rotateToAngleRate);
-		SmartDashboard.putNumber("GyroReading", ahrs.getYaw());
 		Robot.mDriveTrain.tankDrive(leftStickValue, rightStickValue, false);	
 	}
 	

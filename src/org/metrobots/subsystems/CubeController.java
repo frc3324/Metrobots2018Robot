@@ -11,10 +11,8 @@ public class CubeController extends Subsystem {
 
 	WPI_VictorSPX leftIntakeMotor = new WPI_VictorSPX(Constants.leftIntakeMotorPort);
 	WPI_VictorSPX rightIntakeMotor = new WPI_VictorSPX(Constants.rightIntakeMotorPort);
-//	SpeedControllerGroup intakeMotors = new SpeedControllerGroup(leftIntakeMotor, rightIntakeMotor);
-//	
+
 	public CubeController() {
-//		leftIntakeMotor.setInverted(true);
 	}
 	
 	public void intake(double speed) {

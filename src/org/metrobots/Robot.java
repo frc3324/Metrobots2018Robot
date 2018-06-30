@@ -21,7 +21,6 @@ import org.metrobots.subsystems.CubeController;
 import org.metrobots.subsystems.DriveTrain;
 import org.metrobots.subsystems.Gyro;
 import org.metrobots.subsystems.IntakeArm;
-//import org.metrobots.subsystems.LimitSwitch;
 import org.metrobots.subsystems.PIDStabilization;
 import org.metrobots.subsystems.Pneumatics;
 import org.metrobots.util.StatusLED;
@@ -61,7 +60,7 @@ import jaci.pathfinder.followers.EncoderFollower;
 public class Robot extends IterativeRobot {
 	
 	/*
-	 * Declare gamepad objects
+	 * Initialize SubSytems
 	 */
 	public OI mOI;
 	public static final DriveTrain mDriveTrain = new DriveTrain();
@@ -71,11 +70,10 @@ public class Robot extends IterativeRobot {
 	public static final IntakeArm mIntakeArm = new IntakeArm();
 	public static final Climber mClimber = new Climber();
 	public static final Pneumatics mPneumatics = new Pneumatics();
-//	public static final LimitSwitch mLimitSwitch = new LimitSwitch();
-//	public static final StatusLED mStatusLED = new StatusLED();
 
-	Command selectedCommand;
-	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>();
+
+	Command selectedCommand; // Selected command
+	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>(); // Put a selection menu on the SmartDashboard
 
 	String gameData;
 	char firstLetter;
@@ -93,6 +91,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
         mOI = new OI();
+        /* Initialize AUTO selecter UI */
         autoSelector.addDefault("Default", defaultSet);
     	autoSelector.addObject("Left position", left);
     	autoSelector.addObject("Middle position", middle);
@@ -106,7 +105,6 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		CameraServer.getInstance().startAutomaticCapture(); 
 		CameraServer.getInstance().putVideo("Camera output", 1280, 720);
-//		SmartDashboard.clearPersistent("");
 		mDriveTrain.clearEncoder();
 	}
 
@@ -115,19 +113,10 @@ public class Robot extends IterativeRobot {
 	 * the driver station
 	 */
 	public void disabledPeriodic() {
-		SmartDashboard.putNumber("LRawDistance(Robot)", mDriveTrain.getRightDistanceRaw());
-		mDriveTrain.printEncoder();
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+
 		CameraServer.getInstance().getVideo();
-//		mStatusLED.setStateHigh();
-		/***************************************************/
-//		Scheduler.getInstance().add(new AutoConfiguration());
-//		setAutoCommand = mConfiguration.getAutoCommand();
-//		DriverStation.reportError("Supposed command: " + setAutoCommand, false);
-//		Scheduler.getInstance().run();
-		/***************************************************/
-		
-		/***************OLDCODE*********************/
+
 		if (autoSelector.getSelected() == defaultSet) {
 			positionString = "Default position";
 		}
@@ -140,21 +129,8 @@ public class Robot extends IterativeRobot {
 		else if (autoSelector.getSelected() == right) {
 			positionString = "Right position";
 		}
-//		Scheduler.getInstance().add(selectedCommand);
 		SmartDashboard.putString("You are in: ", positionString);
-		/***************OLDCODE*********************/
-		
-//		try {
-//			firstLetter = gameData.charAt(0);
-//		}
-//		catch (Exception e) {
-//			DriverStation.reportError("Exception", false);
-//		}
-//		
-//		try {
-//			firstLetter = gameData.charAt(0);
-//		} catch (Exception e) {
-//		}
+
 		
 		if (gameData != null && gameData.length() > 0) {
 			
@@ -200,102 +176,9 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void autonomousInit() {
-		/*******************CODETHATWORKS**************************/
-//		Robot.mIntakeArm.resetEncoder();
-//		Scheduler.getInstance().add(new DriveForward(60)); //little less than 60
-//		Scheduler.getInstance().add(new RotatePID1());
-		/*******************CODETHATWORKS**************************/
-		
-		
-		
 		Scheduler.getInstance().add(selectedCommand);
 		SmartDashboard.putString("COMMENCING: ", infoString);
 
-		
-		
-		
-//		Robot.mGyro.clear();
-		
-//		try {
-//			if (autoSelector.getSelected() == 0) {
-//				selectedCommand = new DriveForward(100);
-//				infoString = "Default set (driveForward)";
-//			}
-//			else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
-//				infoString = "LLeft";
-//				selectedCommand = new LLeft();
-//			}
-//			else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
-//				infoString = "LMiddle";
-//				selectedCommand = new LMiddle();
-//			}
-//			else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
-//				infoString = "LRight";
-//				selectedCommand = new LRight();
-//			}
-//			else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
-//				infoString = "RLeft";
-//				selectedCommand = new RLeft();
-//			}
-//			else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
-//				infoString = "RMiddle";
-//				selectedCommand = new RMiddle();
-//			}
-//			else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
-//				infoString = "RRight";
-//				selectedCommand = new RRight();
-//			}
-//			else {
-//				DriverStation.reportError("No game data received.", false);
-//				selectedCommand = new DriveForward(100);
-//			}
-//			Scheduler.getInstance().add(selectedCommand);
-//			SmartDashboard.putString("COMMENCING: ", infoString);
-//			
-//		}
-//		catch (Exception e){
-//			DriverStation.reportError("Null data", false);
-//			selectedCommand = new DriveForward(100);
-//		}
-//			
-//		Scheduler.getInstance().add(selectedCommand);
-		/********************Ble*****************************/
-		
-		/********************Ble*****************************/
-//		if (autoSelector.getSelected() == 0) {
-//			selectedCommand = new DriveForward(68);
-//			infoString = "Default set (driveForward)";
-//		}
-//		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == left) {
-//			infoString = "LLeft";
-//			selectedCommand = new LLeft();
-//		}
-//		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == middle) {
-//			infoString = "LMiddle";
-//			selectedCommand = new LMiddle();
-//		}
-//		else if (gameData.charAt(0) == 'L' && autoSelector.getSelected() == right) {
-//			infoString = "LRight";
-//			selectedCommand = new LRight();
-//		}
-//		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == left) {
-//			infoString = "RLeft";
-//			selectedCommand = new RLeft();
-//		}
-//		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == middle) {
-//			infoString = "RMiddle";
-//			selectedCommand = new RMiddle();
-//		}
-//		else if (gameData.charAt(0) == 'R' && autoSelector.getSelected() == right) {
-//			infoString = "RRight";
-//			selectedCommand = new RRight();
-//		}
-//		else {
-//			DriverStation.reportError("No game data received.", false);
-//			selectedCommand = new DriveForward(68);
-//		}
-//		Scheduler.getInstance().add(selectedCommand);
-//		SmartDashboard.putString("COMMENCING: ", infoString);
 	}
 
 	/**
@@ -329,6 +212,5 @@ public class Robot extends IterativeRobot {
 	 * Runs constantly when test mode is enabled
 	 */
 	public void testPeriodic() {
-		//LiveWindow.run();
 	}
 }

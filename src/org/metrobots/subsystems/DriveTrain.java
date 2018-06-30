@@ -41,11 +41,14 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	static final double kF = 0.00;
+
 	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
 	private static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB, false, Encoder.EncodingType.k4X);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.actualPulses;
 	private double distancePerPulseOne = 1;
+
 	PowerDistributionPanel mPDP = new PowerDistributionPanel();
+
 	private double rightEncoderDistance = 0.0;
 	private double leftEncoderDistance = 0.0;
 	static final double kToleranceDegrees = 2.0f;
@@ -67,9 +70,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		lEncoder.setDistancePerPulse(distancePerPulse);
 		rEncoder.setDistancePerPulse(distancePerPulse);
 		  try {
-	          /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
-	          /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
-	          /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
 	          ahrs = new AHRS(SPI.Port.kMXP); 
 	      } catch (RuntimeException ex ) {
 	          DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
@@ -93,9 +93,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		mDrive.setSafetyEnabled(true);
 	}
 	public double getCurrent(int port) { //int currentPort
-//		SmartDashboard.putNumber("Total Current:", mPDP.getTotalCurrent());
-//		SmartDashboard.putNumber("Current1: ", mPDP.getCurrent(port));
-		SmartDashboard.putNumber("Voltage: ", mPDP.getVoltage());
     	return mPDP.getCurrent(port);
     }
 
@@ -118,19 +115,12 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
           } catch( RuntimeException ex ) {
               DriverStation.reportError("Error communicating with drive system:  " + ex.getMessage(), true);
           }
-          SmartDashboard.putNumber("Gyro", currentRotationRate);
-          SmartDashboard.putNumber("Gyro1", ahrs.getAngle());
           return currentRotationRate;
       }
 	public void turnControllerDisable() { //Disables the PIDController
 		turnController.disable();
 	}
-	
-//	  SmartDashboard.putNumber("Gyro", currentRotationRate);
 
-  /**
-   * Runs during test mode
-   */
 
 
   @Override
@@ -160,17 +150,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	 * Print the encoder values in inches.
 	 */
 	public void printEncoder() {
-//		leftEncoderDistance = getLeftDistance();
-//		rightEncoderDistance = getRightDistance();
-//		
-		// using raw values here, test purpose only
-//		leftEncoderDistance = lEncoder.getDistance();
-//		rightEncoderDistance = rEncoder.getDistance();
-//		
-		
-		// 
-//		SmartDashboard.putNumber("Program is Running", val);
-//		val++;
 		SmartDashboard.putNumber("L Encoder Distance", getLeftDistance());
 		SmartDashboard.putNumber("R Encoder Distance", getRightDistance());
 	}
@@ -201,8 +180,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	 */
 	public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) { // Creating left and right speed from WPILib's tankDrive
 		mDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
-		//mDrive.tankDrive(leftSpeed, rightSpeed, true);
-	
 	}
 	public void BrakeMode() {
 		frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -220,17 +197,11 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 		//Do nothing by default if code is broken
 	}
 	public static int getLeftDistanceRaw() {
-//		final double LDistance = lEncoder.getDistance();
-//	    final int rawLDista;nce = (int) (Constants.CIRCUMFERENCE / LDistance);
 	    final int rawLDistance = (int) lEncoder.getRaw();
-	    SmartDashboard.putNumber("RawL", rawLDistance); 
 	    return rawLDistance;
 	}
 	public static int getRightDistanceRaw() {
-//		final double RDistance = rEncoder.getDistance();
-//	    final double rawLDistance = (Constants.CIRCUMFERENCE / RDistance);
 	    final double rawLDistance = rEncoder.getRaw();
-	    SmartDashboard.putNumber("Right Distance Raw", rawLDistance);
 	    return (int) rawLDistance;
 	}
 	

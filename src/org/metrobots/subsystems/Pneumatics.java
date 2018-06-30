@@ -16,17 +16,14 @@ public class Pneumatics extends Subsystem {
 	
 	public void setHighGear() {
 		gearShifter.set(DoubleSolenoid.Value.kForward);
-//		Robot.mStatusLED.setStateHigh();
 	}
 	
 	public void setLowGear() {
 		gearShifter.set(DoubleSolenoid.Value.kReverse);
-//		Robot.mStatusLED.setStateLow();
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+
     }
 }
 

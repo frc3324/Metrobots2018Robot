@@ -23,6 +23,5 @@ public class RMiddleArc extends CommandGroup {
         // TODO Needed below?
         this.addSequential(new DriveForward(9.96, 1.0)); //14.25 inches
         //TODO Test below lines
-//        this.addSequential(new DriveArc(-90, 98.88));
     }
 }

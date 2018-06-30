@@ -32,8 +32,7 @@ public class Constants {
 	/*
 	 * Sensor ports
 	 */
-	//public final static SPI.Port navxPort = SPI.Port.kMXP;
-	
+
 	public final static int leftEncoderPortA = 0; //Checked Buckeye
 	public final static int leftEncoderPortB = 1; //Checked Buckeye
 	public final static int rightEncoderPortA = 2; //Checked Buckeye
@@ -41,10 +40,6 @@ public class Constants {
 	public final static int ArmEncoderACLK = 6; //Checked Buckeye
 	public final static int ArmEncoderSW = 4; //Checked Buckeye
 	public final static int ArmEncoderDT = 5; //Checked Buckeye
-//	public final static int LimitSwitchFrontPort = 8;
-//	public static final int LimitSwitchBackPort = 9;
-	
-//	public final static int CAMERA_PORT = 0;
 	
 	
 	/*

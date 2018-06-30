@@ -31,12 +31,7 @@ public class PressureSwitch extends Command {
     protected void initialize() {
     	DriverStation.reportError("HERE", false);
     	timer.start();
-    	//compressor.setClosedLoopControl(true);
-    	//compressor.start();
-    	//compressor = new Compressor(0);
-    	
-    	//compressor.stop();
-    	
+
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,20 +49,7 @@ public class PressureSwitch extends Command {
         	}
     	}
     	
-//    	if (/*Current Encoder*/ > 18.85) {
-//    		currentTime = timer.get();
-//    		currentEncoder = 
-//    		velocity = currentTime / currentEncoder;
-//    		
-//    	}
-//    	SmartDashboard.putBoolean("Switch Status", gearShifterStatus);
-    }
-    	
-    	/*catch (RuntimeException ex){
-    		DriverStation.reportError(""+ ex, true);
-    	}*/
-    	
-   // }
+//
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

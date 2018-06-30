@@ -18,20 +18,11 @@ public class RRight extends CommandGroup {
     	this.addSequential(new GyroReset());
     	this.addSequential(new Rotate(-70, 0));
     	this.addSequential(new GyroReset());
-//    	this.addSequential(new MoveArm(11.75));
-//    	this.addSequential(new GyroReset());
     	this.addSequential(new DriveForward(30, 1));
     	this.addSequential(new CubeControl(-0.5, 2));
     	this.addSequential(new GyroReset());
     	this.addSequential(new DriveForward(15.0, -1.0));
     	this.addSequential(new Rotate(90, 0));
-//    	this.addSequential(new DriveForward(30.0, 1.0));
-    	
-//    	// Two cube auto
-//    	this.addSequential(new DriveForward(20.0, 1.0));
-//    	this.addSequential(new Rotate(-100.0, 0.0));
-//    	this.addSequential(new DriveForward(10.0, 1.0));
-//    	this.addSequential(new CubeControl(1.0, 2.0));
     }
 
 }

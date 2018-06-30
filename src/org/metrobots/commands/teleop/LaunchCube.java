@@ -23,21 +23,9 @@ public class LaunchCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//	    Robot.mCubeController.intake(-0.2);
-    
+
 	    
-    //  
-    //protected void execute() {
-//    	if (OI.is1LeftBumperPressed()) {
-//    		if (isOn = false) {
-//    			motorSpeed = -1.0;
-//    			isOn = true;
-//    		} else {
-//        		motorSpeed = 0.0;	
-//        		isOn = false;
-//    		}    
-//    	 Robot.mCubeController.intake(motorSpeed);
-//    	}
+
     	if (OI.is1LeftBumperPressed()) { //outtake (3/10/18)
     		DriverStation.reportError("LEFT BUMPER", false);
     		motorSpeed = -0.8;
@@ -62,7 +50,6 @@ public class LaunchCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot.mCubeController.intake(0.0);
     }
 
     // Called when another command which requires one or more of the same

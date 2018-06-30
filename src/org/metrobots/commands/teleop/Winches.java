@@ -20,11 +20,6 @@ public class Winches extends Command {
 
     protected void execute() {
     	double currentPulseArm = Robot.mIntakeArm.getRawArm();
-//    	if (currentPulseArm < 45) {
-//    		Robot.mIntakeArm.armMovement(0.2);
-//    	} else {
-//    		Robot.mIntakeArm.armMovement(0.0);
-//    	}
     	
     	if (OI.get1BButton()) {
     		Robot.mClimber.reelWinch(-1.0);
@@ -44,9 +39,6 @@ public class Winches extends Command {
     	else {
     		Robot.mClimber.grabBar(0.0);
     	}
-//    	upSpeed = OI.get1RightY();
-//    	SmartDashboard.putNumber("Slide speed", upSpeed);
-//     	Robot.mClimber.grabBar(upSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
