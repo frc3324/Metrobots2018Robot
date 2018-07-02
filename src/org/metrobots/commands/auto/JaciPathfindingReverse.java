@@ -16,7 +16,7 @@ import jaci.pathfinder.modifiers.TankModifier;
 /**
  *
  */
-public class JaciPathfinding extends Command {
+public class JaciPathfindingReverse extends Command {
 double x;
 double y;
 double angle;
@@ -27,7 +27,7 @@ boolean leftFinished;
 boolean rightFinished;
 EncoderFollower left;
 EncoderFollower right;
-    public JaciPathfinding(double x1, double y1, double angle1, double x2, double y2, double angle2) {
+    public JaciPathfindingReverse(double x1, double y1, double angle1, double x2, double y2, double angle2) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	Waypoint[] points = new Waypoint[] {
@@ -43,8 +43,8 @@ EncoderFollower right;
     		TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
     		left = new EncoderFollower(modifier.getLeftTrajectory());
     		right = new EncoderFollower(modifier.getRightTrajectory());
-    		left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.actualPulses, Constants.wheelDiameterMeters);
-    		right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.actualPulses, Constants.wheelDiameterMeters);
+    		left.configureEncoder(-Robot.mDriveTrain.getLeftDistanceRaw(), Constants.actualPulses, Constants.wheelDiameterMeters);
+    		right.configureEncoder(Robot.mDriveTrain.getRightDistanceRaw(), Constants.actualPulses, Constants.wheelDiameterMeters);
     		left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.lowgearSpeedMeters, 0);
     		right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.lowgearSpeedMeters, 0);
 //    		this.left = left;
@@ -56,8 +56,8 @@ EncoderFollower right;
 
     }
     Notifier notifier = new Notifier (() -> {
-    	double Loutput = left.calculate(Robot.mDriveTrain.getLeftDistanceRaw());
-    	double Routput = right.calculate(-Robot.mDriveTrain.getRightDistanceRaw());
+    	double Loutput = left.calculate(-Robot.mDriveTrain.getLeftDistanceRaw());
+    	double Routput = right.calculate(Robot.mDriveTrain.getRightDistanceRaw());
     	double gyro_heading = -Robot.mGyro.getYaw();    // Assuming the gyro is giving a value in degrees
     	double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
     	angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
@@ -65,7 +65,7 @@ EncoderFollower right;
     	SmartDashboard.putNumber("Desired Heading", desired_heading);
     	SmartDashboard.putNumber("gyro_heading", gyro_heading);
     	SmartDashboard.putNumber("Turn:", turn);
-    	Robot.mDriveTrain.tankDrive(-(Loutput + turn), -(Routput - turn), false);
+    	Robot.mDriveTrain.tankDrive((Loutput + turn), (Routput - turn), false);
     	SmartDashboard.putNumber("Loutput", Loutput);
     	SmartDashboard.putNumber("Routput", Routput);
     	SmartDashboard.putBoolean("JaciFinished", false);
