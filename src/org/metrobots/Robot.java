@@ -70,7 +70,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeArm mIntakeArm = new IntakeArm();
 	public static final Climber mClimber = new Climber();
 	public static final Pneumatics mPneumatics = new Pneumatics();
-
+	private PowerDistributionPanel pdp;
 
 	Command selectedCommand; // Selected command
 	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>(); // Put a selection menu on the SmartDashboard
@@ -97,6 +97,7 @@ public class Robot extends IterativeRobot {
     	autoSelector.addObject("Middle position", middle);
     	autoSelector.addObject("Right position", right);
         SmartDashboard.putData("CHOOSE ONE", autoSelector);
+        pdp = new PowerDistributionPanel();
 	}
 
 	/**
@@ -206,6 +207,14 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		mDriveTrain.printEncoder();
 		Robot.mDriveTrain.getCurrent(12);
+		
+		for(int i = 0; i < /* however many things to test */; i++)
+		{
+			SmartDashboard.putNumber("Channel " + i + " Current", pdp.getCurrent(i));
+		}
+		
+		SmartDashboard.putNumber("Total Current", pdp.getTotalCurrent());
+		SmartDashboard.putNumber("Total Power", pdp.getTotalPower());
 	}
 
 	/**
