@@ -1,5 +1,7 @@
 package org.metrobots;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+
 //import edu.wpi.first.wpilibj.SPI;
 
 /**
